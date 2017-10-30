@@ -1,0 +1,24 @@
+{{ define "main" }}
+  <section class="Article">
+    <div class="Article-header">
+      <h1 class="Article-title">{{ .Title }}</h1>
+      <div class="Article-meta">
+        <a href="{{ .Permalink }}" class="Article-meta-item">
+          On: <em>{{ .Date.Format "2006/01/02" }}</em>
+        </a>
+        <a href="/dev" class="Article-meta-item">
+          In: <em>dev</em>
+        </a>
+      </div>
+      <p class="Article-excerpt">{{ .Page.Params.description }}</p>
+      <div class="Article-featuredImg">
+        <img src="{{ .Page.Params.img }}" alt="{{ .Title }}">
+      </div>
+    </div>
+    <div class="Article-content">
+      <div class="Content">
+        {{ .Content }}
+      </div>
+    </div>
+  </section>
+{{ end }}

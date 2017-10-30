@@ -1,0 +1,15 @@
+.Sidebar {
+  padding: gutter(lg);
+  background-color: $color-grey-100;
+
+  @include break(lg) {
+    overflow: hidden;
+    display: flex;
+    padding: gutter(xl);
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 0 0 30rem;
+    max-width: 30rem;
+    height: 100vh;
+  }
+}

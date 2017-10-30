@@ -1,0 +1,47 @@
+@function font-size($size) {
+  $sizes: (
+    xs: 1.2rem,
+    sm: 1.4rem,
+    md: 1.6rem,
+    lg: 2.1rem,
+    xl: 2.7rem,
+    xx: 3.6rem
+  );
+
+  @if (map-has-key($sizes, $size)) {
+    @return map-get($sizes, $size);
+  } @else {
+    @warn "$size doesn't exist in $sizes.";
+  }
+}
+
+@function line-height($size) {
+  $sizes: (
+    sm: 1.2,
+    md: 1.8,
+    lg: 2.2
+  );
+
+  @if (map-has-key($sizes, $size)) {
+    @return map-get($sizes, $size);
+  } @else {
+    @warn "$size doesn't exist in $sizes.";
+  }
+}
+
+@function gutter($size) {
+  $sizes: (
+    xs: 0.3rem,
+    sm: 0.6rem,
+    md: 1.2rem,
+    lg: 2.4rem,
+    xl: 3.6rem,
+    xx: 4.8rem
+  );
+
+  @if (map-has-key($sizes, $size)) {
+    @return map-get($sizes, $size);
+  } @else {
+    @warn "$size doesn't exist in $sizes.";
+  }
+}

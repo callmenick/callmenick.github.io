@@ -1,0 +1,68 @@
+.Section {
+}
+
+.Section-header {
+  padding: 0 0 gutter(lg) 0;
+  border-bottom: solid 0.3rem $color-brand-500;
+}
+
+.Section-title {
+  display: inline-block;
+  margin: 0 0 gutter(md);
+  padding: gutter(xs) gutter(md);
+  color: #fff;
+  background-color: $color-brand-500;
+  font-family: $font-secondary;
+  font-size: font-size(md);
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: $letter-spacing;
+}
+
+.Section-subTitle {
+  margin: 0;
+  color: $color-brand-500;
+  font-family: $font-secondary;
+  font-size: font-size(sm);
+  text-transform: uppercase;
+  letter-spacing: $letter-spacing;
+}
+
+.Section-content {
+  padding: gutter(xx) 0;
+}
+
+.Section-article {
+  // margin-bottom: gutter(xs);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.Section-article-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: gutter(sm);
+
+  &:hover {
+    background-color: $color-grey-100;
+  }
+}
+
+.Section-article-title {
+  margin-right: gutter(lg);
+  color: $color-grey-700;
+  font-family: $font-primary;
+  font-size: font-size(md);
+  font-weight: 400;
+}
+
+.Section-article-date {
+  color: $color-grey-500;
+  flex: 0 0 12rem;
+  font-family: $font-secondary;
+  font-size: font-size(xs);
+  text-align: right;
+}

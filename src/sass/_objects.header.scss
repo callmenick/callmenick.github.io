@@ -1,0 +1,13 @@
+.Header {
+  margin: 0 0 gutter(lg) 0;
+
+  @include break(lg) {
+    margin: 0;
+  }
+}
+
+.Header-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

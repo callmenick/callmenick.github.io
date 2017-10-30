@@ -1,0 +1,10 @@
+name = "callmenick"
+# license = "MIT"
+# licenselink = "https://github.com/yourname/yourtheme/blob/master/LICENSE.md"
+description = "Personal site theme"
+homepage = "http://callmenick.com"
+min_version = "0.26"
+
+[author]
+  name = "Nick Salloum"
+  homepage = "http://callmenick.com"

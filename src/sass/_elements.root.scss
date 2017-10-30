@@ -1,0 +1,11 @@
+html {
+  font-size: 10px;
+}
+
+body {
+  color: $color-grey-700;
+  font-family: $font-primary;
+  font-size: font-size(md);
+  font-weight: 400;
+  line-height: line-height(md);
+}

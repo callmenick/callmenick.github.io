@@ -1,0 +1,13 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+  color: $color-grey-900;
+  font-family: $font-secondary;
+  font-weight: 700;
+  line-height: line-height(sm);
+}

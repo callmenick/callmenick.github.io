@@ -1,0 +1,53 @@
+.Content {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: gutter(md) 0;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  div,
+  p,
+  ul,
+  ol,
+  blockquote,
+  pre {
+    margin: gutter(xl) 0;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  blockquote {
+    margin-left: gutter(lg);
+    padding: gutter(sm) 0 gutter(sm) gutter(lg);
+    border-left: solid 0.3rem $color-grey-300;
+  }
+
+  ul,
+  ol {
+    margin-left: gutter(lg);
+  }
+
+  img {
+    display: block;
+    margin: 0;
+    max-width: 100%;
+    height: auto;
+  }
+}

@@ -1,0 +1,10 @@
+.Logo {
+  display: block;
+  margin: 0;
+  padding: 0;
+  transition: transform 600ms cubic-bezier(.68, -.55, .265, 1.55);
+
+  &:hover {
+    transform: rotate(180deg);
+  }
+}

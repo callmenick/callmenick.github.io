@@ -1,0 +1,17 @@
+{
+  "name": "callmenick",
+  "private": true,
+  "license": "UNLICENSED",
+  "scripts": {
+    "start:dev": "gulp start:dev",
+    "build:dev": "gulp build:dev",
+    "build:prod": "gulp build:prod"
+  },
+  "dependencies": {
+    "autoprefixer": "^7.1.4",
+    "cssnano": "^3.10.0",
+    "gulp": "^3.9.1",
+    "gulp-postcss": "^7.0.0",
+    "gulp-sass": "^3.1.0"
+  }
+}

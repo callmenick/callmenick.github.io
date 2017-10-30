@@ -1,0 +1,40 @@
+a {
+  color: $color-brand-500;
+  text-decoration: none;
+  transition: color 250ms cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+a:hover {
+  color: $color-brand-700;
+}
+
+pre,
+code {
+  font-family: Consolas, Monaco, "Andale Mono", monospace;
+  font-size: font-size(xs);
+  line-height: inherit;
+}
+
+pre {
+  padding: gutter(md);
+  overflow: auto;
+  color: $color-grey-100;
+  background: $color-grey-900;
+}
+
+:not(pre) > code {
+  display: inline-block;
+  color: inherit;
+  background: none;
+  font-size: inherit;
+}
+
+pre code {
+  overflow: auto;
+  display: block;
+}
+
+pre ::selection {
+  color: #fff;
+  background: rgba($color-brand-500, 0.99);
+}

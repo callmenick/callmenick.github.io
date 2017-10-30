@@ -1,0 +1,11 @@
+{{ define "main" }}
+  <section class="Section">
+    <div class="Section-header">
+      <h1 class="Section-title">{{ .Title }}</h1>
+      <p class="Section-subTitle">{{ .Params.description }}</p>
+    </div>
+    <div class="Section-content">
+      {{ .Content }}
+    </div>
+  </section>
+{{ end }}

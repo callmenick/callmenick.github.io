@@ -1,0 +1,7 @@
+.CarbonAd {
+  display: none;
+
+  @include break(lg) {
+    display: block;
+  }
+}

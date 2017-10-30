@@ -1,0 +1,20 @@
+<div class="Sidebar">
+  <header class="Header">
+    <div class="Header-logo">
+      <a href="{{ .Site.BaseURL }}">
+        {{ partial "logo.html" . }}
+      </a>
+    </div>
+  </header>
+  <nav class="Nav">
+    <ul class="Nav-items">
+      {{ $currentPage := . }}
+      {{ range .Site.Menus.main }}
+        <li class="Nav-item {{ if $currentPage.IsMenuCurrent "main" . }}Nav-item--isActive{{ end }}">
+          <a href="{{ .URL }}" class="Nav-link">{{ .Name }}</a>
+        </li>
+      {{ end }}
+    </ul>
+  </nav>
+  <div id="carbonad" class="CarbonAd"></div>
+</div>

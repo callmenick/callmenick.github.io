@@ -1,0 +1,42 @@
+.CarbonAd {
+  display: none;
+font-family: $font-secondary;
+  font-size: font-size(xs);
+  line-height: line-height(sm);
+  text-align: center;
+
+  @include break(lg) {
+    display: block;
+  }
+
+  .carbon-wrap {
+    display: block;
+    margin: 0 0 gutter(sm) 0;
+    clear: both;
+  }
+
+  .carbon-img {
+    display: block;
+    margin: 0 auto gutter(md) auto;
+    padding: gutter(sm);
+    width: 138px;
+    height: 108px;
+    background-color: #fff;
+  }
+
+  .carbon-img img {
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+
+  .carbon-text {
+    display: block;
+    color: $color-grey-700;
+  }
+
+  .carbon-poweredby {
+    color: $color-brand-500;
+  }
+
+}

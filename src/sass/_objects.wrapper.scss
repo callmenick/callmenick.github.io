@@ -1,0 +1,11 @@
+.Wrapper {
+  display: flex;
+  flex-direction: column;
+
+  @include break(lg) {
+    flex-direction: row;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+  }
+}

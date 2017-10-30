@@ -1,0 +1,38 @@
+baseURL = "http://callmenick.com"
+languageCode = "en-us"
+title = "Call Me Nick"
+theme = "callmenick"
+[params]
+  subtitle = "Front End Development and Other Adventures"
+  description = "I'm Nick Salloum, a Front End Engineer, an artist, and other things."
+  author = "Nick Salloum"
+[[menu.main]]
+  name = "Home"
+  weight = 1
+  identifier = "home"
+  url = "/"
+[[menu.main]]
+  name = "Dev"
+  weight = 2
+  identifier = "dev"
+  url = "/dev"
+[[menu.main]]
+  name = "Contact"
+  weight = 3
+  identifier = "contact"
+  url = "/contact"
+# [[menu.main]]
+#   name = "Paper Boy"
+#   weight = 3
+#   identifier = "paperboy"
+#   url = "/paperboy"
+# [[menu.main]]
+#   name = "Art"
+#   weight = 4
+#   identifier = "art"
+#   url = "/art"
+# [[menu.main]]
+#   name = "Random"
+#   weight = 5
+#   identifier = "random"
+#   url = "/random"

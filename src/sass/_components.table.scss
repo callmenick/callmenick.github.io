@@ -1,0 +1,14 @@
+.Table {
+  width: 100%;
+  border-collapse: collapse;
+
+  tr {
+  }
+
+  th,
+  td {
+    padding: gutter(md);
+    text-align: left;
+    border: solid 0.1rem $color-grey-300;
+  }
+}

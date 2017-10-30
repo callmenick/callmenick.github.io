@@ -1,0 +1,44 @@
+.Article {
+}
+
+.Article-header {
+  margin: 0 0 gutter(xx) 0;
+}
+
+.Article-title {
+  margin: 0 0 gutter(md) 0;
+  font-size: font-size(xl);
+}
+
+.Article-meta {
+  display: flex;
+  margin: 0 0 gutter(lg) 0;
+}
+
+.Article-meta-item {
+  margin-right: gutter(xl);
+  color: $color-grey-500;
+  font-family: $font-secondary;
+  font-size: font-size(xs);
+  text-transform: uppercase;
+  letter-spacing: $letter-spacing;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  em {
+    color: $color-brand-500;
+    font-style: normal;
+  }
+}
+
+.Article-excerpt {
+  margin: 0 0 gutter(xl) 0;
+}
+
+.Article-featuredImg {
+}
+
+.Article-content {
+}
