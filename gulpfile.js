@@ -9,16 +9,7 @@ var sass = require('gulp-sass');
 
 /* styles tasks */
 
-gulp.task('styles:dev', function () {
-  return gulp.src('./src/sass/**/*.scss')
-    .pipe(sass().on('error', sass.logError))
-    .pipe(postcss([
-      autoprefixer()
-    ]))
-    .pipe(gulp.dest('./themes/callmenick/static/css'));
-});
-
-gulp.task('styles:prod', function () {
+gulp.task('styles', function () {
   return gulp.src('./src/sass/**/*.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(postcss([
@@ -30,16 +21,14 @@ gulp.task('styles:prod', function () {
 
 /* dev tasks */
 
-gulp.task('start:dev', ['styles:dev'], function() {
-  gulp.watch('./src/sass/**/*.scss', ['styles:dev']);
+gulp.task('watch', ['styles'], function() {
+  gulp.watch('./src/sass/**/*.scss', ['styles']);
 });
 
 /* build tasks */
 
-gulp.task('build:dev', ['styles:dev']);
-
-gulp.task('build:prod', ['styles:prod']);
+gulp.task('build', ['styles']);
 
 /* default tasks */
 
-gulp.task('default', ['build:dev']);
+gulp.task('default', ['build']);

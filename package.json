@@ -3,9 +3,8 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "start:dev": "gulp start:dev",
-    "build:dev": "gulp build:dev",
-    "build:prod": "gulp build:prod",
+    "watch": "gulp watch",
+    "build": "gulp build",
     "deploy": "./deploy.sh"
   },
   "dependencies": {
