@@ -3,7 +3,7 @@
 echo -e "\033[0;32mDeploying updates to GitHub...\033[0m"
 
 # Build the project.
-yarn build:prod
+yarn build
 hugo -t callmenick
 
 # Go To Public folder
