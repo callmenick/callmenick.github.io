@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Front End Development on Call Me Nick</title>
-    <link>http://callmenick.com/dev/</link>
+    <link>https://callmenick.github.io/dev/</link>
     <description>Recent content in Front End Development on Call Me Nick</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 29 Oct 2017 20:42:55 -0700</lastBuildDate>
     
-	<atom:link href="http://callmenick.com/dev/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://callmenick.github.io/dev/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Let&#39;s Build an Infinity CSS Animating Loader!</title>
-      <link>http://callmenick.com/dev/infinity-css-animating-loader/</link>
+      <link>https://callmenick.github.io/dev/infinity-css-animating-loader/</link>
       <pubDate>Fri, 16 Jun 2017 10:00:00 -0700</pubDate>
       
-      <guid>http://callmenick.com/dev/infinity-css-animating-loader/</guid>
+      <guid>https://callmenick.github.io/dev/infinity-css-animating-loader/</guid>
       <description>Get Source  View Demo   I had an idea recently. I wanted to create an &amp;ldquo;Infinity&amp;rdquo; loader using only CSS. With a small bit of digging and playing, here&amp;rsquo;s what I came up with:
 See the Pen Infinity Loader by Nick Salloum (@callmenick) on CodePen.
 But how!? Before you peep at the resulting code in the above pen, take a read below to learn about some fun and new CSS properties.</description>
@@ -24,19 +24,19 @@ But how!? Before you peep at the resulting code in the above pen, take a read be
     
     <item>
       <title>Cooking With Webpack Part 2 - Understanding &amp; Using Webpack Loaders</title>
-      <link>http://callmenick.com/dev/cooking-with-webpack-2-loaders/</link>
+      <link>https://callmenick.github.io/dev/cooking-with-webpack-2-loaders/</link>
       <pubDate>Tue, 10 Jan 2017 17:16:41 -0700</pubDate>
       
-      <guid>http://callmenick.com/dev/cooking-with-webpack-2-loaders/</guid>
+      <guid>https://callmenick.github.io/dev/cooking-with-webpack-2-loaders/</guid>
       <description>Star on GitHub   In part 1, we plunged into webpack and gained a better understanding of what it is and some of its capabilities. We were able to write a script, require a module in it, and output a bundle using webpack. One really important takeaway from all of that was that we bundled up some modules. At this point, it&amp;rsquo;s time to understand that a module can refer to many different things, not just a JavaScript file.</description>
     </item>
     
     <item>
       <title>Cooking With Webpack Part 1 - Introduction and Basic Implementation</title>
-      <link>http://callmenick.com/dev/cooking-with-webpack-1-introduction/</link>
+      <link>https://callmenick.github.io/dev/cooking-with-webpack-1-introduction/</link>
       <pubDate>Wed, 04 Jan 2017 17:32:53 -0700</pubDate>
       
-      <guid>http://callmenick.com/dev/cooking-with-webpack-1-introduction/</guid>
+      <guid>https://callmenick.github.io/dev/cooking-with-webpack-1-introduction/</guid>
       <description>Star On GitHub   I&amp;rsquo;ll begin this article the way many a webpack article begins - with a simple, underwhelming, and slightly confusing description of what webpack is. From their docs:
  Webpack is a module bundler. Webpack takes modules with dependencies and generates static assets representing those modules.
  In this series of tutorials though, I promise to take you way beyond the basics, and into some of the more intricate parts of webpack.</description>
@@ -44,86 +44,86 @@ But how!? Before you peep at the resulting code in the above pen, take a read be
     
     <item>
       <title>Multi-line Padded Text with the CSS box-decoration-break Property</title>
-      <link>http://callmenick.com/dev/multi-line-padded-text-css-box-decoration-break/</link>
+      <link>https://callmenick.github.io/dev/multi-line-padded-text-css-box-decoration-break/</link>
       <pubDate>Mon, 14 Nov 2016 15:44:18 -0700</pubDate>
       
-      <guid>http://callmenick.com/dev/multi-line-padded-text-css-box-decoration-break/</guid>
+      <guid>https://callmenick.github.io/dev/multi-line-padded-text-css-box-decoration-break/</guid>
       <description>Get Source  View Demo   Stumbling Upon New CSS Is Fun I love stumbling upon CSS properties in time of great need. Recently, I was working on a personal project, and I wanted to have multi-line highlighted text. My requirements were pretty simple from a design point of view:
  Text should be highlighted, i.e. have a background colour Highlights should only cover areas where there is text Each line should have a little left and right padding so that the text isn&amp;rsquo;t flush against the highlight box  My desired HTML was something like this:</description>
     </item>
     
     <item>
       <title>On parseInt and Converting Hex to RGB</title>
-      <link>http://callmenick.com/dev/on-parseint-and-converting-hex-to-rgb/</link>
+      <link>https://callmenick.github.io/dev/on-parseint-and-converting-hex-to-rgb/</link>
       <pubDate>Mon, 03 Oct 2016 15:53:20 -0700</pubDate>
       
-      <guid>http://callmenick.com/dev/on-parseint-and-converting-hex-to-rgb/</guid>
+      <guid>https://callmenick.github.io/dev/on-parseint-and-converting-hex-to-rgb/</guid>
       <description>The other day, I was faced with a task that required me to plunge into a little deeper into JavaScript&amp;rsquo;s parseInt() function, and gain a better grasp of numeral systems and radixes (bases). The problem was simple. I needed to convert hex colours to RGB. Before we jump into anything, let&amp;rsquo;s look at a few definitions for reference:
  parseInt() - The parseInt() function parses a string argument and returns an integer of the specified radix (the base in mathematical numeral systems) (ref MDN).</description>
     </item>
     
     <item>
       <title>Thinking Outside the Box with CSS shape-outside</title>
-      <link>http://callmenick.com/dev/thinking-outside-the-box-css-shape-outside/</link>
+      <link>https://callmenick.github.io/dev/thinking-outside-the-box-css-shape-outside/</link>
       <pubDate>Mon, 19 Sep 2016 15:56:51 -0700</pubDate>
       
-      <guid>http://callmenick.com/dev/thinking-outside-the-box-css-shape-outside/</guid>
+      <guid>https://callmenick.github.io/dev/thinking-outside-the-box-css-shape-outside/</guid>
       <description>Get Source  View Demo   Breaking Out of the Box There&amp;rsquo;s a reason it&amp;rsquo;s called the box model, and that&amp;rsquo;s because every element in a document is represented as a rectangular box. Even with CSS properties that alter the shape of an element - such as border-radius - we are still, by default, confined to a box. Nowadays, with modern CSS properties, we are able to shape and shift content a bit more.</description>
     </item>
     
     <item>
       <title>Level Up Your CSS Animations with Cubic Bezier</title>
-      <link>http://callmenick.com/dev/level-up-animations-cubic-bezier/</link>
+      <link>https://callmenick.github.io/dev/level-up-animations-cubic-bezier/</link>
       <pubDate>Thu, 21 Apr 2016 17:14:20 -0700</pubDate>
       
-      <guid>http://callmenick.com/dev/level-up-animations-cubic-bezier/</guid>
+      <guid>https://callmenick.github.io/dev/level-up-animations-cubic-bezier/</guid>
       <description>Transitions and animations are making waves across web development, and rightfully so. They are awesome, easily useable (and abusable), and have the ability to take your front end components and interfaces from good to great. The anatomy of declaring transitions and animations are similar, and only two things are required:
  In the case of transitions, you select the property you want to transition. For animations, you select the keyframe block.</description>
     </item>
     
     <item>
       <title>Maintainable Responsive Web Design with Sass</title>
-      <link>http://callmenick.com/dev/maintainable-responsive-web-design-with-sass/</link>
+      <link>https://callmenick.github.io/dev/maintainable-responsive-web-design-with-sass/</link>
       <pubDate>Mon, 08 Feb 2016 20:38:30 -0700</pubDate>
       
-      <guid>http://callmenick.com/dev/maintainable-responsive-web-design-with-sass/</guid>
+      <guid>https://callmenick.github.io/dev/maintainable-responsive-web-design-with-sass/</guid>
       <description>Get Source  View Demo   Introduction Building maintainable, responsive layouts often feels like a huge undertaking. A lot of people tend to revert to frameworks that end up having way more juice than they need. When I think of responsive layouts, I immediately think of Sass and three of its awesome features - maps, loops, and mixins. By leveraging these features, responsive design becomes a breeze. Not to mention, you end up with exactly what you need, nothing more, nothing less.</description>
     </item>
     
     <item>
       <title>Last in First Out Css Transitions</title>
-      <link>http://callmenick.com/dev/last-in-first-out-css-transitions/</link>
+      <link>https://callmenick.github.io/dev/last-in-first-out-css-transitions/</link>
       <pubDate>Wed, 20 Jan 2016 20:43:01 -0700</pubDate>
       
-      <guid>http://callmenick.com/dev/last-in-first-out-css-transitions/</guid>
+      <guid>https://callmenick.github.io/dev/last-in-first-out-css-transitions/</guid>
       <description>Get Source  View Demo   Introduction In modern websites and applications, interactions and UX play a huge part in consumer retention. CSS animations have paved the way for us as far as enhancing user experiences goes, but it can be taken a step further with a little thought. In this tutorial, we&amp;rsquo;re going to build what I like to call a &amp;ldquo;last in, first out&amp;rdquo; item animation, or a &amp;ldquo;stack&amp;rdquo; animation.</description>
     </item>
     
     <item>
       <title>An Introduction to Gulp</title>
-      <link>http://callmenick.com/dev/an-introduction-to-gulp/</link>
+      <link>https://callmenick.github.io/dev/an-introduction-to-gulp/</link>
       <pubDate>Thu, 09 Apr 2015 21:16:07 -0700</pubDate>
       
-      <guid>http://callmenick.com/dev/an-introduction-to-gulp/</guid>
+      <guid>https://callmenick.github.io/dev/an-introduction-to-gulp/</guid>
       <description>In this article, we&amp;rsquo;re going to have a very quick primer on Gulp, talking a bit about why it&amp;rsquo;s so fast and efficient. Then, we&amp;rsquo;ll set up a basic project with Gulp, set up some tasks, and automate the flow. Let&amp;rsquo;s dig in!
 Gulp - What &amp;amp; Why? As I mentioned above, Gulp is a task runner that enables automation and crunching of monotonous tasks all in one swoop. In a modern workflow, there are probably a host of tools that you&amp;rsquo;re using in development and production.</description>
     </item>
     
     <item>
       <title>The CSS Calc Function and Some Uses</title>
-      <link>http://callmenick.com/dev/the-css-calc-function-and-some-uses/</link>
+      <link>https://callmenick.github.io/dev/the-css-calc-function-and-some-uses/</link>
       <pubDate>Mon, 30 Mar 2015 11:33:44 -0700</pubDate>
       
-      <guid>http://callmenick.com/dev/the-css-calc-function-and-some-uses/</guid>
+      <guid>https://callmenick.github.io/dev/the-css-calc-function-and-some-uses/</guid>
       <description>Introducing The CSS Calc() Function As CSS continues to evolve, interesting selectors and functions are always on the horizon. One that I came across some time ago is the calc() function, which allows you to actually perform a unit calculation and return a result. The real beauty in it for me though is that you can mix and match unit types, offering interesting ways to compute layout dimensions, particularly when building responsive layouts.</description>
     </item>
     
     <item>
       <title>The CSS Not Selector</title>
-      <link>http://callmenick.com/dev/the-css-not-selector/</link>
+      <link>https://callmenick.github.io/dev/the-css-not-selector/</link>
       <pubDate>Fri, 20 Mar 2015 19:13:57 -0700</pubDate>
       
-      <guid>http://callmenick.com/dev/the-css-not-selector/</guid>
+      <guid>https://callmenick.github.io/dev/the-css-not-selector/</guid>
       <description>I discovered the CSS :not selector recently, and it’s pretty cool. In a nutshell, you can chain it or apply it to certain selectors and style everything that does NOT meet the condition (e.g. everything BUT span tags). Let’s get a bit more formal.
 Definition Of The :not Selector According to the MDN:
  The negation CSS pseudo-class, :not(X), is a functional notation taking a simple selector X as an argument.</description>
@@ -131,10 +131,10 @@ Definition Of The :not Selector According to the MDN:
     
     <item>
       <title>Some jQuery Functions And Their JavaScript Equivalents</title>
-      <link>http://callmenick.com/dev/jquery-functions-javascript-equivalents/</link>
+      <link>https://callmenick.github.io/dev/jquery-functions-javascript-equivalents/</link>
       <pubDate>Sun, 06 Jul 2014 19:18:58 -0700</pubDate>
       
-      <guid>http://callmenick.com/dev/jquery-functions-javascript-equivalents/</guid>
+      <guid>https://callmenick.github.io/dev/jquery-functions-javascript-equivalents/</guid>
       <description>In light of my recent forays into the JavaScript DOM world, I&amp;rsquo;d decided to do a little research and write a snippet collection based on jQuery functions and their JavaScript equivalents. I think jQuery is a great tool, and it has done great things for me and many others as developers. But I&amp;rsquo;m a firm believer that nowadays, JavaScript is an indispensable tool to keep in your arsenal. Manipulating the DOM with JavaScript DOM methods is fun and easy, and the majority of times, plain old vanilla JS is all we need.</description>
     </item>
     
