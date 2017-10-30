@@ -5,7 +5,8 @@
   "scripts": {
     "start:dev": "gulp start:dev",
     "build:dev": "gulp build:dev",
-    "build:prod": "gulp build:prod"
+    "build:prod": "gulp build:prod",
+    "deploy": "./deploy.sh"
   },
   "dependencies": {
     "autoprefixer": "^7.1.4",
