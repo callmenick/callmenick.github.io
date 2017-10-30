@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>On parseInt and Converting Hex to RGB - Call Me Nick</title>
+  <meta name="description" content="In this tutorial, we deep dive into the parseInt function and attack a common problem - converting hex colours to RGB." />
+  <meta content="On parseInt and Converting Hex to RGB - Call Me Nick" property="og:title">
+  <meta content="In this tutorial, we deep dive into the parseInt function and attack a common problem - converting hex colours to RGB." property="og:description"/>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/img/icons/favicon-16x16.png">
+  <link rel="manifest" href="/img/icons/manifest.json">
+  <link rel="mask-icon" href="/img/icons/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="shortcut icon" href="/img/icons/favicon.ico">
+  <meta name="msapplication-config" content="/img/icons/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
+</head>
+<body>
+  <div class="Wrapper">
+    <div class="Sidebar">
+  <header class="Header">
+    <div class="Header-logo">
+      <a href="/">
+        <svg class="Logo" width="60" height="60" viewBox="0 0 60 60">
+  <circle fill="#2196F3" cx="30" cy="30" r="30"/>
+  <path fill="#FFF" d="M34.757 43.244A5.981 5.981 0 0 0 39.002 45 5.999 5.999 0 0 0 45 39.002c0-1.665-.67-3.154-1.757-4.243L25.244 16.757A6.002 6.002 0 0 0 15 20.999c0 1.663.67 3.155 1.757 4.241l18 18.004zM27.001 39.002A6 6 0 0 1 20.997 45C17.688 45 15 42.316 15 39.002a6.001 6.001 0 0 1 12.001 0zM45 20.999a6 6 0 0 1-12 0A6.002 6.002 0 0 1 39.002 15 6.002 6.002 0 0 1 45 20.999z"/>
+</svg>
+
+      </a>
+    </div>
+  </header>
+  <nav class="Nav">
+    <ul class="Nav-items">
+      
+      
+        <li class="Nav-item ">
+          <a href="/" class="Nav-link">Home</a>
+        </li>
+      
+        <li class="Nav-item ">
+          <a href="/dev" class="Nav-link">Dev</a>
+        </li>
+      
+        <li class="Nav-item ">
+          <a href="/contact" class="Nav-link">Contact</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <div id="carbonad" class="CarbonAd"></div>
+</div>
+
+    <main class="Main">
+      <div class="Main-inner">
+        
+  <section class="Article">
+    <div class="Article-header">
+      <h1 class="Article-title">On parseInt and Converting Hex to RGB</h1>
+      <div class="Article-meta">
+        <a href="http://callmenick.com/dev/on-parseint-and-converting-hex-to-rgb/" class="Article-meta-item">
+          On: <em>2016/10/03</em>
+        </a>
+        <a href="/dev" class="Article-meta-item">
+          In: <em>dev</em>
+        </a>
+      </div>
+      <p class="Article-excerpt">In this tutorial, we deep dive into the parseInt function and attack a common problem - converting hex colours to RGB.</p>
+      <div class="Article-featuredImg">
+        <img src="/img/dev/on-parseint-and-converting-hex-to-rgb/on-parseint-and-converting-hex-to-rgb-featured.png" alt="On parseInt and Converting Hex to RGB">
+      </div>
+    </div>
+    <div class="Article-content">
+      <div class="Content">
+        
+
+<p>The other day, I was faced with a task that required me to plunge into a little deeper into JavaScript&rsquo;s <code>parseInt()</code> function, and gain a better grasp of numeral systems and radixes (bases). The problem was simple. I needed to convert hex colours to RGB. Before we jump into anything, let&rsquo;s look at a few definitions for reference:</p>
+
+<ul>
+<li><strong>parseInt()</strong> - The parseInt() function parses a string argument and returns an integer of the specified radix (the base in mathematical numeral systems) (<a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/parseInt">ref MDN</a>).</li>
+<li><strong>radix</strong> - In mathematical numeral systems, the radix or base is the number of unique digits, including zero, used to represent numbers in a positional numeral system (<a href="https://en.wikipedia.org/wiki/Radix">ref Wikipedia</a>).</li>
+<li><strong>hex</strong> - or hexadecimal, is a numbering system that uses 16 as the radix, employing the numerals 0 through 9 and representing digits greater than 9 with the letters A through F (<a href="http://www.dictionary.com/browse/hexadecimal">ref dictionary.com</a>).</li>
+</ul>
+
+<p>I use the <code>parseInt()</code> function very often, but never really stopped to examine its inner workings. Mostly, I&rsquo;ve used it to do strict comparisons between strings and integers, something in the form of:</p>
+
+<pre><code class="language-javascript">return parseInt($el.getAttribute('data-id')) === i;
+</code></pre>
+
+<p>Knowing my projects, the assumptions have always been clear that those data attributes would return a string like <code>'25'</code> or <code>'117'</code>. However, numbering and parsing integers goes a lot deeper than that. Let&rsquo;s look at the problem I mentioned above.</p>
+
+<h2 id="converting-hexadecimal-strings-to-integers">Converting Hexadecimal Strings to Integers</h2>
+
+<p>The problem, as it turns out, is actually quite simple once you understand numeral systems and conversions. And if you have experience with both RGB and hex colours in CSS, then you&rsquo;d have noticed some patterns by now as well:</p>
+
+<ol>
+<li><code>000000</code> in hex is <code>0, 0, 0</code> in RGB</li>
+<li><code>ffffff</code> in hex is <code>255, 255, 255</code> in RGB</li>
+<li>Each pair of characters in the hex string represents one number in the RGB string</li>
+<li>In hex, the darkest value is a 0, and lightness increases from 0-9 then a-f</li>
+<li>In RGB, the darkest value is a 0, and lightness increases from 0-255</li>
+</ol>
+
+<p>These comparisons have always made it easy for me to &ldquo;see&rdquo; colours in both hex and RGB. But what&rsquo;s the actual relationship here? It&rsquo;s obvious that:</p>
+
+<ol>
+<li>a <code>00</code> hex pair is a <code>0</code> on the RGB scale</li>
+<li>a <code>ff</code> hex pair is a <code>255</code> on the RGB scale</li>
+</ol>
+
+<p>That&rsquo;s all well and good, but what about everything in between? Well, based on our definition of hexadecimal up above, our hexadecimal numeral system looks like this:</p>
+
+<pre><code>0123456789abcdef
+</code></pre>
+
+<p>A quick count shows us 16 characters, but we don&rsquo;t actually need to count to know that. The radix for hexadecimal values is 16, which means 16 digits are responsible for its numbering system. To put that into perspective, we as humans are mostly familiar with base 10 digits, where the 10 digits are:</p>
+
+<pre><code>0123456789
+</code></pre>
+
+<p>We can construct any number imaginable from these 10 digits.</p>
+
+<p>When we talk about parsing an integer, we&rsquo;re talking about reading a string of digits, and returning an integer of the specified radix. The <code>parseInt()</code> function allows us to specify a radix as the second argument, like this:</p>
+
+<pre><code class="language-javascript">parseInt(string, radix);
+</code></pre>
+
+<p>So a contrived example would be:</p>
+
+<pre><code class="language-javascript">var year = '1985';
+parseInt(year, 10); // =&gt; 1985
+</code></pre>
+
+<p>In the above example, we&rsquo;re parsing the string <code>1985</code> with a radix of <code>10</code>, which obviously returns <code>1985</code>. Let&rsquo;s look at some hex strings now:</p>
+
+<pre><code class="language-javascript">parseInt('0', 16); // =&gt; 0
+parseInt('00', 16); // =&gt; 0
+parseInt('1', 16); // =&gt; 1
+parseInt('2', 16); // =&gt; 2
+parseInt('f', 16); // =&gt; 15
+parseInt('0f', 16); // =&gt; 15
+parseInt('10', 16); // =&gt; 16
+parseInt('78', 16) // =&gt; 120
+parseInt('a6', 16) // =&gt; 166
+parseInt('ff', 16) // =&gt; 255
+</code></pre>
+
+<p>As expected, the returned integer increases as we move from 0 to f. Here are some other observations as well:</p>
+
+<ul>
+<li>Leading 0s are ignored when parsing (<code>0f</code> is the same as <code>f</code>)</li>
+<li>When we reach <code>0f</code>, the next in line is <code>10</code> - this is equivalent from going from <code>9</code> to <code>10</code> in base 10 numbers</li>
+</ul>
+
+<p>Since hex number codes are represented by three two-letter strings* representing red, green, and blue values, we can easily convert a hex colour to RGB like this:</p>
+
+<pre><code class="language-javascript">var col = 'f30d91';
+
+var r = col.substr(0, 2);
+var g = col.substr(2, 2);
+var b = col.substr(4);
+
+return {
+  r: parseInt(r, 16),
+  g: parseInt(g, 16),
+  b: parseInt(b, 16)
+};
+</code></pre>
+
+<p><em>*Sidenote: hex colour codes can also be represented by a 3 letter string, where each letter is assumed to be repeated once. Example, <code>f03 === ff0033</code>. This is only related to how CSS interpreters parse colour codes, but not how the hexadecimal scale works, as <code>f !== ff</code> in hexadecimal.</em></p>
+
+<h2 id="subtleties-and-nuances-of-parseint">Subtleties and Nuances of <code>parseInt</code></h2>
+
+<p>Before wrapping up, let&rsquo;s take a quick look at some subtleties and nuances of the <code>parseInt()</code> function, as taken from the <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/parseInt">MDN</a>:</p>
+
+<ul>
+<li>If parseInt encounters a character that is not a numeral in the specified radix, it ignores it and all succeeding characters and returns the integer value parsed up to that point:</li>
+</ul>
+
+<pre><code class="language-javascript">  parseInt('02', 2); // =&gt; 0
+  parseInt('101', 2); // =&gt; 5
+  parseInt('102', 2); // =&gt; 2
+  parseInt('10', 2); // =&gt; 2
+</code></pre>
+
+<ul>
+<li><code>parseInt</code> truncates numbers to integer values</li>
+<li>Leading and trailing spaces are allowed</li>
+<li>If radix is undefined or 0 (or absent), JavaScript assumes the following:
+
+<ul>
+<li>If the input string begins with &ldquo;0x&rdquo; or &ldquo;0X&rdquo;, radix 16 is assumed</li>
+<li>If the input string begins with &ldquo;0&rdquo;, radix 8 or 10 is assumed, and the choice is implementation dependent</li>
+<li>If the input string begins with any other value, radix 10 is assumed</li>
+</ul></li>
+<li>If the first character cannot be converted to a number, parseInt returns NaN:</li>
+</ul>
+
+<pre><code class="language-javascript">  parseInt('2', 2); // =&gt; NaN
+  parseInt('hello', 8); // =&gt; NaN
+</code></pre>
+
+<ul>
+<li>For arithmetic purposes, the NaN value is not a number in any radix</li>
+</ul>
+
+<h2 id="a-final-word-of-advice">A Final Word of Advice</h2>
+
+<p>As a final word of advice, I&rsquo;d say that from now on, whenever you use the <code>parseInt</code> function, you should also specify the radix, even though it&rsquo;s optional, and here&rsquo;s why:</p>
+
+<ol>
+<li>Based on the nuances described above, we can&rsquo;t always hope for consistent behaviour.</li>
+<li>We can&rsquo;t assume that fellow developers will know what radix system we&rsquo;re working with when they look at our code.</li>
+</ol>
+
+<h2 id="wrap-up">Wrap Up</h2>
+
+<p>And that’s a wrap! I hope this little tutorial helped you learn a bit more about numeral systems, radixes, and parsing integers. I certainly did! Thanks again for reading, and if you have and questions, comments, or feedback, feel free to <a href="http://twitter.com/home?status=@nicksalloum_ I got a question for you!" target="_blank">send me a tweet.</a></p>
+
+      </div>
+    </div>
+  </section>
+
+      </div>
+    </main>
+  </div>
+  <script src="/js/prism.js"></script>
+  <script src="/js/carbonad.js"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-34160351-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+</body>
+</html>

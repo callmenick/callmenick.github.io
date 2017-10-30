@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>The CSS Not Selector - Call Me Nick</title>
+  <meta name="description" content="The CSS :not selector enables us to target conditions that are NOT met. In this set of snippets, we look at some useful cases of using the :not selector." />
+  <meta content="The CSS Not Selector - Call Me Nick" property="og:title">
+  <meta content="The CSS :not selector enables us to target conditions that are NOT met. In this set of snippets, we look at some useful cases of using the :not selector." property="og:description"/>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/img/icons/favicon-16x16.png">
+  <link rel="manifest" href="/img/icons/manifest.json">
+  <link rel="mask-icon" href="/img/icons/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="shortcut icon" href="/img/icons/favicon.ico">
+  <meta name="msapplication-config" content="/img/icons/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
+</head>
+<body>
+  <div class="Wrapper">
+    <div class="Sidebar">
+  <header class="Header">
+    <div class="Header-logo">
+      <a href="/">
+        <svg class="Logo" width="60" height="60" viewBox="0 0 60 60">
+  <circle fill="#2196F3" cx="30" cy="30" r="30"/>
+  <path fill="#FFF" d="M34.757 43.244A5.981 5.981 0 0 0 39.002 45 5.999 5.999 0 0 0 45 39.002c0-1.665-.67-3.154-1.757-4.243L25.244 16.757A6.002 6.002 0 0 0 15 20.999c0 1.663.67 3.155 1.757 4.241l18 18.004zM27.001 39.002A6 6 0 0 1 20.997 45C17.688 45 15 42.316 15 39.002a6.001 6.001 0 0 1 12.001 0zM45 20.999a6 6 0 0 1-12 0A6.002 6.002 0 0 1 39.002 15 6.002 6.002 0 0 1 45 20.999z"/>
+</svg>
+
+      </a>
+    </div>
+  </header>
+  <nav class="Nav">
+    <ul class="Nav-items">
+      
+      
+        <li class="Nav-item ">
+          <a href="/" class="Nav-link">Home</a>
+        </li>
+      
+        <li class="Nav-item ">
+          <a href="/dev" class="Nav-link">Dev</a>
+        </li>
+      
+        <li class="Nav-item ">
+          <a href="/contact" class="Nav-link">Contact</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <div id="carbonad" class="CarbonAd"></div>
+</div>
+
+    <main class="Main">
+      <div class="Main-inner">
+        
+  <section class="Article">
+    <div class="Article-header">
+      <h1 class="Article-title">The CSS Not Selector</h1>
+      <div class="Article-meta">
+        <a href="http://callmenick.com/dev/the-css-not-selector/" class="Article-meta-item">
+          On: <em>2015/03/20</em>
+        </a>
+        <a href="/dev" class="Article-meta-item">
+          In: <em>dev</em>
+        </a>
+      </div>
+      <p class="Article-excerpt">The CSS :not selector enables us to target conditions that are NOT met. In this set of snippets, we look at some useful cases of using the :not selector.</p>
+      <div class="Article-featuredImg">
+        <img src="/img/dev/the-css-not-selector/the-css-not-selector-featured.png" alt="The CSS Not Selector">
+      </div>
+    </div>
+    <div class="Article-content">
+      <div class="Content">
+        
+
+<p>I discovered the CSS <code>:not</code> selector recently, and it’s pretty cool. In a nutshell, you can chain it or apply it to certain selectors and style everything that does NOT meet the condition (e.g. everything BUT <code>span</code> tags). Let’s get a bit more formal.</p>
+
+<h2 id="definition-of-the-not-selector">Definition Of The <code>:not</code> Selector</h2>
+
+<p>According to the MDN:</p>
+
+<blockquote>
+<p>The negation CSS pseudo-class, <code>:not(X)</code>, is a functional notation taking a simple selector X as an argument. It matches an element that is not represented by the argument. X must not contain another negation selector, or any pseudo-elements.</p>
+
+<p>The specificity of the <code>:not</code> pseudo-class is the specificity of its argument. The <code>:not</code> pseudo-class does not add to the selector specificity, unlike other pseudo-classes.</p>
+</blockquote>
+
+<p>Pretty handy, right? Let’s look at some examples.</p>
+
+<h2 id="example-1-not-a-selector">Example 1 – Not A Selector</h2>
+
+<p>This case of <code>:not</code> will negate all selectors specified. Our HTML might look like this:</p>
+
+<pre><code class="language-html">&lt;section&gt;
+  &lt;p&gt;Pellentesque habitant morbi tristique senectus et netus et.&lt;/p&gt;
+  &lt;span&gt;Malesuada fames ac turpis egestas. Vestibulum tortor quam.&lt;/span&gt;
+  &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit!&lt;/p&gt;
+&lt;/section&gt;
+</code></pre>
+
+<p>and our CSS like this:</p>
+
+<pre><code class="language-css">section :not(p) {
+  color: rgb(40,170,220);
+}
+</code></pre>
+
+<p>and our output like this:</p>
+
+<p><img src="/files/2015-03/css_not_1.png" alt="Not a selector" /></p>
+
+<h2 id="example-2-not-a-class">Example 2 – Not A Class</h2>
+
+<p>This case of <code>:not</code> will negate all classes specified. In other words, we’ll target everything except the class in question. Our HTML may look like this:</p>
+
+<pre><code class="language-html">&lt;section class=&quot;highlight&quot;&gt;
+  &lt;p&gt;Pellentesque habitant morbi...&lt;/p&gt;
+&lt;/section&gt;
+&lt;section&gt;
+  &lt;p&gt;Lorem ipsum dolor....&lt;/p&gt;
+&lt;/section&gt;
+</code></pre>
+
+<p>and our CSS like this:</p>
+
+<pre><code class="language-css">body {
+  background-color: rgb(40,170,220);
+  color: #fff;
+}
+section {
+  padding: 20px;
+  text-align: center;
+}
+section:not(.highlight) {
+  background-color: rgb(80,80,80);
+  font-size: 14px;
+}
+</code></pre>
+
+<p>and the output like this:</p>
+
+<p><img src="/files/2015-03/css_not_2.png" alt="Not a class" /></p>
+
+<h2 id="example-3-usage-with-pseudo-selectors">Example 3 – Usage With Pseudo Selectors</h2>
+
+<p>The spec mentions we can’t combine the <code>:not</code> selector with pseudo elements. We can, however, combine it with pseudo selectors, for example <code>:nth-child</code>. Here’s an example of what some HTML might look like:</p>
+
+<pre><code class="language-html">&lt;body&gt;
+  &lt;p&gt;Pellentesque habitant morbi...&lt;/p&gt;
+  &lt;p&gt;Pellentesque habitant morbi...&lt;/p&gt;
+  &lt;p&gt;Pellentesque habitant morbi...&lt;/p&gt;
+&lt;/body&gt;
+</code></pre>
+
+<p>and our CSS like this:</p>
+
+<pre><code class="language-css">body {
+  background-color: rgb(40,40,40);
+  color: #fff;
+}
+p:not(:nth-child(1)) {
+  color: rgb(255,50,100);
+}
+</code></pre>
+
+<p>and our output like this:</p>
+
+<p><img src="/files/2015-03/css_not_3.png" alt="With pseudo selectors" /></p>
+
+<h2 id="wrong-uses">Wrong Uses</h2>
+
+<p>As mentioned before, we can’t combine the CSS <code>:not</code> selector with pseudo elements, for example <code>::before</code>, <code>::after</code>, and <code>::first-line</code>. It fails to work in this instance. For a list of pseudo elements, check out the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements">MDN reference</a>.</p>
+
+<h2 id="support">Support</h2>
+
+<p>Support for the <code>:not</code> selector is actually fairly good overall. All Chrome &amp; Firefox supports it, Safari 3.2 and up support it, and IE9 and up also. I would still recommend keeping the usage case of this selector to purely aesthetic so that old IE falls back nicely…progressive enhancement if you must.</p>
+
+<h2 id="wrap-up">Wrap Up</h2>
+
+<p>And that’s a wrap! Have you used this selector before? What are your thoughts about it? Thanks again for reading, and if you have and questions, comments, or feedback, feel free to <a href="http://twitter.com/home?status=@nicksalloum_ I got a question for you!" target="_blank">send me a tweet.</a></p>
+
+      </div>
+    </div>
+  </section>
+
+      </div>
+    </main>
+  </div>
+  <script src="/js/prism.js"></script>
+  <script src="/js/carbonad.js"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-34160351-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+</body>
+</html>

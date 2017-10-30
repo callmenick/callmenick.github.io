@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cooking With Webpack Part 1 - Introduction and Basic Implementation - Call Me Nick</title>
+  <meta name="description" content="In part 1 of this series, we take a plunge into webpack, the webpack cli, the webpack configuration file, and creating our first bundle." />
+  <meta content="Cooking With Webpack Part 1 - Introduction and Basic Implementation - Call Me Nick" property="og:title">
+  <meta content="In part 1 of this series, we take a plunge into webpack, the webpack cli, the webpack configuration file, and creating our first bundle." property="og:description"/>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/img/icons/favicon-16x16.png">
+  <link rel="manifest" href="/img/icons/manifest.json">
+  <link rel="mask-icon" href="/img/icons/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="shortcut icon" href="/img/icons/favicon.ico">
+  <meta name="msapplication-config" content="/img/icons/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
+</head>
+<body>
+  <div class="Wrapper">
+    <div class="Sidebar">
+  <header class="Header">
+    <div class="Header-logo">
+      <a href="/">
+        <svg class="Logo" width="60" height="60" viewBox="0 0 60 60">
+  <circle fill="#2196F3" cx="30" cy="30" r="30"/>
+  <path fill="#FFF" d="M34.757 43.244A5.981 5.981 0 0 0 39.002 45 5.999 5.999 0 0 0 45 39.002c0-1.665-.67-3.154-1.757-4.243L25.244 16.757A6.002 6.002 0 0 0 15 20.999c0 1.663.67 3.155 1.757 4.241l18 18.004zM27.001 39.002A6 6 0 0 1 20.997 45C17.688 45 15 42.316 15 39.002a6.001 6.001 0 0 1 12.001 0zM45 20.999a6 6 0 0 1-12 0A6.002 6.002 0 0 1 39.002 15 6.002 6.002 0 0 1 45 20.999z"/>
+</svg>
+
+      </a>
+    </div>
+  </header>
+  <nav class="Nav">
+    <ul class="Nav-items">
+      
+      
+        <li class="Nav-item ">
+          <a href="/" class="Nav-link">Home</a>
+        </li>
+      
+        <li class="Nav-item ">
+          <a href="/dev" class="Nav-link">Dev</a>
+        </li>
+      
+        <li class="Nav-item ">
+          <a href="/contact" class="Nav-link">Contact</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <div id="carbonad" class="CarbonAd"></div>
+</div>
+
+    <main class="Main">
+      <div class="Main-inner">
+        
+  <section class="Article">
+    <div class="Article-header">
+      <h1 class="Article-title">Cooking With Webpack Part 1 - Introduction and Basic Implementation</h1>
+      <div class="Article-meta">
+        <a href="http://callmenick.com/dev/cooking-with-webpack-1-introduction/" class="Article-meta-item">
+          On: <em>2017/01/04</em>
+        </a>
+        <a href="/dev" class="Article-meta-item">
+          In: <em>dev</em>
+        </a>
+      </div>
+      <p class="Article-excerpt">In part 1 of this series, we take a plunge into webpack, the webpack cli, the webpack configuration file, and creating our first bundle.</p>
+      <div class="Article-featuredImg">
+        <img src="/img/dev/cooking-with-webpack-1-introduction/cooking-with-webpack-1-introduction-featured.png" alt="Cooking With Webpack Part 1 - Introduction and Basic Implementation">
+      </div>
+    </div>
+    <div class="Article-content">
+      <div class="Content">
+        
+
+<div class="ButtonGroup ButtonGroup--gutter-md ButtonGroup--align-center">
+  <a href="https://github.com/callmenick/cooking-with-webpack/tree/master/1-intro-basic-implementation" class="Button Button--display-inlineBlock Button--appearance-secondary Button--size-sm">
+    Star On GitHub
+  </a>
+</div>
+
+<p>I&rsquo;ll begin this article the way many a webpack article begins - with a simple, underwhelming, and slightly confusing description of what webpack is. From their docs:</p>
+
+<blockquote>
+<p>Webpack is a module bundler. Webpack takes modules with dependencies and generates static assets representing those modules.</p>
+</blockquote>
+
+<p>In this series of tutorials though, I promise to take you way beyond the basics, and into some of the more intricate parts of webpack.</p>
+
+<p>In a most basic sense, webpack looks at a source file, examines its dependencies, and compiles an output bundle. So if our source file requires another modules (CommonJS of AMD), webpack will do some stuff under the hood in the build and bundle in that module, producing a file that&rsquo;s ready for consumption in any JavaScript environment.</p>
+
+<p>Something that confused me up front as well was the endless commingling of the <a href="http://webpack.github.io/docs/cli.html">command line interface</a> as well as the <a href="http://webpack.github.io/docs/configuration.html">configuration file</a>. When webpack runs, it looks for both of these things, and often times, a lot of command line clunkiness can be moved into the webpack configuration file. In these guides, I&rsquo;ll be primarily using the configuration file with occasional command line arguments.</p>
+
+<h2 id="setting-up-our-project">Setting Up Our Project</h2>
+
+<p>First things first, let&rsquo;s get a project set up by running:</p>
+
+<pre><code class="language-bash">npm init
+</code></pre>
+
+<p>Let&rsquo;s also create a very basic folder structure, and add an empty JavaScript file to it:</p>
+
+<pre><code class="language-bash">mkdir src &amp;&amp; touch src/index.js
+</code></pre>
+
+<p>Then, let&rsquo;s add webpack as a development dependency:</p>
+
+<pre><code class="language-bash">npm install webpack --save-dev
+</code></pre>
+
+<p>We&rsquo;re now able to run webpack scripts from our project as npm scripts. Let&rsquo;s add a basic npm script to our <code>package.json</code> file:</p>
+
+<pre><code class="language-json">{
+  &quot;scripts&quot;: {
+    &quot;build&quot;: &quot;webpack&quot;
+  }
+}
+</code></pre>
+
+<p>Now, we can run <code>npm run build</code>. Naturally though, there are errors. Notably, it&rsquo;s telling us that we don&rsquo;t have an output filename configured, and pointing us to the cli docs.</p>
+
+<h2 id="making-our-first-bundle">Making Our First Bundle</h2>
+
+<p>At its core, webpack needs an entry point and some output configurations.We can achieve this via the updating our build task to this:</p>
+
+<pre><code class="language-json">{
+  &quot;scripts&quot;: {
+    &quot;build&quot;: &quot;webpack --entry ./src/index.js --output-filename ./dist/index.bundle.js&quot;
+  }
+}
+</code></pre>
+
+<p>Here, we&rsquo;re using the <code>--entry</code> argument to specify the entry file, and the <code>--output-filename</code> argument to specify where our bundle should compile to. If you rerun <code>npm run build</code>, you&rsquo;ll see that webpack successfully created the bundle at <code>dist/index.bundle.js</code>. It should contain some webpack boilerplate code, which we&rsquo;ll get into later.</p>
+
+<p>We&rsquo;re not going to continue on with the cli though. Instead, we&rsquo;re going to create a configuration file.</p>
+
+<h2 id="setting-up-the-configuration-file">Setting Up The Configuration File</h2>
+
+<p>Webpack configuration files can be supplied via the <code>--config</code> argument in the command line:</p>
+
+<pre><code class="language-json">{
+  &quot;scripts&quot;: {
+    &quot;build&quot;: &quot;webpack --config ./config.js&quot;
+  }
+}
+</code></pre>
+
+<p>The above assumes that a webpack configuration file named <code>config.js</code> was found. However, by default, the webpack task looks for the <code>webpack.config.js</code> file in the same directory as it gets run from. So we can just revert back to this:</p>
+
+<pre><code class="language-json">{
+  &quot;scripts&quot;: {
+    &quot;build&quot;: &quot;webpack&quot;
+  }
+}
+</code></pre>
+
+<p>And now, we can create our webpack configuration file:</p>
+
+<pre><code class="language-bash">touch webpack.config.js
+</code></pre>
+
+<p>Let&rsquo;s now move our command line script from above over to the webpack configuration file. A webpack configuration is just an exported object. For the most part, each of those cli arguments above map to some key-pair values. For example, <code>--entry</code> maps to <code>{entry: ''}</code>, and <code>--output-filename</code> maps to <code>{output: {filename: ''}}</code>. Here&rsquo;s ours:</p>
+
+<pre><code class="language-javascript">const webpack = require('webpack');
+const path = require('path');
+
+module.exports = {
+  entry: path.join(__dirname, 'src/index.js'),
+  output: {
+    path: path.join(__dirname, 'dist'),
+    filename: 'index.bundle.js'
+  }
+};
+</code></pre>
+
+<p>Now, once again, if we run <code>npm run build</code>, we&rsquo;ll see that our entry script gets bundled and compiled to the specified output. This time, we used two output options:</p>
+
+<ul>
+<li><code>path</code> - specifies the output path of our bundle</li>
+<li><code>filename</code> - specifies the filename of our bundle</li>
+</ul>
+
+<p>These will demonstrate more importance in the future. For now, it&rsquo;s just an easy way to split up our configuration into a more digestible format.</p>
+
+<h2 id="so-all-that-for-what-exactly">So&hellip;All That For What Exactly?</h2>
+
+<p>At this point, we&rsquo;ve quite literally taken an empty project, added webpack as a dependency, and created some configuration setup that takes an empty JavaScript file and adds a bunch of weird code to it. Let&rsquo;s write some actual code, populate our <code>index.js</code> file, require a module in it, and peek under the hood a bit.</p>
+
+<p>First, let&rsquo;s create a new file called <code>hello.js</code>. This will be a module that we can use in <code>index.js</code>.</p>
+
+<pre><code class="language-bash">touch src/hello.js
+</code></pre>
+
+<p>Our hello module will accept an argument, <code>name</code>, and return the most wonderful string of all time: &ldquo;Hello <code>name</code>&rdquo;. Out of the box, webpack can bundle CommonJS and AMD style modules. For starting purposes, we&rsquo;ll use CommonJS. Let&rsquo;s go ahead and write the code for <code>hello.js</code>:</p>
+
+<pre><code class="language-javascript">// hello.js
+module.exports = function(name) {
+  if (name === undefined) {
+    name = 'World';
+  }
+
+  return 'Hello, ' + name + '!';
+};
+</code></pre>
+
+<p>It&rsquo;s pretty simple. Our function accepts a <code>name</code> argument, and if that&rsquo;s undefined, it assigns the string <code>World</code> to it. It then returns the full string &ldquo;Hello, <code>name</code>&rdquo;. Back in our <code>index.js</code> file (which is our entry file for webpack), we can require this module and use it:</p>
+
+<pre><code class="language-javascript">// index.js
+var hello = require('./hello.js');
+
+console.log(hello()); // should log &quot;Hello, World!&quot;
+console.log(hello('Nick')); // should log &quot;Hello, Nick!&quot;
+</code></pre>
+
+<p>Now, if we run our build task again using <code>npm run build</code>, we&rsquo;ll get some neat output. We can also verify that our code is working by running it simply with node:</p>
+
+<pre><code class="language-bash">node ./dist/index.bundle.js
+
+output:
+
+Hello, World!
+Hello, Nick!
+</code></pre>
+
+<h2 id="what-s-inside-the-compiled-file">What&rsquo;s Inside The Compiled File?</h2>
+
+<p>If you&rsquo;re curious like me, then you&rsquo;re probably wondering what&rsquo;s happening under the hood. I won&rsquo;t get into too many details, because I&rsquo;ve only glanced at the surface. There are a lot of generated comments though, so it&rsquo;s pretty easy to follow. In a nutshell:</p>
+
+<ol>
+<li>webpack wraps everything in an IIFE, which gets invoked with all the modules (as an array)</li>
+<li>webpack creates a <code>__webpack_require__</code> function, which internally requires modules when needed</li>
+<li>webpack kicks off by running the first module (which is the entry module, <code>index.js</code> in our case) using the <code>__webpack_require__</code> function</li>
+<li>all previous <code>require</code> statements get replaced with an invocation of <code>__webpack_require__</code> with the correct module index from the passed in array</li>
+</ol>
+
+<p>If the above confuses you, then forget about it and don&rsquo;t dwell too much on it. The good news is that webpack did some heavy lifting for you, and you&rsquo;re now able to run this code in any JavaScript environment. To quickly see it working in the browser, open it up, go to the dev tools, and copy paste the entire <code>index.bundle.js</code> code into the console. You&rsquo;ll see it execute perfectly!</p>
+
+<h2 id="wrap-up">Wrap Up</h2>
+
+<p>Here, we took a plunge into webpack, and skimmed the surface of its huge well of potential. We took a quick look at the webpack cli, and another look and implementation of the webpack configuration file. Then, we created our first bundle which was making use of CommonJS modules. Next time, we&rsquo;ll look into loaders! Thanks again for reading, and if you have and questions, comments, or feedback, feel free to <a href="http://twitter.com/home?status=@nicksalloum_ I got a question for you!" target="_blank">send me a tweet.</a></p>
+
+<div class="ButtonGroup ButtonGroup--gutter-md ButtonGroup--align-center">
+  <a href="https://github.com/callmenick/cooking-with-webpack/tree/master/1-intro-basic-implementation" class="Button Button--display-inlineBlock Button--appearance-secondary Button--size-sm">
+    Star On GitHub
+  </a>
+</div>
+
+      </div>
+    </div>
+  </section>
+
+      </div>
+    </main>
+  </div>
+  <script src="/js/prism.js"></script>
+  <script src="/js/carbonad.js"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-34160351-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>http://callmenick.com/dev/</loc>
+    <lastmod>2017-10-29T20:42:55-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://callmenick.com/contact/</loc>
+    <lastmod>2017-10-29T19:31:19-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://callmenick.com/</loc>
+    <lastmod>2017-08-13T15:11:10-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://callmenick.com/dev/infinity-css-animating-loader/</loc>
+    <lastmod>2017-06-16T10:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://callmenick.com/dev/cooking-with-webpack-2-loaders/</loc>
+    <lastmod>2017-01-10T17:16:41-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://callmenick.com/dev/cooking-with-webpack-1-introduction/</loc>
+    <lastmod>2017-01-04T17:32:53-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://callmenick.com/dev/multi-line-padded-text-css-box-decoration-break/</loc>
+    <lastmod>2016-11-14T15:44:18-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://callmenick.com/dev/on-parseint-and-converting-hex-to-rgb/</loc>
+    <lastmod>2016-10-03T15:53:20-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://callmenick.com/dev/thinking-outside-the-box-css-shape-outside/</loc>
+    <lastmod>2016-09-19T15:56:51-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://callmenick.com/dev/level-up-animations-cubic-bezier/</loc>
+    <lastmod>2016-04-21T17:14:20-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://callmenick.com/dev/maintainable-responsive-web-design-with-sass/</loc>
+    <lastmod>2016-02-08T20:38:30-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://callmenick.com/dev/last-in-first-out-css-transitions/</loc>
+    <lastmod>2016-01-20T20:43:01-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://callmenick.com/dev/an-introduction-to-gulp/</loc>
+    <lastmod>2015-04-09T21:16:07-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://callmenick.com/dev/the-css-calc-function-and-some-uses/</loc>
+    <lastmod>2015-03-30T11:33:44-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://callmenick.com/dev/the-css-not-selector/</loc>
+    <lastmod>2015-03-20T19:13:57-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://callmenick.com/dev/jquery-functions-javascript-equivalents/</loc>
+    <lastmod>2014-07-06T19:18:58-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://callmenick.com/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://callmenick.com/tags/</loc>
+    <priority>0</priority>
+  </url>
+  
+</urlset>

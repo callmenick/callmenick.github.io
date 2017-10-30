@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>An Introduction to Gulp - Call Me Nick</title>
+  <meta name="description" content="In this tutorial, we&#39;ll introduce Gulp JS - a JavaScript task runner - and take a look at how we can implement it into a project and run some tasks." />
+  <meta content="An Introduction to Gulp - Call Me Nick" property="og:title">
+  <meta content="In this tutorial, we&#39;ll introduce Gulp JS - a JavaScript task runner - and take a look at how we can implement it into a project and run some tasks." property="og:description"/>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/img/icons/favicon-16x16.png">
+  <link rel="manifest" href="/img/icons/manifest.json">
+  <link rel="mask-icon" href="/img/icons/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="shortcut icon" href="/img/icons/favicon.ico">
+  <meta name="msapplication-config" content="/img/icons/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
+</head>
+<body>
+  <div class="Wrapper">
+    <div class="Sidebar">
+  <header class="Header">
+    <div class="Header-logo">
+      <a href="/">
+        <svg class="Logo" width="60" height="60" viewBox="0 0 60 60">
+  <circle fill="#2196F3" cx="30" cy="30" r="30"/>
+  <path fill="#FFF" d="M34.757 43.244A5.981 5.981 0 0 0 39.002 45 5.999 5.999 0 0 0 45 39.002c0-1.665-.67-3.154-1.757-4.243L25.244 16.757A6.002 6.002 0 0 0 15 20.999c0 1.663.67 3.155 1.757 4.241l18 18.004zM27.001 39.002A6 6 0 0 1 20.997 45C17.688 45 15 42.316 15 39.002a6.001 6.001 0 0 1 12.001 0zM45 20.999a6 6 0 0 1-12 0A6.002 6.002 0 0 1 39.002 15 6.002 6.002 0 0 1 45 20.999z"/>
+</svg>
+
+      </a>
+    </div>
+  </header>
+  <nav class="Nav">
+    <ul class="Nav-items">
+      
+      
+        <li class="Nav-item ">
+          <a href="/" class="Nav-link">Home</a>
+        </li>
+      
+        <li class="Nav-item ">
+          <a href="/dev" class="Nav-link">Dev</a>
+        </li>
+      
+        <li class="Nav-item ">
+          <a href="/contact" class="Nav-link">Contact</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <div id="carbonad" class="CarbonAd"></div>
+</div>
+
+    <main class="Main">
+      <div class="Main-inner">
+        
+  <section class="Article">
+    <div class="Article-header">
+      <h1 class="Article-title">An Introduction to Gulp</h1>
+      <div class="Article-meta">
+        <a href="http://callmenick.com/dev/an-introduction-to-gulp/" class="Article-meta-item">
+          On: <em>2015/04/09</em>
+        </a>
+        <a href="/dev" class="Article-meta-item">
+          In: <em>dev</em>
+        </a>
+      </div>
+      <p class="Article-excerpt">In this tutorial, we&#39;ll introduce Gulp JS - a JavaScript task runner - and take a look at how we can implement it into a project and run some tasks.</p>
+      <div class="Article-featuredImg">
+        <img src="/img/dev/an-introduction-to-gulp/an-introduction-to-gulp-featured.png" alt="An Introduction to Gulp">
+      </div>
+    </div>
+    <div class="Article-content">
+      <div class="Content">
+        
+
+<p>In this article, we&rsquo;re going to have a very quick primer on Gulp, talking a bit about why it&rsquo;s so fast and efficient. Then, we&rsquo;ll set up a basic project with Gulp, set up some tasks, and automate the flow. Let&rsquo;s dig in!</p>
+
+<h2 id="gulp-what-why">Gulp - What &amp; Why?</h2>
+
+<p>As I mentioned above, Gulp is a task runner that enables automation and crunching of monotonous tasks all in one swoop. In a modern workflow, there are probably a host of tools that you&rsquo;re using in development and production. Some of the more popular ones are script concatenation and minifaction,  and Sass compilation. But the well runs deep, and goes into the likes of automated testing, image manipulation, sprite generation, and a host of others. At the time of writing, Gulp has 1438 plugins available. These days , I&rsquo;m all aboard the Gulp train, and here&rsquo;s why:</p>
+
+<ol>
+<li>Based off of personal experience, Gulp runs much, much faster. Tasks get crunched quicker, and the time you spend between writing code and seeing the changes in the browser is significantly less. Why is this? According to Gulp, it uses the power of node streams, giving you fast builds that don&rsquo;t write intermediary files to disk. I&rsquo;m no expert on the topic, but if you want to read more about node streams, <a href="http://www.sitepoint.com/basics-node-js-streams/">check out this article.</a></li>
+<li>The configuration and setup of a Gulp file is pretty easy to read and write.</li>
+</ol>
+
+<p>Let&rsquo;s move on to setting up a Gulp project.</p>
+
+<h2 id="setting-up-a-gulp-project">Setting Up A Gulp Project</h2>
+
+<p>If you don&rsquo;t have node set up on your machine, <a href="https://nodejs.org/">go ahead and do so.</a> The <code>npm</code> command line tool comes bundled with node, so you&rsquo;ll be ready to roll after this. Next, create a new project directory, and <code>cd</code> into it. Let&rsquo;s initialise our directory by running the following command:</p>
+
+<pre><code class="language-bash">npm init
+</code></pre>
+
+<p>It&rsquo;ll prompt you to set up some configuration variables and then generate a package.json file. Right now, let&rsquo;s just leave it at bare minimums:</p>
+
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;Gulp&quot;,
+  &quot;version&quot;: &quot;1.0.0&quot;
+}
+
+</code></pre>
+
+<p>Next up, let&rsquo;s create an empty <code>gulpfile.js</code> in our root directory. This is where all the configuration and task set up will take place. Now, let&rsquo;s bring in our first package, the Gulp package:</p>
+
+<pre><code class="language-bash">npm install --save-dev gulp
+</code></pre>
+
+<p>You&rsquo;ll notice that the <code>node_modules</code> directory has been created, and back in our package.json file, gulp has been added to the dev dependencies. In our gulp file, we can now reference it like this:</p>
+
+<pre><code class="language-javascript">// require gulp
+var gulp = require('gulp');
+</code></pre>
+
+<p>We can also now set up our default task (which will do nothing):</p>
+
+<pre><code class="language-javascript">// default task
+gulp.task('default', function() {
+
+});
+</code></pre>
+
+<p>And there you go, we&rsquo;re ready to begin using gulp. At this point, we can successfully run <code>gulp</code> from the command line, and all will be well. It&rsquo;s a bit useless at this point though, so let&rsquo;s set up some dummy files and implement some tasks.</p>
+
+<p>First, let&rsquo;s configure our directory structure like this:</p>
+
+<pre><code>gulpfile.js
+package.json
+src/
+  --&gt; js/
+  --&gt; sass/
+dist/
+  --&gt; js/
+  --&gt; css/
+</code></pre>
+
+<p>If you don&rsquo;t use Sass, don&rsquo;t worry. This article isn&rsquo;t about Sass. Rather, we just want to demonstrate the running of multiple tasks. In the <code>src/js</code> directory, create two JavaScript files and populate them like this:</p>
+
+<pre><code class="language-javascript">// hello.js
+function helloWorld() {
+  console.log(&quot;Hello World!&quot;);
+}
+
+// goodbye.js
+function goodbyeWorld() {
+  console.log(&quot;Goodbye World!&quot;);
+}
+</code></pre>
+
+<p>Silly, I know, but it&rsquo;s just for demonstration purposes. Now inside the <code>src/sass</code> directory, create a <code>style.scss</code> file, and give it some basic SCSS:</p>
+
+<pre><code class="language-scss">$blue: rgb(40, 170, 220);
+
+p {
+  color: $blue;
+}
+</code></pre>
+
+<p>We&rsquo;re now ready to set up the tasks.</p>
+
+<h2 id="task-set-up">Task Set Up</h2>
+
+<p>Given the above dummy data, we&rsquo;ll want to do the following before taking our app to production:</p>
+
+<ol>
+<li>Concatenate the scripts into one file called <code>app.js</code></li>
+<li>Minify and rename <code>app.js</code> to <code>app.min.js</code></li>
+<li>Compile the Sass to a <code>style.css</code> CSS file</li>
+<li>Minify and rename <code>style.css</code> to <code>style.min.css</code></li>
+</ol>
+
+<p>We&rsquo;ll need the necessary packages to perform these functions, so let&rsquo;s pull them in. We&rsquo;ll want the <a href="https://www.npmjs.com/package/gulp-concat">concatenation package</a>, the <a href="https://www.npmjs.com/package/gulp-uglify">uglify package</a>, the <a href="https://www.npmjs.com/package/gulp-sass">Sass compiler plugin</a>, the <a href="https://www.npmjs.com/package/gulp-minify-css">CSS minifier package</a>, and the <a href="https://www.npmjs.com/package/gulp-rename">renaming package</a>. We can pull in all of these packages in one swoop like this:</p>
+
+<pre><code class="language-bash">npm install --save-dev gulp-concat gulp-uglify gulp-sass gulp-minify-css gulp-rename
+</code></pre>
+
+<p>Before we dig into the task set up, let&rsquo;s take a look at three different parts of a typical gulp task:</p>
+
+<ol>
+<li>We start the task by returning a chain of events. The files passed into the chain of events are accessed by <code>gulp.src()</code>, which takes a glob as its parameter. A glob is either a string to a collection of files, or a string to a direct file.</li>
+<li>We can then <code>pipe</code> each event or method onto our sequence of files.</li>
+<li>Finally, we will specify a destination for the output using the <code>dest</code> command.</li>
+</ol>
+
+<p>Let&rsquo;s import our new packages into the gulp file:</p>
+
+<pre><code class="language-javascript">// require other packages
+var concat = require('gulp-concat');
+var cssmin = require('gulp-minify-css');
+var rename = require(&quot;gulp-rename&quot;);
+var sass = require('gulp-sass');
+var uglify = require('gulp-uglify');
+</code></pre>
+
+<p>The order doesn&rsquo;t matter. My preference is just to sort them alphabetically. Now, let&rsquo;s focus on the JavaScript task. First, let&rsquo;s create a new task:</p>
+
+<pre><code class="language-javascript">// scripts task
+gulp.task('scripts', function() {
+
+});
+</code></pre>
+
+<p>Let&rsquo;s break it down into steps now. We want to fetch all the files with a <code>.js</code> extension in the <code>src/js</code> directory, concatenate them, and save it as <code>app.js</code> in our <code>dist/js</code> directory. We then want to minify this file and rename it to <code>app.min.js</code>, and save it again in the <code>dist/js</code> directory. Here&rsquo;s the full task:</p>
+
+<pre><code class="language-javascript">// scripts task
+gulp.task('scripts', function() {
+  return gulp.src('./src/js/*.js')
+    .pipe(concat('app.js'))
+    .pipe(gulp.dest('./dist/js/'))
+    .pipe(uglify())
+    .pipe(rename({
+      suffix: '.min'
+    }))
+    .pipe(gulp.dest('./dist/js/'));
+});
+</code></pre>
+
+<p>It&rsquo;s quite readable, and walking through each step should paint a clear picture of the tasks being run in order. Go back to the command line and run:</p>
+
+<pre><code class="language-bash">gulp scripts
+</code></pre>
+
+<p>You should see your scripts successfully concatenated, uglified, and renamed! Let&rsquo;s move on to the CSS side of things. First, let&rsquo;s create a new task for styles:</p>
+
+<pre><code class="language-javascript">// styles task
+gulp.task('styles', function() {
+
+});
+</code></pre>
+
+<p>Let&rsquo;s look at the order of our tasks now. We want to compile our Sass and output it to a <code>style.css</code> file in the <code>dist/css</code> directory. Just as with the JavaScript, we then want to minify and rename it to <code>style.min.css</code>, and save it in the same directory. Here&rsquo;s the full set up:</p>
+
+<pre><code class="language-javascript">// styles task
+gulp.task('styles', function() {
+  return gulp.src('./src/sass/*.scss')
+    .pipe(sass())
+    .pipe(gulp.dest('./dist/css/'))
+    .pipe(cssmin())
+    .pipe(rename({
+      suffix: '.min'
+    }))
+    .pipe(gulp.dest('./dist/css/'));
+});
+</code></pre>
+
+<p>Go ahead and run the following in the command line:</p>
+
+<pre><code class="language-bash">gulp styles
+</code></pre>
+
+<p>Voila, the Sass has been compiled, and the CSS minified.</p>
+
+<h2 id="automating-with-gulp-watch">Automating With Gulp Watch</h2>
+
+<p>Wouldn&rsquo;t it be great if tasks would automatically run when a change is made in a file? It would be pretty counter productive, for example, if you had to run <code>gulp styles</code> every time you made a change to a Sass file. Gulp makes that incredibly easy with the <code>watch</code> function. Using this function, we can specify a glob to look at for changes, and specify some tasks to run when changes are seen on any of those files. Here&rsquo;s a very simple setup for our demonstrated case:</p>
+
+<pre><code class="language-javascript">// watch task
+gulp.task('watch', function() {
+  gulp.watch('./src/js/*.js', ['scripts']);
+  gulp.watch('./src/sass/*.scss', ['styles']);
+});
+</code></pre>
+
+<p>Now we can run <code>gulp watch</code> in the command line, and go ahead and edit our files as we wish. Let&rsquo;s go ahead and edit our Sass file. I just added the following:</p>
+
+<pre><code class="language-scss">strong {
+  font-weight: 700;
+}
+</code></pre>
+
+<p>Save it, and check the terminal. You&rsquo;ll notice that the correct task ran as soon as you saved your changed file without any interruption in the work flow. How simple was that?</p>
+
+<h2 id="further-streamlining-with-the-default-task">Further Streamlining With The Default Task</h2>
+
+<p>Remember that default task that we set up in the beginning that did nothing? That&rsquo;s a Gulp default, and it allows us to run the plain and simple <code>gulp</code> command. Now that we&rsquo;re all set up with our other tasks, we can edit the default one to something like this:</p>
+
+<pre><code class="language-javascript">gulp.task('default', ['scripts', 'styles', 'watch']);
+</code></pre>
+
+<p>Next time we type just <code>gulp</code> in the command line, it will run the script task, the styles task, and the watch task, compiling all our changes and watching for new ones. Pretty neat, huh?</p>
+
+<h2 id="wrap-up">Wrap Up</h2>
+
+<p>We covered some good stuff here in this article, from implementing Gulp into your workflow, and setting up and automating tasks. Thanks again for reading, and if you have and questions, comments, or feedback, feel free to <a href="http://twitter.com/home?status=@nicksalloum_ I got a question for you!" target="_blank">send me a tweet.</a></p>
+
+      </div>
+    </div>
+  </section>
+
+      </div>
+    </main>
+  </div>
+  <script src="/js/prism.js"></script>
+  <script src="/js/carbonad.js"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-34160351-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+</body>
+</html>
