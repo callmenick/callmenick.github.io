@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Thinking Outside the Box with CSS shape-outside - Call Me Nick</title>
+  <meta name="description" content="In this tutorial, we&#39;re going to explore the CSS shape-outside property which allows us to break out of the box a little." />
+  <meta content="Thinking Outside the Box with CSS shape-outside - Call Me Nick" property="og:title">
+  <meta content="In this tutorial, we&#39;re going to explore the CSS shape-outside property which allows us to break out of the box a little." property="og:description"/>
+  <link rel="stylesheet" href="http://callmenick.com/css/style.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="http://callmenick.com/img/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="http://callmenick.com/img/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="http://callmenick.com/img/icons/favicon-16x16.png">
+  <link rel="manifest" href="http://callmenick.com/img/icons/manifest.json">
+  <link rel="mask-icon" href="http://callmenick.com/img/icons/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="shortcut icon" href="http://callmenick.com/img/icons/favicon.ico">
+  <meta name="msapplication-config" content="http://callmenick.com/img/icons/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
+</head>
+<body>
+  <div class="Wrapper">
+    <div class="Sidebar">
+  <header class="Header">
+    <div class="Header-logo">
+      <a href="http://callmenick.com">
+        <svg class="Logo" width="60" height="60" viewBox="0 0 60 60">
+  <circle fill="#2196F3" cx="30" cy="30" r="30"/>
+  <path fill="#FFF" d="M34.757 43.244A5.981 5.981 0 0 0 39.002 45 5.999 5.999 0 0 0 45 39.002c0-1.665-.67-3.154-1.757-4.243L25.244 16.757A6.002 6.002 0 0 0 15 20.999c0 1.663.67 3.155 1.757 4.241l18 18.004zM27.001 39.002A6 6 0 0 1 20.997 45C17.688 45 15 42.316 15 39.002a6.001 6.001 0 0 1 12.001 0zM45 20.999a6 6 0 0 1-12 0A6.002 6.002 0 0 1 39.002 15 6.002 6.002 0 0 1 45 20.999z"/>
+</svg>
+
+      </a>
+    </div>
+  </header>
+  <nav class="Nav">
+    <ul class="Nav-items">
+      
+      
+        <li class="Nav-item ">
+          <a href="/" class="Nav-link">Home</a>
+        </li>
+      
+        <li class="Nav-item ">
+          <a href="/dev" class="Nav-link">Dev</a>
+        </li>
+      
+        <li class="Nav-item ">
+          <a href="/contact" class="Nav-link">Contact</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <div id="carbonad" class="CarbonAd"></div>
+</div>
+
+    <main class="Main">
+      <div class="Main-inner">
+        
+  <section class="Article">
+    <div class="Article-header">
+      <h1 class="Article-title">Thinking Outside the Box with CSS shape-outside</h1>
+      <div class="Article-meta">
+        <a href="http://callmenick.com/dev/thinking-outside-the-box-css-shape-outside/" class="Article-meta-item">
+          On: <em>2016/09/19</em>
+        </a>
+        <a href="/dev" class="Article-meta-item">
+          In: <em>dev</em>
+        </a>
+      </div>
+      <p class="Article-excerpt">In this tutorial, we&#39;re going to explore the CSS shape-outside property which allows us to break out of the box a little.</p>
+      <div class="Article-featuredImg">
+        <img src="/img/dev/thinking-outside-the-box-css-shape-outside/thinking-outside-the-box-css-shape-outside-featured.png" alt="Thinking Outside the Box with CSS shape-outside">
+      </div>
+    </div>
+    <div class="Article-content">
+      <div class="Content">
+        
+
+<div class="ButtonGroup ButtonGroup--gutter-md ButtonGroup--align-center">
+  <a href="https://codepen.io/callmenick/pen/VMpPRp" class="Button Button--display-inlineBlock Button--appearance-secondary Button--size-sm">
+    Get Source
+  </a>
+  <a href="https://codepen.io/callmenick/full/VMpPRp/" class="Button Button--display-inlineBlock Button--appearance-secondary Button--size-sm">
+    View Demo
+  </a>
+</div>
+
+<h2 id="breaking-out-of-the-box">Breaking Out of the Box</h2>
+
+<p>There&rsquo;s a reason it&rsquo;s called the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Box_Model/Introduction_to_the_CSS_box_model">box model</a>, and that&rsquo;s because every element in a document is represented as a rectangular box. Even with CSS properties that alter the shape of an element - such as <code>border-radius</code> - we are still, by default, confined to a box. Nowadays, with modern CSS properties, we are able to shape and shift content a bit more. One of the properties that allows that is the <code>shape-outside</code> property. From the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/shape-outside">MDN</a>:</p>
+
+<blockquote>
+<p>The shape-outside CSS property uses shape values to define the float area for a float and will cause inline content to wrap around the shape instead of the float&rsquo;s bounding box.</p>
+</blockquote>
+
+<p>Let&rsquo;s extract the important bits from that definition:</p>
+
+<ol>
+<li>It uses shape values. Shape values in CSS can be defined by <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/basic-shape">basic shapes</a> or shape functions. The coordinates of a basic shape originate at the top-left corner of the reference box, i.e. the box defined by the element in question.</li>
+<li>It defines a float area for a float. That means that elements with the <code>shape-outside</code> property must also be floating elements. That will then allow inline content to wrap around the shape instead of the float&rsquo;s bounding box.</li>
+</ol>
+
+<p>Let&rsquo;s jump into some demos to see it in action.</p>
+
+<h2 id="exploring-the-shape-outside-property">Exploring the Shape Outside Property</h2>
+
+<p>First, let&rsquo;s write up some HTML to give us a nice playing field. We will explore three different shapes:</p>
+
+<ol>
+<li>A circle</li>
+<li>A triangle</li>
+<li>A diamond</li>
+</ol>
+
+<p>Here&rsquo;s the HTML:</p>
+
+<pre><code class="language-html">&lt;div class=&quot;Content&quot;&gt;
+  &lt;div class=&quot;Shape Shape--left Shape--circle&quot;&gt;&lt;/div&gt;
+  &lt;h2&gt;Circle, left&lt;/h2&gt;
+  &lt;p&gt;Lorem ipsum dolor...&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;Content&quot;&gt;
+  &lt;div class=&quot;Shape Shape--right Shape--triangle&quot;&gt;&lt;/div&gt;
+  &lt;h2&gt;Triangle, right&lt;/h2&gt;
+  &lt;p&gt;Lorem ipsum dolor...&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;Content&quot;&gt;
+  &lt;div class=&quot;Shape Shape--left Shape--diamond&quot;&gt;&lt;/div&gt;
+  &lt;h2&gt;Diamond, left&lt;/h2&gt;
+  &lt;p&gt;Lorem ipsum dolor...&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>I&rsquo;m using a base class <code>Shape</code> with two modifiers:</p>
+
+<ul>
+<li><code>Shape--[pos]</code> - defines the position of the shape, whether left or right</li>
+<li><code>Shape--[shape]</code> - defines the actual shape of the element</li>
+</ul>
+
+<p>Each shape and corresponding content will be wrapped in a <code>Content</code> div.</p>
+
+<p>Now, let&rsquo;s write up some baseline CSS that we&rsquo;ll use across the board:</p>
+
+<pre><code class="language-css">.Content {
+  clear: both;
+}
+
+.Shape {
+  display: block;
+  width: 18rem;
+  height: 18rem;
+  background-color: #eee;
+}
+</code></pre>
+
+<p>Let&rsquo;s examine the CSS a bit. In the <code>Content</code> div, I&rsquo;ve added the <code>clear</code> property. That&rsquo;s because it&rsquo;ll eventually contain floated elements, and we need to clear those. Also, I&rsquo;ve added some base level CSS for our shapes. Before we construct the actual shapes let&rsquo;s add the correct float properties for the modifiers:</p>
+
+<pre><code class="language-css">.Shape--left {
+  float: left;
+}
+
+.Shape--right {
+  float: right;
+}
+</code></pre>
+
+<p>Great! We&rsquo;re shaping up nicely. Now, let&rsquo;s dig into each of our three shapes.</p>
+
+<h3 id="circle-shape">Circle Shape</h3>
+
+<p>The circle shape is the easiest of the lot. We can define it by just using the <code>circle()</code> basic shape, which will create a 100% circle based on the bounding box. Since our bounding box is square, as defined above, we&rsquo;ve got nothing to worry about. Here&rsquo;s the CSS:</p>
+
+<pre><code class="language-css">.Shape--circle {
+  border-radius: 50%;
+  shape-outside: circle();
+}
+</code></pre>
+
+<p>Notice that I&rsquo;ve also added a border radius so that the visual effect of the element itself represents a circle. Let&rsquo;s move on!</p>
+
+<h3 id="triangle-shape">Triangle Shape</h3>
+
+<p>Our triangle shape is a bit more complicated. This time, we&rsquo;re going to use the <code>polygon()</code> basic shape. For polygons, we can use relative <code>x y</code> pairs starting at the origin. We can use any number of pairs we want as well. The last pair will automatically be linked back to the origin. Our triangle will move from the top left of the box, to the top right, to the bottom middle, then back to the starting position. Here&rsquo;s the CSS:</p>
+
+<pre><code class="language-css">.Shape--triangle {
+  clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
+  shape-outside: polygon(0% 0%, 100% 0%, 50% 100%);
+}
+</code></pre>
+
+<p>Notice again that I&rsquo;ve also added the clipping path property to give the original element a triangular appearance. Remember, the <code>shape-outside</code> property affects the flow of inline content around a floated element, and not the floated element itself!</p>
+
+<p>Let&rsquo;s look at the last example.</p>
+
+<h3 id="diamond-shape">Diamond Shape</h3>
+
+<p>We&rsquo;re going to use the <code>polygon()</code> shape once more. This time, we&rsquo;ll start from the top-middle of the box, then move to the right-middle, then bottom-middle, then left-middle, and back to start. Here&rsquo;s the CSS:</p>
+
+<pre><code class="language-css">.Shape--diamond {
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  shape-outside: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+</code></pre>
+
+<p>Voila! We&rsquo;ve just created some awesome shapes and out-of-the-box content flow with only CSS.</p>
+
+<h2 id="browser-support-fallbacks">Browser Support &amp; Fallbacks</h2>
+
+<p>The <code>shape-outside</code> property support is <sup>50</sup>&frasl;<sub>50</sub> at the moment. Modern Chrome, Safari (webkit prefixed), and Opera support it, but Firefox and Edge have it marked as under consideration. The good news is that fallbacks require no work at all - elements and inline content will just exhibit normal float behaviour.</p>
+
+<h2 id="wrap-up">Wrap Up</h2>
+
+<p>And that’s a wrap! Thanks again for reading, and if you have and questions, comments, or feedback, feel free to <a href="http://twitter.com/home?status=@nicksalloum_ I got a question for you!" target="_blank">send me a tweet.</a></p>
+
+<div class="ButtonGroup ButtonGroup--gutter-md ButtonGroup--align-center">
+  <a href="https://codepen.io/callmenick/pen/VMpPRp" class="Button Button--display-inlineBlock Button--appearance-secondary Button--size-sm">
+    Get Source
+  </a>
+  <a href="https://codepen.io/callmenick/full/VMpPRp/" class="Button Button--display-inlineBlock Button--appearance-secondary Button--size-sm">
+    View Demo
+  </a>
+</div>
+
+      </div>
+    </div>
+  </section>
+
+      </div>
+    </main>
+  </div>
+  <script src="http://callmenick.com/js/prism.js"></script>
+  <script src="http://callmenick.com/js/carbonad.js"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-34160351-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+</body>
+</html>

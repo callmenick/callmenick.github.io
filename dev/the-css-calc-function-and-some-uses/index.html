@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>The CSS Calc Function and Some Uses - Call Me Nick</title>
+  <meta name="description" content="An introduction to the very useful CSS calc function, and some snippets to show off its use." />
+  <meta content="The CSS Calc Function and Some Uses - Call Me Nick" property="og:title">
+  <meta content="An introduction to the very useful CSS calc function, and some snippets to show off its use." property="og:description"/>
+  <link rel="stylesheet" href="http://callmenick.com/css/style.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="http://callmenick.com/img/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="http://callmenick.com/img/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="http://callmenick.com/img/icons/favicon-16x16.png">
+  <link rel="manifest" href="http://callmenick.com/img/icons/manifest.json">
+  <link rel="mask-icon" href="http://callmenick.com/img/icons/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="shortcut icon" href="http://callmenick.com/img/icons/favicon.ico">
+  <meta name="msapplication-config" content="http://callmenick.com/img/icons/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
+</head>
+<body>
+  <div class="Wrapper">
+    <div class="Sidebar">
+  <header class="Header">
+    <div class="Header-logo">
+      <a href="http://callmenick.com">
+        <svg class="Logo" width="60" height="60" viewBox="0 0 60 60">
+  <circle fill="#2196F3" cx="30" cy="30" r="30"/>
+  <path fill="#FFF" d="M34.757 43.244A5.981 5.981 0 0 0 39.002 45 5.999 5.999 0 0 0 45 39.002c0-1.665-.67-3.154-1.757-4.243L25.244 16.757A6.002 6.002 0 0 0 15 20.999c0 1.663.67 3.155 1.757 4.241l18 18.004zM27.001 39.002A6 6 0 0 1 20.997 45C17.688 45 15 42.316 15 39.002a6.001 6.001 0 0 1 12.001 0zM45 20.999a6 6 0 0 1-12 0A6.002 6.002 0 0 1 39.002 15 6.002 6.002 0 0 1 45 20.999z"/>
+</svg>
+
+      </a>
+    </div>
+  </header>
+  <nav class="Nav">
+    <ul class="Nav-items">
+      
+      
+        <li class="Nav-item ">
+          <a href="/" class="Nav-link">Home</a>
+        </li>
+      
+        <li class="Nav-item ">
+          <a href="/dev" class="Nav-link">Dev</a>
+        </li>
+      
+        <li class="Nav-item ">
+          <a href="/contact" class="Nav-link">Contact</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <div id="carbonad" class="CarbonAd"></div>
+</div>
+
+    <main class="Main">
+      <div class="Main-inner">
+        
+  <section class="Article">
+    <div class="Article-header">
+      <h1 class="Article-title">The CSS Calc Function and Some Uses</h1>
+      <div class="Article-meta">
+        <a href="http://callmenick.com/dev/the-css-calc-function-and-some-uses/" class="Article-meta-item">
+          On: <em>2015/03/30</em>
+        </a>
+        <a href="/dev" class="Article-meta-item">
+          In: <em>dev</em>
+        </a>
+      </div>
+      <p class="Article-excerpt">An introduction to the very useful CSS calc function, and some snippets to show off its use.</p>
+      <div class="Article-featuredImg">
+        <img src="/img/dev/the-css-calc-function-and-some-uses/the-css-calc-function-and-some-uses-featured.png" alt="The CSS Calc Function and Some Uses">
+      </div>
+    </div>
+    <div class="Article-content">
+      <div class="Content">
+        
+
+<h2 id="introducing-the-css-calc-function">Introducing The CSS Calc() Function</h2>
+
+<p>As CSS continues to evolve, interesting selectors and functions are always on the horizon. One that I came across some time ago is the <code>calc()</code> function, which allows you to actually perform a unit calculation and return a result. The real beauty in it for me though is that you can mix and match unit types, offering interesting ways to compute layout dimensions, particularly when building responsive layouts. In following snippets, we&rsquo;ll look at some very basic implementations of the <code>calc()</code> function, then step it up a notch with a real world scenario, implementing a neat calc-based solution to it. Let&rsquo;s dive in!</p>
+
+<h2 id="basic-implementation">Basic Implementation</h2>
+
+<p>In its most basic form, the <code>calc()</code> function takes on some values and returns the calculated dimension. According to the W3C:</p>
+
+<blockquote>
+<p>The calc() function allows mathematical expressions with addition (+), subtraction (-), multiplication (*), and division (/) to be used as component values. The <code>calc()</code> expression represents the result of the mathematical calculation it contains, using standard operator precedence rules. It can be used wherever <code>&lt;length&gt;</code>, <code>&lt;frequency&gt;</code>, <code>&lt;angle&gt;</code>, <code>&lt;time&gt;</code>, <code>&lt;number&gt;</code>, or <code>&lt;integer&gt;</code> values are allowed.</p>
+</blockquote>
+
+<p>So in essence, we could do something like this:</p>
+
+<pre><code class="language-css">.element {
+  margin: calc(20px - 10px);
+}
+</code></pre>
+
+<p>This of course is a totally useless example, because you can easily just set the margin to 10px to begin with. But it does give us a simple insight into what <code>calc()</code> can do. As I mentioned above, the function allows us to mix and match units, so something like this becomes possible too:</p>
+
+<pre><code class="language-css">.element {
+  margin: calc(2em - 5px);
+}
+</code></pre>
+
+<p>Again, this example might not be the best, but we&rsquo;re opening up ourselves to the power of the function. Because we&rsquo;re allowed to perform 4 mathematical operations, we can even get all weird and needlessly complicated with something like this:</p>
+
+<pre><code class="language-css">.element {
+  margin: calc(10%/2em + 10px*4rem);
+}
+</code></pre>
+
+<p>I&rsquo;m not sure why you&rsquo;d do something like this, but again, this is just an eye opener for you. Let&rsquo;s move on to that real-world scenario where <code>calc()</code> can help out greatly.</p>
+
+<h2 id="stepping-it-up-a-bit">Stepping It Up A Bit</h2>
+
+<p>Here&rsquo;s the scenario. We want to build a simple fixed-sidebar fluid-content layout. So imagine we have some markup like this:</p>
+
+<pre><code class="language-html">&lt;div class=&quot;container&quot;&gt;
+  &lt;div class=&quot;fixed&quot;&gt;I am fixed&lt;/div&gt;
+  &lt;div class=&quot;fluid&quot;&gt;I am fluid&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>You might want a fix-sized margin of 40px in between the two columns, so leveraging some negative margin and padding techniques, you&rsquo;ll probably do some math. I&rsquo;d first set the size of the fixed column, add that to the desired fixed margin, pad the container, apply a negative left-margin on the fixed element, apply the right margin, and float the two elements. Exhausting, tough to change, but hey, it works. Here&rsquo;s the CSS:</p>
+
+<pre><code class="language-css">.container {
+  padding-left: 340px;
+}
+
+.fixed,
+.fluid {
+  float: left;
+}
+
+.fixed {
+  margin-left: -340px;
+  margin-right: 40px;
+  width: 300px;
+}
+
+.fluid {
+  width: 100%;
+}
+</code></pre>
+
+<p>What if now, we wanted to change the width of the fixed margin, or the fixed column size? We&rsquo;d have to do over the calculations again, and re-apply. It can get tricky. Sass might be able to save us here, but what if we&rsquo;re not using Sass? Let&rsquo;s turn this up a little bit with the calc function and see how we can avoid the excessive calculations. Above, we made use of a 40px fixed margin, so let&rsquo;s do the same this time. Here&rsquo;s how simple this layout becomes:</p>
+
+<pre><code class="language-css">.container {
+}
+
+.fixed,
+.fluid {
+  float: left;
+}
+
+.fixed {
+  width: 300px;
+}
+
+.fluid {
+  margin-left: 40px;
+  width: calc(100% - 340px);
+}
+</code></pre>
+
+<p>Notice now that we don&rsquo;t even need to pad the container anymore, and there are no negative margins involved. We have one simple math calculation to make before setting up our CSS, and that&rsquo;s it.</p>
+
+<p>Now, with flexbox coming of age amongst many other neat grid-type CSS formulas, the above might still seem a tiny bit dated. But calc plays nicely with flexbox, and based on experience, can come quite in handy there too. Nonetheless, the CSS above represents a completely valid and helpful use-case of the <code>calc()</code> function.</p>
+
+<h2 id="support">Support</h2>
+
+<p><a href="http://caniuse.com/#search=calc">Support is quite high for this</a>, and if you&rsquo;re mindset is in the modern sphere of things and your target audience is accessing your site/app from modern browsers, then there&rsquo;s no reason not to implement it in your projects today. It is a <a href="http://www.w3.org/TR/css3-values/">candidate recommendation on the W3C</a>, and due to it&rsquo;s incredible usefulness, it&rsquo;s here to stay.</p>
+
+<h2 id="wrap-up">Wrap Up</h2>
+
+<p>That’s all, folks. Are you using the CSS <code>calc()</code> function? I&rsquo;d love to hear about it and see an example, so feel free to reach out and let me know. Thanks again for reading, and if you have and questions, comments, or feedback, feel free to <a href="http://twitter.com/home?status=@nicksalloum_ I got a question for you!" target="_blank">send me a tweet.</a></p>
+
+      </div>
+    </div>
+  </section>
+
+      </div>
+    </main>
+  </div>
+  <script src="http://callmenick.com/js/prism.js"></script>
+  <script src="http://callmenick.com/js/carbonad.js"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-34160351-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+</body>
+</html>
