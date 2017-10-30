@@ -1,4 +1,4 @@
-baseURL = "http://callmenick.com"
+baseURL = "https://callmenick.github.io/"
 languageCode = "en-us"
 title = "Call Me Nick"
 theme = "callmenick"
