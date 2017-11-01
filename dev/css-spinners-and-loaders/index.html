@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS Spinners and Loaders - Call Me Nick</title>
+  <meta name="description" content="In this tutorial, we take a look at the creation of four different CSS spinners and loaders with CSS3 animations. This will give us some insight into the possibilities out there, and open up your imagination." />
+  <meta content="CSS Spinners and Loaders - Call Me Nick" property="og:title">
+  <meta content="In this tutorial, we take a look at the creation of four different CSS spinners and loaders with CSS3 animations. This will give us some insight into the possibilities out there, and open up your imagination." property="og:description"/>
+  <link rel="stylesheet" href="https://callmenick.github.io/css/style.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://callmenick.github.io/img/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://callmenick.github.io/img/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://callmenick.github.io/img/icons/favicon-16x16.png">
+  <link rel="manifest" href="https://callmenick.github.io/img/icons/manifest.json">
+  <link rel="mask-icon" href="https://callmenick.github.io/img/icons/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="shortcut icon" href="https://callmenick.github.io/img/icons/favicon.ico">
+  <meta name="msapplication-config" content="/img/icons/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
+</head>
+<body>
+  <div class="Wrapper">
+    <div class="Sidebar">
+  <header class="Header">
+    <div class="Header-logo">
+      <a href="https://callmenick.github.io/">
+        <svg class="Logo" width="60" height="60" viewBox="0 0 60 60">
+  <circle fill="#2196F3" cx="30" cy="30" r="30"/>
+  <path fill="#FFF" d="M34.757 43.244A5.981 5.981 0 0 0 39.002 45 5.999 5.999 0 0 0 45 39.002c0-1.665-.67-3.154-1.757-4.243L25.244 16.757A6.002 6.002 0 0 0 15 20.999c0 1.663.67 3.155 1.757 4.241l18 18.004zM27.001 39.002A6 6 0 0 1 20.997 45C17.688 45 15 42.316 15 39.002a6.001 6.001 0 0 1 12.001 0zM45 20.999a6 6 0 0 1-12 0A6.002 6.002 0 0 1 39.002 15 6.002 6.002 0 0 1 45 20.999z"/>
+</svg>
+
+      </a>
+    </div>
+  </header>
+  <nav class="Nav">
+    <ul class="Nav-items">
+      
+      
+        <li class="Nav-item ">
+          <a href="/" class="Nav-link">Home</a>
+        </li>
+      
+        <li class="Nav-item ">
+          <a href="/dev" class="Nav-link">Dev</a>
+        </li>
+      
+        <li class="Nav-item ">
+          <a href="/contact" class="Nav-link">Contact</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <div id="carbonad" class="CarbonAd"></div>
+</div>
+
+    <main class="Main">
+      <div class="Main-inner">
+        
+  <section class="Article">
+    <div class="Article-header">
+      <h1 class="Article-title">CSS Spinners and Loaders</h1>
+      <div class="Article-meta">
+        <a href="https://callmenick.github.io/dev/css-spinners-and-loaders/" class="Article-meta-item">
+          On: <em>2014/04/25</em>
+        </a>
+        <a href="/dev" class="Article-meta-item">
+          In: <em>dev</em>
+        </a>
+      </div>
+      <p class="Article-excerpt">In this tutorial, we take a look at the creation of four different CSS spinners and loaders with CSS3 animations. This will give us some insight into the possibilities out there, and open up your imagination.</p>
+      <div class="Article-featuredImg">
+        <img src="/img/dev/css-spinners-and-loaders/css-spinners-and-loaders-featured.png" alt="CSS Spinners and Loaders">
+      </div>
+    </div>
+    <div class="Article-content">
+      <div class="Content">
+        
+
+<div class="ButtonGroup ButtonGroup--gutter-md ButtonGroup--align-center">
+  <a href="https://codepen.io/callmenick/pen/XzbExK" class="Button Button--display-inlineBlock Button--appearance-secondary Button--size-sm">
+    Get Source
+  </a>
+  <a href="https://codepen.io/callmenick/full/XzbExK/" class="Button Button--display-inlineBlock Button--appearance-secondary Button--size-sm">
+    View Demo
+  </a>
+</div>
+
+<h2 id="why-css-spinners-loaders">Why CSS Spinners &amp; Loaders?</h2>
+
+<p>Because:</p>
+
+<ol>
+<li>They are crisp, and can scale to any size</li>
+<li>They require one less dependency</li>
+<li>They can be easily modified (maintainability, anyone!?)</li>
+<li>They are fun to make</li>
+</ol>
+
+<p>Using some basic CSS to construct shapes, and some more advanced CSS3 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation">animations</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@keyframes">keyframes</a> for some movement, we can created beautiful, scalable, and easily modifiable CSS spinners and loaders.</p>
+
+<p>I&rsquo;m going to demonstrate 4 different spinners, and how to construct them. Here&rsquo;s what they will look like:</p>
+
+<p><p data-height="371" data-theme-id="light" data-slug-hash="XzbExK" data-default-tab="result" data-user="callmenick" data-embed-version="2" data-pen-title="CSS Spinners and Loaders" class="codepen">See the Pen <a href="https://codepen.io/callmenick/pen/XzbExK/">CSS Spinners and Loaders</a> by Nick Salloum (<a href="https://codepen.io/callmenick">@callmenick</a>) on <a href="https://codepen.io">CodePen</a>.</p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script></p>
+
+<p>You can get right to the source by clicking on the links above, or navigating the embedded pen. Some math is involved in creating these spinners, but we&rsquo;re developers after all, math is easy! Let&rsquo;s dive in.</p>
+
+<h2 id="common-html-sass">Common HTML &amp; Sass</h2>
+
+<p>All our loaders are single-element loaders, meaning we only have one element in our markup for each spinner. For each spinner, we’ll be using a combination of base level styling and pseudo-class <code>::before</code> and <code>::after</code>. We&rsquo;ll also use Sass to get some variables in the mix, making them easier to maintain and scale. Here’s what our common HTML looks like:</p>
+
+<pre><code class="language-html">&lt;span class=&quot;Spinner Spinner--disc&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;Spinner Spinner--radar&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;Spinner Spinner--path&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;Spinner Spinner--pulse&quot;&gt;&lt;/span&gt;
+</code></pre>
+
+<p>And now our common Sass:</p>
+
+<pre><code class="language-scss">$spinnerSize: 4;
+$spinnerColPrimary: #2196F3;
+$spinnerColSecondary: #CFD8DC;
+
+.Spinner {
+  position: relative;
+  display: block;
+  font-size: 10px;
+  width: $spinnerSize * 1em;
+  height: $spinnerSize * 1em;
+
+  &amp;::before,
+  &amp;::after {
+    position: absolute;
+    display: block;
+    content: &quot;&quot;;
+  }
+}
+</code></pre>
+
+<p>Now, let’s get into each of our loaders and their individual styles.</p>
+
+<h2 id="spinner-loader-1-the-spinning-disc">Spinner/Loader #1 - The Spinning Disc</h2>
+
+<p>In this spinner, we have a large circular disc. Inside that disc, there’s a smaller, differently coloured circular disc. This small disc spins around the centre axis of the large disc, and is offset a little bit from the edge. We will apply a rotational animation to the entire disc, giving the illusion that only the small one is spinning. Here’s what the Sass looks like:</p>
+
+<pre><code class="language-scss">$spinnerDiscDotSize: 0.2;
+$spinnerDiscDotTop: 0.1;
+$spinnerDiscDotLeft: 0.5 - ($spinnerDiscDotSize/2);
+
+.Spinner--disc {
+  background-color: $spinnerColPrimary;
+  border-radius: 50%;
+  transform-origin: 50% 50%;
+  animation: disc 1200ms cubic-bezier(0.645, 0.045, 0.355, 1) infinite;
+
+  &amp;::before {
+    top: $spinnerSize * $spinnerDiscDotTop * 1em;
+    left: $spinnerSize * $spinnerDiscDotLeft * 1em;
+    width: $spinnerSize * $spinnerDiscDotSize * 1em;
+    height: $spinnerSize * $spinnerDiscDotSize * 1em;
+    background-color: #fff;
+    border-radius: 50%;
+  }
+}
+
+@keyframes disc {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) rotate(360deg);
+  }
+}
+</code></pre>
+
+<h2 id="spinner-loader-2-the-radar">Spinner/Loader #2 - The Radar</h2>
+
+<p>This spinner looks like a satellite/spaceship/cyclops of some sort. Cool. We have a stationary small disc, and around it a bigger disc that is somehow cut in half. This is a lot easier than you think, and is achieved with a combination of the border-radius and border properties. A transparent border on the left and right of this disc gives it the effect.. This exterior half disc piece does the spinning, this time with an easing function. Here’s the Sass:</p>
+
+<pre><code class="language-scss">$spinnerRadarOuterSize: 0.15;
+$spinnerRadarInnerSize: 0.4;
+$spinnerRadarInnerTop: 0.5 - ($spinnerRadarInnerSize / 2);
+$spinnerRadarInnerLeft: $spinnerRadarInnerTop;
+
+.Spinner--radar {
+  animation: radar 1200ms cubic-bezier(0.645, 0.045, 0.355, 1) infinite;
+
+  &amp;::before {
+    width: 100%;
+    height: 100%;
+    border-style: solid;
+    border-width: $spinnerSize * $spinnerRadarOuterSize * 1em;
+    border-color: $spinnerColSecondary transparent;
+    border-radius: 50%;
+  }
+
+  &amp;::after {
+    top: $spinnerSize * $spinnerRadarInnerTop * 1em;
+    left: $spinnerSize * $spinnerRadarInnerTop * 1em;
+    width: $spinnerSize * $spinnerRadarInnerSize * 1em;
+    height: $spinnerSize * $spinnerRadarInnerSize * 1em;
+    background-color: $spinnerColPrimary;
+    border-radius: 50%;
+  }
+}
+
+@keyframes radar {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) rotate(360deg);
+  }
+}
+</code></pre>
+
+<h2 id="spinner-loader-3-the-disc-path">Spinner/Loader #3 - The Disc Path</h2>
+
+<p>This spinner consists of two discs of the same size, on opposite ends of an imaginary container. The discs converge at the centre of the container, then move vertically in opposite directions. They then move back to the centre of the imaginary container, and back to their start positions. This is all achieved with  the CSS3 <code>transform: translate()</code> property. Some math is needed to calculate the positions in which they should move. Basic math, though. Here’s the Sass:</p>
+
+<pre><code class="language-scss">$spinnerPathDotSize: 0.4;
+
+.Spinner--path {
+  &amp;::before,
+  &amp;::after {
+    width: $spinnerSize * $spinnerPathDotSize * 1em;
+    height: $spinnerSize * $spinnerPathDotSize * 1em;
+    border-radius: 50%;
+    animation-duration: 900ms;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+
+  &amp;::before {
+    background-color: $spinnerColPrimary;
+    transform: translate3d(
+      0,
+      $spinnerSize * (0.5 - $spinnerPathDotSize/2) * 1em,
+      0
+    );
+    animation-name: pathRightUpAndBack;
+  }
+
+  &amp;::after {
+    background-color: $spinnerColSecondary;
+    transform: translate3d(
+      $spinnerSize * (1 - $spinnerPathDotSize) * 1em,
+      $spinnerSize * (0.5 - $spinnerPathDotSize/2) * 1em,
+      0
+    );
+    animation-name: pathLeftDownAndBack;
+  }
+}
+
+@keyframes pathRightUpAndBack {
+  0% {
+    transform: translate3d(
+      0,
+      $spinnerSize * (0.5 - $spinnerPathDotSize/2) * 1em,
+      0
+    );
+  }
+  25% {
+    transform: translate3d(
+      $spinnerSize * (0.5 - $spinnerPathDotSize/2) * 1em,
+      $spinnerSize * (0.5 - $spinnerPathDotSize/2) * 1em,
+      0
+    );
+  }
+  50% {
+    transform: translate3d(
+      $spinnerSize * (0.5 - $spinnerPathDotSize/2) * 1em,
+      0,
+      0
+    );
+  }
+  75% {
+    transform: translate3d(
+      $spinnerSize * (0.5 - $spinnerPathDotSize/2) * 1em,
+      $spinnerSize * (0.5 - $spinnerPathDotSize/2) * 1em,
+      0
+    );
+  }
+  100% {
+    transform: translate3d(
+      0,
+      $spinnerSize * (0.5 - $spinnerPathDotSize/2) * 1em,
+      0
+    );
+  }
+}
+
+@keyframes pathLeftDownAndBack {
+  0% {
+    transform: translate3d(
+      $spinnerSize * (1 - $spinnerPathDotSize) * 1em,
+      $spinnerSize * (0.5 - $spinnerPathDotSize/2) * 1em,
+      0
+    );
+  }
+  25% {
+    transform: translate3d(
+      $spinnerSize * (0.5 - $spinnerPathDotSize/2) * 1em,
+      $spinnerSize * (0.5 - $spinnerPathDotSize/2) * 1em,
+      0
+    );
+  }
+  50% {
+    transform: translate3d(
+      $spinnerSize * (0.5 - $spinnerPathDotSize/2) * 1em,
+      $spinnerSize * (1 - $spinnerPathDotSize) * 1em,
+      0
+    );
+  }
+  75% {
+    transform: translate3d(
+      $spinnerSize * (0.5 - $spinnerPathDotSize/2) * 1em,
+      $spinnerSize * (0.5 - $spinnerPathDotSize/2) * 1em,
+      0
+    );
+  }
+  100% {
+    transform: translate3d(
+      $spinnerSize * (1 - $spinnerPathDotSize) * 1em,
+      $spinnerSize * (0.5 - $spinnerPathDotSize/2) * 1em,
+      0
+    );
+  }
+}
+</code></pre>
+
+<h2 id="spinner-loader-4-the-pulse">Spinner/Loader #4 - The Pulse</h2>
+
+<p>This spinner/loader starts of in a similar way to the previous one, consisting of two discs of the same size, on opposite ends of an imaginary square shape. This time though, they pulse. When one is small, the other is big, and vice versa. This time, we’ll use the <code>transform: scale();</code> CSS3 property. Here’s what the Sass looks like:</p>
+
+<pre><code class="language-scss">$spinnerPulseDotSize: 0.5;
+
+.Spinner--pulse {
+  &amp;::before,
+  &amp;::after {
+    top: $spinnerSize * (0.5 - $spinnerPulseDotSize/2) * 1em;
+    width: $spinnerSize * $spinnerPulseDotSize * 1em;
+    height: $spinnerSize * $spinnerPulseDotSize * 1em;
+    border-radius: 50%;
+    animation-duration: 600ms;
+    animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+    animation-iteration-count: infinite;
+  }
+
+  &amp;::before {
+    left: 0;
+    background-color: $spinnerColPrimary;
+    transform: scale(1);
+    animation-name: pulseOut;
+  }
+
+  &amp;::after {
+    right: 0;
+    background-color: $spinnerColSecondary;
+    transform: scale(0.5);
+    animation-name: pulseIn;
+  }
+}
+
+@keyframes pulseOut {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes pulseIn {
+  0% {
+    transform: scale(0.5);
+  }
+  50% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.5);
+  }
+}
+</code></pre>
+
+<h2 id="wrap-up">Wrap Up</h2>
+
+<p>Some of these may seem like a lot of CSS for one tiny little loader, but the truth is, every detail counts these days. When you compress the amount of CSS required for a loader, it’s going to be smaller than the size of a GIF. Include it in your already existent stylesheet and you’re on the ball. It’s scalable, expandable, colourable, modifiable, and just plain ol’ cool looking. I hope this tutorial gave you some insight into the world of CSS animations, transforms, and creating infinite keyframe loops. Try creating your own, feel free to download the source code by clicking the links below, and leave some feedback below. Thanks again for reading, and if you have and questions, comments, or feedback, feel free to <a href="http://twitter.com/home?status=@nicksalloum_ I got a question for you!" target="_blank">send me a tweet.</a></p>
+
+<div class="ButtonGroup ButtonGroup--gutter-md ButtonGroup--align-center">
+  <a href="https://codepen.io/callmenick/pen/XzbExK" class="Button Button--display-inlineBlock Button--appearance-secondary Button--size-sm">
+    Get Source
+  </a>
+  <a href="https://codepen.io/callmenick/full/XzbExK/" class="Button Button--display-inlineBlock Button--appearance-secondary Button--size-sm">
+    View Demo
+  </a>
+</div>
+
+      </div>
+    </div>
+  </section>
+
+      </div>
+    </main>
+  </div>
+  <script src="/js/prism.js"></script>
+  <script src="/js/carbonad.js"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-34160351-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+</body>
+</html>

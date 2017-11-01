@@ -138,5 +138,15 @@ Definition Of The :not Selector According to the MDN:
       <description>In light of my recent forays into the JavaScript DOM world, I&amp;rsquo;d decided to do a little research and write a snippet collection based on jQuery functions and their JavaScript equivalents. I think jQuery is a great tool, and it has done great things for me and many others as developers. But I&amp;rsquo;m a firm believer that nowadays, JavaScript is an indispensable tool to keep in your arsenal. Manipulating the DOM with JavaScript DOM methods is fun and easy, and the majority of times, plain old vanilla JS is all we need.</description>
     </item>
     
+    <item>
+      <title>CSS Spinners and Loaders</title>
+      <link>https://callmenick.github.io/dev/css-spinners-and-loaders/</link>
+      <pubDate>Fri, 25 Apr 2014 21:45:47 -0700</pubDate>
+      
+      <guid>https://callmenick.github.io/dev/css-spinners-and-loaders/</guid>
+      <description>Get Source  View Demo   Why CSS Spinners &amp;amp; Loaders? Because:
+ They are crisp, and can scale to any size They require one less dependency They can be easily modified (maintainability, anyone!?) They are fun to make  Using some basic CSS to construct shapes, and some more advanced CSS3 animations and keyframes for some movement, we can created beautiful, scalable, and easily modifiable CSS spinners and loaders.</description>
+    </item>
+    
   </channel>
 </rss>
