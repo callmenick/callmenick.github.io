@@ -1,5 +1,5 @@
 ---
-title: Last in First Out Css Transitions
+title: Last in First Out CSS Transitions
 description: In this tutorial, we explore a CSS transition trick that I love that implements a last in, first out transition sequence.
 img: /img/dev/last-in-first-out-css-transitions/last-in-first-out-css-transitions-featured.png
 date: 2016-01-20T20:43:01-07:00
