@@ -1,10 +1,10 @@
-baseURL = "https://callmenick.github.io/"
+baseURL = "https://callmenick.com/"
 languageCode = "en-us"
 title = "Call Me Nick"
 theme = "callmenick"
 [params]
   subtitle = "Front End Development and Other Adventures"
-  description = "I'm Nick Salloum, a Front End Engineer, an artist, and other things."
+  description = "I'm Nick Salloum, a front end engineer, an artist, and other things."
   author = "Nick Salloum"
 [[menu.main]]
   name = "Home"
