@@ -12,7 +12,7 @@
       </div>
       <p class="Article-excerpt">{{ .Page.Params.description }}</p>
       <div class="Article-featuredImg">
-        <img src="{{ .Page.Params.img }}" alt="{{ .Title }}">
+        <img src="{{ .Page.Params.img | absURL }}" alt="{{ .Title }}">
       </div>
     </div>
     <div class="Article-content">
