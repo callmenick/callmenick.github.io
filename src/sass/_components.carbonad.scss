@@ -1,6 +1,6 @@
 .CarbonAd {
   display: none;
-font-family: $font-secondary;
+  font-family: $font-secondary;
   font-size: font-size(xs);
   line-height: line-height(sm);
   text-align: center;
@@ -16,11 +16,9 @@ font-family: $font-secondary;
   }
 
   .carbon-img {
-    display: block;
+    display: inline-block;
     margin: 0 auto gutter(md) auto;
     padding: gutter(sm);
-    width: 138px;
-    height: 108px;
     background-color: #fff;
   }
 
