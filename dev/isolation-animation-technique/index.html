@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Dead Simple CSS Isolation Animation Technique - Call Me Nick</title>
+  <meta name="description" content="In this tutorial, we take a look at a simple, cool CSS animation hover technique.">
+  <meta property="og:url" content="https://callmenick.com/dev/isolation-animation-technique/">
+  <meta property="og:title" content="Dead Simple CSS Isolation Animation Technique - Call Me Nick">
+  <meta property="og:description" content="In this tutorial, we take a look at a simple, cool CSS animation hover technique.">
+  <meta property="og:image" content="https://callmenick.com/img/dev/isolation-animation-technique/isolation-animation-technique-featured.jpg">
+  <meta name="msapplication-config" content="https://callmenick.com/img/icons/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="stylesheet" href="https://callmenick.com/css/style.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://callmenick.com/img/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://callmenick.com/img/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://callmenick.com/img/icons/favicon-16x16.png">
+  <link rel="manifest" href="https://callmenick.com/img/icons/manifest.json">
+  <link rel="mask-icon" href="https://callmenick.com/img/icons/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="shortcut icon" href="https://callmenick.com/img/icons/favicon.ico">
+  <link rel="canonical" href="https://callmenick.com/dev/isolation-animation-technique/">
+</head>
+<body>
+  <div class="Wrapper">
+    <div class="Sidebar">
+  <header class="Header">
+    <div class="Header-logo">
+      <a href="https://callmenick.com/">
+        <svg class="Logo" width="60" height="60" viewBox="0 0 60 60">
+  <circle fill="#2196F3" cx="30" cy="30" r="30"/>
+  <path fill="#FFF" d="M34.757 43.244A5.981 5.981 0 0 0 39.002 45 5.999 5.999 0 0 0 45 39.002c0-1.665-.67-3.154-1.757-4.243L25.244 16.757A6.002 6.002 0 0 0 15 20.999c0 1.663.67 3.155 1.757 4.241l18 18.004zM27.001 39.002A6 6 0 0 1 20.997 45C17.688 45 15 42.316 15 39.002a6.001 6.001 0 0 1 12.001 0zM45 20.999a6 6 0 0 1-12 0A6.002 6.002 0 0 1 39.002 15 6.002 6.002 0 0 1 45 20.999z"/>
+</svg>
+
+      </a>
+    </div>
+  </header>
+  <nav class="Nav">
+    <ul class="Nav-items">
+      
+      
+        <li class="Nav-item ">
+          <a href="https://callmenick.com/" class="Nav-link">Home</a>
+        </li>
+      
+        <li class="Nav-item ">
+          <a href="https://callmenick.com/dev" class="Nav-link">Dev</a>
+        </li>
+      
+        <li class="Nav-item ">
+          <a href="https://callmenick.com/contact" class="Nav-link">Contact</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <div id="carbonad" class="CarbonAd"></div>
+</div>
+
+    <main class="Main">
+      <div class="Main-inner">
+        
+  <section class="Article">
+    <div class="Article-header">
+      <h1 class="Article-title">Dead Simple CSS Isolation Animation Technique</h1>
+      <div class="Article-meta">
+        <a href="https://callmenick.com/dev/isolation-animation-technique/" class="Article-meta-item">
+          On: <em>2018/01/09</em>
+        </a>
+        <a href="/dev" class="Article-meta-item">
+          In: <em>dev</em>
+        </a>
+      </div>
+      <p class="Article-excerpt">In this tutorial, we take a look at a simple, cool CSS animation hover technique.</p>
+      <div class="Article-featuredImg">
+        <img src="https://callmenick.com/img/dev/isolation-animation-technique/isolation-animation-technique-featured.jpg" alt="Dead Simple CSS Isolation Animation Technique">
+      </div>
+    </div>
+    <div class="Article-content">
+      <div class="Content">
+        
+
+<div class="ButtonGroup ButtonGroup--gutter-md ButtonGroup--align-center">
+  <a href="https://codepen.io/callmenick/pen/jGaEeZ/" class="Button Button--display-inlineBlock Button--appearance-secondary Button--size-sm">
+    Get Source
+  </a>
+  <a href="https://codepen.io/callmenick/full/jGaEeZ/" class="Button Button--display-inlineBlock Button--appearance-secondary Button--size-sm">
+    View Demo
+  </a>
+</div>
+
+<h2 id="what-is-isolation-animation">What is Isolation Animation?</h2>
+
+<p>Isolation animation is a simple technique that de-emphasizes items that aren’t “active”, via methods like blurring, fading, shrinking, etc. As such, the item in focus has an increased emphasis, and the information presented is more prominent.</p>
+
+<p>The example we’re going to explore is pretty basic, but can be adapted to various use cases. We’ll look at a features table, in which there are 3 tiers of features. When one feature tier is hovered, it expands a little, and the other two features blur and fade out in the background. We’re only going to use CSS to achieve this!</p>
+
+<p>Here’s what we’ll be creating:</p>
+
+<p data-height="391" data-theme-id="light" data-slug-hash="jGaEeZ" data-default-tab="result" data-user="callmenick" data-embed-version="2" data-pen-title="Isolation animation technique" class="codepen">See the Pen <a href="https://codepen.io/callmenick/pen/jGaEeZ/">Isolation animation technique</a> by Nick Salloum (<a href="https://codepen.io/callmenick">@callmenick</a>) on <a href="https://codepen.io">CodePen</a>.</p>
+
+<h2 id="defining-the-layout">Defining the Layout</h2>
+
+<p>The layout and markup are pretty straightforward. We’ll have a container element <code>.Options</code>, and each group of features will be encompassed by an <code>.Option</code> element.</p>
+
+<pre><code class="language-html">&lt;div class=&quot;Options&quot;&gt;
+  &lt;div class=&quot;Option&quot;&gt;
+    &lt;div class=&quot;Option-header&quot;&gt;
+      &lt;h2 class=&quot;Option-heading&quot;&gt;Free&lt;/h2&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;Option-content&quot;&gt;
+      &lt;ul class=&quot;Option-items&quot;&gt;
+        &lt;li class=&quot;Option-item&quot;&gt;1 member&lt;/li&gt;
+        &lt;li class=&quot;Option-item&quot;&gt;...&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;Option&quot;&gt;
+    ...
+  &lt;/div&gt;
+  &lt;div class=&quot;Option&quot;&gt;
+    ...
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>The structure is more important than the actual content here, so I kept is short. You can use your imagination to see where I’m going with this though!</p>
+
+<p>Let’s jump into the CSS.</p>
+
+<h2 id="styling-and-animating-with-css">Styling and Animating with CSS</h2>
+
+<p>Let’s first define the styles for the wrapper <code>.Options</code> element:</p>
+
+<pre><code class="language-scss">.Options {
+  display: flex;
+  margin: 0 auto;
+  min-width: 80rem;
+}
+</code></pre>
+
+<p>The styling is pretty straightforward. We’re just setting a <code>flex</code> display on the wrapper element, which will make each of the child <code>.Option</code> elements flex items. Now let’s take a look at the child elements. I’m using Sass (SCSS syntax) for easy variable maintenance.</p>
+
+<pre><code class="language-scss">$td: 250ms; // transition duration
+$tf: cubic-bezier(0.68, -0.55, 0.265, 1.55); // transition function
+
+.Option {
+  flex: 1;
+  background-color: #fff;
+  cursor: pointer;
+  transform-origin: 50% 50%;
+  transition:
+    transform $td $tf,
+    opacity $td $tf,
+    box-shadow $td $tf,
+    filter $td $tf;
+}
+</code></pre>
+
+<p>Each option occupies equal amounts of space as a result of the <code>flex: 1</code> declaration. Their transform origins are also perfectly centered, and 4 properties are transition enabled. The CSS for the actual UI of the options and their child elements is trivial, so I’ll leave it out here.</p>
+
+<p>Now, let’s implement the hover animation effect. When we hover on an option, we’re going to want it to expand and pop out, and all others to blur and fade out. To do that, we’re going to first target all the child elements and apply the “out” transition:</p>
+
+<pre><code class="language-scss">.Options:hover .Option {
+  opacity: 0.4;
+  filter: blur(1px);
+}
+</code></pre>
+
+<p>This implies that when we hover hover the options container, all option elements should blur and fade out. But that’s not entirely what we want! We still need to target the hovered element:</p>
+
+<pre><code class="language-scss">.Options .Option:hover {
+  position: relative;
+  z-index: 2;
+  opacity: 1;
+  box-shadow: 0 4px 16px #ddd;
+  transform: scale(1.1);
+  filter: none;
+}
+</code></pre>
+
+<p>Because of the cascading nature of CSS, adding this set of rules below the first set means that the hovered element will not fade out or get blurred! Additionally, it will scale up and pop out a bit with a box shadow. Awesome! Here is is again:</p>
+
+<p data-height="391" data-theme-id="light" data-slug-hash="jGaEeZ" data-default-tab="result" data-user="callmenick" data-embed-version="2" data-pen-title="Isolation animation technique" class="codepen">See the Pen <a href="https://codepen.io/callmenick/pen/jGaEeZ/">Isolation animation technique</a> by Nick Salloum (<a href="https://codepen.io/callmenick">@callmenick</a>) on <a href="https://codepen.io">CodePen</a>.</p>
+
+<h2 id="wrap-up">Wrap Up</h2>
+
+<p>That’s all folks! In this tutorial, we looked into how some simple CSS could be leveraged to create a great UI pattern. The same thought process can be applied to all sorts of things! Think photo galleries, list views, etc. Thanks again for reading, and if you have and questions, comments, or feedback, feel free to <a href="http://twitter.com/home?status=@nicksalloum_ I got a question for you!" target="_blank">send me a tweet.</a></p>
+
+<div class="ButtonGroup ButtonGroup--gutter-md ButtonGroup--align-center">
+  <a href="https://codepen.io/callmenick/pen/jGaEeZ/" class="Button Button--display-inlineBlock Button--appearance-secondary Button--size-sm">
+    Get Source
+  </a>
+  <a href="https://codepen.io/callmenick/full/jGaEeZ/" class="Button Button--display-inlineBlock Button--appearance-secondary Button--size-sm">
+    View Demo
+  </a>
+</div>
+
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+
+      </div>
+    </div>
+  </section>
+
+      </div>
+    </main>
+  </div>
+  <script src="https://callmenick.com/js/prism.js"></script>
+  <script src="https://callmenick.com/js/carbonad.js"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-34160351-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+</body>
+</html>

@@ -12,6 +12,16 @@
     
     
     <item>
+      <title>Dead Simple CSS Isolation Animation Technique</title>
+      <link>https://callmenick.com/dev/isolation-animation-technique/</link>
+      <pubDate>Tue, 09 Jan 2018 14:04:43 -0800</pubDate>
+      
+      <guid>https://callmenick.com/dev/isolation-animation-technique/</guid>
+      <description>Get Source  View Demo   What is Isolation Animation? Isolation animation is a simple technique that de-emphasizes items that aren’t “active”, via methods like blurring, fading, shrinking, etc. As such, the item in focus has an increased emphasis, and the information presented is more prominent.
+The example we’re going to explore is pretty basic, but can be adapted to various use cases. We’ll look at a features table, in which there are 3 tiers of features.</description>
+    </item>
+    
+    <item>
       <title>404</title>
       <link>https://callmenick.com/_404/</link>
       <pubDate>Sun, 13 Aug 2017 15:11:10 -0700</pubDate>
