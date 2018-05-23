@@ -1,5 +1,5 @@
 ---
-title: Svg Vector Effects
+title: SVG Vector Effects
 description: In this tutorial, we take a look at a lesser known vector effect SVG attribute that helps us scale SVGs without scaling their strokes.
 img: /img/dev/svg-vector-effects/svg-vector-effects-featured.png
 date: 2016-06-30T10:00:00-07:00
