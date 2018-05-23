@@ -91,6 +91,15 @@ But how!? Before you peep at the resulting code in the above pen, take a read be
     </item>
     
     <item>
+      <title>Svg Vector Effects</title>
+      <link>https://callmenick.com/dev/svg-vector-effects/</link>
+      <pubDate>Thu, 30 Jun 2016 10:00:00 -0700</pubDate>
+      
+      <guid>https://callmenick.com/dev/svg-vector-effects/</guid>
+      <description>Get Source  View Demo   A few days ago, I ran into a little problem when using SVGs. I&amp;rsquo;d created a reusable set of SVG symbols for a project I was working on, and started sprucing it up with all the pretty icons my designer gave to me. As we all know, one of the biggest benefits to using SVG is the &amp;ldquo;scalable&amp;rdquo; part of it, meaning that graphics render perfectly at and size, no matter the original size of the graphic.</description>
+    </item>
+    
+    <item>
       <title>Level Up Your CSS Animations with Cubic Bezier</title>
       <link>https://callmenick.com/dev/level-up-animations-cubic-bezier/</link>
       <pubDate>Thu, 21 Apr 2016 17:14:20 -0700</pubDate>
