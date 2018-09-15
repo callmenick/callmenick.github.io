@@ -7,8 +7,6 @@ draft: false
 
 ![Me](/img/me2.jpg)
 
-Currently, I'm [building the future with Axiom Zen](https://www.axiomzen.co/) in Vancouver, Canada. In my free time, I do [block printing for my brand, Paperboy.](https://paperboystudio.com/) I'm a burner, a surfer, a lover, and I'm stoked on life.
+Currently, I'm [building the future with Axiom Zen](https://www.axiomzen.co/) in Vancouver, Canada. In my free time, I do [block printing for my brand, Paperboy.](https://paperboystudio.com/)
 
-Looking for my tech blog? {{% link to="/dev" %}}Check it out here.{{% /link %}} If you've been here before and are looking for a specific post, I'm in the process of migrating content to a new version of my site.
-
-Questions? {{% link to="/contact" %}}Get in touch.{{% /link %}}
+Looking for my tech blog? {{% link to="/dev" %}}Check it out here.{{% /link %}} Questions? {{% link to="/contact" %}}Get in touch.{{% /link %}}
