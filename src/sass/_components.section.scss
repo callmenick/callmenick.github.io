@@ -13,10 +13,11 @@
   color: #fff;
   background-color: $color-brand-500;
   font-family: $font-secondary;
-  font-size: font-size(md);
+  font-size: heading-size(sm);
   font-weight: 300;
   text-transform: uppercase;
   letter-spacing: $letter-spacing;
+  border-radius: $border-radius;
 }
 
 .Section-subTitle {

@@ -2,12 +2,16 @@
 }
 
 .Article-header {
-  margin: 0 0 gutter(xx) 0;
+  margin: 0 0 gutter(xl) 0;
 }
 
 .Article-title {
   margin: 0 0 gutter(md) 0;
-  font-size: font-size(xl);
+  font-size: heading-size(lg);
+
+  @include break(lg) {
+    font-size: heading-size(xl);
+  }
 }
 
 .Article-meta {
@@ -19,7 +23,7 @@
   margin-right: gutter(xl);
   color: $color-grey-500;
   font-family: $font-secondary;
-  font-size: font-size(xs);
+  font-size: font-size(sm);
   text-transform: uppercase;
   letter-spacing: $letter-spacing;
 

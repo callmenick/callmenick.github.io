@@ -2,10 +2,11 @@
   margin: 0;
   padding: gutter(md) gutter(lg);
   font-family: $font-secondary;
-  font-size: font-size(sm);
+  font-size: font-size(md);
   text-decoration: none;
   text-transform: uppercase;
   letter-spacing: $letter-spacing;
+  border-radius: $border-radius;
   cursor: pointer;
   transition: color 250ms, background 250ms, box-shadow 250ms;
 }
@@ -47,11 +48,11 @@
 }
 
 .Button--size-sm {
-  font-size: font-size(xs);
+  font-size: font-size(sm);
 }
 
 .Button--size-md {
-  font-size: font-size(sm);
+  font-size: font-size(md);
 }
 
 .ButtonGroup {

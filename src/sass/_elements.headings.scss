@@ -11,3 +11,21 @@ h6 {
   font-weight: 700;
   line-height: line-height(sm);
 }
+
+h1 {
+  font-size: heading-size(xl);
+}
+
+h2 {
+  font-size: heading-size(lg);
+}
+
+h3 {
+  font-size: heading-size(md);
+}
+
+h4,
+h5,
+h6 {
+  font-size: heading-size(sm);
+}

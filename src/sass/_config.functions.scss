@@ -1,11 +1,38 @@
+@function pow($number, $exponent) {
+  $value: 1;
+
+  @if $exponent > 0 {
+    @for $i from 1 through $exponent {
+      $value: $value * $number;
+    }
+  }
+
+  @return $value;
+}
+
 @function font-size($size) {
   $sizes: (
-    xs: 1.2rem,
-    sm: 1.4rem,
-    md: 1.6rem,
-    lg: 2.1rem,
-    xl: 2.7rem,
-    xx: 3.6rem
+    xs: $font-base / pow($space-ratio, 2),
+    sm: $font-base / pow($space-ratio, 1),
+    md: $font-base,
+    lg: $font-base * pow($space-ratio, 1),
+    xl: $font-base * pow($space-ratio, 2),
+    xx: $font-base * pow($space-ratio, 3)
+  );
+
+  @if (map-has-key($sizes, $size)) {
+    @return map-get($sizes, $size);
+  } @else {
+    @warn "$size doesn't exist in $sizes.";
+  }
+}
+
+@function heading-size($size) {
+  $sizes: (
+    sm: $font-base * pow($space-ratio, 1),
+    md: $font-base * pow($space-ratio, 2),
+    lg: $font-base * pow($space-ratio, 3),
+    xl: $font-base * pow($space-ratio, 4),
   );
 
   @if (map-has-key($sizes, $size)) {
@@ -17,9 +44,8 @@
 
 @function line-height($size) {
   $sizes: (
-    sm: 1.2,
-    md: 1.8,
-    lg: 2.2
+    sm: $line-height-base,
+    md: $line-height-base * pow($space-ratio, 1)
   );
 
   @if (map-has-key($sizes, $size)) {
@@ -31,12 +57,12 @@
 
 @function gutter($size) {
   $sizes: (
-    xs: 0.3rem,
-    sm: 0.6rem,
-    md: 1.2rem,
-    lg: 2.4rem,
-    xl: 3.6rem,
-    xx: 4.8rem
+    xs: $gutter-base / pow($space-ratio, 4),
+    sm: $gutter-base / pow($space-ratio, 2),
+    md: $gutter-base,
+    lg: $gutter-base * pow($space-ratio, 2),
+    xl: $gutter-base * pow($space-ratio, 4),
+    xx: $gutter-base * pow($space-ratio, 6)
   );
 
   @if (map-has-key($sizes, $size)) {
