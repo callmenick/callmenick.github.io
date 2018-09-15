@@ -12,6 +12,16 @@
     
     
     <item>
+      <title>CSS Only Floated Labels with :placeholder-shown pseudo class</title>
+      <link>https://callmenick.com/dev/floated-labels-with-placeholder-shown/</link>
+      <pubDate>Sat, 15 Sep 2018 10:28:01 -0700</pubDate>
+      
+      <guid>https://callmenick.com/dev/floated-labels-with-placeholder-shown/</guid>
+      <description>Get Source  View Demo   The Floated Labels Technique When we’re dealing with inputs, there’s a host of techniques to consider in order to give users the best experience. We need to make sure that we’re giving users necessary information at all points in time, and that means finding the balance between too much and too little. Two pretty important pieces to the UX puzzle are:
+ The label element which according to the MDN, is the only way to provide explanatory information about a form field that is always appropriate</description>
+    </item>
+    
+    <item>
       <title>Dead Simple CSS Isolation Animation Technique</title>
       <link>https://callmenick.com/dev/isolation-animation-technique/</link>
       <pubDate>Tue, 09 Jan 2018 14:04:43 -0800</pubDate>
