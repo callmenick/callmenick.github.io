@@ -1,7 +1,7 @@
 ---
-title: {{ replace .TranslationBaseName "-" " " | title }}
-description: meta description
-img: /img/dev/{{ .BaseFileName }}/{{ .BaseFileName }}-featured.png
+title: Post title
+description: Post description
+img: {{ .BaseFileName }}-featured.png
 date: {{ .Date }}
 draft: true
 ---
