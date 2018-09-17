@@ -12,13 +12,27 @@
       </div>
       <p class="Article-excerpt">{{ .Page.Params.description }}</p>
       <div class="Article-featuredImg">
-        <img src="{{ .Page.Params.img | absURL }}" alt="{{ .Title }}">
+        <img src="{{ .Page.Params.img }}" alt="{{ .Title }}">
       </div>
     </div>
     <div class="Article-content">
       <div class="Content">
         {{ .Content }}
       </div>
+    </div>
+    <div class="Article-prevNext">
+      {{if .NextInSection}}
+        <div class="Article-prevNext-link">
+          <strong>Next:</strong>
+          <a href="{{.NextInSection.Permalink}}">{{ .NextInSection.Title }}</a>
+        </div>
+      {{end}}
+      {{if .PrevInSection}}
+        <div class="Article-prevNext-link">
+          <strong>Previous:</strong>
+          <a href="{{.PrevInSection.Permalink}}">{{ .PrevInSection.Title }}</a>
+        </div>
+      {{end}}
     </div>
   </section>
 {{ end }}

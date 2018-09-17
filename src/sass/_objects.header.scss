@@ -2,7 +2,7 @@
   margin: 0 0 gutter(lg) 0;
 
   @include break(lg) {
-    margin: 0;
+    margin: 0 0 gutter(xx) 0;
   }
 }
 

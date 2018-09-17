@@ -1,4 +1,7 @@
 .Nav {
+  @include break(lg) {
+    margin: 0 0 gutter(xx) 0;
+  }
 }
 
 .Nav-items {

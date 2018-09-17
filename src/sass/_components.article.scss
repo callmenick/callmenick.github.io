@@ -46,3 +46,9 @@
 
 .Article-content {
 }
+
+.Article-prevNext {
+  margin-top: gutter(xx);
+  padding-top: gutter(xx);
+  border-top: solid 0.3rem $color-grey-100;
+}
