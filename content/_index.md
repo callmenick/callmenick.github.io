@@ -7,7 +7,7 @@ draft: false
 
 ![Me](/img/me2.jpg)
 
-Trinidad & Tobago is my motherland, but Vancouver, Canada has been the place I call home since Jan 2017. Currently, I'm building the future with [Axiom Zen](https://www.axiomzen.co/) and bringing the island vibes to the kitty den with [CryptoKitties](https://www.cryptokitties.co/).
+Trinidad & Tobago is my motherland, but Vancouver, Canada is the place I've called home since Jan 2017. Currently, I'm building the future with [Axiom Zen](https://www.axiomzen.co/) and bringing the island vibes to the kitty den with [CryptoKitties](https://www.cryptokitties.co/).
 
 Looking for my tech blog? {{% link to="/dev" %}}Check it out here.{{% /link %}}
 
