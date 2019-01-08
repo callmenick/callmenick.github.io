@@ -129,6 +129,15 @@ But how!? Before you peep at the resulting code in the above pen, take a read be
     </item>
     
     <item>
+      <title>Building The Slack Animating Logo With Only CSS</title>
+      <link>https://callmenick.com/dev/slack-logo-animation-css/</link>
+      <pubDate>Wed, 03 Jun 2015 17:57:00 -0400</pubDate>
+      
+      <guid>https://callmenick.com/dev/slack-logo-animation-css/</guid>
+      <description>Get Source  View Demo   Slack &amp;amp; The Logo Slack is making waves these days, and they&amp;rsquo;re a cool company with a great brand identity in my opinion. The app itself is really pleasant, and makes group and team communication great. I chose this as a subject for a CSS experiment, because the logo itself is utilised when loading indicators are required. Another reason that it&amp;rsquo;s a good subject is because by dissecting it a bit, we can really see some of the depths and powers of CSS3 animations and transforms.</description>
+    </item>
+    
+    <item>
       <title>An Introduction to Gulp</title>
       <link>https://callmenick.com/dev/an-introduction-to-gulp/</link>
       <pubDate>Thu, 09 Apr 2015 21:16:07 -0700</pubDate>
