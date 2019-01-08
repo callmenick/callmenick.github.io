@@ -15,6 +15,11 @@ I'm also a hobbyist block printer — check out my brand [Paperboy](https://pape
 
 Questions? {{% link to="/contact" %}}Get in touch.{{% /link %}}
 
-## Find me
+### Find me
 
-I'll be in **Prague** from **26th Oct - 4th Nov 2018**! Come see me speak at [Devcon](https://devcon4.ethereum.org/) on **1st Nov 2018** at **10am**. I'll also be speaking on the [Designing with Blockchain](https://www.eventbrite.ie/e/devcon4-prague-edition-designing-with-blockchain-tickets-49259050145) panel on **29th Oct 2018** at **6.30pm**.
+Nothing is on my radar at the moment, but I'm based in Vancouver, BC. If you're around, <a href="/contact">reach out</a>!
+
+### Past speakings
+
+- 1st Nov 2018 - Building the Ecosystem for the Next Wave of Users, _Devcon4, Prague_
+- 29th Oct 2018 - Designing with Blockchain, _Provenance Events, Prague_
