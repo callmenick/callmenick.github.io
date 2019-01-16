@@ -4,7 +4,7 @@ title = "Call Me Nick"
 theme = "callmenick"
 [params]
   subtitle = "Front End Development and Other Adventures"
-  description = "I'm Nick Salloum, a front end engineer, an artist, and other things."
+  description = "I'm nick — a front end engineer, artist, surfer, burner, and wanderer."
   author = "Nick Salloum"
 [[menu.main]]
   name = "Home"
@@ -21,18 +21,3 @@ theme = "callmenick"
   weight = 3
   identifier = "contact"
   url = "/contact"
-# [[menu.main]]
-#   name = "Paper Boy"
-#   weight = 3
-#   identifier = "paperboy"
-#   url = "/paperboy"
-# [[menu.main]]
-#   name = "Art"
-#   weight = 4
-#   identifier = "art"
-#   url = "/art"
-# [[menu.main]]
-#   name = "Random"
-#   weight = 5
-#   identifier = "random"
-#   url = "/random"
