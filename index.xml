@@ -177,6 +177,16 @@ Definition Of The :not Selector According to the MDN:
     </item>
     
     <item>
+      <title>CSS Transitions, Transforms &amp; Animations – Perspective</title>
+      <link>https://callmenick.com/dev/css-perspective/</link>
+      <pubDate>Tue, 30 Dec 2014 13:36:07 -0800</pubDate>
+      
+      <guid>https://callmenick.com/dev/css-perspective/</guid>
+      <description>View Collection on CodePen   In this tutorial, we’re going to take an in-depth look into CSS perspective, and some use-cases where it can give users more natural and cool experiences.
+What Is Perspective? In the context of the two-dimensional world, perspective gives users the illusion of an object’s depth, width, height, and position in relation to another object, when viewed from a particular point. Perspective allows artists to create scenes that look like they are going “into” the paper, or draw buildings of different sizes on a street moving away from our position.</description>
+    </item>
+    
+    <item>
       <title>Some jQuery Functions And Their JavaScript Equivalents</title>
       <link>https://callmenick.com/dev/jquery-functions-javascript-equivalents/</link>
       <pubDate>Sun, 06 Jul 2014 19:18:58 -0700</pubDate>
