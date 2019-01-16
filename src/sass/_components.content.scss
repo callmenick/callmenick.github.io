@@ -21,6 +21,10 @@
     margin: 0 0 gutter(xl) 0;
   }
 
+  blockquote > p:last-child {
+    margin: 0;
+  }
+
   p,
   ul,
   ol,
@@ -45,7 +49,7 @@
     padding: 0 gutter(sm);
     color: inherit;
     background: $color-grey-100;
-    font-size: font-size(sm);
+    font-size: 1em / $space-ratio;
   }
 
   img {
