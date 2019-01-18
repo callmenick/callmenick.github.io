@@ -9,7 +9,7 @@
   <meta property="og:url" content="{{ .Page.URL | absURL }}">
   <meta property="og:title" content="{{ if .IsHome }}{{ .Site.Title }} - {{ .Site.Params.subtitle }}{{ else }}{{ .Page.Title }} - {{ .Site.Title }}{{ end }}">
   <meta property="og:description" content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Page.Params.description }}{{ end }}">
-  <meta property="og:image" content="{{ if .Page.Params.img }}{{ .Page.Params.img | absURL }}{{ else }}{{ "img/callmenick-open-graph-default.png" | absURL }}{{ end }}">
+  <meta property="og:image" content="{{ if .Page.Params.img }}{{ .Page.Permalink }}{{ .Page.Params.img }}{{ else }}{{ "img/callmenick-open-graph-default.png" | absURL }}{{ end }}">
   <meta name="msapplication-config" content="{{ "img/icons/browserconfig.xml" | absURL }}">
   <meta name="theme-color" content="#ffffff">
   <link rel="stylesheet" href="{{ "css/style.css" | absURL }}">
