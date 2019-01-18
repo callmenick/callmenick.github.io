@@ -5,8 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>{{ if .IsHome }}{{ .Site.Title }} - {{ .Site.Params.subtitle }}{{ else }}{{ .Page.Title }} - {{ .Site.Title }}{{ end }}</title>
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:creator" content="@nicksalloum_" />
   <meta name="description" content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Page.Params.description }}{{ end }}">
-  <meta property="og:url" content="{{ .Page.URL | absURL }}">
+  <meta property="og:url" content="{{ .Page.Permalink }}">
   <meta property="og:title" content="{{ if .IsHome }}{{ .Site.Title }} - {{ .Site.Params.subtitle }}{{ else }}{{ .Page.Title }} - {{ .Site.Title }}{{ end }}">
   <meta property="og:description" content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Page.Params.description }}{{ end }}">
   <meta property="og:image" content="{{ if .Page.Params.img }}{{ .Page.Permalink }}{{ .Page.Params.img }}{{ else }}{{ "img/callmenick-open-graph-default.png" | absURL }}{{ end }}">
@@ -19,7 +21,7 @@
   <link rel="manifest" href="{{ "img/icons/manifest.json" | absURL }}">
   <link rel="mask-icon" href="{{ "img/icons/safari-pinned-tab.svg" | absURL }}" color="#5bbad5">
   <link rel="shortcut icon" href="{{ "img/icons/favicon.ico" | absURL }}">
-  <link rel="canonical" href="{{ .Page.URL | absURL }}">
+  <link rel="canonical" href="{{ .Page.Permalink }}">
 </head>
 <body>
   <div class="Wrapper">
