@@ -1,6 +1,6 @@
 ---
-title: Hi
-description: I'm Nick - a front end engineer, artist, surfer, burner, and wanderer.
+title: Hi, I'm Nick
+description:  I'm a Front End Engineer, and I focus on bringing joy and delight to users.
 date: 2017-08-13T15:11:10-07:00
 draft: false
 ---
