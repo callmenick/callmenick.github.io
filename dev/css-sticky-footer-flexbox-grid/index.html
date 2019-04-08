@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>CSS Sticky Footer with Flexbox and Grid - Call Me Nick</title>
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:creator" content="@nicksalloum_" />
+  <meta name="description" content="In this quick tutorial, we&#39;ll build a sticky footer layout two ways — using CSS Flexbox and Grid.">
+  <meta property="og:url" content="https://callmenick.com/dev/css-sticky-footer-flexbox-grid/">
+  <meta property="og:title" content="CSS Sticky Footer with Flexbox and Grid - Call Me Nick">
+  <meta property="og:description" content="In this quick tutorial, we&#39;ll build a sticky footer layout two ways — using CSS Flexbox and Grid.">
+  <meta property="og:image" content="https://callmenick.com/dev/css-sticky-footer-flexbox-grid/sticky-footer-featured.png">
+  <meta name="msapplication-config" content="https://callmenick.com/img/icons/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="stylesheet" href="https://callmenick.com/css/style.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://callmenick.com/img/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://callmenick.com/img/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://callmenick.com/img/icons/favicon-16x16.png">
+  <link rel="manifest" href="https://callmenick.com/img/icons/manifest.json">
+  <link rel="mask-icon" href="https://callmenick.com/img/icons/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="shortcut icon" href="https://callmenick.com/img/icons/favicon.ico">
+  <link rel="canonical" href="https://callmenick.com/dev/css-sticky-footer-flexbox-grid/">
+</head>
+<body>
+  <div class="Wrapper">
+    <div class="Sidebar">
+  <header class="Header">
+    <div class="Header-logo">
+      <a href="https://callmenick.com/">
+        <svg class="Logo" width="60" height="60" viewBox="0 0 60 60">
+  <circle fill="#2196F3" cx="30" cy="30" r="30"/>
+  <path fill="#FFF" d="M34.757 43.244A5.981 5.981 0 0 0 39.002 45 5.999 5.999 0 0 0 45 39.002c0-1.665-.67-3.154-1.757-4.243L25.244 16.757A6.002 6.002 0 0 0 15 20.999c0 1.663.67 3.155 1.757 4.241l18 18.004zM27.001 39.002A6 6 0 0 1 20.997 45C17.688 45 15 42.316 15 39.002a6.001 6.001 0 0 1 12.001 0zM45 20.999a6 6 0 0 1-12 0A6.002 6.002 0 0 1 39.002 15 6.002 6.002 0 0 1 45 20.999z"/>
+</svg>
+
+      </a>
+    </div>
+  </header>
+  <nav class="Nav">
+    <ul class="Nav-items">
+      
+      
+        <li class="Nav-item ">
+          <a href="https://callmenick.com/" class="Nav-link">Home</a>
+        </li>
+      
+        <li class="Nav-item ">
+          <a href="https://callmenick.com/dev" class="Nav-link">Dev</a>
+        </li>
+      
+        <li class="Nav-item ">
+          <a href="https://callmenick.com/contact" class="Nav-link">Contact</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <div id="carbonad" class="CarbonAd"></div>
+</div>
+
+    <main class="Main">
+      <div class="Main-inner">
+        
+  <section class="Article">
+    <div class="Article-header">
+      <h1 class="Article-title">CSS Sticky Footer with Flexbox and Grid</h1>
+      <div class="Article-meta">
+        <a href="https://callmenick.com/dev/css-sticky-footer-flexbox-grid/" class="Article-meta-item">
+          On: <em>2019/04/08</em>
+        </a>
+        <a href="/dev" class="Article-meta-item">
+          In: <em>dev</em>
+        </a>
+      </div>
+      <p class="Article-excerpt">In this quick tutorial, we&#39;ll build a sticky footer layout two ways — using CSS Flexbox and Grid.</p>
+      <div class="Article-featuredImg">
+        <img src="sticky-footer-featured.png" alt="CSS Sticky Footer with Flexbox and Grid">
+      </div>
+    </div>
+    <div class="Article-content">
+      <div class="Content">
+        
+
+<div class="ButtonGroup ButtonGroup--gutter-md ButtonGroup--align-center">
+  <a href="https://codepen.io/collection/XjwEaq/" class="Button Button--display-inlineBlock Button--appearance-secondary Button--size-sm">
+    View Collection on CodePen
+  </a>
+</div>
+
+<p>A long standing layout challenge for front end folks has been the &ldquo;sticky footer&rdquo; layout. A sticky footer is one that sticks to the bottom of the page if there&rsquo;s not enough content to fill up a minimum of 100% the screen height, but also one that gets pushed further down the viewport like normal if there is enough content.</p>
+
+<p><img src="sticky-footer-visual.png" alt="Sticky footer visual" /></p>
+
+<p>Nowadays, it&rsquo;s pretty simple to achieve this layout! We&rsquo;re going to explore two ways:</p>
+
+<ol>
+<li>Using <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout">Flexbox</a></li>
+<li>Using <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout">Grid</a></li>
+</ol>
+
+<p>But first, let&rsquo;s look at some common HTML and CSS for our layout.</p>
+
+<h2 id="the-common-html-and-css">The Common HTML and CSS</h2>
+
+<p>I&rsquo;m going to structure my layout pretty simply, with a <code>header</code>, <code>main</code>, and <code>footer</code>, and I&rsquo;ll wrap all of those in a <code>.wrapper</code> element:</p>
+
+<pre><code class="language-html">&lt;div class=&quot;wrapper&quot;&gt;
+  &lt;header&gt;&lt;/header&gt;
+  &lt;main&gt;&lt;/main&gt;
+  &lt;footer&gt;&lt;/footer&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>This gives me a pretty contained structure to work with, and some easy targets for my layout. As far as the styling goes, we&rsquo;ll want to make sure that our <code>.wrapper</code> element is at least the height of the viewport at all times:</p>
+
+<pre><code class="language-css">.wrapper {
+  min-height: 100vh;
+}
+</code></pre>
+
+<p>Let&rsquo;s jump into the specifics.</p>
+
+<h2 id="the-flexbox-way">The Flexbox Way</h2>
+
+<p>With Flexbox, my thought process is that I first need a <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction">column based <code>flex-direction</code></a>. With that, I can then set my <code>header</code> and <code>footer</code> to occupy as much space as their contents require, while the <code>main</code> should always fill up a minimum of all of the available space left. Here&rsquo;s what the CSS looks like:</p>
+
+<pre><code class="language-css">.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+header,
+footer {
+  flex: 0 1 auto;
+}
+
+main {
+  flex: 1;
+}
+</code></pre>
+
+<p>Voila! Simple. Here&rsquo;s a little CodePen demo that allows you to dynamically add content to see the changes.</p>
+
+<p class="codepen" data-height="600" data-theme-id="light" data-default-tab="result" data-user="callmenick" data-slug-hash="xeRWOg" data-preview="true" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid black; margin: 1em 0; padding: 1em;" data-pen-title="Sticky Footer w/ CSS Flexbox">
+  <span>See the Pen <a href="https://codepen.io/callmenick/pen/xeRWOg/">
+  Sticky Footer w/ CSS Flexbox</a> by Nick Salloum (<a href="https://codepen.io/callmenick">@callmenick</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+
+<h2 id="the-grid-way">The Grid Way</h2>
+
+<p>With CSS grid, things become even easier! Grid is such a powerful spec and is perfect for controlling these overarching layout setups like this. All we need to do in this case is target the <code>.wrapper</code> element and define our grid layout there. We&rsquo;ll want three rows, and like before, we&rsquo;ll want the <code>main</code> row to occupy a minimum of the remaining viewport height after the <code>header</code> and <code>footer</code> take up as much space as they need. Here&rsquo;s the (dead simple) CSS:</p>
+
+<pre><code class="language-css">.wrapper {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+</code></pre>
+
+<p>And that&rsquo;s it! Here&rsquo;s the CSS demo for the Grid version:</p>
+
+<p class="codepen" data-height="600" data-theme-id="light" data-default-tab="result" data-user="callmenick" data-slug-hash="rbWJpE" data-preview="true" style="height: 493px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid black; margin: 1em 0; padding: 1em;" data-pen-title="Sticky Footer w/ CSS Grid">
+  <span>See the Pen <a href="https://codepen.io/callmenick/pen/rbWJpE/">
+  Sticky Footer w/ CSS Grid</a> by Nick Salloum (<a href="https://codepen.io/callmenick">@callmenick</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+
+<h2 id="browser-support">Browser Support</h2>
+
+<p>Support for both of these APIs is really great, with <a href="https://caniuse.com/#feat=flexbox">Flexbox</a> edging out <a href="https://caniuse.com/#feat=css-grid">Grid</a> by just a bit due to it being around longer. If you&rsquo;re worried about supporting old browsers, then maybe Flexbox is for you. With this particular layout though, I&rsquo;d choose CSS Grid anyway. The fallback would be extremely graceful on browsers that don&rsquo;t support it, as they&rsquo;d just render the three blocks stacked one on top the other with no sticky footer.</p>
+
+<h2 id="wrap-up">Wrap Up</h2>
+
+<p>That&rsquo;s just about it! We&rsquo;ve taken a look at two powerful CSS APIs and really simplified a once non-trivial layout implementation with just a few lines of CSS. Thanks again for reading, and if you have and questions, comments, or feedback, feel free to <a href="http://twitter.com/home?status=@nicksalloum_ I got a question for you!" target="_blank">send me a tweet.</a></p>
+
+<div class="ButtonGroup ButtonGroup--gutter-md ButtonGroup--align-center">
+  <a href="https://codepen.io/collection/XjwEaq/" class="Button Button--display-inlineBlock Button--appearance-secondary Button--size-sm">
+    View Collection on CodePen
+  </a>
+</div>
+
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+      </div>
+    </div>
+    <div class="Article-prevNext">
+      
+      
+        <div class="Article-prevNext-link">
+          <strong>Previous:</strong>
+          <a href="https://callmenick.com/dev/floated-labels-with-placeholder-shown/">CSS Only Floated Labels with :placeholder-shown pseudo class</a>
+        </div>
+      
+    </div>
+  </section>
+
+      </div>
+    </main>
+  </div>
+  <script src="https://callmenick.com/js/prism.js"></script>
+  <script src="https://callmenick.com/js/carbonad.js"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-34160351-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+</body>
+</html>

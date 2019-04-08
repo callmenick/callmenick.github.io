@@ -12,6 +12,16 @@
     
     
     <item>
+      <title>CSS Sticky Footer with Flexbox and Grid</title>
+      <link>https://callmenick.com/dev/css-sticky-footer-flexbox-grid/</link>
+      <pubDate>Mon, 08 Apr 2019 15:48:05 -0700</pubDate>
+      
+      <guid>https://callmenick.com/dev/css-sticky-footer-flexbox-grid/</guid>
+      <description>View Collection on CodePen   A long standing layout challenge for front end folks has been the &amp;ldquo;sticky footer&amp;rdquo; layout. A sticky footer is one that sticks to the bottom of the page if there&amp;rsquo;s not enough content to fill up a minimum of 100% the screen height, but also one that gets pushed further down the viewport like normal if there is enough content.
+Nowadays, it&amp;rsquo;s pretty simple to achieve this layout!</description>
+    </item>
+    
+    <item>
       <title>CSS Only Floated Labels with :placeholder-shown pseudo class</title>
       <link>https://callmenick.com/dev/floated-labels-with-placeholder-shown/</link>
       <pubDate>Sat, 15 Sep 2018 10:28:01 -0700</pubDate>
