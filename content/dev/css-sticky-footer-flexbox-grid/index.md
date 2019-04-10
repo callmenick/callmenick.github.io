@@ -43,7 +43,15 @@ This gives me a pretty contained structure to work with, and some easy targets f
 }
 ```
 
-Let's jump into the specifics.
+**Note: I use [normalize.css](https://necolas.github.io/normalize.css/) in pretty much all of my projects, which does quite a bit of "normalization" of CSS across browsers. If you're not keen on using a library, then the one important thing of note is the margin reset on the `body` tag:**
+
+```css
+body {
+  margin: 0;
+}
+```
+
+Right! Let's jump into the specifics.
 
 ## The Flexbox Way
 
