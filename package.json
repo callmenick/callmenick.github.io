@@ -3,15 +3,17 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "watch": "gulp watch",
+    "dev": "gulp dev",
+    "styles": "gulp styles",
     "build": "gulp build",
     "deploy": "./deploy.sh"
   },
-  "dependencies": {
-    "autoprefixer": "^7.1.4",
-    "cssnano": "^3.10.0",
-    "gulp": "^3.9.1",
-    "gulp-postcss": "^7.0.0",
-    "gulp-sass": "^3.1.0"
+  "dependencies": {},
+  "devDependencies": {
+    "autoprefixer": "^9.7.4",
+    "cssnano": "^4.1.10",
+    "gulp": "^4.0.2",
+    "gulp-postcss": "^8.0.0",
+    "gulp-sass": "^4.0.2"
   }
 }
