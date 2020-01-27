@@ -11,6 +11,6 @@ Currently, I'm building the future of blockchain with [Dapper Labs](https://www.
 
 🤓 Looking for my tech blog? [Check it out here]({{< ref "/dev" >}}).
 
-🎨 I also dabble around with the arts — check it out on [Instagram](https://www.instagram.com/paperboystudio/)!
+🎨 I also dabble around with the arts. Check out some of my work on [Instagram](https://www.instagram.com/paperboystudio/)!
 
 💌 Questions? [Get in touch]({{< ref "/contact" >}}).
