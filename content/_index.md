@@ -7,19 +7,10 @@ draft: false
 
 ![Me](/img/me2.jpg)
 
-Trinidad & Tobago is my motherland, but Vancouver, Canada is the place I've called home since Jan 2017. Currently, I'm building the future of blockchain with [Dapper Labs](https://www.dapperlabs.com/), and I'm the resident Lion Cat at [CryptoKitties](https://www.cryptokitties.co/).
+Currently, I'm building the future of blockchain with [Dapper Labs](https://www.dapperlabs.com/), and I’m the resident Lion Cat at [CryptoKitties](https://www.cryptokitties.co/).
 
-Looking for my tech blog? {{% link to="/dev" %}}Check it out here.{{% /link %}}
+🤓 Looking for my tech blog? [Check it out here]({{< ref "/dev" >}}).
 
-I'm also a hobbyist block printer — check out my brand [Paperboy](https://paperboystudio.com/)!
+🎨 I also dabble around with the arts — check it out on [Instagram](https://www.instagram.com/paperboystudio/)!
 
-Questions? {{% link to="/contact" %}}Get in touch.{{% /link %}}
-
-### Find me
-
-Nothing is on my radar at the moment, but I'm based in Vancouver, BC. If you're around, <a href="/contact">reach out</a>!
-
-### Past speakings
-
-- 1st Nov 2018 - Building the Ecosystem for the Next Wave of Users, _Devcon4, Prague_
-- 29th Oct 2018 - Designing with Blockchain, _Provenance Events, Prague_
+💌 Questions? [Get in touch]({{< ref "/contact" >}}).
