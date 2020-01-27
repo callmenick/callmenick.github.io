@@ -1,29 +1,26 @@
 #!/bin/sh
 
-# if [ "`git status -s`" ]
-# then
-#     echo "The working directory is dirty. Please commit any pending changes."
-#     exit 1;
-# fi
+# If a command fails then the deploy stops
+set -e
 
-echo "Deleting old publication"
-rm -rf public
-mkdir public
-git worktree prune
-rm -rf .git/worktrees/public/
+printf "\033[0;32mDeploying updates to GitHub...\033[0m\n"
 
-echo "Checking out master branch into public"
-git worktree add -B master public upstream/master
-
-echo "Removing existing files"
-rm -rf public/*
-
-echo "Generating site"
+# Build the project.
 npm run build
 hugo -t callmenick
 
-echo "Updating master branch"
-cd public && git add --all && git commit -m "Publishing to master (publish.sh)"
+# Go To Public folder
+cd public
 
-echo "Pushing to github"
-git push --all
+# Add changes to git.
+git add .
+
+# Commit changes.
+msg="rebuilding site $(date)"
+if [ -n "$*" ]; then
+    msg="$*"
+fi
+git commit -m "$msg"
+
+# Push source and build repos.
+git push origin master
