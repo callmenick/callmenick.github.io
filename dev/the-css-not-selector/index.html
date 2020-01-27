@@ -79,113 +79,73 @@
     </div>
     <div class="Article-content">
       <div class="Content">
-        
-
-<p>I discovered the CSS <code>:not</code> selector recently, and it’s pretty cool. In a nutshell, you can chain it or apply it to certain selectors and style everything that does NOT meet the condition (e.g. everything BUT <code>span</code> tags). Let’s get a bit more formal.</p>
-
+        <p>I discovered the CSS <code>:not</code> selector recently, and it’s pretty cool. In a nutshell, you can chain it or apply it to certain selectors and style everything that does NOT meet the condition (e.g. everything BUT <code>span</code> tags). Let’s get a bit more formal.</p>
 <h2 id="definition-of-the-not-selector">Definition Of The <code>:not</code> Selector</h2>
-
 <p>According to the MDN:</p>
-
 <blockquote>
 <p>The negation CSS pseudo-class, <code>:not(X)</code>, is a functional notation taking a simple selector X as an argument. It matches an element that is not represented by the argument. X must not contain another negation selector, or any pseudo-elements.</p>
-
 <p>The specificity of the <code>:not</code> pseudo-class is the specificity of its argument. The <code>:not</code> pseudo-class does not add to the selector specificity, unlike other pseudo-classes.</p>
 </blockquote>
-
 <p>Pretty handy, right? Let’s look at some examples.</p>
-
-<h2 id="example-1-not-a-selector">Example 1 – Not A Selector</h2>
-
+<h2 id="example-1--not-a-selector">Example 1 – Not A Selector</h2>
 <p>This case of <code>:not</code> will negate all selectors specified. Our HTML might look like this:</p>
-
-<pre><code class="language-html">&lt;section&gt;
-  &lt;p&gt;Pellentesque habitant morbi tristique senectus et netus et.&lt;/p&gt;
-  &lt;span&gt;Malesuada fames ac turpis egestas. Vestibulum tortor quam.&lt;/span&gt;
-  &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit!&lt;/p&gt;
-&lt;/section&gt;
-</code></pre>
-
-<p>and our CSS like this:</p>
-
-<pre><code class="language-css">section :not(p) {
-  color: rgb(40,170,220);
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">section</span>&gt;
+  &lt;<span style="color:#f92672">p</span>&gt;Pellentesque habitant morbi tristique senectus et netus et.&lt;/<span style="color:#f92672">p</span>&gt;
+  &lt;<span style="color:#f92672">span</span>&gt;Malesuada fames ac turpis egestas. Vestibulum tortor quam.&lt;/<span style="color:#f92672">span</span>&gt;
+  &lt;<span style="color:#f92672">p</span>&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit!&lt;/<span style="color:#f92672">p</span>&gt;
+&lt;/<span style="color:#f92672">section</span>&gt;
+</code></pre></div><p>and our CSS like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css"><span style="color:#f92672">section</span> :<span style="color:#a6e22e">not</span><span style="color:#f92672">(</span><span style="color:#f92672">p</span><span style="color:#f92672">)</span> {
+  <span style="color:#66d9ef">color</span>: rgb(<span style="color:#ae81ff">40</span>,<span style="color:#ae81ff">170</span>,<span style="color:#ae81ff">220</span>);
 }
-</code></pre>
-
-<p>and our output like this:</p>
-
-<p><img src="/files/2015-03/css_not_1.png" alt="Not a selector" /></p>
-
-<h2 id="example-2-not-a-class">Example 2 – Not A Class</h2>
-
+</code></pre></div><p>and our output like this:</p>
+<p><img src="/files/2015-03/css_not_1.png" alt="Not a selector"></p>
+<h2 id="example-2--not-a-class">Example 2 – Not A Class</h2>
 <p>This case of <code>:not</code> will negate all classes specified. In other words, we’ll target everything except the class in question. Our HTML may look like this:</p>
-
-<pre><code class="language-html">&lt;section class=&quot;highlight&quot;&gt;
-  &lt;p&gt;Pellentesque habitant morbi...&lt;/p&gt;
-&lt;/section&gt;
-&lt;section&gt;
-  &lt;p&gt;Lorem ipsum dolor....&lt;/p&gt;
-&lt;/section&gt;
-</code></pre>
-
-<p>and our CSS like this:</p>
-
-<pre><code class="language-css">body {
-  background-color: rgb(40,170,220);
-  color: #fff;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">section</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;highlight&#34;</span>&gt;
+  &lt;<span style="color:#f92672">p</span>&gt;Pellentesque habitant morbi...&lt;/<span style="color:#f92672">p</span>&gt;
+&lt;/<span style="color:#f92672">section</span>&gt;
+&lt;<span style="color:#f92672">section</span>&gt;
+  &lt;<span style="color:#f92672">p</span>&gt;Lorem ipsum dolor....&lt;/<span style="color:#f92672">p</span>&gt;
+&lt;/<span style="color:#f92672">section</span>&gt;
+</code></pre></div><p>and our CSS like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css"><span style="color:#f92672">body</span> {
+  <span style="color:#66d9ef">background-color</span>: rgb(<span style="color:#ae81ff">40</span>,<span style="color:#ae81ff">170</span>,<span style="color:#ae81ff">220</span>);
+  <span style="color:#66d9ef">color</span>: <span style="color:#ae81ff">#fff</span>;
 }
-section {
-  padding: 20px;
-  text-align: center;
+<span style="color:#f92672">section</span> {
+  <span style="color:#66d9ef">padding</span>: <span style="color:#ae81ff">20</span><span style="color:#66d9ef">px</span>;
+  <span style="color:#66d9ef">text-align</span>: <span style="color:#66d9ef">center</span>;
 }
-section:not(.highlight) {
-  background-color: rgb(80,80,80);
-  font-size: 14px;
+<span style="color:#f92672">section</span>:<span style="color:#a6e22e">not</span><span style="color:#f92672">(</span>.<span style="color:#a6e22e">highlight</span><span style="color:#f92672">)</span> {
+  <span style="color:#66d9ef">background-color</span>: rgb(<span style="color:#ae81ff">80</span>,<span style="color:#ae81ff">80</span>,<span style="color:#ae81ff">80</span>);
+  <span style="color:#66d9ef">font-size</span>: <span style="color:#ae81ff">14</span><span style="color:#66d9ef">px</span>;
 }
-</code></pre>
-
-<p>and the output like this:</p>
-
-<p><img src="/files/2015-03/css_not_2.png" alt="Not a class" /></p>
-
-<h2 id="example-3-usage-with-pseudo-selectors">Example 3 – Usage With Pseudo Selectors</h2>
-
+</code></pre></div><p>and the output like this:</p>
+<p><img src="/files/2015-03/css_not_2.png" alt="Not a class"></p>
+<h2 id="example-3--usage-with-pseudo-selectors">Example 3 – Usage With Pseudo Selectors</h2>
 <p>The spec mentions we can’t combine the <code>:not</code> selector with pseudo elements. We can, however, combine it with pseudo selectors, for example <code>:nth-child</code>. Here’s an example of what some HTML might look like:</p>
-
-<pre><code class="language-html">&lt;body&gt;
-  &lt;p&gt;Pellentesque habitant morbi...&lt;/p&gt;
-  &lt;p&gt;Pellentesque habitant morbi...&lt;/p&gt;
-  &lt;p&gt;Pellentesque habitant morbi...&lt;/p&gt;
-&lt;/body&gt;
-</code></pre>
-
-<p>and our CSS like this:</p>
-
-<pre><code class="language-css">body {
-  background-color: rgb(40,40,40);
-  color: #fff;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">body</span>&gt;
+  &lt;<span style="color:#f92672">p</span>&gt;Pellentesque habitant morbi...&lt;/<span style="color:#f92672">p</span>&gt;
+  &lt;<span style="color:#f92672">p</span>&gt;Pellentesque habitant morbi...&lt;/<span style="color:#f92672">p</span>&gt;
+  &lt;<span style="color:#f92672">p</span>&gt;Pellentesque habitant morbi...&lt;/<span style="color:#f92672">p</span>&gt;
+&lt;/<span style="color:#f92672">body</span>&gt;
+</code></pre></div><p>and our CSS like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css"><span style="color:#f92672">body</span> {
+  <span style="color:#66d9ef">background-color</span>: rgb(<span style="color:#ae81ff">40</span>,<span style="color:#ae81ff">40</span>,<span style="color:#ae81ff">40</span>);
+  <span style="color:#66d9ef">color</span>: <span style="color:#ae81ff">#fff</span>;
 }
-p:not(:nth-child(1)) {
-  color: rgb(255,50,100);
+<span style="color:#f92672">p</span>:<span style="color:#a6e22e">not</span><span style="color:#f92672">(</span>:<span style="color:#a6e22e">nth-child</span><span style="color:#f92672">(</span><span style="color:#f92672">1</span><span style="color:#f92672">)</span><span style="color:#f92672">)</span> {
+  <span style="color:#66d9ef">color</span>: rgb(<span style="color:#ae81ff">255</span>,<span style="color:#ae81ff">50</span>,<span style="color:#ae81ff">100</span>);
 }
-</code></pre>
-
-<p>and our output like this:</p>
-
-<p><img src="/files/2015-03/css_not_3.png" alt="With pseudo selectors" /></p>
-
+</code></pre></div><p>and our output like this:</p>
+<p><img src="/files/2015-03/css_not_3.png" alt="With pseudo selectors"></p>
 <h2 id="wrong-uses">Wrong Uses</h2>
-
 <p>As mentioned before, we can’t combine the CSS <code>:not</code> selector with pseudo elements, for example <code>::before</code>, <code>::after</code>, and <code>::first-line</code>. It fails to work in this instance. For a list of pseudo elements, check out the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements">MDN reference</a>.</p>
-
 <h2 id="support">Support</h2>
-
 <p>Support for the <code>:not</code> selector is actually fairly good overall. All Chrome &amp; Firefox supports it, Safari 3.2 and up support it, and IE9 and up also. I would still recommend keeping the usage case of this selector to purely aesthetic so that old IE falls back nicely…progressive enhancement if you must.</p>
-
 <h2 id="wrap-up">Wrap Up</h2>
-
-<p>And that’s a wrap! Have you used this selector before? What are your thoughts about it? Thanks again for reading, and if you have and questions, comments, or feedback, feel free to <a href="http://twitter.com/home?status=@nicksalloum_ I got a question for you!" target="_blank">send me a tweet.</a></p>
+<p>And that’s a wrap! Have you used this selector before? What are your thoughts about it? Thanks again for reading, and if you have and questions, comments, or feedback, feel free to <!-- raw HTML omitted -->send me a tweet.<!-- raw HTML omitted --></p>
 
       </div>
     </div>

@@ -79,237 +79,151 @@
     </div>
     <div class="Article-content">
       <div class="Content">
-        
-
-<div class="ButtonGroup ButtonGroup--gutter-md ButtonGroup--align-center">
-  <a href="http://codepen.io/callmenick/pen/dGjPOm?editors=1100" class="Button Button--display-inlineBlock Button--appearance-secondary Button--size-sm">
-    Get Source
-  </a>
-  <a href="http://codepen.io/callmenick/pen/dGjPOm?editors=1100" class="Button Button--display-inlineBlock Button--appearance-secondary Button--size-sm">
-    View Demo
-  </a>
-</div>
-
+        <!-- raw HTML omitted -->
 <h2 id="introduction">Introduction</h2>
-
-<p>Building maintainable, responsive layouts often feels like a huge undertaking. A lot of people tend to revert to frameworks that end up having way more juice than they need. When I think of responsive layouts, I immediately think of <a href="http://sass-lang.com/">Sass</a> and three of its awesome features - maps, loops, and mixins. By leveraging these features, responsive design becomes a breeze. Not to mention, you end up with exactly what you need, nothing more, nothing less. In this tutorial, we&rsquo;re going to take a deep dive into Sass maps, loops, and mixins, and discover their importance and usefulness. We&rsquo;ll move into creating some reusable, maintainable data structures and mixins for RWD. Finally, we&rsquo;ll round it off with something more complex - a responsive grid system. Let&rsquo;s dive in!</p>
-
-<h2 id="breaking-down-sass-maps-loops">Breaking Down Sass Maps &amp; Loops</h2>
-
-<p>A <a href="http://sass-lang.com/documentation/file.SASS_REFERENCE.html#maps">Sass map</a> is one of Sass&rsquo; data types. It represents an association between keys and values, much like objects in JavaScript. Here&rsquo;s an example of a Sass map that maps colour names to a hex value:</p>
-
-<pre><code class="language-scss">$colors: (
-  primary: #333,
-  secondary: #555,
-  brand: #ff0033
+<p>Building maintainable, responsive layouts often feels like a huge undertaking. A lot of people tend to revert to frameworks that end up having way more juice than they need. When I think of responsive layouts, I immediately think of <a href="http://sass-lang.com/">Sass</a> and three of its awesome features - maps, loops, and mixins. By leveraging these features, responsive design becomes a breeze. Not to mention, you end up with exactly what you need, nothing more, nothing less. In this tutorial, we're going to take a deep dive into Sass maps, loops, and mixins, and discover their importance and usefulness. We'll move into creating some reusable, maintainable data structures and mixins for RWD. Finally, we'll round it off with something more complex - a responsive grid system. Let's dive in!</p>
+<h2 id="breaking-down-sass-maps--loops">Breaking Down Sass Maps &amp; Loops</h2>
+<p>A <a href="http://sass-lang.com/documentation/file.SASS_REFERENCE.html#maps">Sass map</a> is one of Sass&rsquo; data types. It represents an association between keys and values, much like objects in JavaScript. Here's an example of a Sass map that maps colour names to a hex value:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss">$colors<span style="color:#f92672">:</span> (
+  primary<span style="color:#f92672">:</span> <span style="color:#ae81ff">#333</span><span style="color:#f92672">,</span>
+  secondary<span style="color:#f92672">:</span> <span style="color:#ae81ff">#555</span><span style="color:#f92672">,</span>
+  brand<span style="color:#f92672">:</span> <span style="color:#ae81ff">#ff0033</span>
 );
-</code></pre>
-
-<p>Maps have a variety of <a href="http://sass-lang.com/documentation/Sass/Script/Functions.html#map-functions">map functions</a> applicable to them. Retrieving a value from the map would be as simple as this:</p>
-
-<pre><code class="language-scss">.logo {
-  color: map-get($colors, brand);
+</code></pre></div><p>Maps have a variety of <a href="http://sass-lang.com/documentation/Sass/Script/Functions.html#map-functions">map functions</a> applicable to them. Retrieving a value from the map would be as simple as this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss"><span style="color:#a6e22e">.</span><span style="color:#a6e22e">logo</span> {
+  <span style="color:#f92672">color</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">map-get</span><span style="color:#f92672">(</span><span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">colors</span><span style="color:#f92672">,</span> <span style="color:#f92672">brand</span><span style="color:#f92672">)</span>;
 }
-</code></pre>
-
-<p>Maps also play very nicely in Sass iterative functions like <a href="http://sass-lang.com/documentation/file.SASS_REFERENCE.html#_10"><code>@for</code></a> and <a href="http://sass-lang.com/documentation/file.SASS_REFERENCE.html#each-directive"><code>@each</code></a>, which are called &ldquo;control directives&rdquo;. Let&rsquo;s take a look at each in action.</p>
-
-<p>The <code>@for</code> directive repeatedly outputs a set of styles by iterating <strong>from</strong> a <strong>through</strong> b, where a and b are integers. On each repetition, the counter increments, much like a traditional for loop in any programming language. Here&rsquo;s an example of it in action:</p>
-
-<pre><code class="language-scss">@for $i from 1 through 4 {
-  .box-#{$i} {
-    width: 4rem * $i;
+</code></pre></div><p>Maps also play very nicely in Sass iterative functions like <a href="http://sass-lang.com/documentation/file.SASS_REFERENCE.html#_10"><code>@for</code></a> and <a href="http://sass-lang.com/documentation/file.SASS_REFERENCE.html#each-directive"><code>@each</code></a>, which are called &ldquo;control directives&rdquo;. Let's take a look at each in action.</p>
+<p>The <code>@for</code> directive repeatedly outputs a set of styles by iterating <strong>from</strong> a <strong>through</strong> b, where a and b are integers. On each repetition, the counter increments, much like a traditional for loop in any programming language. Here's an example of it in action:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss"><span style="color:#66d9ef">@for</span> $i <span style="color:#f92672">from</span> <span style="color:#ae81ff">1</span><span style="color:#66d9ef"></span> <span style="color:#f92672">through</span> <span style="color:#ae81ff">4</span><span style="color:#66d9ef"></span> {
+  <span style="color:#a6e22e">.</span><span style="color:#a6e22e">box-</span><span style="color:#e6db74">#{</span>$i<span style="color:#e6db74">}</span> {
+    <span style="color:#f92672">width</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">4rem</span> <span style="color:#f92672">*</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">i</span>;
   }
 }
-</code></pre>
-
-<p>And the resulting output:</p>
-
-<pre><code class="language-css">.box-1 { width: 4rem; }
-.box-2 { width: 8rem; }
-.box-3 { width: 12rem; }
-.box-4 { width: 16rem; }
-</code></pre>
-
-<p>An important thing to note here is the string interpolation syntax when incrementing the <code>.box-</code> selector. String interpolation is necessary when appending a variable to a string, and takes the form <code>#{$variable}</code>. It allows us to step our box selector from <code>.box-1</code> to <code>.box-4</code>.</p>
-
-<p>Now, let&rsquo;s take a look at the <code>@each</code> directive, which will allow us to iterate over a map. We&rsquo;ll use our colour map as an example. This directive steps over the map iteratively, giving us access to each key and its corresponding value each step of the way. You can read the syntax like &ldquo;for each key &amp; value in the map, do something&rdquo;. Here&rsquo;s an example of it in action:</p>
-
-<pre><code class="language-scss">@each $key, $value in $colors {
-  .item-#{$key} {
-    color: $value;
+</code></pre></div><p>And the resulting output:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">.<span style="color:#a6e22e">box-1</span> { <span style="color:#66d9ef">width</span>: <span style="color:#ae81ff">4</span><span style="color:#66d9ef">rem</span>; }
+.<span style="color:#a6e22e">box-2</span> { <span style="color:#66d9ef">width</span>: <span style="color:#ae81ff">8</span><span style="color:#66d9ef">rem</span>; }
+.<span style="color:#a6e22e">box-3</span> { <span style="color:#66d9ef">width</span>: <span style="color:#ae81ff">12</span><span style="color:#66d9ef">rem</span>; }
+.<span style="color:#a6e22e">box-4</span> { <span style="color:#66d9ef">width</span>: <span style="color:#ae81ff">16</span><span style="color:#66d9ef">rem</span>; }
+</code></pre></div><p>An important thing to note here is the string interpolation syntax when incrementing the <code>.box-</code> selector. String interpolation is necessary when appending a variable to a string, and takes the form <code>#{$variable}</code>. It allows us to step our box selector from <code>.box-1</code> to <code>.box-4</code>.</p>
+<p>Now, let's take a look at the <code>@each</code> directive, which will allow us to iterate over a map. We'll use our colour map as an example. This directive steps over the map iteratively, giving us access to each key and its corresponding value each step of the way. You can read the syntax like &ldquo;for each key &amp; value in the map, do something&rdquo;. Here's an example of it in action:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss"><span style="color:#66d9ef">@each</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">key</span><span style="color:#f92672">,</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">value</span> <span style="color:#f92672">in</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">colors</span> {
+  <span style="color:#a6e22e">.</span><span style="color:#a6e22e">item-</span><span style="color:#e6db74">#{</span>$key<span style="color:#e6db74">}</span> {
+    <span style="color:#f92672">color</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">value</span>;
   }
 }
-</code></pre>
-
-<p>And here&rsquo;s the corresponding output:</p>
-
-<pre><code class="language-css">.item-primary { color: #333; }
-.item-secondary { color: #555; }
-.item-brand { color: #ff0033; }
-</code></pre>
-
-<p>Pretty neat, right?</p>
-
+</code></pre></div><p>And here's the corresponding output:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">.<span style="color:#a6e22e">item-primary</span> { <span style="color:#66d9ef">color</span>: <span style="color:#ae81ff">#333</span>; }
+.<span style="color:#a6e22e">item-secondary</span> { <span style="color:#66d9ef">color</span>: <span style="color:#ae81ff">#555</span>; }
+.<span style="color:#a6e22e">item-brand</span> { <span style="color:#66d9ef">color</span>: <span style="color:#ae81ff">#ff0033</span>; }
+</code></pre></div><p>Pretty neat, right?</p>
 <h2 id="a-quick-look-at-mixins">A Quick Look At Mixins</h2>
-
-<p>Before we dive in, I&rsquo;d like to introduce one final directive that&rsquo;s going to help us a lot - <a href="http://sass-lang.com/documentation/file.SASS_REFERENCE.html#mixins">the mixin directive.</a> Mixins are sort of like functions in a way. They can accept inputs, and return outputs. The anatomy of a mixin is as follows:</p>
-
-<pre><code class="language-scss">@mixin paint-red {
-  color: #fff;
-  background-color: #ff0000;
+<p>Before we dive in, I'd like to introduce one final directive that's going to help us a lot - <a href="http://sass-lang.com/documentation/file.SASS_REFERENCE.html#mixins">the mixin directive.</a> Mixins are sort of like functions in a way. They can accept inputs, and return outputs. The anatomy of a mixin is as follows:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss"><span style="color:#66d9ef">@mixin</span><span style="color:#a6e22e"> paint-red</span> {
+  <span style="color:#f92672">color</span><span style="color:#a6e22e">:</span> #fff;
+  <span style="color:#f92672">background-color</span><span style="color:#a6e22e">:</span> #ff0000;
 }
-</code></pre>
-
-<p>Using a mixin is pretty easy as well - we just call <code>@include</code> inside any selector:</p>
-
-<pre><code class="language-scss">.banner {
-  padding: 4rem;
-  @include paint-red;
+</code></pre></div><p>Using a mixin is pretty easy as well - we just call <code>@include</code> inside any selector:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss"><span style="color:#a6e22e">.</span><span style="color:#a6e22e">banner</span> {
+  <span style="color:#f92672">padding</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">4rem</span>;
+  <span style="color:#66d9ef">@include</span><span style="color:#a6e22e"> paint-red</span>;
 }
-</code></pre>
-
-<p>The output, as you may have guessed, is as follows:</p>
-
-<pre><code class="language-css">.banner {
-  padding: 4rem;
-  color: #fff;
-  background-color: #ff0000;
+</code></pre></div><p>The output, as you may have guessed, is as follows:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">.<span style="color:#a6e22e">banner</span> {
+  <span style="color:#66d9ef">padding</span>: <span style="color:#ae81ff">4</span><span style="color:#66d9ef">rem</span>;
+  <span style="color:#66d9ef">color</span>: <span style="color:#ae81ff">#fff</span>;
+  <span style="color:#66d9ef">background-color</span>: <span style="color:#ae81ff">#ff0000</span>;
 }
-</code></pre>
-
-<p>Let&rsquo;s now leverage all of these tools to add structure, speed, and maintainability to our stylesheets. We&rsquo;ll take a look at breakpoints and media queries, and how Sass can help us manage them beautifully.</p>
-
-<h2 id="breakpoints-media-queries">Breakpoints &amp; Media Queries</h2>
-
-<p>When you&rsquo;re designing responsively, there are two key points to take into consideration:</p>
-
+</code></pre></div><p>Let's now leverage all of these tools to add structure, speed, and maintainability to our stylesheets. We'll take a look at breakpoints and media queries, and how Sass can help us manage them beautifully.</p>
+<h2 id="breakpoints--media-queries">Breakpoints &amp; Media Queries</h2>
+<p>When you're designing responsively, there are two key points to take into consideration:</p>
 <ul>
 <li>The amount of breakpoints</li>
 <li>The size of the breakpoints</li>
 </ul>
-
 <p>Every time I start a new project, one of the first things I do is build up a map of breakpoints with their keys:</p>
-
-<pre><code class="language-scss">$breakpoints: (
-  xs: 32rem,
-  sm: 48rem,
-  md: 72rem,
-  lg: 96rem,
-  xl: 102rem,
-  xx: 120rem
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss">$breakpoints<span style="color:#f92672">:</span> (
+  xs<span style="color:#f92672">:</span> <span style="color:#ae81ff">32</span><span style="color:#66d9ef">rem</span><span style="color:#f92672">,</span>
+  sm<span style="color:#f92672">:</span> <span style="color:#ae81ff">48</span><span style="color:#66d9ef">rem</span><span style="color:#f92672">,</span>
+  md<span style="color:#f92672">:</span> <span style="color:#ae81ff">72</span><span style="color:#66d9ef">rem</span><span style="color:#f92672">,</span>
+  lg<span style="color:#f92672">:</span> <span style="color:#ae81ff">96</span><span style="color:#66d9ef">rem</span><span style="color:#f92672">,</span>
+  xl<span style="color:#f92672">:</span> <span style="color:#ae81ff">102</span><span style="color:#66d9ef">rem</span><span style="color:#f92672">,</span>
+  xx<span style="color:#f92672">:</span> <span style="color:#ae81ff">120</span><span style="color:#66d9ef">rem</span>
 );
-</code></pre>
-
-<p>For the sake of this demo, these values have been randomly selected. You may choose different widths, and a different number of breakpoints altogether! The point here is that it&rsquo;s all maintained and controlled by a concise, clear data structure. Next up, I&rsquo;d write a reusable media query mixin. This isn&rsquo;t just useful for responsive grids&hellip;it&rsquo;s useful throughout your stylesheets. Here&rsquo;s what I tend to use:</p>
-
-<pre><code class="language-scss">@mixin break($size) {
-  @media (min-width: map-get($breakpoints, $size)) {
-    @content;
+</code></pre></div><p>For the sake of this demo, these values have been randomly selected. You may choose different widths, and a different number of breakpoints altogether! The point here is that it's all maintained and controlled by a concise, clear data structure. Next up, I'd write a reusable media query mixin. This isn't just useful for responsive grids&hellip;it's useful throughout your stylesheets. Here's what I tend to use:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss"><span style="color:#66d9ef">@mixin</span><span style="color:#a6e22e"> break</span>($size) {
+  <span style="color:#66d9ef">@media</span> (<span style="color:#66d9ef">min-width</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">map-get</span>($breakpoints<span style="color:#f92672">,</span> $size)) {
+    <span style="color:#66d9ef">@content</span>;
   }
 }
-</code></pre>
+</code></pre></div><p>The above mixin should be pretty straightforward to understand, but in a nutshell, it's using the <code>map-get</code> map function to fetch the corresponding value from the breakpoints map based on the passed in key. An example of this in action would be:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss"><span style="color:#a6e22e">.</span><span style="color:#a6e22e">el</span> {
+  <span style="color:#f92672">display</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">none</span>;
 
-<p>The above mixin should be pretty straightforward to understand, but in a nutshell, it&rsquo;s using the <code>map-get</code> map function to fetch the corresponding value from the breakpoints map based on the passed in key. An example of this in action would be:</p>
-
-<pre><code class="language-scss">.el {
-  display: none;
-
-  @include break(sm) {
-    display: block;
+  <span style="color:#66d9ef">@include</span><span style="color:#a6e22e"> break</span>(sm) {
+    <span style="color:#f92672">display</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">block</span>;
   }
 }
-</code></pre>
-
-<p>And the compiled CSS would be:</p>
-
-<pre><code class="language-css">.el {
-  display: none;
+</code></pre></div><p>And the compiled CSS would be:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">.<span style="color:#a6e22e">el</span> {
+  <span style="color:#66d9ef">display</span>: <span style="color:#66d9ef">none</span>;
 }
 
-@media (min-width: 48rem) {
-  .el {
-    display: block;
+@<span style="color:#66d9ef">media</span> <span style="color:#f92672">(</span><span style="color:#f92672">min-width</span><span style="color:#f92672">:</span> <span style="color:#f92672">48rem</span><span style="color:#f92672">)</span> {
+  .<span style="color:#a6e22e">el</span> {
+    <span style="color:#66d9ef">display</span>: <span style="color:#66d9ef">block</span>;
   }
 }
-</code></pre>
-
-<p>As you can see, the benefits here are huge for responsive design. If we&rsquo;re a thousand lines deep and we realise we want to change our <code>sm</code> breakpoint from <code>48rem</code> to <code>42rem</code>, we only have to change it once. On another note, we never need to keep reminding ourselves of numerical values - we just use the easier-to-remember keys like <code>xs</code>, <code>md</code>, etc. Simple, elegant, and maintainable in the long run. Let&rsquo;s round it off with building a responsive grid!</p>
-
-<h2 id="let-s-build-a-responsive-grid">Let&rsquo;s Build A Responsive Grid!</h2>
-
-<p>As a final demo, let&rsquo;s bootstrap a responsive grid in just <strong>15</strong> lines of Sass. We will, of course, be leveraging our previous breakpoints map and media query mixin. The first thing we&rsquo;ll want to establish is the number of items in our grid:</p>
-
-<pre><code class="language-scss">// number of items variable
-$items: 12;
-</code></pre>
-
-<p>I chose 12, but you can literally choose any number you want here. Again, the beauty is in the maintainability of the stylesheets, as should you want 16 items 4 weeks into your project, you can change it once. Next up, let&rsquo;s think about our grid container. I&rsquo;m a <a href="http://callmenick.com/post/flexbox-examples">huge advocate of flexbox</a>, and can&rsquo;t recommend it enough. As such, I&rsquo;ll be using it here. Here&rsquo;s our container in action:</p>
-
-<pre><code class="language-scss">// grid container
-.grid {
-  display: flex;
-  flex-flow: row wrap;
+</code></pre></div><p>As you can see, the benefits here are huge for responsive design. If we're a thousand lines deep and we realise we want to change our <code>sm</code> breakpoint from <code>48rem</code> to <code>42rem</code>, we only have to change it once. On another note, we never need to keep reminding ourselves of numerical values - we just use the easier-to-remember keys like <code>xs</code>, <code>md</code>, etc. Simple, elegant, and maintainable in the long run. Let's round it off with building a responsive grid!</p>
+<h2 id="lets-build-a-responsive-grid">Let's Build A Responsive Grid!</h2>
+<p>As a final demo, let's bootstrap a responsive grid in just <strong>15</strong> lines of Sass. We will, of course, be leveraging our previous breakpoints map and media query mixin. The first thing we'll want to establish is the number of items in our grid:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss"><span style="color:#75715e">// number of items variable
+</span><span style="color:#75715e"></span>$items<span style="color:#f92672">:</span> <span style="color:#ae81ff">12</span><span style="color:#66d9ef"></span>;
+</code></pre></div><p>I chose 12, but you can literally choose any number you want here. Again, the beauty is in the maintainability of the stylesheets, as should you want 16 items 4 weeks into your project, you can change it once. Next up, let's think about our grid container. I'm a <a href="http://callmenick.com/post/flexbox-examples">huge advocate of flexbox</a>, and can't recommend it enough. As such, I'll be using it here. Here's our container in action:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss"><span style="color:#75715e">// grid container
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">.</span><span style="color:#a6e22e">grid</span> {
+  <span style="color:#f92672">display</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">flex</span>;
+  <span style="color:#f92672">flex-flow</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">row</span> <span style="color:#f92672">wrap</span>;
 }
-</code></pre>
-
-<p>That was easy, no? Next up comes the fun part - looping over everything! Here&rsquo;s the process:</p>
-
+</code></pre></div><p>That was easy, no? Next up comes the fun part - looping over everything! Here's the process:</p>
 <ol>
 <li>We want to loop over all the breakpoints in the map and get access to both the key and value at each step of the iteration.</li>
 <li>Then, we want to iterate over the number of items.</li>
-<li>For each item, we want to generate a grid item that occupies that width. For example, for item 1, we&rsquo;ll want a item with of <code>(1/12) * 100%</code>, for item 2, a width of <code>(2/12) * 100%</code>, etc. all the way up to 12.</li>
-<li>We only want those items to be that width at the desired breakpoint though, so they&rsquo;ll all be 100% width initially.</li>
+<li>For each item, we want to generate a grid item that occupies that width. For example, for item 1, we'll want a item with of <code>(1/12) * 100%</code>, for item 2, a width of <code>(2/12) * 100%</code>, etc. all the way up to 12.</li>
+<li>We only want those items to be that width at the desired breakpoint though, so they'll all be 100% width initially.</li>
 <li>Each item will have a modifier that enables the size and corresponding breakpoints.</li>
 </ol>
-
-<p>Here&rsquo;s the loop in action:</p>
-
-<pre><code class="language-scss">// loop over the breakpoints
-@each $key, $value in $breakpoints {
-  @for $i from 1 through $items {
-    .grid__item--#{$key}-span-#{$i} {
-      flex: 0 0 100%;
-      @include break($key) {
-        flex: 0 0 #{$i / $items * 100}%;
+<p>Here's the loop in action:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss"><span style="color:#75715e">// loop over the breakpoints
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">@each</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">key</span><span style="color:#f92672">,</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">value</span> <span style="color:#f92672">in</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">breakpoints</span> {
+  <span style="color:#66d9ef">@for</span> $i <span style="color:#f92672">from</span> <span style="color:#ae81ff">1</span><span style="color:#66d9ef"></span> <span style="color:#f92672">through</span> $items {
+    <span style="color:#a6e22e">.</span><span style="color:#a6e22e">grid__item--</span><span style="color:#e6db74">#{</span>$key<span style="color:#e6db74">}</span><span style="color:#a6e22e">-span-</span><span style="color:#e6db74">#{</span>$i<span style="color:#e6db74">}</span> {
+      <span style="color:#f92672">flex</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">0</span> <span style="color:#f92672">0</span> <span style="color:#f92672">100</span><span style="color:#960050;background-color:#1e0010">%</span>;
+      <span style="color:#66d9ef">@include</span><span style="color:#a6e22e"> break</span>($key) {
+        <span style="color:#f92672">flex</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">0</span> <span style="color:#f92672">0</span> #{<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">i</span> <span style="color:#f92672">/</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">items</span> <span style="color:#f92672">*</span> <span style="color:#f92672">100</span>}<span style="color:#960050;background-color:#1e0010">%</span>;
       }
     }
   }
 }
-</code></pre>
-
-<p>The compiled CSS is just over 1000 lines with vendor prefixes included, but you now have total control over that in just 15 lines of Sass (comments not included). Usage, as you&rsquo;d imagine, is simple:</p>
-
-<pre><code class="language-html">&lt;div class=&quot;grid&quot;&gt;
-  &lt;div class=&quot;grid__item grid__item--xs-span-1&quot;&gt;
+</code></pre></div><p>The compiled CSS is just over 1000 lines with vendor prefixes included, but you now have total control over that in just 15 lines of Sass (comments not included). Usage, as you'd imagine, is simple:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;grid&#34;</span>&gt;
+  &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;grid__item grid__item--xs-span-1&#34;</span>&gt;
     xs span 1
-  &lt;/div&gt;
-  &lt;div class=&quot;grid__item grid__item--xs-span-2&quot;&gt;
+  &lt;/<span style="color:#f92672">div</span>&gt;
+  &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;grid__item grid__item--xs-span-2&#34;</span>&gt;
     xs span 2
-  &lt;/div&gt;
-  &lt;div class=&quot;grid__item grid__item--xs-span-3&quot;&gt;
+  &lt;/<span style="color:#f92672">div</span>&gt;
+  &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;grid__item grid__item--xs-span-3&#34;</span>&gt;
     xs span 3
-  &lt;/div&gt;
-  &lt;div class=&quot;grid__item grid__item--xs-span-6&quot;&gt;
+  &lt;/<span style="color:#f92672">div</span>&gt;
+  &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;grid__item grid__item--xs-span-6&#34;</span>&gt;
     xs span 6
-  &lt;/div&gt;
-&lt;/div&gt;
-</code></pre>
-
-<p>Nested grids are also a non issue, making many variations of layouts super simple!</p>
-
+  &lt;/<span style="color:#f92672">div</span>&gt;
+&lt;/<span style="color:#f92672">div</span>&gt;
+</code></pre></div><p>Nested grids are also a non issue, making many variations of layouts super simple!</p>
 <h2 id="wrap-up">Wrap Up</h2>
-
-<p>And that’s a wrap! I hope this tutorial helped you get a firmer grasp of the awesome tools that Sass provides us, and encourages you to approach responsive web design more responsibly and positively. Thanks again for reading, and if you have and questions, comments, or feedback, feel free to <a href="http://twitter.com/home?status=@nicksalloum_ I got a question for you!" target="_blank">send me a tweet.</a></p>
-
-<div class="ButtonGroup ButtonGroup--gutter-md ButtonGroup--align-center">
-  <a href="http://codepen.io/callmenick/pen/dGjPOm?editors=1100" class="Button Button--display-inlineBlock Button--appearance-secondary Button--size-sm">
-    Get Source
-  </a>
-  <a href="http://codepen.io/callmenick/pen/dGjPOm?editors=1100" class="Button Button--display-inlineBlock Button--appearance-secondary Button--size-sm">
-    View Demo
-  </a>
-</div>
+<p>And that’s a wrap! I hope this tutorial helped you get a firmer grasp of the awesome tools that Sass provides us, and encourages you to approach responsive web design more responsibly and positively. Thanks again for reading, and if you have and questions, comments, or feedback, feel free to <!-- raw HTML omitted -->send me a tweet.<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
 
       </div>
     </div>

@@ -79,227 +79,161 @@
     </div>
     <div class="Article-content">
       <div class="Content">
-        
-
-<div class="ButtonGroup ButtonGroup--gutter-md ButtonGroup--align-center">
-  <a href="https://codepen.io/callmenick/pen/VMNOpq" class="Button Button--display-inlineBlock Button--appearance-secondary Button--size-sm">
-    Get Source
-  </a>
-  <a href="https://codepen.io/callmenick/full/VMNOpq/" class="Button Button--display-inlineBlock Button--appearance-secondary Button--size-sm">
-    View Demo
-  </a>
-</div>
-
+        <!-- raw HTML omitted -->
 <h2 id="introduction">Introduction</h2>
-
-<p>In modern websites and applications, interactions and UX play a huge part in consumer retention. CSS animations have paved the way for us as far as enhancing user experiences goes, but it can be taken a step further with a little thought. In this tutorial, we&rsquo;re going to build what I like to call a &ldquo;last in, first out&rdquo; item animation, or a &ldquo;stack&rdquo; animation. What this means is that when some sort of toggle action is hit, items animate into view in a sequence. When the toggle action is hit again, the items animate out of view in a reverse sequential order (in relation to the animation in). I&rsquo;ll demonstrate it with some basic divs, but the application of this trick is what matters.</p>
-
+<p>In modern websites and applications, interactions and UX play a huge part in consumer retention. CSS animations have paved the way for us as far as enhancing user experiences goes, but it can be taken a step further with a little thought. In this tutorial, we're going to build what I like to call a &ldquo;last in, first out&rdquo; item animation, or a &ldquo;stack&rdquo; animation. What this means is that when some sort of toggle action is hit, items animate into view in a sequence. When the toggle action is hit again, the items animate out of view in a reverse sequential order (in relation to the animation in). I'll demonstrate it with some basic divs, but the application of this trick is what matters.</p>
 <h2 id="a-visual-representation">A Visual Representation</h2>
-
-<p>To understand more clearly what we&rsquo;re trying to achieve, let&rsquo;s step through the process with some images. At a neutral, or base state, all of our divs - let&rsquo;s call them bars - are occupying a small amount of fixed space. Here&rsquo;s a representation:</p>
-
-<p><img src="last-in-first-out-css-transitions-step-0.png" alt="Step 0" /></p>
-
-<p>Imagine now that we&rsquo;ve hit a toggle button of sorts, and we want all the bars to expand sequentially to 100% width.  Here&rsquo;s a visualization of that in action:</p>
-
-<p><img src="last-in-first-out-css-transitions-step-1.png" alt="Step 1" /></p>
-
+<p>To understand more clearly what we're trying to achieve, let's step through the process with some images. At a neutral, or base state, all of our divs - let's call them bars - are occupying a small amount of fixed space. Here's a representation:</p>
+<p><img src="last-in-first-out-css-transitions-step-0.png" alt="Step 0"></p>
+<p>Imagine now that we've hit a toggle button of sorts, and we want all the bars to expand sequentially to 100% width.  Here's a visualization of that in action:</p>
+<p><img src="last-in-first-out-css-transitions-step-1.png" alt="Step 1"></p>
 <p>When all bars have finished transitioning, they should occupy the full width of their container:</p>
-
-<p><img src="last-in-first-out-css-transitions-step-2.png" alt="Step 2" /></p>
-
-<p>At this point, hitting the toggle again should transition the bars back out, but in a reverse sequential order. That is, the last bar to transition in should be the first bar to transition out. Here&rsquo;s a visual representation:</p>
-
-<p><img src="last-in-first-out-css-transitions-step-3.png" alt="Step 3" /></p>
-
+<p><img src="last-in-first-out-css-transitions-step-2.png" alt="Step 2"></p>
+<p>At this point, hitting the toggle again should transition the bars back out, but in a reverse sequential order. That is, the last bar to transition in should be the first bar to transition out. Here's a visual representation:</p>
+<p><img src="last-in-first-out-css-transitions-step-3.png" alt="Step 3"></p>
 <p>Finally, when this transition ends, all bars should return to their original state, as represented by the first image:</p>
-
-<p><img src="last-in-first-out-css-transitions-step-4.png" alt="Step 4" /></p>
-
+<p><img src="last-in-first-out-css-transitions-step-4.png" alt="Step 4"></p>
 <h2 id="setting-up-the-demo">Setting Up The Demo</h2>
+<p>Let's get a simple set up going on for our demonstration. The markup is fairly simple, with a containing element (<code>c-bars</code>) and 5 child elements (<code>c-bars__bar</code>). We'll also have a toggle button that will toggle an <code>is-expanded</code> class on all bars. Here's the HTML:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">button</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;c-btn&#34;</span>&gt;Toggle&lt;/<span style="color:#f92672">button</span>&gt;
 
-<p>Let&rsquo;s get a simple set up going on for our demonstration. The markup is fairly simple, with a containing element (<code>c-bars</code>) and 5 child elements (<code>c-bars__bar</code>). We&rsquo;ll also have a toggle button that will toggle an <code>is-expanded</code> class on all bars. Here&rsquo;s the HTML:</p>
+&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;c-bars&#34;</span>&gt;
+  &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;c-bars__bar&#34;</span>&gt;1&lt;/<span style="color:#f92672">span</span>&gt;
+  &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;c-bars__bar&#34;</span>&gt;2&lt;/<span style="color:#f92672">span</span>&gt;
+  &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;c-bars__bar&#34;</span>&gt;3&lt;/<span style="color:#f92672">span</span>&gt;
+  &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;c-bars__bar&#34;</span>&gt;4&lt;/<span style="color:#f92672">span</span>&gt;
+  &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;c-bars__bar&#34;</span>&gt;5&lt;/<span style="color:#f92672">span</span>&gt;
+&lt;/<span style="color:#f92672">div</span>&gt;
+</code></pre></div><p>The JavaScript to toggle the class is really straightforward as well:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">script</span><span style="color:#f92672">&gt;</span>
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">btn</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#39;.c-btn&#39;</span>);
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">bars</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">querySelectorAll</span>(<span style="color:#e6db74">&#39;.c-bars__bar&#39;</span>);
 
-<pre><code class="language-html">&lt;button class=&quot;c-btn&quot;&gt;Toggle&lt;/button&gt;
-
-&lt;div class=&quot;c-bars&quot;&gt;
-  &lt;span class=&quot;c-bars__bar&quot;&gt;1&lt;/span&gt;
-  &lt;span class=&quot;c-bars__bar&quot;&gt;2&lt;/span&gt;
-  &lt;span class=&quot;c-bars__bar&quot;&gt;3&lt;/span&gt;
-  &lt;span class=&quot;c-bars__bar&quot;&gt;4&lt;/span&gt;
-  &lt;span class=&quot;c-bars__bar&quot;&gt;5&lt;/span&gt;
-&lt;/div&gt;
-</code></pre>
-
-<p>The JavaScript to toggle the class is really straightforward as well:</p>
-
-<pre><code class="language-javascript">&lt;script&gt;
-  var btn = document.querySelector('.c-btn');
-  var bars = document.querySelectorAll('.c-bars__bar');
-
-  btn.addEventListener('click', function() {
-    for (var i = 0; i &lt; bars.length; i++) {
-      bars[i].classList.toggle('is-expanded');
+  <span style="color:#a6e22e">btn</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;click&#39;</span>, <span style="color:#66d9ef">function</span>() {
+    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">bars</span>.<span style="color:#a6e22e">length</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
+      <span style="color:#a6e22e">bars</span>[<span style="color:#a6e22e">i</span>].<span style="color:#a6e22e">classList</span>.<span style="color:#a6e22e">toggle</span>(<span style="color:#e6db74">&#39;is-expanded&#39;</span>);
     }
   });
-&lt;/script&gt;
-</code></pre>
-
-<p>In a real world application, your script may look much different. The point here is that hitting some sort of toggle switch toggles the <code>is-expanded</code> class to all elements in question.</p>
-
+<span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#960050;background-color:#1e0010">s</span><span style="color:#960050;background-color:#1e0010">c</span><span style="color:#960050;background-color:#1e0010">r</span><span style="color:#960050;background-color:#1e0010">i</span><span style="color:#960050;background-color:#1e0010">p</span><span style="color:#960050;background-color:#1e0010">t</span><span style="color:#960050;background-color:#1e0010">&gt;</span>
+</code></pre></div><p>In a real world application, your script may look much different. The point here is that hitting some sort of toggle switch toggles the <code>is-expanded</code> class to all elements in question.</p>
 <h2 id="base-styling">Base Styling</h2>
-
-<p>Now that our markup is good to go, let&rsquo;s add some basic CSS. Our bars container will be visible via a border, and each bar will be a block element with an initial width. Because we&rsquo;re transitioning the width of the bars from initial to 100%, we&rsquo;ll have to apply that transition property as well. Here&rsquo;s some CSS:</p>
-
-<pre><code class="language-css">.c-bars {
-  padding: 12px;
-  border: solid 4px #25b7a8;
+<p>Now that our markup is good to go, let's add some basic CSS. Our bars container will be visible via a border, and each bar will be a block element with an initial width. Because we're transitioning the width of the bars from initial to 100%, we'll have to apply that transition property as well. Here's some CSS:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">.<span style="color:#a6e22e">c-bars</span> {
+  <span style="color:#66d9ef">padding</span>: <span style="color:#ae81ff">12</span><span style="color:#66d9ef">px</span>;
+  <span style="color:#66d9ef">border</span>: <span style="color:#66d9ef">solid</span> <span style="color:#ae81ff">4</span><span style="color:#66d9ef">px</span> <span style="color:#ae81ff">#25b7a8</span>;
 }
 
-.c-bars__bar {
-  display: block;
-  margin: 0 0 12px 0;
-  padding: 2px 0;
-  width: 24px;
-  color: #fff;
-  background-color: #25b7a8;
-  text-align: center;
-  transition: width 0.5s;
+.<span style="color:#a6e22e">c-bars__bar</span> {
+  <span style="color:#66d9ef">display</span>: <span style="color:#66d9ef">block</span>;
+  <span style="color:#66d9ef">margin</span>: <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">12</span><span style="color:#66d9ef">px</span> <span style="color:#ae81ff">0</span>;
+  <span style="color:#66d9ef">padding</span>: <span style="color:#ae81ff">2</span><span style="color:#66d9ef">px</span> <span style="color:#ae81ff">0</span>;
+  <span style="color:#66d9ef">width</span>: <span style="color:#ae81ff">24</span><span style="color:#66d9ef">px</span>;
+  <span style="color:#66d9ef">color</span>: <span style="color:#ae81ff">#fff</span>;
+  <span style="color:#66d9ef">background-color</span>: <span style="color:#ae81ff">#25b7a8</span>;
+  <span style="color:#66d9ef">text-align</span>: <span style="color:#66d9ef">center</span>;
+  <span style="color:#66d9ef">transition</span>: <span style="color:#66d9ef">width</span> <span style="color:#ae81ff">0.5</span><span style="color:#66d9ef">s</span>;
 }
 
-.c-bars__bar:last-child {
-  margin-bottom: 0;
+.<span style="color:#a6e22e">c-bars__bar</span>:<span style="color:#a6e22e">last-child</span> {
+  <span style="color:#66d9ef">margin-bottom</span>: <span style="color:#ae81ff">0</span>;
 }
-</code></pre>
-
-<p>As mentioned above, the <code>is-expanded</code> class will be toggled on the bars when the button is clicked. This is where we can apply the width change to the bars:</p>
-
-<pre><code class="language-css">.c-bars__bar.is-expanded {
-  width: 100%;
+</code></pre></div><p>As mentioned above, the <code>is-expanded</code> class will be toggled on the bars when the button is clicked. This is where we can apply the width change to the bars:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">.<span style="color:#a6e22e">c-bars__bar</span>.<span style="color:#a6e22e">is-expanded</span> {
+  <span style="color:#66d9ef">width</span>: <span style="color:#ae81ff">100</span><span style="color:#66d9ef">%</span>;
 }
-</code></pre>
-
-<p>At this point, clicking the button should invoke the transition, with all bars transitioning smoothly from their initial width to 100%. Clicking again will revert them to their initial width.</p>
-
-<h2 id="trick-1-applying-sequential-transitions">Trick #1 - Applying Sequential Transitions</h2>
-
-<p>As it stands, all elements transition in and out at the exact same time. In order to invoke the transitions sequentially, we need to use the <code>transition-delay</code> property. We know we have 5 bars, so let&rsquo;s target each of them with the <code>nth-child</code> selector, and delay each bar by <code>0.1s</code>. Here&rsquo;s the additional CSS:</p>
-
-<pre><code class="language-css">.c-bars__bar:nth-child(1) {
-  transition-delay: 0s;
+</code></pre></div><p>At this point, clicking the button should invoke the transition, with all bars transitioning smoothly from their initial width to 100%. Clicking again will revert them to their initial width.</p>
+<h2 id="trick-1---applying-sequential-transitions">Trick #1 - Applying Sequential Transitions</h2>
+<p>As it stands, all elements transition in and out at the exact same time. In order to invoke the transitions sequentially, we need to use the <code>transition-delay</code> property. We know we have 5 bars, so let's target each of them with the <code>nth-child</code> selector, and delay each bar by <code>0.1s</code>. Here's the additional CSS:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">.<span style="color:#a6e22e">c-bars__bar</span>:<span style="color:#a6e22e">nth-child</span><span style="color:#f92672">(</span><span style="color:#f92672">1</span><span style="color:#f92672">)</span> {
+  <span style="color:#66d9ef">transition-delay</span>: <span style="color:#ae81ff">0</span><span style="color:#66d9ef">s</span>;
 }
 
-.c-bars__bar:nth-child(2) {
-  transition-delay: 0.1s;
+.<span style="color:#a6e22e">c-bars__bar</span>:<span style="color:#a6e22e">nth-child</span><span style="color:#f92672">(</span><span style="color:#f92672">2</span><span style="color:#f92672">)</span> {
+  <span style="color:#66d9ef">transition-delay</span>: <span style="color:#ae81ff">0.1</span><span style="color:#66d9ef">s</span>;
 }
 
-.c-bars__bar:nth-child(3) {
-  transition-delay: 0.2s;
+.<span style="color:#a6e22e">c-bars__bar</span>:<span style="color:#a6e22e">nth-child</span><span style="color:#f92672">(</span><span style="color:#f92672">3</span><span style="color:#f92672">)</span> {
+  <span style="color:#66d9ef">transition-delay</span>: <span style="color:#ae81ff">0.2</span><span style="color:#66d9ef">s</span>;
 }
 
-.c-bars__bar:nth-child(4) {
-  transition-delay: 0.3s;
+.<span style="color:#a6e22e">c-bars__bar</span>:<span style="color:#a6e22e">nth-child</span><span style="color:#f92672">(</span><span style="color:#f92672">4</span><span style="color:#f92672">)</span> {
+  <span style="color:#66d9ef">transition-delay</span>: <span style="color:#ae81ff">0.3</span><span style="color:#66d9ef">s</span>;
 }
 
-.c-bars__bar:nth-child(5) {
-  transition-delay: 0.4s;
+.<span style="color:#a6e22e">c-bars__bar</span>:<span style="color:#a6e22e">nth-child</span><span style="color:#f92672">(</span><span style="color:#f92672">5</span><span style="color:#f92672">)</span> {
+  <span style="color:#66d9ef">transition-delay</span>: <span style="color:#ae81ff">0.4</span><span style="color:#66d9ef">s</span>;
 }
-</code></pre>
-
-<p>Try toggling again. This time, the first bar starts transitioning immediately, and every bar after that starts transitioning 0.1s later than the previous one. This is a great step! However, when you click the button again and the <code>is-expanded</code> class gets removed, you&rsquo;ll notice that they transition out in the same order that they transitioned in. This isn&rsquo;t quite what we want, so let&rsquo;s take a look at trick #2.</p>
-
-<h2 id="trick-2-last-in-first-out">Trick #2 - Last In, First Out</h2>
-
+</code></pre></div><p>Try toggling again. This time, the first bar starts transitioning immediately, and every bar after that starts transitioning 0.1s later than the previous one. This is a great step! However, when you click the button again and the <code>is-expanded</code> class gets removed, you'll notice that they transition out in the same order that they transitioned in. This isn't quite what we want, so let's take a look at trick #2.</p>
+<h2 id="trick-2---last-in-first-out">Trick #2 - Last In, First Out</h2>
 <p>In order to achieve the &ldquo;last in, first out&rdquo; transition pattern, we need to assess two states of the demo. The first is the initial state, and the second is the expanded state. We already saw how to transition the bars sequentially from the initial to the expanded state. When they are expanded, we essentially need to revers the <code>transition-delay</code> properties on each bar. Luckily, achieving that is very simple.</p>
-
 <p>When we click the toggle button, the <code>is-expanded</code> class gets immediately added to the elements. That means that while they are transitioning in, they have the <code>is-expanded</code> class. When the bars are expanded and the button gets clicked again, the class gets immediately removed from all of the bars. This presents us with an opportunity to target both transitional phases:</p>
-
 <ol>
 <li>Transition delays from initial to expanded should be applied to the <code>is-expanded</code> class.</li>
 <li>Transition delays from expanded to initial should be applied to the base class.</li>
 </ol>
-
-<p>With that in mind, here&rsquo;s the modified CSS:</p>
-
-<pre><code class="language-css">.c-bars__bar:nth-child(1) {
-  transition-delay: 0.4s;
+<p>With that in mind, here's the modified CSS:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">.<span style="color:#a6e22e">c-bars__bar</span>:<span style="color:#a6e22e">nth-child</span><span style="color:#f92672">(</span><span style="color:#f92672">1</span><span style="color:#f92672">)</span> {
+  <span style="color:#66d9ef">transition-delay</span>: <span style="color:#ae81ff">0.4</span><span style="color:#66d9ef">s</span>;
 }
 
-.c-bars__bar.is-expanded:nth-child(1) {
-  transition-delay: 0s;
+.<span style="color:#a6e22e">c-bars__bar</span>.<span style="color:#a6e22e">is-expanded</span>:<span style="color:#a6e22e">nth-child</span><span style="color:#f92672">(</span><span style="color:#f92672">1</span><span style="color:#f92672">)</span> {
+  <span style="color:#66d9ef">transition-delay</span>: <span style="color:#ae81ff">0</span><span style="color:#66d9ef">s</span>;
 }
 
-.c-bars__bar:nth-child(2) {
-  transition-delay: 0.3s;
+.<span style="color:#a6e22e">c-bars__bar</span>:<span style="color:#a6e22e">nth-child</span><span style="color:#f92672">(</span><span style="color:#f92672">2</span><span style="color:#f92672">)</span> {
+  <span style="color:#66d9ef">transition-delay</span>: <span style="color:#ae81ff">0.3</span><span style="color:#66d9ef">s</span>;
 }
 
-.c-bars__bar.is-expanded:nth-child(2) {
-  transition-delay: 0.1s;
+.<span style="color:#a6e22e">c-bars__bar</span>.<span style="color:#a6e22e">is-expanded</span>:<span style="color:#a6e22e">nth-child</span><span style="color:#f92672">(</span><span style="color:#f92672">2</span><span style="color:#f92672">)</span> {
+  <span style="color:#66d9ef">transition-delay</span>: <span style="color:#ae81ff">0.1</span><span style="color:#66d9ef">s</span>;
 }
 
-.c-bars__bar:nth-child(3) {
-  transition-delay: 0.2s;
+.<span style="color:#a6e22e">c-bars__bar</span>:<span style="color:#a6e22e">nth-child</span><span style="color:#f92672">(</span><span style="color:#f92672">3</span><span style="color:#f92672">)</span> {
+  <span style="color:#66d9ef">transition-delay</span>: <span style="color:#ae81ff">0.2</span><span style="color:#66d9ef">s</span>;
 }
 
-.c-bars__bar.is-expanded:nth-child(3) {
-  transition-delay: 0.2s;
+.<span style="color:#a6e22e">c-bars__bar</span>.<span style="color:#a6e22e">is-expanded</span>:<span style="color:#a6e22e">nth-child</span><span style="color:#f92672">(</span><span style="color:#f92672">3</span><span style="color:#f92672">)</span> {
+  <span style="color:#66d9ef">transition-delay</span>: <span style="color:#ae81ff">0.2</span><span style="color:#66d9ef">s</span>;
 }
 
-.c-bars__bar:nth-child(4) {
-  transition-delay: 0.1s;
+.<span style="color:#a6e22e">c-bars__bar</span>:<span style="color:#a6e22e">nth-child</span><span style="color:#f92672">(</span><span style="color:#f92672">4</span><span style="color:#f92672">)</span> {
+  <span style="color:#66d9ef">transition-delay</span>: <span style="color:#ae81ff">0.1</span><span style="color:#66d9ef">s</span>;
 }
 
-.c-bars__bar.is-expanded:nth-child(4) {
-  transition-delay: 0.3s;
+.<span style="color:#a6e22e">c-bars__bar</span>.<span style="color:#a6e22e">is-expanded</span>:<span style="color:#a6e22e">nth-child</span><span style="color:#f92672">(</span><span style="color:#f92672">4</span><span style="color:#f92672">)</span> {
+  <span style="color:#66d9ef">transition-delay</span>: <span style="color:#ae81ff">0.3</span><span style="color:#66d9ef">s</span>;
 }
 
-.c-bars__bar:nth-child(5) {
-  transition-delay: 0s;
+.<span style="color:#a6e22e">c-bars__bar</span>:<span style="color:#a6e22e">nth-child</span><span style="color:#f92672">(</span><span style="color:#f92672">5</span><span style="color:#f92672">)</span> {
+  <span style="color:#66d9ef">transition-delay</span>: <span style="color:#ae81ff">0</span><span style="color:#66d9ef">s</span>;
 }
 
-.c-bars__bar.is-expanded:nth-child(5) {
-  transition-delay: 0.4s;
+.<span style="color:#a6e22e">c-bars__bar</span>.<span style="color:#a6e22e">is-expanded</span>:<span style="color:#a6e22e">nth-child</span><span style="color:#f92672">(</span><span style="color:#f92672">5</span><span style="color:#f92672">)</span> {
+  <span style="color:#66d9ef">transition-delay</span>: <span style="color:#ae81ff">0.4</span><span style="color:#66d9ef">s</span>;
 }
-</code></pre>
-
-<p>Check out the two transitional states now - voila! You&rsquo;ve successfully implemented the last in, first out transition technique, and it looks awesome.</p>
-
+</code></pre></div><p>Check out the two transitional states now - voila! You've successfully implemented the last in, first out transition technique, and it looks awesome.</p>
 <h2 id="simplification-with-sass">Simplification With Sass</h2>
-
 <p>There is a fundamental mathematical nature involved in creating this transition effect, which means that Sass (or any CSS pre-processor with looping and variables) can be of great assistance. The Sass block that I used to generate the CSS was as simple as this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss">$n<span style="color:#f92672">:</span> <span style="color:#ae81ff">5</span><span style="color:#66d9ef"></span>;
+$delay<span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span><span style="color:#66d9ef"></span><span style="color:#ae81ff">.1</span><span style="color:#66d9ef"></span>;
 
-<pre><code class="language-scss">$n: 5;
-$delay: 0.1;
+<span style="color:#66d9ef">@for</span> $i <span style="color:#f92672">from</span> <span style="color:#ae81ff">1</span><span style="color:#66d9ef"></span> <span style="color:#f92672">through</span> $n {
+  $in<span style="color:#f92672">:</span> $delay <span style="color:#f92672">*</span> ($i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span><span style="color:#66d9ef"></span>);
+  $out<span style="color:#f92672">:</span> $delay <span style="color:#f92672">*</span> ($n <span style="color:#f92672">-</span> $i);
 
-@for $i from 1 through $n {
-  $in: $delay * ($i - 1);
-  $out: $delay * ($n - $i);
-
-  .c-bars__bar:nth-child(#{$i}) {
-    transition-delay: #{$out}s;
+  <span style="color:#a6e22e">.</span><span style="color:#a6e22e">c-bars__bar</span><span style="color:#a6e22e">:</span><span style="color:#a6e22e">nth-child</span><span style="color:#f92672">(</span>#{<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">i</span>}<span style="color:#f92672">)</span> {
+    <span style="color:#f92672">transition-delay</span><span style="color:#a6e22e">:</span> #{<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">out</span>}<span style="color:#f92672">s</span>;
   }
 
-  .c-bars__bar.is-expanded:nth-child(#{$i}) {
-    transition-delay: #{$in}s;
+  <span style="color:#a6e22e">.</span><span style="color:#a6e22e">c-bars__bar</span><span style="color:#a6e22e">.</span><span style="color:#a6e22e">is-expanded</span><span style="color:#a6e22e">:</span><span style="color:#a6e22e">nth-child</span><span style="color:#f92672">(</span>#{<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">i</span>}<span style="color:#f92672">)</span> {
+    <span style="color:#f92672">transition-delay</span><span style="color:#a6e22e">:</span> #{<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">in</span>}<span style="color:#f92672">s</span>;
   }
 
 }
-</code></pre>
-
-<p>Simply changing <code>$n</code> (the number of items) and <code>$delay</code> (the transition delay) will update the entire output for you.</p>
-
+</code></pre></div><p>Simply changing <code>$n</code> (the number of items) and <code>$delay</code> (the transition delay) will update the entire output for you.</p>
 <h2 id="wrap-up">Wrap Up</h2>
-
-<p>And that&rsquo;s a wrap! We just took on an awesome, small challenge in CSS, creating sequentially stacked transitions. Thanks again for reading, and if you have and questions, comments, or feedback, feel free to <a href="http://twitter.com/home?status=@nicksalloum_ I got a question for you!" target="_blank">send me a tweet.</a></p>
-
-<div class="ButtonGroup ButtonGroup--gutter-md ButtonGroup--align-center">
-  <a href="https://codepen.io/callmenick/pen/VMNOpq" class="Button Button--display-inlineBlock Button--appearance-secondary Button--size-sm">
-    Get Source
-  </a>
-  <a href="https://codepen.io/callmenick/full/VMNOpq/" class="Button Button--display-inlineBlock Button--appearance-secondary Button--size-sm">
-    View Demo
-  </a>
-</div>
+<p>And that's a wrap! We just took on an awesome, small challenge in CSS, creating sequentially stacked transitions. Thanks again for reading, and if you have and questions, comments, or feedback, feel free to <!-- raw HTML omitted -->send me a tweet.<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
 
       </div>
     </div>

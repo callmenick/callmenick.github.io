@@ -79,114 +79,62 @@
     </div>
     <div class="Article-content">
       <div class="Content">
-        
-
-<div class="ButtonGroup ButtonGroup--gutter-md ButtonGroup--align-center">
-  <a href="https://codepen.io/collection/XjwEaq/" class="Button Button--display-inlineBlock Button--appearance-secondary Button--size-sm">
-    View Collection on CodePen
-  </a>
-</div>
-
-<p>A long standing layout challenge for front end folks has been the &ldquo;sticky footer&rdquo; layout. A sticky footer is one that sticks to the bottom of the page if there&rsquo;s not enough content to fill up a minimum of 100% the screen height, but also one that gets pushed further down the viewport like normal if there is enough content.</p>
-
-<p><img src="sticky-footer-visual.png" alt="Sticky footer visual" /></p>
-
-<p>Nowadays, it&rsquo;s pretty simple to achieve this layout! We&rsquo;re going to explore two ways:</p>
-
+        <!-- raw HTML omitted -->
+<p>A long standing layout challenge for front end folks has been the &ldquo;sticky footer&rdquo; layout. A sticky footer is one that sticks to the bottom of the page if there's not enough content to fill up a minimum of 100% the screen height, but also one that gets pushed further down the viewport like normal if there is enough content.</p>
+<p><img src="sticky-footer-visual.png" alt="Sticky footer visual"></p>
+<p>Nowadays, it's pretty simple to achieve this layout! We're going to explore two ways:</p>
 <ol>
 <li>Using <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout">Flexbox</a></li>
 <li>Using <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout">Grid</a></li>
 </ol>
-
-<p>But first, let&rsquo;s look at some common HTML and CSS for our layout.</p>
-
+<p>But first, let's look at some common HTML and CSS for our layout.</p>
 <h2 id="the-common-html-and-css">The Common HTML and CSS</h2>
-
-<p>I&rsquo;m going to structure my layout pretty simply, with a <code>header</code>, <code>main</code>, and <code>footer</code>, and I&rsquo;ll wrap all of those in a <code>.wrapper</code> element:</p>
-
-<pre><code class="language-html">&lt;div class=&quot;wrapper&quot;&gt;
-  &lt;header&gt;&lt;/header&gt;
-  &lt;main&gt;&lt;/main&gt;
-  &lt;footer&gt;&lt;/footer&gt;
-&lt;/div&gt;
-</code></pre>
-
-<p>This gives me a pretty contained structure to work with, and some easy targets for my layout. As far as the styling goes, we&rsquo;ll want to make sure that our <code>.wrapper</code> element is at least the height of the viewport at all times:</p>
-
-<pre><code class="language-css">.wrapper {
-  min-height: 100vh;
+<p>I'm going to structure my layout pretty simply, with a <code>header</code>, <code>main</code>, and <code>footer</code>, and I'll wrap all of those in a <code>.wrapper</code> element:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;wrapper&#34;</span>&gt;
+  &lt;<span style="color:#f92672">header</span>&gt;&lt;/<span style="color:#f92672">header</span>&gt;
+  &lt;<span style="color:#f92672">main</span>&gt;&lt;/<span style="color:#f92672">main</span>&gt;
+  &lt;<span style="color:#f92672">footer</span>&gt;&lt;/<span style="color:#f92672">footer</span>&gt;
+&lt;/<span style="color:#f92672">div</span>&gt;
+</code></pre></div><p>This gives me a pretty contained structure to work with, and some easy targets for my layout. As far as the styling goes, we'll want to make sure that our <code>.wrapper</code> element is at least the height of the viewport at all times:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">.<span style="color:#a6e22e">wrapper</span> {
+  <span style="color:#66d9ef">min-height</span>: <span style="color:#ae81ff">100</span><span style="color:#66d9ef">vh</span>;
 }
-</code></pre>
-
-<p><strong>Note: I use <a href="https://necolas.github.io/normalize.css/">normalize.css</a> in pretty much all of my projects, which does quite a bit of &ldquo;normalization&rdquo; of CSS across browsers. If you&rsquo;re not keen on using a library, then the one important thing of note is the margin reset on the <code>body</code> tag:</strong></p>
-
-<pre><code class="language-css">body {
-  margin: 0;
+</code></pre></div><p><strong>Note: I use <a href="https://necolas.github.io/normalize.css/">normalize.css</a> in pretty much all of my projects, which does quite a bit of &ldquo;normalization&rdquo; of CSS across browsers. If you're not keen on using a library, then the one important thing of note is the margin reset on the <code>body</code> tag:</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css"><span style="color:#f92672">body</span> {
+  <span style="color:#66d9ef">margin</span>: <span style="color:#ae81ff">0</span>;
 }
-</code></pre>
-
-<p>Right! Let&rsquo;s jump into the specifics.</p>
-
+</code></pre></div><p>Right! Let's jump into the specifics.</p>
 <h2 id="the-flexbox-way">The Flexbox Way</h2>
-
-<p>With Flexbox, my thought process is that I first need a <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction">column based <code>flex-direction</code></a>. With that, I can then set my <code>header</code> and <code>footer</code> to occupy as much space as their contents require, while the <code>main</code> should always fill up a minimum of all of the available space left. Here&rsquo;s what the CSS looks like:</p>
-
-<pre><code class="language-css">.wrapper {
-  display: flex;
-  flex-direction: column;
+<p>With Flexbox, my thought process is that I first need a <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction">column based <code>flex-direction</code></a>. With that, I can then set my <code>header</code> and <code>footer</code> to occupy as much space as their contents require, while the <code>main</code> should always fill up a minimum of all of the available space left. Here's what the CSS looks like:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">.<span style="color:#a6e22e">wrapper</span> {
+  <span style="color:#66d9ef">display</span>: <span style="color:#66d9ef">flex</span>;
+  <span style="color:#66d9ef">flex-direction</span>: <span style="color:#66d9ef">column</span>;
 }
 
-header,
-footer {
-  flex: 0 1 auto;
+<span style="color:#f92672">header</span><span style="color:#f92672">,</span>
+<span style="color:#f92672">footer</span> {
+  <span style="color:#66d9ef">flex</span>: <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">auto</span>;
 }
 
-main {
-  flex: 1;
+<span style="color:#f92672">main</span> {
+  <span style="color:#66d9ef">flex</span>: <span style="color:#ae81ff">1</span>;
 }
-</code></pre>
-
-<p>Voila! Simple. Here&rsquo;s a little CodePen demo that allows you to dynamically add content to see the changes.</p>
-
-<p class="codepen" data-height="600" data-theme-id="light" data-default-tab="result" data-user="callmenick" data-slug-hash="xeRWOg" data-preview="true" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid black; margin: 1em 0; padding: 1em;" data-pen-title="Sticky Footer w/ CSS Flexbox">
-  <span>See the Pen <a href="https://codepen.io/callmenick/pen/xeRWOg/">
-  Sticky Footer w/ CSS Flexbox</a> by Nick Salloum (<a href="https://codepen.io/callmenick">@callmenick</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
-</p>
-
+</code></pre></div><p>Voila! Simple. Here's a little CodePen demo that allows you to dynamically add content to see the changes.</p>
+<!-- raw HTML omitted -->
 <h2 id="the-grid-way">The Grid Way</h2>
-
-<p>With CSS grid, things become even easier! Grid is such a powerful spec and is perfect for controlling these overarching layout setups like this. All we need to do in this case is target the <code>.wrapper</code> element and define our grid layout there. We&rsquo;ll want three rows, and like before, we&rsquo;ll want the <code>main</code> row to occupy a minimum of the remaining viewport height after the <code>header</code> and <code>footer</code> take up as much space as they need. Here&rsquo;s the (dead simple) CSS:</p>
-
-<pre><code class="language-css">.wrapper {
-  display: grid;
-  grid-template-rows: auto 1fr auto;
+<p>With CSS grid, things become even easier! Grid is such a powerful spec and is perfect for controlling these overarching layout setups like this. All we need to do in this case is target the <code>.wrapper</code> element and define our grid layout there. We'll want three rows, and like before, we'll want the <code>main</code> row to occupy a minimum of the remaining viewport height after the <code>header</code> and <code>footer</code> take up as much space as they need. Here's the (dead simple) CSS:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">.<span style="color:#a6e22e">wrapper</span> {
+  <span style="color:#66d9ef">display</span>: <span style="color:#66d9ef">grid</span>;
+  <span style="color:#66d9ef">grid-template-rows</span>: <span style="color:#66d9ef">auto</span> <span style="color:#ae81ff">1</span>fr <span style="color:#66d9ef">auto</span>;
 }
-</code></pre>
-
-<p>And that&rsquo;s it! Here&rsquo;s the CSS demo for the Grid version:</p>
-
-<p class="codepen" data-height="600" data-theme-id="light" data-default-tab="result" data-user="callmenick" data-slug-hash="rbWJpE" data-preview="true" style="height: 493px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid black; margin: 1em 0; padding: 1em;" data-pen-title="Sticky Footer w/ CSS Grid">
-  <span>See the Pen <a href="https://codepen.io/callmenick/pen/rbWJpE/">
-  Sticky Footer w/ CSS Grid</a> by Nick Salloum (<a href="https://codepen.io/callmenick">@callmenick</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
-</p>
-
+</code></pre></div><p>And that's it! Here's the CSS demo for the Grid version:</p>
+<!-- raw HTML omitted -->
 <h2 id="browser-support">Browser Support</h2>
-
-<p>Support for both of these APIs is really great, with <a href="https://caniuse.com/#feat=flexbox">Flexbox</a> edging out <a href="https://caniuse.com/#feat=css-grid">Grid</a> by just a bit due to it being around longer. If you&rsquo;re worried about supporting old browsers, then maybe Flexbox is for you. With this particular layout though, I&rsquo;d choose CSS Grid anyway. The fallback would be extremely graceful on browsers that don&rsquo;t support it, as they&rsquo;d just render the three blocks stacked one on top the other with no sticky footer.</p>
-
+<p>Support for both of these APIs is really great, with <a href="https://caniuse.com/#feat=flexbox">Flexbox</a> edging out <a href="https://caniuse.com/#feat=css-grid">Grid</a> by just a bit due to it being around longer. If you're worried about supporting old browsers, then maybe Flexbox is for you. With this particular layout though, I'd choose CSS Grid anyway. The fallback would be extremely graceful on browsers that don't support it, as they'd just render the three blocks stacked one on top the other with no sticky footer.</p>
 <h2 id="wrap-up">Wrap Up</h2>
-
-<p>That&rsquo;s just about it! We&rsquo;ve taken a look at two powerful CSS APIs and really simplified a once non-trivial layout implementation with just a few lines of CSS. Thanks again for reading, and if you have and questions, comments, or feedback, feel free to <a href="http://twitter.com/home?status=@nicksalloum_ I got a question for you!" target="_blank">send me a tweet.</a></p>
-
-<div class="ButtonGroup ButtonGroup--gutter-md ButtonGroup--align-center">
-  <a href="https://codepen.io/collection/XjwEaq/" class="Button Button--display-inlineBlock Button--appearance-secondary Button--size-sm">
-    View Collection on CodePen
-  </a>
-</div>
-
-<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+<p>That's just about it! We've taken a look at two powerful CSS APIs and really simplified a once non-trivial layout implementation with just a few lines of CSS. Thanks again for reading, and if you have and questions, comments, or feedback, feel free to <!-- raw HTML omitted -->send me a tweet.<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 
       </div>
     </div>

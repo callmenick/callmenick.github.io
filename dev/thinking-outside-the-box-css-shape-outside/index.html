@@ -79,155 +79,96 @@
     </div>
     <div class="Article-content">
       <div class="Content">
-        
-
-<div class="ButtonGroup ButtonGroup--gutter-md ButtonGroup--align-center">
-  <a href="https://codepen.io/callmenick/pen/VMpPRp" class="Button Button--display-inlineBlock Button--appearance-secondary Button--size-sm">
-    Get Source
-  </a>
-  <a href="https://codepen.io/callmenick/full/VMpPRp/" class="Button Button--display-inlineBlock Button--appearance-secondary Button--size-sm">
-    View Demo
-  </a>
-</div>
-
+        <!-- raw HTML omitted -->
 <h2 id="breaking-out-of-the-box">Breaking Out of the Box</h2>
-
-<p>There&rsquo;s a reason it&rsquo;s called the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Box_Model/Introduction_to_the_CSS_box_model">box model</a>, and that&rsquo;s because every element in a document is represented as a rectangular box. Even with CSS properties that alter the shape of an element - such as <code>border-radius</code> - we are still, by default, confined to a box. Nowadays, with modern CSS properties, we are able to shape and shift content a bit more. One of the properties that allows that is the <code>shape-outside</code> property. From the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/shape-outside">MDN</a>:</p>
-
+<p>There's a reason it's called the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Box_Model/Introduction_to_the_CSS_box_model">box model</a>, and that's because every element in a document is represented as a rectangular box. Even with CSS properties that alter the shape of an element - such as <code>border-radius</code> - we are still, by default, confined to a box. Nowadays, with modern CSS properties, we are able to shape and shift content a bit more. One of the properties that allows that is the <code>shape-outside</code> property. From the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/shape-outside">MDN</a>:</p>
 <blockquote>
-<p>The shape-outside CSS property uses shape values to define the float area for a float and will cause inline content to wrap around the shape instead of the float&rsquo;s bounding box.</p>
+<p>The shape-outside CSS property uses shape values to define the float area for a float and will cause inline content to wrap around the shape instead of the float's bounding box.</p>
 </blockquote>
-
-<p>Let&rsquo;s extract the important bits from that definition:</p>
-
+<p>Let's extract the important bits from that definition:</p>
 <ol>
 <li>It uses shape values. Shape values in CSS can be defined by <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/basic-shape">basic shapes</a> or shape functions. The coordinates of a basic shape originate at the top-left corner of the reference box, i.e. the box defined by the element in question.</li>
-<li>It defines a float area for a float. That means that elements with the <code>shape-outside</code> property must also be floating elements. That will then allow inline content to wrap around the shape instead of the float&rsquo;s bounding box.</li>
+<li>It defines a float area for a float. That means that elements with the <code>shape-outside</code> property must also be floating elements. That will then allow inline content to wrap around the shape instead of the float's bounding box.</li>
 </ol>
-
-<p>Let&rsquo;s jump into some demos to see it in action.</p>
-
+<p>Let's jump into some demos to see it in action.</p>
 <h2 id="exploring-the-shape-outside-property">Exploring the Shape Outside Property</h2>
-
-<p>First, let&rsquo;s write up some HTML to give us a nice playing field. We will explore three different shapes:</p>
-
+<p>First, let's write up some HTML to give us a nice playing field. We will explore three different shapes:</p>
 <ol>
 <li>A circle</li>
 <li>A triangle</li>
 <li>A diamond</li>
 </ol>
+<p>Here's the HTML:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Content&#34;</span>&gt;
+  &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Shape Shape--left Shape--circle&#34;</span>&gt;&lt;/<span style="color:#f92672">div</span>&gt;
+  &lt;<span style="color:#f92672">h2</span>&gt;Circle, left&lt;/<span style="color:#f92672">h2</span>&gt;
+  &lt;<span style="color:#f92672">p</span>&gt;Lorem ipsum dolor...&lt;/<span style="color:#f92672">p</span>&gt;
+&lt;/<span style="color:#f92672">div</span>&gt;
 
-<p>Here&rsquo;s the HTML:</p>
+&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Content&#34;</span>&gt;
+  &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Shape Shape--right Shape--triangle&#34;</span>&gt;&lt;/<span style="color:#f92672">div</span>&gt;
+  &lt;<span style="color:#f92672">h2</span>&gt;Triangle, right&lt;/<span style="color:#f92672">h2</span>&gt;
+  &lt;<span style="color:#f92672">p</span>&gt;Lorem ipsum dolor...&lt;/<span style="color:#f92672">p</span>&gt;
+&lt;/<span style="color:#f92672">div</span>&gt;
 
-<pre><code class="language-html">&lt;div class=&quot;Content&quot;&gt;
-  &lt;div class=&quot;Shape Shape--left Shape--circle&quot;&gt;&lt;/div&gt;
-  &lt;h2&gt;Circle, left&lt;/h2&gt;
-  &lt;p&gt;Lorem ipsum dolor...&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;Content&quot;&gt;
-  &lt;div class=&quot;Shape Shape--right Shape--triangle&quot;&gt;&lt;/div&gt;
-  &lt;h2&gt;Triangle, right&lt;/h2&gt;
-  &lt;p&gt;Lorem ipsum dolor...&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;Content&quot;&gt;
-  &lt;div class=&quot;Shape Shape--left Shape--diamond&quot;&gt;&lt;/div&gt;
-  &lt;h2&gt;Diamond, left&lt;/h2&gt;
-  &lt;p&gt;Lorem ipsum dolor...&lt;/p&gt;
-&lt;/div&gt;
-</code></pre>
-
-<p>I&rsquo;m using a base class <code>Shape</code> with two modifiers:</p>
-
+&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Content&#34;</span>&gt;
+  &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Shape Shape--left Shape--diamond&#34;</span>&gt;&lt;/<span style="color:#f92672">div</span>&gt;
+  &lt;<span style="color:#f92672">h2</span>&gt;Diamond, left&lt;/<span style="color:#f92672">h2</span>&gt;
+  &lt;<span style="color:#f92672">p</span>&gt;Lorem ipsum dolor...&lt;/<span style="color:#f92672">p</span>&gt;
+&lt;/<span style="color:#f92672">div</span>&gt;
+</code></pre></div><p>I'm using a base class <code>Shape</code> with two modifiers:</p>
 <ul>
 <li><code>Shape--[pos]</code> - defines the position of the shape, whether left or right</li>
 <li><code>Shape--[shape]</code> - defines the actual shape of the element</li>
 </ul>
-
 <p>Each shape and corresponding content will be wrapped in a <code>Content</code> div.</p>
-
-<p>Now, let&rsquo;s write up some baseline CSS that we&rsquo;ll use across the board:</p>
-
-<pre><code class="language-css">.Content {
-  clear: both;
+<p>Now, let's write up some baseline CSS that we'll use across the board:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">.<span style="color:#a6e22e">Content</span> {
+  <span style="color:#66d9ef">clear</span>: <span style="color:#66d9ef">both</span>;
 }
 
-.Shape {
-  display: block;
-  width: 18rem;
-  height: 18rem;
-  background-color: #eee;
+.<span style="color:#a6e22e">Shape</span> {
+  <span style="color:#66d9ef">display</span>: <span style="color:#66d9ef">block</span>;
+  <span style="color:#66d9ef">width</span>: <span style="color:#ae81ff">18</span><span style="color:#66d9ef">rem</span>;
+  <span style="color:#66d9ef">height</span>: <span style="color:#ae81ff">18</span><span style="color:#66d9ef">rem</span>;
+  <span style="color:#66d9ef">background-color</span>: <span style="color:#ae81ff">#eee</span>;
 }
-</code></pre>
-
-<p>Let&rsquo;s examine the CSS a bit. In the <code>Content</code> div, I&rsquo;ve added the <code>clear</code> property. That&rsquo;s because it&rsquo;ll eventually contain floated elements, and we need to clear those. Also, I&rsquo;ve added some base level CSS for our shapes. Before we construct the actual shapes let&rsquo;s add the correct float properties for the modifiers:</p>
-
-<pre><code class="language-css">.Shape--left {
-  float: left;
+</code></pre></div><p>Let's examine the CSS a bit. In the <code>Content</code> div, I've added the <code>clear</code> property. That's because it'll eventually contain floated elements, and we need to clear those. Also, I've added some base level CSS for our shapes. Before we construct the actual shapes let's add the correct float properties for the modifiers:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">.<span style="color:#a6e22e">Shape--left</span> {
+  <span style="color:#66d9ef">float</span>: <span style="color:#66d9ef">left</span>;
 }
 
-.Shape--right {
-  float: right;
+.<span style="color:#a6e22e">Shape--right</span> {
+  <span style="color:#66d9ef">float</span>: <span style="color:#66d9ef">right</span>;
 }
-</code></pre>
-
-<p>Great! We&rsquo;re shaping up nicely. Now, let&rsquo;s dig into each of our three shapes.</p>
-
+</code></pre></div><p>Great! We're shaping up nicely. Now, let's dig into each of our three shapes.</p>
 <h3 id="circle-shape">Circle Shape</h3>
-
-<p>The circle shape is the easiest of the lot. We can define it by just using the <code>circle()</code> basic shape, which will create a 100% circle based on the bounding box. Since our bounding box is square, as defined above, we&rsquo;ve got nothing to worry about. Here&rsquo;s the CSS:</p>
-
-<pre><code class="language-css">.Shape--circle {
-  border-radius: 50%;
-  shape-outside: circle();
+<p>The circle shape is the easiest of the lot. We can define it by just using the <code>circle()</code> basic shape, which will create a 100% circle based on the bounding box. Since our bounding box is square, as defined above, we've got nothing to worry about. Here's the CSS:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">.<span style="color:#a6e22e">Shape--circle</span> {
+  <span style="color:#66d9ef">border-radius</span>: <span style="color:#ae81ff">50</span><span style="color:#66d9ef">%</span>;
+  <span style="color:#66d9ef">shape-outside</span>: circle();
 }
-</code></pre>
-
-<p>Notice that I&rsquo;ve also added a border radius so that the visual effect of the element itself represents a circle. Let&rsquo;s move on!</p>
-
+</code></pre></div><p>Notice that I've also added a border radius so that the visual effect of the element itself represents a circle. Let's move on!</p>
 <h3 id="triangle-shape">Triangle Shape</h3>
-
-<p>Our triangle shape is a bit more complicated. This time, we&rsquo;re going to use the <code>polygon()</code> basic shape. For polygons, we can use relative <code>x y</code> pairs starting at the origin. We can use any number of pairs we want as well. The last pair will automatically be linked back to the origin. Our triangle will move from the top left of the box, to the top right, to the bottom middle, then back to the starting position. Here&rsquo;s the CSS:</p>
-
-<pre><code class="language-css">.Shape--triangle {
-  clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
-  shape-outside: polygon(0% 0%, 100% 0%, 50% 100%);
+<p>Our triangle shape is a bit more complicated. This time, we're going to use the <code>polygon()</code> basic shape. For polygons, we can use relative <code>x y</code> pairs starting at the origin. We can use any number of pairs we want as well. The last pair will automatically be linked back to the origin. Our triangle will move from the top left of the box, to the top right, to the bottom middle, then back to the starting position. Here's the CSS:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">.<span style="color:#a6e22e">Shape--triangle</span> {
+  <span style="color:#66d9ef">clip-path</span>: polygon(<span style="color:#ae81ff">0</span><span style="color:#66d9ef">%</span> <span style="color:#ae81ff">0</span><span style="color:#66d9ef">%</span>, <span style="color:#ae81ff">100</span><span style="color:#66d9ef">%</span> <span style="color:#ae81ff">0</span><span style="color:#66d9ef">%</span>, <span style="color:#ae81ff">50</span><span style="color:#66d9ef">%</span> <span style="color:#ae81ff">100</span><span style="color:#66d9ef">%</span>);
+  <span style="color:#66d9ef">shape-outside</span>: polygon(<span style="color:#ae81ff">0</span><span style="color:#66d9ef">%</span> <span style="color:#ae81ff">0</span><span style="color:#66d9ef">%</span>, <span style="color:#ae81ff">100</span><span style="color:#66d9ef">%</span> <span style="color:#ae81ff">0</span><span style="color:#66d9ef">%</span>, <span style="color:#ae81ff">50</span><span style="color:#66d9ef">%</span> <span style="color:#ae81ff">100</span><span style="color:#66d9ef">%</span>);
 }
-</code></pre>
-
-<p>Notice again that I&rsquo;ve also added the clipping path property to give the original element a triangular appearance. Remember, the <code>shape-outside</code> property affects the flow of inline content around a floated element, and not the floated element itself!</p>
-
-<p>Let&rsquo;s look at the last example.</p>
-
+</code></pre></div><p>Notice again that I've also added the clipping path property to give the original element a triangular appearance. Remember, the <code>shape-outside</code> property affects the flow of inline content around a floated element, and not the floated element itself!</p>
+<p>Let's look at the last example.</p>
 <h3 id="diamond-shape">Diamond Shape</h3>
-
-<p>We&rsquo;re going to use the <code>polygon()</code> shape once more. This time, we&rsquo;ll start from the top-middle of the box, then move to the right-middle, then bottom-middle, then left-middle, and back to start. Here&rsquo;s the CSS:</p>
-
-<pre><code class="language-css">.Shape--diamond {
-  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-  shape-outside: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+<p>We're going to use the <code>polygon()</code> shape once more. This time, we'll start from the top-middle of the box, then move to the right-middle, then bottom-middle, then left-middle, and back to start. Here's the CSS:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">.<span style="color:#a6e22e">Shape--diamond</span> {
+  <span style="color:#66d9ef">clip-path</span>: polygon(<span style="color:#ae81ff">50</span><span style="color:#66d9ef">%</span> <span style="color:#ae81ff">0</span><span style="color:#66d9ef">%</span>, <span style="color:#ae81ff">100</span><span style="color:#66d9ef">%</span> <span style="color:#ae81ff">50</span><span style="color:#66d9ef">%</span>, <span style="color:#ae81ff">50</span><span style="color:#66d9ef">%</span> <span style="color:#ae81ff">100</span><span style="color:#66d9ef">%</span>, <span style="color:#ae81ff">0</span><span style="color:#66d9ef">%</span> <span style="color:#ae81ff">50</span><span style="color:#66d9ef">%</span>);
+  <span style="color:#66d9ef">shape-outside</span>: polygon(<span style="color:#ae81ff">50</span><span style="color:#66d9ef">%</span> <span style="color:#ae81ff">0</span><span style="color:#66d9ef">%</span>, <span style="color:#ae81ff">100</span><span style="color:#66d9ef">%</span> <span style="color:#ae81ff">50</span><span style="color:#66d9ef">%</span>, <span style="color:#ae81ff">50</span><span style="color:#66d9ef">%</span> <span style="color:#ae81ff">100</span><span style="color:#66d9ef">%</span>, <span style="color:#ae81ff">0</span><span style="color:#66d9ef">%</span> <span style="color:#ae81ff">50</span><span style="color:#66d9ef">%</span>);
 }
-</code></pre>
-
-<p>Voila! We&rsquo;ve just created some awesome shapes and out-of-the-box content flow with only CSS.</p>
-
-<h2 id="browser-support-fallbacks">Browser Support &amp; Fallbacks</h2>
-
-<p>The <code>shape-outside</code> property support is <sup>50</sup>&frasl;<sub>50</sub> at the moment. Modern Chrome, Safari (webkit prefixed), and Opera support it, but Firefox and Edge have it marked as under consideration. The good news is that fallbacks require no work at all - elements and inline content will just exhibit normal float behaviour.</p>
-
+</code></pre></div><p>Voila! We've just created some awesome shapes and out-of-the-box content flow with only CSS.</p>
+<h2 id="browser-support--fallbacks">Browser Support &amp; Fallbacks</h2>
+<p>The <code>shape-outside</code> property support is 50/50 at the moment. Modern Chrome, Safari (webkit prefixed), and Opera support it, but Firefox and Edge have it marked as under consideration. The good news is that fallbacks require no work at all - elements and inline content will just exhibit normal float behaviour.</p>
 <h2 id="wrap-up">Wrap Up</h2>
-
-<p>And that’s a wrap! Thanks again for reading, and if you have and questions, comments, or feedback, feel free to <a href="http://twitter.com/home?status=@nicksalloum_ I got a question for you!" target="_blank">send me a tweet.</a></p>
-
-<div class="ButtonGroup ButtonGroup--gutter-md ButtonGroup--align-center">
-  <a href="https://codepen.io/callmenick/pen/VMpPRp" class="Button Button--display-inlineBlock Button--appearance-secondary Button--size-sm">
-    Get Source
-  </a>
-  <a href="https://codepen.io/callmenick/full/VMpPRp/" class="Button Button--display-inlineBlock Button--appearance-secondary Button--size-sm">
-    View Demo
-  </a>
-</div>
+<p>And that’s a wrap! Thanks again for reading, and if you have and questions, comments, or feedback, feel free to <!-- raw HTML omitted -->send me a tweet.<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
 
       </div>
     </div>

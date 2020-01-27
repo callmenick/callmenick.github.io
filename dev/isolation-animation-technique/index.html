@@ -79,125 +79,78 @@
     </div>
     <div class="Article-content">
       <div class="Content">
-        
-
-<div class="ButtonGroup ButtonGroup--gutter-md ButtonGroup--align-center">
-  <a href="https://codepen.io/callmenick/pen/jGaEeZ/" class="Button Button--display-inlineBlock Button--appearance-secondary Button--size-sm">
-    Get Source
-  </a>
-  <a href="https://codepen.io/callmenick/full/jGaEeZ/" class="Button Button--display-inlineBlock Button--appearance-secondary Button--size-sm">
-    View Demo
-  </a>
-</div>
-
+        <!-- raw HTML omitted -->
 <h2 id="what-is-isolation-animation">What is Isolation Animation?</h2>
-
 <p>Isolation animation is a simple technique that de-emphasizes items that aren’t “active”, via methods like blurring, fading, shrinking, etc. As such, the item in focus has an increased emphasis, and the information presented is more prominent.</p>
-
 <p>The example we’re going to explore is pretty basic, but can be adapted to various use cases. We’ll look at a features table, in which there are 3 tiers of features. When one feature tier is hovered, it expands a little, and the other two features blur and fade out in the background. We’re only going to use CSS to achieve this!</p>
-
 <p>Here’s what we’ll be creating:</p>
-
-<p data-height="391" data-theme-id="light" data-slug-hash="jGaEeZ" data-default-tab="result" data-user="callmenick" data-embed-version="2" data-pen-title="Isolation animation technique" class="codepen">See the Pen <a href="https://codepen.io/callmenick/pen/jGaEeZ/">Isolation animation technique</a> by Nick Salloum (<a href="https://codepen.io/callmenick">@callmenick</a>) on <a href="https://codepen.io">CodePen</a>.</p>
-
+<!-- raw HTML omitted -->
 <h2 id="defining-the-layout">Defining the Layout</h2>
-
 <p>The layout and markup are pretty straightforward. We’ll have a container element <code>.Options</code>, and each group of features will be encompassed by an <code>.Option</code> element.</p>
-
-<pre><code class="language-html">&lt;div class=&quot;Options&quot;&gt;
-  &lt;div class=&quot;Option&quot;&gt;
-    &lt;div class=&quot;Option-header&quot;&gt;
-      &lt;h2 class=&quot;Option-heading&quot;&gt;Free&lt;/h2&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;Option-content&quot;&gt;
-      &lt;ul class=&quot;Option-items&quot;&gt;
-        &lt;li class=&quot;Option-item&quot;&gt;1 member&lt;/li&gt;
-        &lt;li class=&quot;Option-item&quot;&gt;...&lt;/li&gt;
-      &lt;/ul&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;Option&quot;&gt;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Options&#34;</span>&gt;
+  &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Option&#34;</span>&gt;
+    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Option-header&#34;</span>&gt;
+      &lt;<span style="color:#f92672">h2</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Option-heading&#34;</span>&gt;Free&lt;/<span style="color:#f92672">h2</span>&gt;
+    &lt;/<span style="color:#f92672">div</span>&gt;
+    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Option-content&#34;</span>&gt;
+      &lt;<span style="color:#f92672">ul</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Option-items&#34;</span>&gt;
+        &lt;<span style="color:#f92672">li</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Option-item&#34;</span>&gt;1 member&lt;/<span style="color:#f92672">li</span>&gt;
+        &lt;<span style="color:#f92672">li</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Option-item&#34;</span>&gt;...&lt;/<span style="color:#f92672">li</span>&gt;
+      &lt;/<span style="color:#f92672">ul</span>&gt;
+    &lt;/<span style="color:#f92672">div</span>&gt;
+  &lt;/<span style="color:#f92672">div</span>&gt;
+  &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Option&#34;</span>&gt;
     ...
-  &lt;/div&gt;
-  &lt;div class=&quot;Option&quot;&gt;
+  &lt;/<span style="color:#f92672">div</span>&gt;
+  &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Option&#34;</span>&gt;
     ...
-  &lt;/div&gt;
-&lt;/div&gt;
-</code></pre>
-
-<p>The structure is more important than the actual content here, so I kept is short. You can use your imagination to see where I’m going with this though!</p>
-
+  &lt;/<span style="color:#f92672">div</span>&gt;
+&lt;/<span style="color:#f92672">div</span>&gt;
+</code></pre></div><p>The structure is more important than the actual content here, so I kept is short. You can use your imagination to see where I’m going with this though!</p>
 <p>Let’s jump into the CSS.</p>
-
 <h2 id="styling-and-animating-with-css">Styling and Animating with CSS</h2>
-
 <p>Let’s first define the styles for the wrapper <code>.Options</code> element:</p>
-
-<pre><code class="language-scss">.Options {
-  display: flex;
-  margin: 0 auto;
-  min-width: 80rem;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss"><span style="color:#a6e22e">.</span><span style="color:#a6e22e">Options</span> {
+  <span style="color:#f92672">display</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">flex</span>;
+  <span style="color:#f92672">margin</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">0</span> <span style="color:#f92672">auto</span>;
+  <span style="color:#f92672">min-width</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">80rem</span>;
 }
-</code></pre>
-
-<p>The styling is pretty straightforward. We’re just setting a <code>flex</code> display on the wrapper element, which will make each of the child <code>.Option</code> elements flex items. Now let’s take a look at the child elements. I’m using Sass (SCSS syntax) for easy variable maintenance.</p>
-
-<pre><code class="language-scss">$td: 250ms; // transition duration
-$tf: cubic-bezier(0.68, -0.55, 0.265, 1.55); // transition function
-
-.Option {
-  flex: 1;
-  background-color: #fff;
-  cursor: pointer;
-  transform-origin: 50% 50%;
-  transition:
-    transform $td $tf,
-    opacity $td $tf,
-    box-shadow $td $tf,
-    filter $td $tf;
+</code></pre></div><p>The styling is pretty straightforward. We’re just setting a <code>flex</code> display on the wrapper element, which will make each of the child <code>.Option</code> elements flex items. Now let’s take a look at the child elements. I’m using Sass (SCSS syntax) for easy variable maintenance.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss">$td<span style="color:#f92672">:</span> <span style="color:#ae81ff">250</span><span style="color:#66d9ef">ms</span>; <span style="color:#75715e">// transition duration
+</span><span style="color:#75715e"></span>$tf<span style="color:#f92672">:</span> <span style="color:#a6e22e">cubic-bezier</span>(<span style="color:#ae81ff">0</span><span style="color:#66d9ef"></span><span style="color:#ae81ff">.68</span><span style="color:#66d9ef"></span><span style="color:#f92672">,</span> <span style="color:#ae81ff">-0</span><span style="color:#66d9ef"></span><span style="color:#ae81ff">.55</span><span style="color:#66d9ef"></span><span style="color:#f92672">,</span> <span style="color:#ae81ff">0</span><span style="color:#66d9ef"></span><span style="color:#ae81ff">.265</span><span style="color:#66d9ef"></span><span style="color:#f92672">,</span> <span style="color:#ae81ff">1</span><span style="color:#66d9ef"></span><span style="color:#ae81ff">.55</span><span style="color:#66d9ef"></span>); <span style="color:#75715e">// transition function
+</span><span style="color:#75715e"></span>
+<span style="color:#a6e22e">.</span><span style="color:#a6e22e">Option</span> {
+  <span style="color:#f92672">flex</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">1</span>;
+  <span style="color:#f92672">background-color</span><span style="color:#a6e22e">:</span> #fff;
+  <span style="color:#f92672">cursor</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">pointer</span>;
+  <span style="color:#f92672">transform-origin</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">50</span><span style="color:#960050;background-color:#1e0010">%</span> <span style="color:#f92672">50</span><span style="color:#960050;background-color:#1e0010">%</span>;
+  <span style="color:#f92672">transition</span><span style="color:#a6e22e">:</span>
+    <span style="color:#f92672">transform</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">td</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">tf</span><span style="color:#f92672">,</span>
+    <span style="color:#f92672">opacity</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">td</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">tf</span><span style="color:#f92672">,</span>
+    <span style="color:#f92672">box-shadow</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">td</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">tf</span><span style="color:#f92672">,</span>
+    <span style="color:#f92672">filter</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">td</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">tf</span>;
 }
-</code></pre>
-
-<p>Each option occupies equal amounts of space as a result of the <code>flex: 1</code> declaration. Their transform origins are also perfectly centered, and 4 properties are transition enabled. The CSS for the actual UI of the options and their child elements is trivial, so I’ll leave it out here.</p>
-
+</code></pre></div><p>Each option occupies equal amounts of space as a result of the <code>flex: 1</code> declaration. Their transform origins are also perfectly centered, and 4 properties are transition enabled. The CSS for the actual UI of the options and their child elements is trivial, so I’ll leave it out here.</p>
 <p>Now, let’s implement the hover animation effect. When we hover on an option, we’re going to want it to expand and pop out, and all others to blur and fade out. To do that, we’re going to first target all the child elements and apply the “out” transition:</p>
-
-<pre><code class="language-scss">.Options:hover .Option {
-  opacity: 0.4;
-  filter: blur(1px);
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss"><span style="color:#a6e22e">.</span><span style="color:#a6e22e">Options</span><span style="color:#a6e22e">:</span><span style="color:#a6e22e">hover</span> <span style="color:#a6e22e">.</span><span style="color:#a6e22e">Option</span> {
+  <span style="color:#f92672">opacity</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">0</span><span style="color:#a6e22e">.</span><span style="color:#a6e22e">4</span>;
+  <span style="color:#f92672">filter</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">blur</span><span style="color:#f92672">(</span><span style="color:#f92672">1px</span><span style="color:#f92672">)</span>;
 }
-</code></pre>
-
-<p>This implies that when we hover hover the options container, all option elements should blur and fade out. But that’s not entirely what we want! We still need to target the hovered element:</p>
-
-<pre><code class="language-scss">.Options .Option:hover {
-  position: relative;
-  z-index: 2;
-  opacity: 1;
-  box-shadow: 0 4px 16px #ddd;
-  transform: scale(1.1);
-  filter: none;
+</code></pre></div><p>This implies that when we hover hover the options container, all option elements should blur and fade out. But that’s not entirely what we want! We still need to target the hovered element:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss"><span style="color:#a6e22e">.</span><span style="color:#a6e22e">Options</span> <span style="color:#a6e22e">.</span><span style="color:#a6e22e">Option</span><span style="color:#a6e22e">:</span><span style="color:#a6e22e">hover</span> {
+  <span style="color:#f92672">position</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">relative</span>;
+  <span style="color:#f92672">z-index</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">2</span>;
+  <span style="color:#f92672">opacity</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">1</span>;
+  <span style="color:#f92672">box-shadow</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">0</span> <span style="color:#f92672">4px</span> <span style="color:#f92672">16px</span> #ddd;
+  <span style="color:#f92672">transform</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">scale</span><span style="color:#f92672">(</span><span style="color:#f92672">1</span><span style="color:#a6e22e">.</span><span style="color:#a6e22e">1</span><span style="color:#f92672">)</span>;
+  <span style="color:#f92672">filter</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">none</span>;
 }
-</code></pre>
-
-<p>Because of the cascading nature of CSS, adding this set of rules below the first set means that the hovered element will not fade out or get blurred! Additionally, it will scale up and pop out a bit with a box shadow. Awesome! Here is is again:</p>
-
-<p data-height="391" data-theme-id="light" data-slug-hash="jGaEeZ" data-default-tab="result" data-user="callmenick" data-embed-version="2" data-pen-title="Isolation animation technique" class="codepen">See the Pen <a href="https://codepen.io/callmenick/pen/jGaEeZ/">Isolation animation technique</a> by Nick Salloum (<a href="https://codepen.io/callmenick">@callmenick</a>) on <a href="https://codepen.io">CodePen</a>.</p>
-
+</code></pre></div><p>Because of the cascading nature of CSS, adding this set of rules below the first set means that the hovered element will not fade out or get blurred! Additionally, it will scale up and pop out a bit with a box shadow. Awesome! Here is is again:</p>
+<!-- raw HTML omitted -->
 <h2 id="wrap-up">Wrap Up</h2>
-
-<p>That’s all folks! In this tutorial, we looked into how some simple CSS could be leveraged to create a great UI pattern. The same thought process can be applied to all sorts of things! Think photo galleries, list views, etc. Thanks again for reading, and if you have and questions, comments, or feedback, feel free to <a href="http://twitter.com/home?status=@nicksalloum_ I got a question for you!" target="_blank">send me a tweet.</a></p>
-
-<div class="ButtonGroup ButtonGroup--gutter-md ButtonGroup--align-center">
-  <a href="https://codepen.io/callmenick/pen/jGaEeZ/" class="Button Button--display-inlineBlock Button--appearance-secondary Button--size-sm">
-    Get Source
-  </a>
-  <a href="https://codepen.io/callmenick/full/jGaEeZ/" class="Button Button--display-inlineBlock Button--appearance-secondary Button--size-sm">
-    View Demo
-  </a>
-</div>
-
-<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+<p>That’s all folks! In this tutorial, we looked into how some simple CSS could be leveraged to create a great UI pattern. The same thought process can be applied to all sorts of things! Think photo galleries, list views, etc. Thanks again for reading, and if you have and questions, comments, or feedback, feel free to <!-- raw HTML omitted -->send me a tweet.<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 
       </div>
     </div>

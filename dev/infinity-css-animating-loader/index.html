@@ -79,161 +79,90 @@
     </div>
     <div class="Article-content">
       <div class="Content">
-        
-
-<div class="ButtonGroup ButtonGroup--gutter-md ButtonGroup--align-center">
-  <a href="https://codepen.io/callmenick/pen/KqMgaB" class="Button Button--display-inlineBlock Button--appearance-secondary Button--size-sm">
-    Get Source
-  </a>
-  <a href="https://codepen.io/callmenick/full/KqMgaB/" class="Button Button--display-inlineBlock Button--appearance-secondary Button--size-sm">
-    View Demo
-  </a>
-</div>
-
-<p>I had an idea recently. I wanted to create an &ldquo;Infinity&rdquo; loader using only CSS. With a small bit of digging and playing, here&rsquo;s what I came up with:</p>
-
-<p data-height="265" data-theme-id="dark" data-slug-hash="KqMgaB" data-default-tab="result" data-user="callmenick" data-embed-version="2" data-pen-title="Infinity Loader" class="codepen">See the Pen <a href="https://codepen.io/callmenick/pen/KqMgaB/">Infinity Loader</a> by Nick Salloum (<a href="https://codepen.io/callmenick">@callmenick</a>) on <a href="https://codepen.io">CodePen</a>.</p>
-
+        <!-- raw HTML omitted -->
+<p>I had an idea recently. I wanted to create an &ldquo;Infinity&rdquo; loader using only CSS. With a small bit of digging and playing, here's what I came up with:</p>
+<!-- raw HTML omitted -->
 <p>But how!? Before you peep at the resulting code in the above pen, take a read below to learn about some fun and new CSS properties.</p>
-
 <h2 id="introducing-css-offset">Introducing CSS <code>offset</code></h2>
-
 <p>The <code>offset</code> property in CSS is <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/offset">defined by the MDN as</a>:</p>
-
 <blockquote>
 <p>a shorthand property for animating an element along a defined path.</p>
 </blockquote>
-
-<p>It&rsquo;s a fairly new and fun property that was formerly defined as <code>motion</code>. But what exactly does it entail? If you&rsquo;re unfamiliar with SVG, then I&rsquo;ll quickly point you over to my <a href="http://callmenick.com/post/getting-started-inline-svg">Getting Started with Inline SVG</a> tutorial. If you are familiar, then great. The <code>offset</code> property consists of 3 separate properties working together:</p>
-
+<p>It's a fairly new and fun property that was formerly defined as <code>motion</code>. But what exactly does it entail? If you're unfamiliar with SVG, then I'll quickly point you over to my <a href="http://callmenick.com/post/getting-started-inline-svg">Getting Started with Inline SVG</a> tutorial. If you are familiar, then great. The <code>offset</code> property consists of 3 separate properties working together:</p>
 <ul>
 <li><code>offset-path</code> - specifies the path on which an object gets positioned</li>
 <li><code>offset-distance</code> - specifies the object position along an <code>offset-path</code></li>
 <li><code>offset-rotate</code> - specifies the direction of the object while positioning it along an <code>offset-path</code></li>
 </ul>
-
-<p>In this tutorial, we&rsquo;re only going to make use of the first two mentioned properties. But before we have any fun, let&rsquo;s dig a bit further into them.</p>
-
+<p>In this tutorial, we're only going to make use of the first two mentioned properties. But before we have any fun, let's dig a bit further into them.</p>
 <h2 id="understanding-offset-path-and-offset-distance">Understanding <code>offset-path</code> and <code>offset-distance</code></h2>
-
-<p>We know what an <code>offset-path</code> is now, but how do we define one? Let&rsquo;s grab some more source content from the MDN:</p>
-
+<p>We know what an <code>offset-path</code> is now, but how do we define one? Let's grab some more source content from the MDN:</p>
 <blockquote>
 <p>An offset path is either a specified path with one or multiple sub-paths or the geometry of a not-styled basic shape. Each shape or path must define an initial position for the computed value of &ldquo;0&rdquo; for <code>offset-distance</code> and an initial direction which specifies the rotation of the object to the initial position.</p>
 </blockquote>
-
-<p>The formal syntax definition also gives us additional implementation details, such as what we can use to define our offset path. For now, let&rsquo;s pay attention to paths.</p>
-
+<p>The formal syntax definition also gives us additional implementation details, such as what we can use to define our offset path. For now, let's pay attention to paths.</p>
 <h2 id="defining-our-infinity-path">Defining our Infinity Path</h2>
-
 <p>The easiest way (for me, at least) to create an infinity path was to use Adobe Illustrator. From there, I flexed every ounce of my design strength, and came up with this:</p>
-
-<p><svg xmlns="http://www.w3.org/2000/svg" width="65" height="28" viewBox="0 0 65 28">
-  <path d="M23.71 5.21l17.58 17.58a12.43 12.43 0 0 0 17.57 0 12.43 12.43 0 0 0 0-17.57 12.43 12.43 0 0 0-17.57 0L23.71 22.79a12.43 12.43 0 0 1-17.57 0 12.43 12.43 0 0 1 0-17.57 12.43 12.43 0 0 1 17.57-.01z" fill="none" stroke="#673AB7" stroke-width="2" />
-</svg></p>
-
+<!-- raw HTML omitted -->
 <p>I exported this as an SVG, then got the path coordinates and bounding box dimensions:</p>
-
 <pre><code>width: 65px
 height: 28px
 path coordinates: M23.71 5.21l17.58 17.58a12.43 12.43 0 0 0 17.57 0 12.43 12.43 0 0 0 0-17.57 12.43 12.43 0 0 0-17.57 0L23.71 22.79a12.43 12.43 0 0 1-17.57 0 12.43 12.43 0 0 1 0-17.57 12.43 12.43 0 0 1 17.57-.01z
-</code></pre>
-
-<p>Based on that data, we&rsquo;re easily able to apply the offset path to a CSS selector:</p>
-
-<pre><code class="language-css">.selector {
-  offset-path: path(&quot;M23.71 5.21l17.58 17.58a12.43 12.43 0 0 0 17.57 0 12.43 12.43 0 0 0 0-17.57 12.43 12.43 0 0 0-17.57 0L23.71 22.79a12.43 12.43 0 0 1-17.57 0 12.43 12.43 0 0 1 0-17.57 12.43 12.43 0 0 1 17.57-.01z&quot;);
+</code></pre><p>Based on that data, we're easily able to apply the offset path to a CSS selector:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">.<span style="color:#a6e22e">selector</span> {
+  offset-path: <span style="color:#a6e22e">path</span>(<span style="color:#e6db74">&#34;M23.71 5.21l17.58 17.58a12.43 12.43 0 0 0 17.57 0 12.43 12.43 0 0 0 0-17.57 12.43 12.43 0 0 0-17.57 0L23.71 22.79a12.43 12.43 0 0 1-17.57 0 12.43 12.43 0 0 1 0-17.57 12.43 12.43 0 0 1 17.57-.01z&#34;</span>);
 }
-</code></pre>
-
-<p>So far, things make sense, but as of now, there&rsquo;s absolutely no visual feedback. Let&rsquo;s get things moving.</p>
-
+</code></pre></div><p>So far, things make sense, but as of now, there's absolutely no visual feedback. Let's get things moving.</p>
 <h2 id="applying-styles-and-animations-to-our-element">Applying Styles and Animations to our Element</h2>
-
-<p>Let&rsquo;s assume that we want to call our loader in our HTML like this:</p>
-
-<pre><code class="language-html">&lt;span class=&quot;loader&quot;&gt;&lt;/span&gt;
-</code></pre>
-
-<p>Based on our data, we can initialise our loader CSS like this:</p>
-
-<pre><code class="language-css">.loader {
-  position: relative;
-  display: block;
-  width: 65px;
-  height: 28px;
+<p>Let's assume that we want to call our loader in our HTML like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;loader&#34;</span>&gt;&lt;/<span style="color:#f92672">span</span>&gt;
+</code></pre></div><p>Based on our data, we can initialise our loader CSS like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">.<span style="color:#a6e22e">loader</span> {
+  <span style="color:#66d9ef">position</span>: <span style="color:#66d9ef">relative</span>;
+  <span style="color:#66d9ef">display</span>: <span style="color:#66d9ef">block</span>;
+  <span style="color:#66d9ef">width</span>: <span style="color:#ae81ff">65</span><span style="color:#66d9ef">px</span>;
+  <span style="color:#66d9ef">height</span>: <span style="color:#ae81ff">28</span><span style="color:#66d9ef">px</span>;
 }
-</code></pre>
-
-<p>Now that our bounding box is defined, let&rsquo;s create two dots. The idea here is that the dots will be chasing each other along the path of the infinity symbol. I&rsquo;ll use CSS pseudo elements <code>::before</code> and <code>::after</code>:</p>
-
-<pre><code class="language-css">.loader::before,
-.loader::after {
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: block;
-  width: 10px;
-  height: 10px;
-  background-color: #FFEB3B;
-  border-radius: 50%;
-  content: &quot;&quot;;
+</code></pre></div><p>Now that our bounding box is defined, let's create two dots. The idea here is that the dots will be chasing each other along the path of the infinity symbol. I'll use CSS pseudo elements <code>::before</code> and <code>::after</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">.<span style="color:#a6e22e">loader</span>::<span style="color:#a6e22e">before</span><span style="color:#f92672">,</span>
+.<span style="color:#a6e22e">loader</span>::<span style="color:#a6e22e">after</span> {
+  <span style="color:#66d9ef">position</span>: <span style="color:#66d9ef">absolute</span>;
+  <span style="color:#66d9ef">top</span>: <span style="color:#ae81ff">0</span>;
+  <span style="color:#66d9ef">left</span>: <span style="color:#ae81ff">0</span>;
+  <span style="color:#66d9ef">display</span>: <span style="color:#66d9ef">block</span>;
+  <span style="color:#66d9ef">width</span>: <span style="color:#ae81ff">10</span><span style="color:#66d9ef">px</span>;
+  <span style="color:#66d9ef">height</span>: <span style="color:#ae81ff">10</span><span style="color:#66d9ef">px</span>;
+  <span style="color:#66d9ef">background-color</span>: <span style="color:#ae81ff">#FFEB3B</span>;
+  <span style="color:#66d9ef">border-radius</span>: <span style="color:#ae81ff">50</span><span style="color:#66d9ef">%</span>;
+  <span style="color:#66d9ef">content</span>: <span style="color:#e6db74">&#34;&#34;</span>;
 }
-</code></pre>
-
-<p>So far so good. Two dots have been rendered, they&rsquo;re yellow, and they&rsquo;re hanging out. Now, let&rsquo;s position our dots along the path by applying the <code>offset-path</code> property:</p>
-
-<pre><code class="language-css">.loader::before,
-.loader::after {
-  offset-path: path(&quot;M23.71 5.21l17.58 17.58a12.43 12.43 0 0 0 17.57 0 12.43 12.43 0 0 0 0-17.57 12.43 12.43 0 0 0-17.57 0L23.71 22.79a12.43 12.43 0 0 1-17.57 0 12.43 12.43 0 0 1 0-17.57 12.43 12.43 0 0 1 17.57-.01z&quot;);
+</code></pre></div><p>So far so good. Two dots have been rendered, they're yellow, and they're hanging out. Now, let's position our dots along the path by applying the <code>offset-path</code> property:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">.<span style="color:#a6e22e">loader</span>::<span style="color:#a6e22e">before</span><span style="color:#f92672">,</span>
+.<span style="color:#a6e22e">loader</span>::<span style="color:#a6e22e">after</span> {
+  offset-path: <span style="color:#a6e22e">path</span>(<span style="color:#e6db74">&#34;M23.71 5.21l17.58 17.58a12.43 12.43 0 0 0 17.57 0 12.43 12.43 0 0 0 0-17.57 12.43 12.43 0 0 0-17.57 0L23.71 22.79a12.43 12.43 0 0 1-17.57 0 12.43 12.43 0 0 1 0-17.57 12.43 12.43 0 0 1 17.57-.01z&#34;</span>);
 }
-</code></pre>
-
-<p>Awesome, it&rsquo;s coming together. Next up, we need to define our animation keyframes. We&rsquo;ll want to animate the dots along the path, so we&rsquo;ll be starting with an offset distance of 0%, and moving along to an offset distance of 100%:</p>
-
-<pre><code class="language-css">@keyframes loader {
-  0% { offset-distance: 0%; }
-  100% { offset-distance: 100%; }
+</code></pre></div><p>Awesome, it's coming together. Next up, we need to define our animation keyframes. We'll want to animate the dots along the path, so we'll be starting with an offset distance of 0%, and moving along to an offset distance of 100%:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">@<span style="color:#66d9ef">keyframes</span> <span style="color:#f92672">loader</span> {
+  <span style="color:#f92672">0</span><span style="color:#f92672">%</span> { offset-distance: <span style="color:#ae81ff">0</span><span style="color:#66d9ef">%</span>; }
+  <span style="color:#f92672">100</span><span style="color:#f92672">%</span> { offset-distance: <span style="color:#ae81ff">100</span><span style="color:#66d9ef">%</span>; }
 }
-</code></pre>
-
-<p>Now, let&rsquo;s apply the animation to our pseudo elements. I&rsquo;m using a <a href="http://callmenick.com/post/level-up-your-css-animations-with-cubic-bezier">cubic bezier</a> ease-in-out function:</p>
-
-<pre><code class="language-css">.loader::before,
-.loader::after {
-  animation: loader 1500ms cubic-bezier(0.645, 0.045, 0.355, 1) infinite;
+</code></pre></div><p>Now, let's apply the animation to our pseudo elements. I'm using a <a href="http://callmenick.com/post/level-up-your-css-animations-with-cubic-bezier">cubic bezier</a> ease-in-out function:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">.<span style="color:#a6e22e">loader</span>::<span style="color:#a6e22e">before</span><span style="color:#f92672">,</span>
+.<span style="color:#a6e22e">loader</span>::<span style="color:#a6e22e">after</span> {
+  <span style="color:#66d9ef">animation</span>: loader <span style="color:#ae81ff">1500</span><span style="color:#66d9ef">ms</span> cubic-bezier(<span style="color:#ae81ff">0.645</span>, <span style="color:#ae81ff">0.045</span>, <span style="color:#ae81ff">0.355</span>, <span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">infinite</span>;
 }
-</code></pre>
-
-<p>There&rsquo;s motion! But the two dots look like one. Let&rsquo;s delay the movement of the second dot:</p>
-
+</code></pre></div><p>There's motion! But the two dots look like one. Let's delay the movement of the second dot:</p>
 <pre><code>.loader::after {
   animation-delay: 100ms;
 }
-</code></pre>
-
-<p>And voila! Once again, the result:</p>
-
-<p data-height="265" data-theme-id="dark" data-slug-hash="KqMgaB" data-default-tab="result" data-user="callmenick" data-embed-version="2" data-pen-title="Infinity Loader" class="codepen">See the Pen <a href="https://codepen.io/callmenick/pen/KqMgaB/">Infinity Loader</a> by Nick Salloum (<a href="https://codepen.io/callmenick">@callmenick</a>) on <a href="https://codepen.io">CodePen</a>.</p>
-
+</code></pre><p>And voila! Once again, the result:</p>
+<!-- raw HTML omitted -->
 <h2 id="support">Support</h2>
-
 <p>This is a super new property on the market, so support is pretty weak. Chrome supports it, but older versions of Chrome use <code>motion</code>. Is&rsquo; under consideration for Edge and Firefox. I recommend coupling usage of this with <a href="https://developer.mozilla.org/en/docs/Web/CSS/@supports">CSS @supports</a> to ensure a fallback.</p>
-
 <h2 id="wrap-up">Wrap Up</h2>
-
-<p>Today, we looked at the new <code>offset</code> CSS property, coupled it with CSS animations, and made something cool. The possibilities continue to grow with CSS, so I encourage you to try it out. Thanks again for reading, and ff you have and questions, comments, or feedback, feel free to <a href="http://twitter.com/home?status=@nicksalloum_ I got a question for you!" target="_blank">send me a tweet.</a></p>
-
-<div class="ButtonGroup ButtonGroup--gutter-md ButtonGroup--align-center">
-  <a href="https://codepen.io/callmenick/pen/KqMgaB" class="Button Button--display-inlineBlock Button--appearance-secondary Button--size-sm">
-    Get Source
-  </a>
-  <a href="https://codepen.io/callmenick/full/KqMgaB/" class="Button Button--display-inlineBlock Button--appearance-secondary Button--size-sm">
-    View Demo
-  </a>
-</div>
-
-<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+<p>Today, we looked at the new <code>offset</code> CSS property, coupled it with CSS animations, and made something cool. The possibilities continue to grow with CSS, so I encourage you to try it out. Thanks again for reading, and ff you have and questions, comments, or feedback, feel free to <!-- raw HTML omitted -->send me a tweet.<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 
       </div>
     </div>

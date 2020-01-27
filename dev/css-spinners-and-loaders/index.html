@@ -79,331 +79,280 @@
     </div>
     <div class="Article-content">
       <div class="Content">
-        
-
-<div class="ButtonGroup ButtonGroup--gutter-md ButtonGroup--align-center">
-  <a href="https://codepen.io/callmenick/pen/XzbExK" class="Button Button--display-inlineBlock Button--appearance-secondary Button--size-sm">
-    Get Source
-  </a>
-  <a href="https://codepen.io/callmenick/full/XzbExK/" class="Button Button--display-inlineBlock Button--appearance-secondary Button--size-sm">
-    View Demo
-  </a>
-</div>
-
-<h2 id="why-css-spinners-loaders">Why CSS Spinners &amp; Loaders?</h2>
-
+        <!-- raw HTML omitted -->
+<h2 id="why-css-spinners--loaders">Why CSS Spinners &amp; Loaders?</h2>
 <p>Because:</p>
-
 <ol>
 <li>They are crisp, and can scale to any size</li>
 <li>They require one less dependency</li>
 <li>They can be easily modified (maintainability, anyone!?)</li>
 <li>They are fun to make</li>
 </ol>
-
 <p>Using some basic CSS to construct shapes, and some more advanced CSS3 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation">animations</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@keyframes">keyframes</a> for some movement, we can created beautiful, scalable, and easily modifiable CSS spinners and loaders.</p>
+<p>I'm going to demonstrate 4 different spinners, and how to construct them. Here's what they will look like:</p>
+<!-- raw HTML omitted -->
+<p>You can get right to the source by clicking on the links above, or navigating the embedded pen. Some math is involved in creating these spinners, but we're developers after all, math is easy! Let's dive in.</p>
+<h2 id="common-html--sass">Common HTML &amp; Sass</h2>
+<p>All our loaders are single-element loaders, meaning we only have one element in our markup for each spinner. For each spinner, we’ll be using a combination of base level styling and pseudo-class <code>::before</code> and <code>::after</code>. We'll also use Sass to get some variables in the mix, making them easier to maintain and scale. Here’s what our common HTML looks like:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Spinner Spinner--disc&#34;</span>&gt;&lt;/<span style="color:#f92672">span</span>&gt;
+&lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Spinner Spinner--radar&#34;</span>&gt;&lt;/<span style="color:#f92672">span</span>&gt;
+&lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Spinner Spinner--path&#34;</span>&gt;&lt;/<span style="color:#f92672">span</span>&gt;
+&lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Spinner Spinner--pulse&#34;</span>&gt;&lt;/<span style="color:#f92672">span</span>&gt;
+</code></pre></div><p>And now our common Sass:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss">$spinnerSize<span style="color:#f92672">:</span> <span style="color:#ae81ff">4</span><span style="color:#66d9ef"></span>;
+$spinnerColPrimary<span style="color:#f92672">:</span> <span style="color:#ae81ff">#2196F3</span>;
+$spinnerColSecondary<span style="color:#f92672">:</span> <span style="color:#ae81ff">#CFD8DC</span>;
 
-<p>I&rsquo;m going to demonstrate 4 different spinners, and how to construct them. Here&rsquo;s what they will look like:</p>
+<span style="color:#a6e22e">.</span><span style="color:#a6e22e">Spinner</span> {
+  <span style="color:#f92672">position</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">relative</span>;
+  <span style="color:#f92672">display</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">block</span>;
+  <span style="color:#f92672">font-size</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">10px</span>;
+  <span style="color:#f92672">width</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerSize</span> <span style="color:#f92672">*</span> <span style="color:#f92672">1em</span>;
+  <span style="color:#f92672">height</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerSize</span> <span style="color:#f92672">*</span> <span style="color:#f92672">1em</span>;
 
-<p><p data-height="371" data-theme-id="light" data-slug-hash="XzbExK" data-default-tab="result" data-user="callmenick" data-embed-version="2" data-pen-title="CSS Spinners and Loaders" class="codepen">See the Pen <a href="https://codepen.io/callmenick/pen/XzbExK/">CSS Spinners and Loaders</a> by Nick Salloum (<a href="https://codepen.io/callmenick">@callmenick</a>) on <a href="https://codepen.io">CodePen</a>.</p>
-<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script></p>
-
-<p>You can get right to the source by clicking on the links above, or navigating the embedded pen. Some math is involved in creating these spinners, but we&rsquo;re developers after all, math is easy! Let&rsquo;s dive in.</p>
-
-<h2 id="common-html-sass">Common HTML &amp; Sass</h2>
-
-<p>All our loaders are single-element loaders, meaning we only have one element in our markup for each spinner. For each spinner, we’ll be using a combination of base level styling and pseudo-class <code>::before</code> and <code>::after</code>. We&rsquo;ll also use Sass to get some variables in the mix, making them easier to maintain and scale. Here’s what our common HTML looks like:</p>
-
-<pre><code class="language-html">&lt;span class=&quot;Spinner Spinner--disc&quot;&gt;&lt;/span&gt;
-&lt;span class=&quot;Spinner Spinner--radar&quot;&gt;&lt;/span&gt;
-&lt;span class=&quot;Spinner Spinner--path&quot;&gt;&lt;/span&gt;
-&lt;span class=&quot;Spinner Spinner--pulse&quot;&gt;&lt;/span&gt;
-</code></pre>
-
-<p>And now our common Sass:</p>
-
-<pre><code class="language-scss">$spinnerSize: 4;
-$spinnerColPrimary: #2196F3;
-$spinnerColSecondary: #CFD8DC;
-
-.Spinner {
-  position: relative;
-  display: block;
-  font-size: 10px;
-  width: $spinnerSize * 1em;
-  height: $spinnerSize * 1em;
-
-  &amp;::before,
-  &amp;::after {
-    position: absolute;
-    display: block;
-    content: &quot;&quot;;
+  <span style="color:#66d9ef">&amp;</span><span style="color:#a6e22e">:</span><span style="color:#a6e22e">:</span><span style="color:#a6e22e">before</span><span style="color:#f92672">,</span>
+  <span style="color:#66d9ef">&amp;</span><span style="color:#a6e22e">:</span><span style="color:#a6e22e">:</span><span style="color:#a6e22e">after</span> {
+    <span style="color:#f92672">position</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">absolute</span>;
+    <span style="color:#f92672">display</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">block</span>;
+    <span style="color:#f92672">content</span><span style="color:#a6e22e">:</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">&#34;</span>;
   }
 }
-</code></pre>
-
-<p>Now, let’s get into each of our loaders and their individual styles.</p>
-
-<h2 id="spinner-loader-1-the-spinning-disc">Spinner/Loader #1 - The Spinning Disc</h2>
-
+</code></pre></div><p>Now, let’s get into each of our loaders and their individual styles.</p>
+<h2 id="spinnerloader-1---the-spinning-disc">Spinner/Loader #1 - The Spinning Disc</h2>
 <p>In this spinner, we have a large circular disc. Inside that disc, there’s a smaller, differently coloured circular disc. This small disc spins around the centre axis of the large disc, and is offset a little bit from the edge. We will apply a rotational animation to the entire disc, giving the illusion that only the small one is spinning. Here’s what the Sass looks like:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss">$spinnerDiscDotSize<span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span><span style="color:#66d9ef"></span><span style="color:#ae81ff">.2</span><span style="color:#66d9ef"></span>;
+$spinnerDiscDotTop<span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span><span style="color:#66d9ef"></span><span style="color:#ae81ff">.1</span><span style="color:#66d9ef"></span>;
+$spinnerDiscDotLeft<span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span><span style="color:#66d9ef"></span><span style="color:#ae81ff">.5</span><span style="color:#66d9ef"></span> <span style="color:#f92672">-</span> ($spinnerDiscDotSize<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span><span style="color:#66d9ef"></span>);
 
-<pre><code class="language-scss">$spinnerDiscDotSize: 0.2;
-$spinnerDiscDotTop: 0.1;
-$spinnerDiscDotLeft: 0.5 - ($spinnerDiscDotSize/2);
+<span style="color:#a6e22e">.</span><span style="color:#a6e22e">Spinner--disc</span> {
+  <span style="color:#f92672">background-color</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerColPrimary</span>;
+  <span style="color:#f92672">border-radius</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">50</span><span style="color:#960050;background-color:#1e0010">%</span>;
+  <span style="color:#f92672">transform-origin</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">50</span><span style="color:#960050;background-color:#1e0010">%</span> <span style="color:#f92672">50</span><span style="color:#960050;background-color:#1e0010">%</span>;
+  <span style="color:#f92672">animation</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">disc</span> <span style="color:#f92672">1200ms</span> <span style="color:#f92672">cubic-bezier</span><span style="color:#f92672">(</span><span style="color:#f92672">0</span><span style="color:#a6e22e">.</span><span style="color:#a6e22e">645</span><span style="color:#f92672">,</span> <span style="color:#f92672">0</span><span style="color:#a6e22e">.</span><span style="color:#a6e22e">045</span><span style="color:#f92672">,</span> <span style="color:#f92672">0</span><span style="color:#a6e22e">.</span><span style="color:#a6e22e">355</span><span style="color:#f92672">,</span> <span style="color:#f92672">1</span><span style="color:#f92672">)</span> <span style="color:#f92672">infinite</span>;
 
-.Spinner--disc {
-  background-color: $spinnerColPrimary;
-  border-radius: 50%;
-  transform-origin: 50% 50%;
-  animation: disc 1200ms cubic-bezier(0.645, 0.045, 0.355, 1) infinite;
-
-  &amp;::before {
-    top: $spinnerSize * $spinnerDiscDotTop * 1em;
-    left: $spinnerSize * $spinnerDiscDotLeft * 1em;
-    width: $spinnerSize * $spinnerDiscDotSize * 1em;
-    height: $spinnerSize * $spinnerDiscDotSize * 1em;
-    background-color: #fff;
-    border-radius: 50%;
+  <span style="color:#66d9ef">&amp;</span><span style="color:#a6e22e">:</span><span style="color:#a6e22e">:</span><span style="color:#a6e22e">before</span> {
+    <span style="color:#f92672">top</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerSize</span> <span style="color:#f92672">*</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerDiscDotTop</span> <span style="color:#f92672">*</span> <span style="color:#f92672">1em</span>;
+    <span style="color:#f92672">left</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerSize</span> <span style="color:#f92672">*</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerDiscDotLeft</span> <span style="color:#f92672">*</span> <span style="color:#f92672">1em</span>;
+    <span style="color:#f92672">width</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerSize</span> <span style="color:#f92672">*</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerDiscDotSize</span> <span style="color:#f92672">*</span> <span style="color:#f92672">1em</span>;
+    <span style="color:#f92672">height</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerSize</span> <span style="color:#f92672">*</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerDiscDotSize</span> <span style="color:#f92672">*</span> <span style="color:#f92672">1em</span>;
+    <span style="color:#f92672">background-color</span><span style="color:#a6e22e">:</span> #fff;
+    <span style="color:#f92672">border-radius</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">50</span><span style="color:#960050;background-color:#1e0010">%</span>;
   }
 }
 
-@keyframes disc {
-  0% {
-    transform: translate3d(0, 0, 0) rotate(0);
+<span style="color:#66d9ef">@keyframes</span> <span style="color:#f92672">disc</span> {
+  <span style="color:#f92672">0</span><span style="color:#960050;background-color:#1e0010">%</span> {
+    <span style="color:#f92672">transform</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">translate3d</span><span style="color:#f92672">(</span><span style="color:#f92672">0</span><span style="color:#f92672">,</span> <span style="color:#f92672">0</span><span style="color:#f92672">,</span> <span style="color:#f92672">0</span><span style="color:#f92672">)</span> <span style="color:#f92672">rotate</span><span style="color:#f92672">(</span><span style="color:#f92672">0</span><span style="color:#f92672">)</span>;
   }
-  100% {
-    transform: translate3d(0, 0, 0) rotate(360deg);
+  <span style="color:#f92672">100</span><span style="color:#960050;background-color:#1e0010">%</span> {
+    <span style="color:#f92672">transform</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">translate3d</span><span style="color:#f92672">(</span><span style="color:#f92672">0</span><span style="color:#f92672">,</span> <span style="color:#f92672">0</span><span style="color:#f92672">,</span> <span style="color:#f92672">0</span><span style="color:#f92672">)</span> <span style="color:#f92672">rotate</span><span style="color:#f92672">(</span><span style="color:#f92672">360deg</span><span style="color:#f92672">)</span>;
   }
 }
-</code></pre>
-
-<h2 id="spinner-loader-2-the-radar">Spinner/Loader #2 - The Radar</h2>
-
+</code></pre></div><h2 id="spinnerloader-2---the-radar">Spinner/Loader #2 - The Radar</h2>
 <p>This spinner looks like a satellite/spaceship/cyclops of some sort. Cool. We have a stationary small disc, and around it a bigger disc that is somehow cut in half. This is a lot easier than you think, and is achieved with a combination of the border-radius and border properties. A transparent border on the left and right of this disc gives it the effect.. This exterior half disc piece does the spinning, this time with an easing function. Here’s the Sass:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss">$spinnerRadarOuterSize<span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span><span style="color:#66d9ef"></span><span style="color:#ae81ff">.15</span><span style="color:#66d9ef"></span>;
+$spinnerRadarInnerSize<span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span><span style="color:#66d9ef"></span><span style="color:#ae81ff">.4</span><span style="color:#66d9ef"></span>;
+$spinnerRadarInnerTop<span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span><span style="color:#66d9ef"></span><span style="color:#ae81ff">.5</span><span style="color:#66d9ef"></span> <span style="color:#f92672">-</span> ($spinnerRadarInnerSize <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span><span style="color:#66d9ef"></span>);
+$spinnerRadarInnerLeft<span style="color:#f92672">:</span> $spinnerRadarInnerTop;
 
-<pre><code class="language-scss">$spinnerRadarOuterSize: 0.15;
-$spinnerRadarInnerSize: 0.4;
-$spinnerRadarInnerTop: 0.5 - ($spinnerRadarInnerSize / 2);
-$spinnerRadarInnerLeft: $spinnerRadarInnerTop;
+<span style="color:#a6e22e">.</span><span style="color:#a6e22e">Spinner--radar</span> {
+  <span style="color:#f92672">animation</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">radar</span> <span style="color:#f92672">1200ms</span> <span style="color:#f92672">cubic-bezier</span><span style="color:#f92672">(</span><span style="color:#f92672">0</span><span style="color:#a6e22e">.</span><span style="color:#a6e22e">645</span><span style="color:#f92672">,</span> <span style="color:#f92672">0</span><span style="color:#a6e22e">.</span><span style="color:#a6e22e">045</span><span style="color:#f92672">,</span> <span style="color:#f92672">0</span><span style="color:#a6e22e">.</span><span style="color:#a6e22e">355</span><span style="color:#f92672">,</span> <span style="color:#f92672">1</span><span style="color:#f92672">)</span> <span style="color:#f92672">infinite</span>;
 
-.Spinner--radar {
-  animation: radar 1200ms cubic-bezier(0.645, 0.045, 0.355, 1) infinite;
-
-  &amp;::before {
-    width: 100%;
-    height: 100%;
-    border-style: solid;
-    border-width: $spinnerSize * $spinnerRadarOuterSize * 1em;
-    border-color: $spinnerColSecondary transparent;
-    border-radius: 50%;
+  <span style="color:#66d9ef">&amp;</span><span style="color:#a6e22e">:</span><span style="color:#a6e22e">:</span><span style="color:#a6e22e">before</span> {
+    <span style="color:#f92672">width</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">100</span><span style="color:#960050;background-color:#1e0010">%</span>;
+    <span style="color:#f92672">height</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">100</span><span style="color:#960050;background-color:#1e0010">%</span>;
+    <span style="color:#f92672">border-style</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">solid</span>;
+    <span style="color:#f92672">border-width</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerSize</span> <span style="color:#f92672">*</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerRadarOuterSize</span> <span style="color:#f92672">*</span> <span style="color:#f92672">1em</span>;
+    <span style="color:#f92672">border-color</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerColSecondary</span> <span style="color:#f92672">transparent</span>;
+    <span style="color:#f92672">border-radius</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">50</span><span style="color:#960050;background-color:#1e0010">%</span>;
   }
 
-  &amp;::after {
-    top: $spinnerSize * $spinnerRadarInnerTop * 1em;
-    left: $spinnerSize * $spinnerRadarInnerTop * 1em;
-    width: $spinnerSize * $spinnerRadarInnerSize * 1em;
-    height: $spinnerSize * $spinnerRadarInnerSize * 1em;
-    background-color: $spinnerColPrimary;
-    border-radius: 50%;
-  }
-}
-
-@keyframes radar {
-  0% {
-    transform: translate3d(0, 0, 0) rotate(0);
-  }
-  100% {
-    transform: translate3d(0, 0, 0) rotate(360deg);
+  <span style="color:#66d9ef">&amp;</span><span style="color:#a6e22e">:</span><span style="color:#a6e22e">:</span><span style="color:#a6e22e">after</span> {
+    <span style="color:#f92672">top</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerSize</span> <span style="color:#f92672">*</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerRadarInnerTop</span> <span style="color:#f92672">*</span> <span style="color:#f92672">1em</span>;
+    <span style="color:#f92672">left</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerSize</span> <span style="color:#f92672">*</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerRadarInnerTop</span> <span style="color:#f92672">*</span> <span style="color:#f92672">1em</span>;
+    <span style="color:#f92672">width</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerSize</span> <span style="color:#f92672">*</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerRadarInnerSize</span> <span style="color:#f92672">*</span> <span style="color:#f92672">1em</span>;
+    <span style="color:#f92672">height</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerSize</span> <span style="color:#f92672">*</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerRadarInnerSize</span> <span style="color:#f92672">*</span> <span style="color:#f92672">1em</span>;
+    <span style="color:#f92672">background-color</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerColPrimary</span>;
+    <span style="color:#f92672">border-radius</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">50</span><span style="color:#960050;background-color:#1e0010">%</span>;
   }
 }
-</code></pre>
 
-<h2 id="spinner-loader-3-the-disc-path">Spinner/Loader #3 - The Disc Path</h2>
-
+<span style="color:#66d9ef">@keyframes</span> <span style="color:#f92672">radar</span> {
+  <span style="color:#f92672">0</span><span style="color:#960050;background-color:#1e0010">%</span> {
+    <span style="color:#f92672">transform</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">translate3d</span><span style="color:#f92672">(</span><span style="color:#f92672">0</span><span style="color:#f92672">,</span> <span style="color:#f92672">0</span><span style="color:#f92672">,</span> <span style="color:#f92672">0</span><span style="color:#f92672">)</span> <span style="color:#f92672">rotate</span><span style="color:#f92672">(</span><span style="color:#f92672">0</span><span style="color:#f92672">)</span>;
+  }
+  <span style="color:#f92672">100</span><span style="color:#960050;background-color:#1e0010">%</span> {
+    <span style="color:#f92672">transform</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">translate3d</span><span style="color:#f92672">(</span><span style="color:#f92672">0</span><span style="color:#f92672">,</span> <span style="color:#f92672">0</span><span style="color:#f92672">,</span> <span style="color:#f92672">0</span><span style="color:#f92672">)</span> <span style="color:#f92672">rotate</span><span style="color:#f92672">(</span><span style="color:#f92672">360deg</span><span style="color:#f92672">)</span>;
+  }
+}
+</code></pre></div><h2 id="spinnerloader-3---the-disc-path">Spinner/Loader #3 - The Disc Path</h2>
 <p>This spinner consists of two discs of the same size, on opposite ends of an imaginary container. The discs converge at the centre of the container, then move vertically in opposite directions. They then move back to the centre of the imaginary container, and back to their start positions. This is all achieved with  the CSS3 <code>transform: translate()</code> property. Some math is needed to calculate the positions in which they should move. Basic math, though. Here’s the Sass:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss">$spinnerPathDotSize<span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span><span style="color:#66d9ef"></span><span style="color:#ae81ff">.4</span><span style="color:#66d9ef"></span>;
 
-<pre><code class="language-scss">$spinnerPathDotSize: 0.4;
-
-.Spinner--path {
-  &amp;::before,
-  &amp;::after {
-    width: $spinnerSize * $spinnerPathDotSize * 1em;
-    height: $spinnerSize * $spinnerPathDotSize * 1em;
-    border-radius: 50%;
-    animation-duration: 900ms;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
+<span style="color:#a6e22e">.</span><span style="color:#a6e22e">Spinner--path</span> {
+  <span style="color:#66d9ef">&amp;</span><span style="color:#a6e22e">:</span><span style="color:#a6e22e">:</span><span style="color:#a6e22e">before</span><span style="color:#f92672">,</span>
+  <span style="color:#66d9ef">&amp;</span><span style="color:#a6e22e">:</span><span style="color:#a6e22e">:</span><span style="color:#a6e22e">after</span> {
+    <span style="color:#f92672">width</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerSize</span> <span style="color:#f92672">*</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerPathDotSize</span> <span style="color:#f92672">*</span> <span style="color:#f92672">1em</span>;
+    <span style="color:#f92672">height</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerSize</span> <span style="color:#f92672">*</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerPathDotSize</span> <span style="color:#f92672">*</span> <span style="color:#f92672">1em</span>;
+    <span style="color:#f92672">border-radius</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">50</span><span style="color:#960050;background-color:#1e0010">%</span>;
+    <span style="color:#f92672">animation-duration</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">900ms</span>;
+    <span style="color:#f92672">animation-timing-function</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">linear</span>;
+    <span style="color:#f92672">animation-iteration-count</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">infinite</span>;
   }
 
-  &amp;::before {
-    background-color: $spinnerColPrimary;
-    transform: translate3d(
-      0,
-      $spinnerSize * (0.5 - $spinnerPathDotSize/2) * 1em,
-      0
-    );
-    animation-name: pathRightUpAndBack;
+  <span style="color:#66d9ef">&amp;</span><span style="color:#a6e22e">:</span><span style="color:#a6e22e">:</span><span style="color:#a6e22e">before</span> {
+    <span style="color:#f92672">background-color</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerColPrimary</span>;
+    <span style="color:#f92672">transform</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">translate3d</span><span style="color:#f92672">(</span>
+      <span style="color:#f92672">0</span><span style="color:#f92672">,</span>
+      <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerSize</span> <span style="color:#f92672">*</span> <span style="color:#f92672">(</span><span style="color:#f92672">0</span><span style="color:#a6e22e">.</span><span style="color:#a6e22e">5</span> <span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerPathDotSize</span><span style="color:#f92672">/</span><span style="color:#f92672">2</span><span style="color:#f92672">)</span> <span style="color:#f92672">*</span> <span style="color:#f92672">1em</span><span style="color:#f92672">,</span>
+      <span style="color:#f92672">0</span>
+    <span style="color:#f92672">)</span>;
+    <span style="color:#f92672">animation-name</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">pathRightUpAndBack</span>;
   }
 
-  &amp;::after {
-    background-color: $spinnerColSecondary;
-    transform: translate3d(
-      $spinnerSize * (1 - $spinnerPathDotSize) * 1em,
-      $spinnerSize * (0.5 - $spinnerPathDotSize/2) * 1em,
-      0
-    );
-    animation-name: pathLeftDownAndBack;
+  <span style="color:#66d9ef">&amp;</span><span style="color:#a6e22e">:</span><span style="color:#a6e22e">:</span><span style="color:#a6e22e">after</span> {
+    <span style="color:#f92672">background-color</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerColSecondary</span>;
+    <span style="color:#f92672">transform</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">translate3d</span><span style="color:#f92672">(</span>
+      <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerSize</span> <span style="color:#f92672">*</span> <span style="color:#f92672">(</span><span style="color:#f92672">1</span> <span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerPathDotSize</span><span style="color:#f92672">)</span> <span style="color:#f92672">*</span> <span style="color:#f92672">1em</span><span style="color:#f92672">,</span>
+      <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerSize</span> <span style="color:#f92672">*</span> <span style="color:#f92672">(</span><span style="color:#f92672">0</span><span style="color:#a6e22e">.</span><span style="color:#a6e22e">5</span> <span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerPathDotSize</span><span style="color:#f92672">/</span><span style="color:#f92672">2</span><span style="color:#f92672">)</span> <span style="color:#f92672">*</span> <span style="color:#f92672">1em</span><span style="color:#f92672">,</span>
+      <span style="color:#f92672">0</span>
+    <span style="color:#f92672">)</span>;
+    <span style="color:#f92672">animation-name</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">pathLeftDownAndBack</span>;
   }
 }
 
-@keyframes pathRightUpAndBack {
-  0% {
-    transform: translate3d(
-      0,
-      $spinnerSize * (0.5 - $spinnerPathDotSize/2) * 1em,
-      0
-    );
+<span style="color:#66d9ef">@keyframes</span> <span style="color:#f92672">pathRightUpAndBack</span> {
+  <span style="color:#f92672">0</span><span style="color:#960050;background-color:#1e0010">%</span> {
+    <span style="color:#f92672">transform</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">translate3d</span><span style="color:#f92672">(</span>
+      <span style="color:#f92672">0</span><span style="color:#f92672">,</span>
+      <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerSize</span> <span style="color:#f92672">*</span> <span style="color:#f92672">(</span><span style="color:#f92672">0</span><span style="color:#a6e22e">.</span><span style="color:#a6e22e">5</span> <span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerPathDotSize</span><span style="color:#f92672">/</span><span style="color:#f92672">2</span><span style="color:#f92672">)</span> <span style="color:#f92672">*</span> <span style="color:#f92672">1em</span><span style="color:#f92672">,</span>
+      <span style="color:#f92672">0</span>
+    <span style="color:#f92672">)</span>;
   }
-  25% {
-    transform: translate3d(
-      $spinnerSize * (0.5 - $spinnerPathDotSize/2) * 1em,
-      $spinnerSize * (0.5 - $spinnerPathDotSize/2) * 1em,
-      0
-    );
+  <span style="color:#f92672">25</span><span style="color:#960050;background-color:#1e0010">%</span> {
+    <span style="color:#f92672">transform</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">translate3d</span><span style="color:#f92672">(</span>
+      <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerSize</span> <span style="color:#f92672">*</span> <span style="color:#f92672">(</span><span style="color:#f92672">0</span><span style="color:#a6e22e">.</span><span style="color:#a6e22e">5</span> <span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerPathDotSize</span><span style="color:#f92672">/</span><span style="color:#f92672">2</span><span style="color:#f92672">)</span> <span style="color:#f92672">*</span> <span style="color:#f92672">1em</span><span style="color:#f92672">,</span>
+      <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerSize</span> <span style="color:#f92672">*</span> <span style="color:#f92672">(</span><span style="color:#f92672">0</span><span style="color:#a6e22e">.</span><span style="color:#a6e22e">5</span> <span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerPathDotSize</span><span style="color:#f92672">/</span><span style="color:#f92672">2</span><span style="color:#f92672">)</span> <span style="color:#f92672">*</span> <span style="color:#f92672">1em</span><span style="color:#f92672">,</span>
+      <span style="color:#f92672">0</span>
+    <span style="color:#f92672">)</span>;
   }
-  50% {
-    transform: translate3d(
-      $spinnerSize * (0.5 - $spinnerPathDotSize/2) * 1em,
-      0,
-      0
-    );
+  <span style="color:#f92672">50</span><span style="color:#960050;background-color:#1e0010">%</span> {
+    <span style="color:#f92672">transform</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">translate3d</span><span style="color:#f92672">(</span>
+      <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerSize</span> <span style="color:#f92672">*</span> <span style="color:#f92672">(</span><span style="color:#f92672">0</span><span style="color:#a6e22e">.</span><span style="color:#a6e22e">5</span> <span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerPathDotSize</span><span style="color:#f92672">/</span><span style="color:#f92672">2</span><span style="color:#f92672">)</span> <span style="color:#f92672">*</span> <span style="color:#f92672">1em</span><span style="color:#f92672">,</span>
+      <span style="color:#f92672">0</span><span style="color:#f92672">,</span>
+      <span style="color:#f92672">0</span>
+    <span style="color:#f92672">)</span>;
   }
-  75% {
-    transform: translate3d(
-      $spinnerSize * (0.5 - $spinnerPathDotSize/2) * 1em,
-      $spinnerSize * (0.5 - $spinnerPathDotSize/2) * 1em,
-      0
-    );
+  <span style="color:#f92672">75</span><span style="color:#960050;background-color:#1e0010">%</span> {
+    <span style="color:#f92672">transform</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">translate3d</span><span style="color:#f92672">(</span>
+      <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerSize</span> <span style="color:#f92672">*</span> <span style="color:#f92672">(</span><span style="color:#f92672">0</span><span style="color:#a6e22e">.</span><span style="color:#a6e22e">5</span> <span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerPathDotSize</span><span style="color:#f92672">/</span><span style="color:#f92672">2</span><span style="color:#f92672">)</span> <span style="color:#f92672">*</span> <span style="color:#f92672">1em</span><span style="color:#f92672">,</span>
+      <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerSize</span> <span style="color:#f92672">*</span> <span style="color:#f92672">(</span><span style="color:#f92672">0</span><span style="color:#a6e22e">.</span><span style="color:#a6e22e">5</span> <span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerPathDotSize</span><span style="color:#f92672">/</span><span style="color:#f92672">2</span><span style="color:#f92672">)</span> <span style="color:#f92672">*</span> <span style="color:#f92672">1em</span><span style="color:#f92672">,</span>
+      <span style="color:#f92672">0</span>
+    <span style="color:#f92672">)</span>;
   }
-  100% {
-    transform: translate3d(
-      0,
-      $spinnerSize * (0.5 - $spinnerPathDotSize/2) * 1em,
-      0
-    );
-  }
-}
-
-@keyframes pathLeftDownAndBack {
-  0% {
-    transform: translate3d(
-      $spinnerSize * (1 - $spinnerPathDotSize) * 1em,
-      $spinnerSize * (0.5 - $spinnerPathDotSize/2) * 1em,
-      0
-    );
-  }
-  25% {
-    transform: translate3d(
-      $spinnerSize * (0.5 - $spinnerPathDotSize/2) * 1em,
-      $spinnerSize * (0.5 - $spinnerPathDotSize/2) * 1em,
-      0
-    );
-  }
-  50% {
-    transform: translate3d(
-      $spinnerSize * (0.5 - $spinnerPathDotSize/2) * 1em,
-      $spinnerSize * (1 - $spinnerPathDotSize) * 1em,
-      0
-    );
-  }
-  75% {
-    transform: translate3d(
-      $spinnerSize * (0.5 - $spinnerPathDotSize/2) * 1em,
-      $spinnerSize * (0.5 - $spinnerPathDotSize/2) * 1em,
-      0
-    );
-  }
-  100% {
-    transform: translate3d(
-      $spinnerSize * (1 - $spinnerPathDotSize) * 1em,
-      $spinnerSize * (0.5 - $spinnerPathDotSize/2) * 1em,
-      0
-    );
+  <span style="color:#f92672">100</span><span style="color:#960050;background-color:#1e0010">%</span> {
+    <span style="color:#f92672">transform</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">translate3d</span><span style="color:#f92672">(</span>
+      <span style="color:#f92672">0</span><span style="color:#f92672">,</span>
+      <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerSize</span> <span style="color:#f92672">*</span> <span style="color:#f92672">(</span><span style="color:#f92672">0</span><span style="color:#a6e22e">.</span><span style="color:#a6e22e">5</span> <span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerPathDotSize</span><span style="color:#f92672">/</span><span style="color:#f92672">2</span><span style="color:#f92672">)</span> <span style="color:#f92672">*</span> <span style="color:#f92672">1em</span><span style="color:#f92672">,</span>
+      <span style="color:#f92672">0</span>
+    <span style="color:#f92672">)</span>;
   }
 }
-</code></pre>
 
-<h2 id="spinner-loader-4-the-pulse">Spinner/Loader #4 - The Pulse</h2>
-
+<span style="color:#66d9ef">@keyframes</span> <span style="color:#f92672">pathLeftDownAndBack</span> {
+  <span style="color:#f92672">0</span><span style="color:#960050;background-color:#1e0010">%</span> {
+    <span style="color:#f92672">transform</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">translate3d</span><span style="color:#f92672">(</span>
+      <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerSize</span> <span style="color:#f92672">*</span> <span style="color:#f92672">(</span><span style="color:#f92672">1</span> <span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerPathDotSize</span><span style="color:#f92672">)</span> <span style="color:#f92672">*</span> <span style="color:#f92672">1em</span><span style="color:#f92672">,</span>
+      <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerSize</span> <span style="color:#f92672">*</span> <span style="color:#f92672">(</span><span style="color:#f92672">0</span><span style="color:#a6e22e">.</span><span style="color:#a6e22e">5</span> <span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerPathDotSize</span><span style="color:#f92672">/</span><span style="color:#f92672">2</span><span style="color:#f92672">)</span> <span style="color:#f92672">*</span> <span style="color:#f92672">1em</span><span style="color:#f92672">,</span>
+      <span style="color:#f92672">0</span>
+    <span style="color:#f92672">)</span>;
+  }
+  <span style="color:#f92672">25</span><span style="color:#960050;background-color:#1e0010">%</span> {
+    <span style="color:#f92672">transform</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">translate3d</span><span style="color:#f92672">(</span>
+      <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerSize</span> <span style="color:#f92672">*</span> <span style="color:#f92672">(</span><span style="color:#f92672">0</span><span style="color:#a6e22e">.</span><span style="color:#a6e22e">5</span> <span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerPathDotSize</span><span style="color:#f92672">/</span><span style="color:#f92672">2</span><span style="color:#f92672">)</span> <span style="color:#f92672">*</span> <span style="color:#f92672">1em</span><span style="color:#f92672">,</span>
+      <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerSize</span> <span style="color:#f92672">*</span> <span style="color:#f92672">(</span><span style="color:#f92672">0</span><span style="color:#a6e22e">.</span><span style="color:#a6e22e">5</span> <span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerPathDotSize</span><span style="color:#f92672">/</span><span style="color:#f92672">2</span><span style="color:#f92672">)</span> <span style="color:#f92672">*</span> <span style="color:#f92672">1em</span><span style="color:#f92672">,</span>
+      <span style="color:#f92672">0</span>
+    <span style="color:#f92672">)</span>;
+  }
+  <span style="color:#f92672">50</span><span style="color:#960050;background-color:#1e0010">%</span> {
+    <span style="color:#f92672">transform</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">translate3d</span><span style="color:#f92672">(</span>
+      <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerSize</span> <span style="color:#f92672">*</span> <span style="color:#f92672">(</span><span style="color:#f92672">0</span><span style="color:#a6e22e">.</span><span style="color:#a6e22e">5</span> <span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerPathDotSize</span><span style="color:#f92672">/</span><span style="color:#f92672">2</span><span style="color:#f92672">)</span> <span style="color:#f92672">*</span> <span style="color:#f92672">1em</span><span style="color:#f92672">,</span>
+      <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerSize</span> <span style="color:#f92672">*</span> <span style="color:#f92672">(</span><span style="color:#f92672">1</span> <span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerPathDotSize</span><span style="color:#f92672">)</span> <span style="color:#f92672">*</span> <span style="color:#f92672">1em</span><span style="color:#f92672">,</span>
+      <span style="color:#f92672">0</span>
+    <span style="color:#f92672">)</span>;
+  }
+  <span style="color:#f92672">75</span><span style="color:#960050;background-color:#1e0010">%</span> {
+    <span style="color:#f92672">transform</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">translate3d</span><span style="color:#f92672">(</span>
+      <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerSize</span> <span style="color:#f92672">*</span> <span style="color:#f92672">(</span><span style="color:#f92672">0</span><span style="color:#a6e22e">.</span><span style="color:#a6e22e">5</span> <span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerPathDotSize</span><span style="color:#f92672">/</span><span style="color:#f92672">2</span><span style="color:#f92672">)</span> <span style="color:#f92672">*</span> <span style="color:#f92672">1em</span><span style="color:#f92672">,</span>
+      <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerSize</span> <span style="color:#f92672">*</span> <span style="color:#f92672">(</span><span style="color:#f92672">0</span><span style="color:#a6e22e">.</span><span style="color:#a6e22e">5</span> <span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerPathDotSize</span><span style="color:#f92672">/</span><span style="color:#f92672">2</span><span style="color:#f92672">)</span> <span style="color:#f92672">*</span> <span style="color:#f92672">1em</span><span style="color:#f92672">,</span>
+      <span style="color:#f92672">0</span>
+    <span style="color:#f92672">)</span>;
+  }
+  <span style="color:#f92672">100</span><span style="color:#960050;background-color:#1e0010">%</span> {
+    <span style="color:#f92672">transform</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">translate3d</span><span style="color:#f92672">(</span>
+      <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerSize</span> <span style="color:#f92672">*</span> <span style="color:#f92672">(</span><span style="color:#f92672">1</span> <span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerPathDotSize</span><span style="color:#f92672">)</span> <span style="color:#f92672">*</span> <span style="color:#f92672">1em</span><span style="color:#f92672">,</span>
+      <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerSize</span> <span style="color:#f92672">*</span> <span style="color:#f92672">(</span><span style="color:#f92672">0</span><span style="color:#a6e22e">.</span><span style="color:#a6e22e">5</span> <span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerPathDotSize</span><span style="color:#f92672">/</span><span style="color:#f92672">2</span><span style="color:#f92672">)</span> <span style="color:#f92672">*</span> <span style="color:#f92672">1em</span><span style="color:#f92672">,</span>
+      <span style="color:#f92672">0</span>
+    <span style="color:#f92672">)</span>;
+  }
+}
+</code></pre></div><h2 id="spinnerloader-4---the-pulse">Spinner/Loader #4 - The Pulse</h2>
 <p>This spinner/loader starts of in a similar way to the previous one, consisting of two discs of the same size, on opposite ends of an imaginary square shape. This time though, they pulse. When one is small, the other is big, and vice versa. This time, we’ll use the <code>transform: scale();</code> CSS3 property. Here’s what the Sass looks like:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss">$spinnerPulseDotSize<span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span><span style="color:#66d9ef"></span><span style="color:#ae81ff">.5</span><span style="color:#66d9ef"></span>;
 
-<pre><code class="language-scss">$spinnerPulseDotSize: 0.5;
-
-.Spinner--pulse {
-  &amp;::before,
-  &amp;::after {
-    top: $spinnerSize * (0.5 - $spinnerPulseDotSize/2) * 1em;
-    width: $spinnerSize * $spinnerPulseDotSize * 1em;
-    height: $spinnerSize * $spinnerPulseDotSize * 1em;
-    border-radius: 50%;
-    animation-duration: 600ms;
-    animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
-    animation-iteration-count: infinite;
+<span style="color:#a6e22e">.</span><span style="color:#a6e22e">Spinner--pulse</span> {
+  <span style="color:#66d9ef">&amp;</span><span style="color:#a6e22e">:</span><span style="color:#a6e22e">:</span><span style="color:#a6e22e">before</span><span style="color:#f92672">,</span>
+  <span style="color:#66d9ef">&amp;</span><span style="color:#a6e22e">:</span><span style="color:#a6e22e">:</span><span style="color:#a6e22e">after</span> {
+    <span style="color:#f92672">top</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerSize</span> <span style="color:#f92672">*</span> <span style="color:#f92672">(</span><span style="color:#f92672">0</span><span style="color:#a6e22e">.</span><span style="color:#a6e22e">5</span> <span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerPulseDotSize</span><span style="color:#f92672">/</span><span style="color:#f92672">2</span><span style="color:#f92672">)</span> <span style="color:#f92672">*</span> <span style="color:#f92672">1em</span>;
+    <span style="color:#f92672">width</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerSize</span> <span style="color:#f92672">*</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerPulseDotSize</span> <span style="color:#f92672">*</span> <span style="color:#f92672">1em</span>;
+    <span style="color:#f92672">height</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerSize</span> <span style="color:#f92672">*</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerPulseDotSize</span> <span style="color:#f92672">*</span> <span style="color:#f92672">1em</span>;
+    <span style="color:#f92672">border-radius</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">50</span><span style="color:#960050;background-color:#1e0010">%</span>;
+    <span style="color:#f92672">animation-duration</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">600ms</span>;
+    <span style="color:#f92672">animation-timing-function</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">cubic-bezier</span><span style="color:#f92672">(</span><span style="color:#f92672">0</span><span style="color:#a6e22e">.</span><span style="color:#a6e22e">645</span><span style="color:#f92672">,</span> <span style="color:#f92672">0</span><span style="color:#a6e22e">.</span><span style="color:#a6e22e">045</span><span style="color:#f92672">,</span> <span style="color:#f92672">0</span><span style="color:#a6e22e">.</span><span style="color:#a6e22e">355</span><span style="color:#f92672">,</span> <span style="color:#f92672">1</span><span style="color:#f92672">)</span>;
+    <span style="color:#f92672">animation-iteration-count</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">infinite</span>;
   }
 
-  &amp;::before {
-    left: 0;
-    background-color: $spinnerColPrimary;
-    transform: scale(1);
-    animation-name: pulseOut;
+  <span style="color:#66d9ef">&amp;</span><span style="color:#a6e22e">:</span><span style="color:#a6e22e">:</span><span style="color:#a6e22e">before</span> {
+    <span style="color:#f92672">left</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">0</span>;
+    <span style="color:#f92672">background-color</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerColPrimary</span>;
+    <span style="color:#f92672">transform</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">scale</span><span style="color:#f92672">(</span><span style="color:#f92672">1</span><span style="color:#f92672">)</span>;
+    <span style="color:#f92672">animation-name</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">pulseOut</span>;
   }
 
-  &amp;::after {
-    right: 0;
-    background-color: $spinnerColSecondary;
-    transform: scale(0.5);
-    animation-name: pulseIn;
-  }
-}
-
-@keyframes pulseOut {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(0.5);
-  }
-  100% {
-    transform: scale(1);
+  <span style="color:#66d9ef">&amp;</span><span style="color:#a6e22e">:</span><span style="color:#a6e22e">:</span><span style="color:#a6e22e">after</span> {
+    <span style="color:#f92672">right</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">0</span>;
+    <span style="color:#f92672">background-color</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">spinnerColSecondary</span>;
+    <span style="color:#f92672">transform</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">scale</span><span style="color:#f92672">(</span><span style="color:#f92672">0</span><span style="color:#a6e22e">.</span><span style="color:#a6e22e">5</span><span style="color:#f92672">)</span>;
+    <span style="color:#f92672">animation-name</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">pulseIn</span>;
   }
 }
 
-@keyframes pulseIn {
-  0% {
-    transform: scale(0.5);
+<span style="color:#66d9ef">@keyframes</span> <span style="color:#f92672">pulseOut</span> {
+  <span style="color:#f92672">0</span><span style="color:#960050;background-color:#1e0010">%</span> {
+    <span style="color:#f92672">transform</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">scale</span><span style="color:#f92672">(</span><span style="color:#f92672">1</span><span style="color:#f92672">)</span>;
   }
-  50% {
-    transform: scale(1);
+  <span style="color:#f92672">50</span><span style="color:#960050;background-color:#1e0010">%</span> {
+    <span style="color:#f92672">transform</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">scale</span><span style="color:#f92672">(</span><span style="color:#f92672">0</span><span style="color:#a6e22e">.</span><span style="color:#a6e22e">5</span><span style="color:#f92672">)</span>;
   }
-  100% {
-    transform: scale(0.5);
+  <span style="color:#f92672">100</span><span style="color:#960050;background-color:#1e0010">%</span> {
+    <span style="color:#f92672">transform</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">scale</span><span style="color:#f92672">(</span><span style="color:#f92672">1</span><span style="color:#f92672">)</span>;
   }
 }
-</code></pre>
 
-<h2 id="wrap-up">Wrap Up</h2>
-
-<p>Some of these may seem like a lot of CSS for one tiny little loader, but the truth is, every detail counts these days. When you compress the amount of CSS required for a loader, it’s going to be smaller than the size of a GIF. Include it in your already existent stylesheet and you’re on the ball. It’s scalable, expandable, colourable, modifiable, and just plain ol’ cool looking. I hope this tutorial gave you some insight into the world of CSS animations, transforms, and creating infinite keyframe loops. Try creating your own, feel free to download the source code by clicking the links below, and leave some feedback below. Thanks again for reading, and if you have and questions, comments, or feedback, feel free to <a href="http://twitter.com/home?status=@nicksalloum_ I got a question for you!" target="_blank">send me a tweet.</a></p>
-
-<div class="ButtonGroup ButtonGroup--gutter-md ButtonGroup--align-center">
-  <a href="https://codepen.io/callmenick/pen/XzbExK" class="Button Button--display-inlineBlock Button--appearance-secondary Button--size-sm">
-    Get Source
-  </a>
-  <a href="https://codepen.io/callmenick/full/XzbExK/" class="Button Button--display-inlineBlock Button--appearance-secondary Button--size-sm">
-    View Demo
-  </a>
-</div>
+<span style="color:#66d9ef">@keyframes</span> <span style="color:#f92672">pulseIn</span> {
+  <span style="color:#f92672">0</span><span style="color:#960050;background-color:#1e0010">%</span> {
+    <span style="color:#f92672">transform</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">scale</span><span style="color:#f92672">(</span><span style="color:#f92672">0</span><span style="color:#a6e22e">.</span><span style="color:#a6e22e">5</span><span style="color:#f92672">)</span>;
+  }
+  <span style="color:#f92672">50</span><span style="color:#960050;background-color:#1e0010">%</span> {
+    <span style="color:#f92672">transform</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">scale</span><span style="color:#f92672">(</span><span style="color:#f92672">1</span><span style="color:#f92672">)</span>;
+  }
+  <span style="color:#f92672">100</span><span style="color:#960050;background-color:#1e0010">%</span> {
+    <span style="color:#f92672">transform</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">scale</span><span style="color:#f92672">(</span><span style="color:#f92672">0</span><span style="color:#a6e22e">.</span><span style="color:#a6e22e">5</span><span style="color:#f92672">)</span>;
+  }
+}
+</code></pre></div><h2 id="wrap-up">Wrap Up</h2>
+<p>Some of these may seem like a lot of CSS for one tiny little loader, but the truth is, every detail counts these days. When you compress the amount of CSS required for a loader, it’s going to be smaller than the size of a GIF. Include it in your already existent stylesheet and you’re on the ball. It’s scalable, expandable, colourable, modifiable, and just plain ol’ cool looking. I hope this tutorial gave you some insight into the world of CSS animations, transforms, and creating infinite keyframe loops. Try creating your own, feel free to download the source code by clicking the links below, and leave some feedback below. Thanks again for reading, and if you have and questions, comments, or feedback, feel free to <!-- raw HTML omitted -->send me a tweet.<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
 
       </div>
     </div>
