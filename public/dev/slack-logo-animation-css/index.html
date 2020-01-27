@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Building The Slack Animating Logo With Only CSS - Call Me Nick</title>
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:creator" content="@nicksalloum_" />
+  <meta name="description" content="In this tutorial, we break down the Slack loading animation, and reconstruct it using CSS3 animations, transforms, and a hint of blending.">
+  <meta property="og:url" content="https://callmenick.com/dev/slack-logo-animation-css/">
+  <meta property="og:title" content="Building The Slack Animating Logo With Only CSS - Call Me Nick">
+  <meta property="og:description" content="In this tutorial, we break down the Slack loading animation, and reconstruct it using CSS3 animations, transforms, and a hint of blending.">
+  <meta property="og:image" content="https://callmenick.com/dev/slack-logo-animation-css/slack-logo-featured.png">
+  <meta name="msapplication-config" content="https://callmenick.com/img/icons/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="stylesheet" href="https://callmenick.com/css/style.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://callmenick.com/img/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://callmenick.com/img/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://callmenick.com/img/icons/favicon-16x16.png">
+  <link rel="manifest" href="https://callmenick.com/img/icons/manifest.json">
+  <link rel="mask-icon" href="https://callmenick.com/img/icons/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="shortcut icon" href="https://callmenick.com/img/icons/favicon.ico">
+  <link rel="canonical" href="https://callmenick.com/dev/slack-logo-animation-css/">
+</head>
+<body>
+  <div class="Wrapper">
+    <div class="Sidebar">
+  <header class="Header">
+    <div class="Header-logo">
+      <a href="https://callmenick.com/">
+        <svg class="Logo" width="60" height="60" viewBox="0 0 60 60">
+  <circle fill="#2196F3" cx="30" cy="30" r="30"/>
+  <path fill="#FFF" d="M34.757 43.244A5.981 5.981 0 0 0 39.002 45 5.999 5.999 0 0 0 45 39.002c0-1.665-.67-3.154-1.757-4.243L25.244 16.757A6.002 6.002 0 0 0 15 20.999c0 1.663.67 3.155 1.757 4.241l18 18.004zM27.001 39.002A6 6 0 0 1 20.997 45C17.688 45 15 42.316 15 39.002a6.001 6.001 0 0 1 12.001 0zM45 20.999a6 6 0 0 1-12 0A6.002 6.002 0 0 1 39.002 15 6.002 6.002 0 0 1 45 20.999z"/>
+</svg>
+
+      </a>
+    </div>
+  </header>
+  <nav class="Nav">
+    <ul class="Nav-items">
+      
+      
+        <li class="Nav-item ">
+          <a href="https://callmenick.com/" class="Nav-link">Home</a>
+        </li>
+      
+        <li class="Nav-item ">
+          <a href="https://callmenick.com/dev" class="Nav-link">Dev</a>
+        </li>
+      
+        <li class="Nav-item ">
+          <a href="https://callmenick.com/contact" class="Nav-link">Contact</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <div id="carbonad" class="CarbonAd"></div>
+</div>
+
+    <main class="Main">
+      <div class="Main-inner">
+        
+  <section class="Article">
+    <div class="Article-header">
+      <h1 class="Article-title">Building The Slack Animating Logo With Only CSS</h1>
+      <div class="Article-meta">
+        <a href="https://callmenick.com/dev/slack-logo-animation-css/" class="Article-meta-item">
+          On: <em>2015/06/03</em>
+        </a>
+        <a href="/dev" class="Article-meta-item">
+          In: <em>dev</em>
+        </a>
+      </div>
+      <p class="Article-excerpt">In this tutorial, we break down the Slack loading animation, and reconstruct it using CSS3 animations, transforms, and a hint of blending.</p>
+      <div class="Article-featuredImg">
+        <img src="slack-logo-featured.png" alt="Building The Slack Animating Logo With Only CSS">
+      </div>
+    </div>
+    <div class="Article-content">
+      <div class="Content">
+        <!-- raw HTML omitted -->
+<h2 id="slack--the-logo">Slack &amp; The Logo</h2>
+<p><a href="https://slack.com/">Slack</a> is making waves these days, and they're a cool company with a great brand identity in my opinion. The app itself is really pleasant, and makes group and team communication great. I chose this as a subject for a CSS experiment, because the logo itself is utilised when loading indicators are required. Another reason that it's a good subject is because by dissecting it a bit, we can really see some of the depths and powers of CSS3 animations and transforms.</p>
+<p>If you look at the logo, it consists of 4 main coloured dots. These dots expand into bars, then shrink again, then move back to the original position. They also overlap a bit, and the entire logo is adjusted to an angle. With some simple math and Sass variables, constructing the logo and animation step by step isn't so hard. In this tutorial, we'll go over that, covering some ground on animations as well. By the end, you should have gained some knowledge to take forward with you into other CSS animation projects.</p>
+<p>Here's a sneak peek of what we'll be building:</p>
+<!-- raw HTML omitted -->
+<p>Let's dive in!</p>
+<h2 id="the-logos-markup">The Logo's Markup</h2>
+<p>As I mentioned above, the logo consists of 4 main dots/bars, each of which are a different colour. These dots will all be nested relatively inside a parent container. Each dot will also have its own modifier, which will enable us to add custom positioning, colours, and animations to each one. Here's the markup:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;slack&#34;</span>&gt;
+  &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;dot dot--a&#34;</span>&gt;&lt;/<span style="color:#f92672">span</span>&gt;
+  &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;dot dot--b&#34;</span>&gt;&lt;/<span style="color:#f92672">span</span>&gt;
+  &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;dot dot--c&#34;</span>&gt;&lt;/<span style="color:#f92672">span</span>&gt;
+  &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;dot dot--d&#34;</span>&gt;&lt;/<span style="color:#f92672">span</span>&gt;
+&lt;/<span style="color:#f92672">div</span>&gt;
+</code></pre></div><p>You shouldn't see anything special in the browser just yet. In fact, you shouldn't see anything at all! We need some CSS.</p>
+<h2 id="setting-up-with-sass-variables--a-parent-class">Setting Up With Sass Variables &amp; A Parent Class</h2>
+<p>I've leveraged Sass (SCSS) to handle some variables and math operations. It makes life a whole lot easier in general, but particularly for projects like this where positioning is mathematically calculate. Let's think about some variables that we'll use:</p>
+<ol>
+<li>We definitely want a set size for the logo. I've chosen 96px, which will form a square container.</li>
+<li>I also chose a diameter for the dots. 18px seemed reasonably proportional to the 96px size.</li>
+<li>The final logo should be rotated at an angle. I chose 15 degrees based on my dimensions.</li>
+<li>There's also a duration for the animation that needs to be set. 2 seconds seemed nice to me.</li>
+<li>Finally, the logo consists of 4 different colours. I set them up here as variables for simplicity.</li>
+</ol>
+<p>Here's the variable block I used:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss">$slack-size<span style="color:#f92672">:</span> <span style="color:#ae81ff">96</span><span style="color:#66d9ef">px</span>;
+$dot-diameter<span style="color:#f92672">:</span> <span style="color:#ae81ff">18</span><span style="color:#66d9ef">px</span>;
+$slack-angle<span style="color:#f92672">:</span> <span style="color:#ae81ff">15</span><span style="color:#66d9ef">deg</span>;
+$duration<span style="color:#f92672">:</span> <span style="color:#ae81ff">2</span><span style="color:#66d9ef">s</span>;
+
+$slack-blue<span style="color:#f92672">:</span> <span style="color:#ae81ff">#6ecadc</span>;
+$slack-yellow<span style="color:#f92672">:</span> <span style="color:#ae81ff">#e9a820</span>;
+$slack-pink<span style="color:#f92672">:</span> <span style="color:#ae81ff">#e01563</span>;
+$slack-green<span style="color:#f92672">:</span> <span style="color:#ae81ff">#3eb991</span>;
+</code></pre></div><p>At this time, it's important to note that the final CSS animating logo may not be an dimensionally exact replica of the original logo (although it can easily be done by simple measuring the original logo's dimensions). The emphasis here is how we build it and animate it.</p>
+<p>Let's move onto some styles for the parent class. Everything inside it will be absolutely positioned, so we want it to be relatively positioned. I also made use of some of the variables above. Here's the SCSS so far:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss"><span style="color:#a6e22e">.</span><span style="color:#a6e22e">slack</span> {
+  <span style="color:#f92672">position</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">relative</span>;
+  <span style="color:#f92672">z-index</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">100</span>;
+  <span style="color:#f92672">margin</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">80px</span> <span style="color:#f92672">auto</span>;
+  <span style="color:#f92672">width</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">slack-size</span>;
+  <span style="color:#f92672">height</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">slack-size</span>;
+}
+</code></pre></div><p>We still shouldn't have anything visual, although while I was building it, I made use of a semi-transparent background colour to see the parent container. In any case, let's move onto the actual dots.</p>
+<h2 id="positioning-the-dots">Positioning The Dots</h2>
+<p>Each dot is absolutely positioned inside the parent container, and has a border radius equal to the diameter/2. The individual dots are also positioned separately using the <code>top</code>, <code>right</code>, <code>bottom</code>, and <code>left</code> properties. Naturally, we need one in the top-left corner, one in the top-right corner, one in the bottom-right corner, and one in the bottom-left corner. They also need background colours, as defined in the variable block above. Here's the SCSS:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss"><span style="color:#a6e22e">.</span><span style="color:#a6e22e">dot</span> {
+  <span style="color:#f92672">display</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">block</span>;
+  <span style="color:#f92672">position</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">absolute</span>;
+  <span style="color:#f92672">width</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">dot-diameter</span>;
+  <span style="color:#f92672">height</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">dot-diameter</span>;
+  <span style="color:#f92672">border-radius</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">dot-diameter</span><span style="color:#f92672">/</span><span style="color:#f92672">2</span>;
+}
+
+<span style="color:#a6e22e">.</span><span style="color:#a6e22e">dot--a</span> {
+  <span style="color:#f92672">top</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">0</span>;
+  <span style="color:#f92672">left</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">0</span>;
+  <span style="color:#f92672">background-color</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">slack-green</span>;
+}
+
+<span style="color:#a6e22e">.</span><span style="color:#a6e22e">dot--b</span> {
+  <span style="color:#f92672">top</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">0</span>;
+  <span style="color:#f92672">right</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">0</span>;
+  <span style="color:#f92672">background-color</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">slack-blue</span>;
+}
+
+<span style="color:#a6e22e">.</span><span style="color:#a6e22e">dot--c</span> {
+  <span style="color:#f92672">bottom</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">0</span>;
+  <span style="color:#f92672">right</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">0</span>;
+  <span style="color:#f92672">background-color</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">slack-yellow</span>;
+}
+
+<span style="color:#a6e22e">.</span><span style="color:#a6e22e">dot--d</span> {
+  <span style="color:#f92672">bottom</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">0</span>;
+  <span style="color:#f92672">left</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">0</span>;
+  <span style="color:#f92672">background-color</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">slack-pink</span>;
+}
+</code></pre></div><p>We should now have something looking like this:</p>
+<p><img src="slack-logo-dots.png" alt="Slack logo dots"></p>
+<p>It's a good start! Let's move onto the animations.</p>
+<h2 id="the-animations">The Animations</h2>
+<p>Let's animate the first dot, &ldquo;dot a&rdquo;. If we think it through, we want it to first increase in height to the <code>$slack-size</code> variable. After that, it should shrink again to just a dot, but this time, it should be fixed to the opposite end. Finally, the dot needs to move back to its original position to get ready to animate again. Our parent container makes life easy when it comes to positioning the dots due to the absolute/relative combination. Here's the animation for dot a:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss"><span style="color:#66d9ef">@keyframes</span> <span style="color:#f92672">dot--a</span> {
+  <span style="color:#f92672">0</span><span style="color:#960050;background-color:#1e0010">%</span> {
+    <span style="color:#f92672">top</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">0</span>;
+    <span style="color:#f92672">bottom</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">auto</span>;
+    <span style="color:#f92672">height</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">dot-diameter</span>;
+  }
+  <span style="color:#f92672">33</span><span style="color:#960050;background-color:#1e0010">%</span> {
+    <span style="color:#f92672">top</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">0</span>;
+    <span style="color:#f92672">bottom</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">auto</span>;
+    <span style="color:#f92672">height</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">slack-size</span>;
+  }
+  <span style="color:#f92672">34</span><span style="color:#960050;background-color:#1e0010">%</span> {
+    <span style="color:#f92672">top</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">auto</span>;
+    <span style="color:#f92672">bottom</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">0</span>;
+    <span style="color:#f92672">height</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">slack-size</span>;
+  }
+  <span style="color:#f92672">66</span><span style="color:#960050;background-color:#1e0010">%</span> {
+    <span style="color:#f92672">top</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">auto</span>;
+    <span style="color:#f92672">bottom</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">0</span>;
+    <span style="color:#f92672">height</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">dot-diameter</span>;
+  }
+  <span style="color:#f92672">100</span><span style="color:#960050;background-color:#1e0010">%</span> {
+    <span style="color:#f92672">top</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">auto</span>;
+    <span style="color:#f92672">bottom</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">slack-size</span> <span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">dot-diameter</span>;
+    <span style="color:#f92672">height</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">dot-diameter</span>;
+  }
+}
+</code></pre></div><p>At this point, nothing would've changed in the browser. That's because we have to include the animations for the dot. Let's do that for dot a:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss"><span style="color:#a6e22e">.</span><span style="color:#a6e22e">dot--a</span> {
+  <span style="color:#f92672">animation</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">dot--a</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">duration</span> <span style="color:#f92672">infinite</span>;
+}
+</code></pre></div><p>Now our sequence should look like this:</p>
+<p><img src="slack-logo-dot-a-sequence.png" alt="Slack logo dot a sequence"></p>
+<p>Let's do something similar for each of the other three dots. Dot b starts in the top right corner, expands to the left, shrinks to the left, and moves back to the right. Here's the animation:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss"><span style="color:#66d9ef">@keyframes</span> <span style="color:#f92672">dot--b</span> {
+  <span style="color:#f92672">0</span><span style="color:#960050;background-color:#1e0010">%</span> {
+    <span style="color:#f92672">right</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">0</span>;
+    <span style="color:#f92672">left</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">auto</span>;
+    <span style="color:#f92672">width</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">dot-diameter</span>;
+  }
+  <span style="color:#f92672">33</span><span style="color:#960050;background-color:#1e0010">%</span> {
+    <span style="color:#f92672">right</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">0</span>;
+    <span style="color:#f92672">left</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">auto</span>;
+    <span style="color:#f92672">width</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">slack-size</span>;
+  }
+  <span style="color:#f92672">34</span><span style="color:#960050;background-color:#1e0010">%</span> {
+    <span style="color:#f92672">right</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">auto</span>;
+    <span style="color:#f92672">left</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">0</span>;
+    <span style="color:#f92672">width</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">slack-size</span>;
+  }
+  <span style="color:#f92672">66</span><span style="color:#960050;background-color:#1e0010">%</span> {
+    <span style="color:#f92672">right</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">auto</span>;
+    <span style="color:#f92672">left</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">0</span>;
+    <span style="color:#f92672">width</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">dot-diameter</span>;
+  }
+  <span style="color:#f92672">100</span><span style="color:#960050;background-color:#1e0010">%</span> {
+    <span style="color:#f92672">right</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">auto</span>;
+    <span style="color:#f92672">left</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">slack-size</span> <span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">dot-diameter</span>;
+    <span style="color:#f92672">width</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">dot-diameter</span>;
+  }
+}
+</code></pre></div><p>Don't forget to include the animation on the dot:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss"><span style="color:#a6e22e">.</span><span style="color:#a6e22e">dot--b</span> {
+  <span style="color:#f92672">animation</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">dot--b</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">duration</span> <span style="color:#f92672">infinite</span>;
+}
+</code></pre></div><p>Now for dot c. It starts in the bottom right, expands up, shrinks up, and moves back down:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss"><span style="color:#66d9ef">@keyframes</span> <span style="color:#f92672">dot--c</span> {
+  <span style="color:#f92672">0</span><span style="color:#960050;background-color:#1e0010">%</span> {
+    <span style="color:#f92672">bottom</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">0</span>;
+    <span style="color:#f92672">top</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">auto</span>;
+    <span style="color:#f92672">height</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">dot-diameter</span>;
+  }
+  <span style="color:#f92672">33</span><span style="color:#960050;background-color:#1e0010">%</span> {
+    <span style="color:#f92672">bottom</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">0</span>;
+    <span style="color:#f92672">top</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">auto</span>;
+    <span style="color:#f92672">height</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">slack-size</span>;
+  }
+  <span style="color:#f92672">34</span><span style="color:#960050;background-color:#1e0010">%</span> {
+    <span style="color:#f92672">bottom</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">auto</span>;
+    <span style="color:#f92672">top</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">-</span><span style="color:#f92672">(</span><span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">slack-size</span> <span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">slack-size</span><span style="color:#f92672">)</span>;
+    <span style="color:#f92672">height</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">slack-size</span>;
+  }
+  <span style="color:#f92672">66</span><span style="color:#960050;background-color:#1e0010">%</span> {
+    <span style="color:#f92672">bottom</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">auto</span>;
+    <span style="color:#f92672">top</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">-</span><span style="color:#f92672">(</span><span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">slack-size</span> <span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">slack-size</span><span style="color:#f92672">)</span>;
+    <span style="color:#f92672">height</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">dot-diameter</span>;
+  }
+  <span style="color:#f92672">100</span><span style="color:#960050;background-color:#1e0010">%</span> {
+    <span style="color:#f92672">bottom</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">auto</span>;
+    <span style="color:#f92672">top</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">slack-size</span> <span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">dot-diameter</span>;
+    <span style="color:#f92672">height</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">dot-diameter</span>;
+  }
+}
+</code></pre></div><p>Here's the inclusion of the animation for dot c:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss"><span style="color:#a6e22e">.</span><span style="color:#a6e22e">dot--c</span> {
+  <span style="color:#f92672">animation</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">dot--c</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">duration</span> <span style="color:#f92672">infinite</span>;
+}
+</code></pre></div><p>And finally, dot d. It starts in the bottom left, expands right, shrinks right, and moves back left. Here's the animation:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss"><span style="color:#66d9ef">@keyframes</span> <span style="color:#f92672">dot--d</span> {
+  <span style="color:#f92672">0</span><span style="color:#960050;background-color:#1e0010">%</span> {
+    <span style="color:#f92672">left</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">0</span>;
+    <span style="color:#f92672">right</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">auto</span>;
+    <span style="color:#f92672">width</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">dot-diameter</span>;
+  }
+  <span style="color:#f92672">33</span><span style="color:#960050;background-color:#1e0010">%</span> {
+    <span style="color:#f92672">left</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">0</span>;
+    <span style="color:#f92672">right</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">auto</span>;
+    <span style="color:#f92672">width</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">slack-size</span>;
+  }
+  <span style="color:#f92672">34</span><span style="color:#960050;background-color:#1e0010">%</span> {
+    <span style="color:#f92672">left</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">auto</span>;
+    <span style="color:#f92672">right</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">-</span><span style="color:#f92672">(</span><span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">slack-size</span> <span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">slack-size</span><span style="color:#f92672">)</span>;
+    <span style="color:#f92672">width</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">slack-size</span>;
+  }
+  <span style="color:#f92672">66</span><span style="color:#960050;background-color:#1e0010">%</span> {
+    <span style="color:#f92672">left</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">auto</span>;
+    <span style="color:#f92672">right</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">-</span><span style="color:#f92672">(</span><span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">slack-size</span> <span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">slack-size</span><span style="color:#f92672">)</span>;
+    <span style="color:#f92672">width</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">dot-diameter</span>;
+  }
+  <span style="color:#f92672">100</span><span style="color:#960050;background-color:#1e0010">%</span> {
+    <span style="color:#f92672">left</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">auto</span>;
+    <span style="color:#f92672">right</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">slack-size</span> <span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">dot-diameter</span>;
+    <span style="color:#f92672">width</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">dot-diameter</span>;
+  }
+}
+</code></pre></div><p>Once more, include the animation for the dot:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss"><span style="color:#a6e22e">.</span><span style="color:#a6e22e">dot--d</span> {
+  <span style="color:#f92672">animation</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">dot--d</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">duration</span> <span style="color:#f92672">infinite</span>;
+}
+</code></pre></div><p>Now, we should see this sequence in the browser:</p>
+<p><img src="slack-logo-full-sequence-1.png" alt="Slack logo full sequence 1"></p>
+<p>Awesome, we're getting there! Let's move on.</p>
+<h2 id="overlapping-by-translating">Overlapping By Translating</h2>
+<p>In the actual logo animation, the dots and bars overlap each other. We can achieve this by nudging each dot inwards a little bit using translations. I just used the dot diameter as a base for this translation. Here's the SCSS for this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss"><span style="color:#a6e22e">.</span><span style="color:#a6e22e">dot--a</span> {
+  <span style="color:#f92672">transform</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">translateX</span><span style="color:#f92672">(</span><span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">dot-diameter</span><span style="color:#f92672">)</span>;
+}
+
+<span style="color:#a6e22e">.</span><span style="color:#a6e22e">dot--b</span> {
+  <span style="color:#f92672">transform</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">translateY</span><span style="color:#f92672">(</span><span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">dot-diameter</span><span style="color:#f92672">)</span>;
+}
+
+<span style="color:#a6e22e">.</span><span style="color:#a6e22e">dot--c</span> {
+  <span style="color:#f92672">transform</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">translateX</span><span style="color:#f92672">(</span><span style="color:#f92672">-</span><span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">dot-diameter</span><span style="color:#f92672">)</span>;
+}
+
+<span style="color:#a6e22e">.</span><span style="color:#a6e22e">dot--d</span> {
+  <span style="color:#f92672">transform</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">translateY</span><span style="color:#f92672">(</span><span style="color:#f92672">-</span><span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">dot-diameter</span><span style="color:#f92672">)</span>;
+}
+</code></pre></div><p>Now, the sequence should look like this:</p>
+<p><img src="slack-logo-full-sequence-2.png" alt="Slack logo full sequence 2"></p>
+<p>Much better! On we go.</p>
+<h2 id="rotating-the-entire-logo">Rotating The Entire Logo</h2>
+<p>The slack logo animation looks great, but in reality, the whole thing happens at a tilted angle. Because of our parent class, this is really easy to achieve! We can just add a rotation on it:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss"><span style="color:#a6e22e">.</span><span style="color:#a6e22e">slack</span> {
+  <span style="color:#f92672">transform</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">rotate</span><span style="color:#f92672">(</span><span style="color:#f92672">-</span><span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">slack-angle</span><span style="color:#f92672">)</span>;
+}
+</code></pre></div><p>The full sequence should now look like this:</p>
+<p><img src="slack-logo-full-sequence-3.png" alt="Slack logo full sequence 3"></p>
+<p>Awesome! That's just about it&hellip;but we're missing one final little touch.</p>
+<h2 id="mixing-the-colours">Mixing The Colours</h2>
+<p>There is just one last touch to pull it all together, and that doesn't involve animations at all. It does, however, involve some modern CSS blending. Let's add a multiplying mix blend mode on all the dots to create a sweet little mixup of the colours when they pass each other. This also brings the animation much more true to life, like the original version. Here's the styles for that:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss"><span style="color:#a6e22e">.</span><span style="color:#a6e22e">dot</span> {
+  <span style="color:#f92672">mix-blend-mode</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">multiply</span>;
+}
+</code></pre></div><p>And finally, here's the sequence:</p>
+<p><img src="slack-logo-full-sequence-final.png" alt="Slakc logo final sequence"></p>
+<p>Awesome! Stare at the magic of modern CSS. Here it is again in action.</p>
+<!-- raw HTML omitted -->
+<h2 id="final-notes">Final Notes</h2>
+<p>By approaching any animation sequence step by step, and leveraging some simple math and modern CSS properties, we're able to open up a world of possibilities. CSS blend modes are also a pretty neat feature too, so get your head into that too!</p>
+<p>Throughout the tutorial, I used un-prefixed CSS for the sake of brevity. Make sure that you include all necessary vendor prefixes. I recommend using a post-CSS tool like auto-prefixer for that.</p>
+<h2 id="wrap-up">Wrap Up</h2>
+<p>Thanks again for reading, and if you have and questions, comments, or feedback, feel free to <!-- raw HTML omitted -->send me a tweet.<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+
+      </div>
+    </div>
+    <div class="Article-prevNext">
+      
+        <div class="Article-prevNext-link">
+          <strong>Next:</strong>
+          <a href="https://callmenick.com/dev/last-in-first-out-css-transitions/">Last in First Out CSS Transitions</a>
+        </div>
+      
+      
+        <div class="Article-prevNext-link">
+          <strong>Previous:</strong>
+          <a href="https://callmenick.com/dev/an-introduction-to-gulp/">An Introduction to Gulp</a>
+        </div>
+      
+    </div>
+  </section>
+
+      </div>
+    </main>
+  </div>
+  <script src="https://callmenick.com/js/prism.js"></script>
+  <script src="https://callmenick.com/js/carbonad.js"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-34160351-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+</body>
+</html>

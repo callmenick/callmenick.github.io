@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hi, I&#39;m Nick on Call Me Nick</title>
+    <link>https://callmenick.com/</link>
+    <description>Recent content in Hi, I&#39;m Nick on Call Me Nick</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 13 Aug 2017 15:11:10 -0700</lastBuildDate>
+    
+	<atom:link href="https://callmenick.com/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>CSS Sticky Footer with Flexbox and Grid</title>
+      <link>https://callmenick.com/dev/css-sticky-footer-flexbox-grid/</link>
+      <pubDate>Mon, 08 Apr 2019 15:48:05 -0700</pubDate>
+      
+      <guid>https://callmenick.com/dev/css-sticky-footer-flexbox-grid/</guid>
+      <description>A long standing layout challenge for front end folks has been the &amp;ldquo;sticky footer&amp;rdquo; layout. A sticky footer is one that sticks to the bottom of the page if there&#39;s not enough content to fill up a minimum of 100% the screen height, but also one that gets pushed further down the viewport like normal if there is enough content.
+Nowadays, it&#39;s pretty simple to achieve this layout! We&#39;re going to explore two ways:</description>
+    </item>
+    
+    <item>
+      <title>CSS Only Floated Labels with :placeholder-shown pseudo class</title>
+      <link>https://callmenick.com/dev/floated-labels-with-placeholder-shown/</link>
+      <pubDate>Sat, 15 Sep 2018 10:28:01 -0700</pubDate>
+      
+      <guid>https://callmenick.com/dev/floated-labels-with-placeholder-shown/</guid>
+      <description>The Floated Labels Technique When we’re dealing with inputs, there’s a host of techniques to consider in order to give users the best experience. We need to make sure that we’re giving users necessary information at all points in time, and that means finding the balance between too much and too little. Two pretty important pieces to the UX puzzle are:
+  The label element which according to the MDN, is the only way to provide explanatory information about a form field that is always appropriate</description>
+    </item>
+    
+    <item>
+      <title>Dead Simple CSS Isolation Animation Technique</title>
+      <link>https://callmenick.com/dev/isolation-animation-technique/</link>
+      <pubDate>Tue, 09 Jan 2018 14:04:43 -0800</pubDate>
+      
+      <guid>https://callmenick.com/dev/isolation-animation-technique/</guid>
+      <description>What is Isolation Animation? Isolation animation is a simple technique that de-emphasizes items that aren’t “active”, via methods like blurring, fading, shrinking, etc. As such, the item in focus has an increased emphasis, and the information presented is more prominent.
+The example we’re going to explore is pretty basic, but can be adapted to various use cases. We’ll look at a features table, in which there are 3 tiers of features.</description>
+    </item>
+    
+    <item>
+      <title>404</title>
+      <link>https://callmenick.com/_404/</link>
+      <pubDate>Sun, 13 Aug 2017 15:11:10 -0700</pubDate>
+      
+      <guid>https://callmenick.com/_404/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Let&#39;s Build an Infinity CSS Animating Loader!</title>
+      <link>https://callmenick.com/dev/infinity-css-animating-loader/</link>
+      <pubDate>Fri, 16 Jun 2017 10:00:00 -0700</pubDate>
+      
+      <guid>https://callmenick.com/dev/infinity-css-animating-loader/</guid>
+      <description>I had an idea recently. I wanted to create an &amp;ldquo;Infinity&amp;rdquo; loader using only CSS. With a small bit of digging and playing, here&#39;s what I came up with:
+But how!? Before you peep at the resulting code in the above pen, take a read below to learn about some fun and new CSS properties.
+Introducing CSS offset The offset property in CSS is defined by the MDN as:
+ a shorthand property for animating an element along a defined path.</description>
+    </item>
+    
+    <item>
+      <title>Cooking With Webpack Part 2 - Understanding &amp; Using Webpack Loaders</title>
+      <link>https://callmenick.com/dev/cooking-with-webpack-2-loaders/</link>
+      <pubDate>Tue, 10 Jan 2017 17:16:41 -0700</pubDate>
+      
+      <guid>https://callmenick.com/dev/cooking-with-webpack-2-loaders/</guid>
+      <description>In part 1, we plunged into webpack and gained a better understanding of what it is and some of its capabilities. We were able to write a script, require a module in it, and output a bundle using webpack. One really important takeaway from all of that was that we bundled up some modules. At this point, it&#39;s time to understand that a module can refer to many different things, not just a JavaScript file.</description>
+    </item>
+    
+    <item>
+      <title>Cooking With Webpack Part 1 - Introduction and Basic Implementation</title>
+      <link>https://callmenick.com/dev/cooking-with-webpack-1-introduction/</link>
+      <pubDate>Wed, 04 Jan 2017 17:32:53 -0700</pubDate>
+      
+      <guid>https://callmenick.com/dev/cooking-with-webpack-1-introduction/</guid>
+      <description>I&#39;ll begin this article the way many a webpack article begins - with a simple, underwhelming, and slightly confusing description of what webpack is. From their docs:
+ Webpack is a module bundler. Webpack takes modules with dependencies and generates static assets representing those modules.
+ In this series of tutorials though, I promise to take you way beyond the basics, and into some of the more intricate parts of webpack.</description>
+    </item>
+    
+    <item>
+      <title>Multi-line Padded Text with the CSS box-decoration-break Property</title>
+      <link>https://callmenick.com/dev/multi-line-padded-text-css-box-decoration-break/</link>
+      <pubDate>Mon, 14 Nov 2016 15:44:18 -0700</pubDate>
+      
+      <guid>https://callmenick.com/dev/multi-line-padded-text-css-box-decoration-break/</guid>
+      <description>Stumbling Upon New CSS Is Fun I love stumbling upon CSS properties in time of great need. Recently, I was working on a personal project, and I wanted to have multi-line highlighted text. My requirements were pretty simple from a design point of view:
+ Text should be highlighted, i.e. have a background colour Highlights should only cover areas where there is text Each line should have a little left and right padding so that the text isn&#39;t flush against the highlight box  My desired HTML was something like this:</description>
+    </item>
+    
+    <item>
+      <title>On parseInt and Converting Hex to RGB</title>
+      <link>https://callmenick.com/dev/on-parseint-and-converting-hex-to-rgb/</link>
+      <pubDate>Mon, 03 Oct 2016 15:53:20 -0700</pubDate>
+      
+      <guid>https://callmenick.com/dev/on-parseint-and-converting-hex-to-rgb/</guid>
+      <description>The other day, I was faced with a task that required me to plunge into a little deeper into JavaScript&#39;s parseInt() function, and gain a better grasp of numeral systems and radixes (bases). The problem was simple. I needed to convert hex colours to RGB. Before we jump into anything, let&#39;s look at a few definitions for reference:
+ parseInt() - The parseInt() function parses a string argument and returns an integer of the specified radix (the base in mathematical numeral systems) (ref MDN).</description>
+    </item>
+    
+    <item>
+      <title>Thinking Outside the Box with CSS shape-outside</title>
+      <link>https://callmenick.com/dev/thinking-outside-the-box-css-shape-outside/</link>
+      <pubDate>Mon, 19 Sep 2016 15:56:51 -0700</pubDate>
+      
+      <guid>https://callmenick.com/dev/thinking-outside-the-box-css-shape-outside/</guid>
+      <description>Breaking Out of the Box There&#39;s a reason it&#39;s called the box model, and that&#39;s because every element in a document is represented as a rectangular box. Even with CSS properties that alter the shape of an element - such as border-radius - we are still, by default, confined to a box. Nowadays, with modern CSS properties, we are able to shape and shift content a bit more. One of the properties that allows that is the shape-outside property.</description>
+    </item>
+    
+    <item>
+      <title>SVG Vector Effects</title>
+      <link>https://callmenick.com/dev/svg-vector-effects/</link>
+      <pubDate>Thu, 30 Jun 2016 10:00:00 -0700</pubDate>
+      
+      <guid>https://callmenick.com/dev/svg-vector-effects/</guid>
+      <description>A few days ago, I ran into a little problem when using SVGs. I&#39;d created a reusable set of SVG symbols for a project I was working on, and started sprucing it up with all the pretty icons my designer gave to me. As we all know, one of the biggest benefits to using SVG is the &amp;ldquo;scalable&amp;rdquo; part of it, meaning that graphics render perfectly at and size, no matter the original size of the graphic.</description>
+    </item>
+    
+    <item>
+      <title>Level Up Your CSS Animations with Cubic Bezier</title>
+      <link>https://callmenick.com/dev/level-up-animations-cubic-bezier/</link>
+      <pubDate>Thu, 21 Apr 2016 17:14:20 -0700</pubDate>
+      
+      <guid>https://callmenick.com/dev/level-up-animations-cubic-bezier/</guid>
+      <description>Transitions and animations are making waves across web development, and rightfully so. They are awesome, easily useable (and abusable), and have the ability to take your front end components and interfaces from good to great. The anatomy of declaring transitions and animations are similar, and only two things are required:
+ In the case of transitions, you select the property you want to transition. For animations, you select the keyframe block.</description>
+    </item>
+    
+    <item>
+      <title>Maintainable Responsive Web Design with Sass</title>
+      <link>https://callmenick.com/dev/maintainable-responsive-web-design-with-sass/</link>
+      <pubDate>Mon, 08 Feb 2016 20:38:30 -0700</pubDate>
+      
+      <guid>https://callmenick.com/dev/maintainable-responsive-web-design-with-sass/</guid>
+      <description>Introduction Building maintainable, responsive layouts often feels like a huge undertaking. A lot of people tend to revert to frameworks that end up having way more juice than they need. When I think of responsive layouts, I immediately think of Sass and three of its awesome features - maps, loops, and mixins. By leveraging these features, responsive design becomes a breeze. Not to mention, you end up with exactly what you need, nothing more, nothing less.</description>
+    </item>
+    
+    <item>
+      <title>Last in First Out CSS Transitions</title>
+      <link>https://callmenick.com/dev/last-in-first-out-css-transitions/</link>
+      <pubDate>Wed, 20 Jan 2016 20:43:01 -0700</pubDate>
+      
+      <guid>https://callmenick.com/dev/last-in-first-out-css-transitions/</guid>
+      <description>Introduction In modern websites and applications, interactions and UX play a huge part in consumer retention. CSS animations have paved the way for us as far as enhancing user experiences goes, but it can be taken a step further with a little thought. In this tutorial, we&#39;re going to build what I like to call a &amp;ldquo;last in, first out&amp;rdquo; item animation, or a &amp;ldquo;stack&amp;rdquo; animation. What this means is that when some sort of toggle action is hit, items animate into view in a sequence.</description>
+    </item>
+    
+    <item>
+      <title>Building The Slack Animating Logo With Only CSS</title>
+      <link>https://callmenick.com/dev/slack-logo-animation-css/</link>
+      <pubDate>Wed, 03 Jun 2015 17:57:00 -0400</pubDate>
+      
+      <guid>https://callmenick.com/dev/slack-logo-animation-css/</guid>
+      <description>Slack &amp;amp; The Logo Slack is making waves these days, and they&#39;re a cool company with a great brand identity in my opinion. The app itself is really pleasant, and makes group and team communication great. I chose this as a subject for a CSS experiment, because the logo itself is utilised when loading indicators are required. Another reason that it&#39;s a good subject is because by dissecting it a bit, we can really see some of the depths and powers of CSS3 animations and transforms.</description>
+    </item>
+    
+    <item>
+      <title>An Introduction to Gulp</title>
+      <link>https://callmenick.com/dev/an-introduction-to-gulp/</link>
+      <pubDate>Thu, 09 Apr 2015 21:16:07 -0700</pubDate>
+      
+      <guid>https://callmenick.com/dev/an-introduction-to-gulp/</guid>
+      <description>In this article, we&#39;re going to have a very quick primer on Gulp, talking a bit about why it&#39;s so fast and efficient. Then, we&#39;ll set up a basic project with Gulp, set up some tasks, and automate the flow. Let&#39;s dig in!
+Gulp - What &amp;amp; Why? As I mentioned above, Gulp is a task runner that enables automation and crunching of monotonous tasks all in one swoop. In a modern workflow, there are probably a host of tools that you&#39;re using in development and production.</description>
+    </item>
+    
+    <item>
+      <title>The CSS Calc Function and Some Uses</title>
+      <link>https://callmenick.com/dev/the-css-calc-function-and-some-uses/</link>
+      <pubDate>Mon, 30 Mar 2015 11:33:44 -0700</pubDate>
+      
+      <guid>https://callmenick.com/dev/the-css-calc-function-and-some-uses/</guid>
+      <description>Introducing The CSS Calc() Function As CSS continues to evolve, interesting selectors and functions are always on the horizon. One that I came across some time ago is the calc() function, which allows you to actually perform a unit calculation and return a result. The real beauty in it for me though is that you can mix and match unit types, offering interesting ways to compute layout dimensions, particularly when building responsive layouts.</description>
+    </item>
+    
+    <item>
+      <title>The CSS Not Selector</title>
+      <link>https://callmenick.com/dev/the-css-not-selector/</link>
+      <pubDate>Fri, 20 Mar 2015 19:13:57 -0700</pubDate>
+      
+      <guid>https://callmenick.com/dev/the-css-not-selector/</guid>
+      <description>I discovered the CSS :not selector recently, and it’s pretty cool. In a nutshell, you can chain it or apply it to certain selectors and style everything that does NOT meet the condition (e.g. everything BUT span tags). Let’s get a bit more formal.
+Definition Of The :not Selector According to the MDN:
+ The negation CSS pseudo-class, :not(X), is a functional notation taking a simple selector X as an argument.</description>
+    </item>
+    
+    <item>
+      <title>CSS Transitions, Transforms &amp; Animations – Perspective</title>
+      <link>https://callmenick.com/dev/css-perspective/</link>
+      <pubDate>Tue, 30 Dec 2014 13:36:07 -0800</pubDate>
+      
+      <guid>https://callmenick.com/dev/css-perspective/</guid>
+      <description>In this tutorial, we’re going to take an in-depth look into CSS perspective, and some use-cases where it can give users more natural and cool experiences.
+What Is Perspective? In the context of the two-dimensional world, perspective gives users the illusion of an object’s depth, width, height, and position in relation to another object, when viewed from a particular point. Perspective allows artists to create scenes that look like they are going “into” the paper, or draw buildings of different sizes on a street moving away from our position.</description>
+    </item>
+    
+    <item>
+      <title>Some jQuery Functions And Their JavaScript Equivalents</title>
+      <link>https://callmenick.com/dev/jquery-functions-javascript-equivalents/</link>
+      <pubDate>Sun, 06 Jul 2014 19:18:58 -0700</pubDate>
+      
+      <guid>https://callmenick.com/dev/jquery-functions-javascript-equivalents/</guid>
+      <description>In light of my recent forays into the JavaScript DOM world, I&#39;d decided to do a little research and write a snippet collection based on jQuery functions and their JavaScript equivalents. I think jQuery is a great tool, and it has done great things for me and many others as developers. But I&#39;m a firm believer that nowadays, JavaScript is an indispensable tool to keep in your arsenal. Manipulating the DOM with JavaScript DOM methods is fun and easy, and the majority of times, plain old vanilla JS is all we need.</description>
+    </item>
+    
+    <item>
+      <title>CSS Spinners and Loaders</title>
+      <link>https://callmenick.com/dev/css-spinners-and-loaders/</link>
+      <pubDate>Fri, 25 Apr 2014 21:45:47 -0700</pubDate>
+      
+      <guid>https://callmenick.com/dev/css-spinners-and-loaders/</guid>
+      <description>Why CSS Spinners &amp;amp; Loaders? Because:
+ They are crisp, and can scale to any size They require one less dependency They can be easily modified (maintainability, anyone!?) They are fun to make  Using some basic CSS to construct shapes, and some more advanced CSS3 animations and keyframes for some movement, we can created beautiful, scalable, and easily modifiable CSS spinners and loaders.
+I&#39;m going to demonstrate 4 different spinners, and how to construct them.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Cooking With Webpack Part 2 - Understanding &amp; Using Webpack Loaders - Call Me Nick</title>
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:creator" content="@nicksalloum_" />
+  <meta name="description" content="In part 2 of this series, we loaders explore in depth, examining their capabilities, how they work, and how to configure them.">
+  <meta property="og:url" content="https://callmenick.com/dev/cooking-with-webpack-2-loaders/">
+  <meta property="og:title" content="Cooking With Webpack Part 2 - Understanding &amp; Using Webpack Loaders - Call Me Nick">
+  <meta property="og:description" content="In part 2 of this series, we loaders explore in depth, examining their capabilities, how they work, and how to configure them.">
+  <meta property="og:image" content="https://callmenick.com/dev/cooking-with-webpack-2-loaders/cooking-with-webpack-2-loaders-featured.png">
+  <meta name="msapplication-config" content="https://callmenick.com/img/icons/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="stylesheet" href="https://callmenick.com/css/style.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://callmenick.com/img/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://callmenick.com/img/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://callmenick.com/img/icons/favicon-16x16.png">
+  <link rel="manifest" href="https://callmenick.com/img/icons/manifest.json">
+  <link rel="mask-icon" href="https://callmenick.com/img/icons/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="shortcut icon" href="https://callmenick.com/img/icons/favicon.ico">
+  <link rel="canonical" href="https://callmenick.com/dev/cooking-with-webpack-2-loaders/">
+</head>
+<body>
+  <div class="Wrapper">
+    <div class="Sidebar">
+  <header class="Header">
+    <div class="Header-logo">
+      <a href="https://callmenick.com/">
+        <svg class="Logo" width="60" height="60" viewBox="0 0 60 60">
+  <circle fill="#2196F3" cx="30" cy="30" r="30"/>
+  <path fill="#FFF" d="M34.757 43.244A5.981 5.981 0 0 0 39.002 45 5.999 5.999 0 0 0 45 39.002c0-1.665-.67-3.154-1.757-4.243L25.244 16.757A6.002 6.002 0 0 0 15 20.999c0 1.663.67 3.155 1.757 4.241l18 18.004zM27.001 39.002A6 6 0 0 1 20.997 45C17.688 45 15 42.316 15 39.002a6.001 6.001 0 0 1 12.001 0zM45 20.999a6 6 0 0 1-12 0A6.002 6.002 0 0 1 39.002 15 6.002 6.002 0 0 1 45 20.999z"/>
+</svg>
+
+      </a>
+    </div>
+  </header>
+  <nav class="Nav">
+    <ul class="Nav-items">
+      
+      
+        <li class="Nav-item ">
+          <a href="https://callmenick.com/" class="Nav-link">Home</a>
+        </li>
+      
+        <li class="Nav-item ">
+          <a href="https://callmenick.com/dev" class="Nav-link">Dev</a>
+        </li>
+      
+        <li class="Nav-item ">
+          <a href="https://callmenick.com/contact" class="Nav-link">Contact</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <div id="carbonad" class="CarbonAd"></div>
+</div>
+
+    <main class="Main">
+      <div class="Main-inner">
+        
+  <section class="Article">
+    <div class="Article-header">
+      <h1 class="Article-title">Cooking With Webpack Part 2 - Understanding &amp; Using Webpack Loaders</h1>
+      <div class="Article-meta">
+        <a href="https://callmenick.com/dev/cooking-with-webpack-2-loaders/" class="Article-meta-item">
+          On: <em>2017/01/10</em>
+        </a>
+        <a href="/dev" class="Article-meta-item">
+          In: <em>dev</em>
+        </a>
+      </div>
+      <p class="Article-excerpt">In part 2 of this series, we loaders explore in depth, examining their capabilities, how they work, and how to configure them.</p>
+      <div class="Article-featuredImg">
+        <img src="cooking-with-webpack-2-loaders-featured.png" alt="Cooking With Webpack Part 2 - Understanding &amp; Using Webpack Loaders">
+      </div>
+    </div>
+    <div class="Article-content">
+      <div class="Content">
+        <!-- raw HTML omitted -->
+<p>In <a href="http://callmenick.com/post/cooking-with-webpack-1-introduction-basic-implementation">part 1</a>, we plunged into webpack and gained a better understanding of what it is and some of its capabilities. We were able to write a script, require a module in it, and output a bundle using webpack. One really important takeaway from all of that was that we <strong>bundled</strong> up some <strong>modules</strong>. At this point, it's time to understand that a module can refer to many different things, not just a JavaScript file. Out of the box, webpack only supports JavaScript modules. But what if we wanted to bundle up some CSS in our output file? What if we wanted to grab some HTML templates from HTML files for usage in our script? Enter loaders.</p>
+<h2 id="what-is-a-loader">What is a Loader?</h2>
+<p><a href="http://webpack.github.io/docs/using-loaders.html">According to the docs:</a></p>
+<blockquote>
+<p>Loaders are transformations that are applied on a resource file of your app. They are functions (running in node.js) that take the source of a resource file as the parameter and return the new source.</p>
+</blockquote>
+<p>In other words, by using a loader, we can tell webpack to apply <em>transformations</em> to certain file types, and load it into the output. For example, if we used a CSS loader, we could require a CSS file in any of our JavaScript files. Then, webpack would step in, transform it to parsable JavaScript, and spit out the bundle. Webpack has a <a href="https://webpack.github.io/docs/list-of-loaders.html">ton of loaders</a> ready for you to use. Let's take a look at some of them by implementing them and observing the output.</p>
+<h2 id="syntax-of-a-loader-configuration">Syntax of a Loader Configuration</h2>
+<p>In our configuration file, we need a new key called <code>module</code>. This is where we will place all our loaders, which are stored as an array with key <code>loaders</code>. We'll be building upon our work in part 1, so go ahead and copy over the files. For quick reference, our file should now look like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> {
+  <span style="color:#a6e22e">entry</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">path</span>.<span style="color:#a6e22e">join</span>(<span style="color:#a6e22e">__dirname</span>, <span style="color:#e6db74">&#39;src/index.js&#39;</span>),
+  <span style="color:#a6e22e">output</span><span style="color:#f92672">:</span> {
+    <span style="color:#a6e22e">path</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">path</span>.<span style="color:#a6e22e">join</span>(<span style="color:#a6e22e">__dirname</span>, <span style="color:#e6db74">&#39;dist&#39;</span>),
+    <span style="color:#a6e22e">filename</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;index.bundle.js&#39;</span>
+  },
+  <span style="color:#a6e22e">module</span><span style="color:#f92672">:</span> {
+    <span style="color:#a6e22e">loaders</span><span style="color:#f92672">:</span> []
+  }
+};
+</code></pre></div><p>In the most basic sense, each loader is represented as an object with a RegEx test followed by a string or array of loaders to apply. For example:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">loaders</span><span style="color:#f92672">:</span> [
+  {
+    <span style="color:#a6e22e">test</span><span style="color:#f92672">:</span> <span style="color:#e6db74">/\.extension$/</span>,
+    <span style="color:#a6e22e">loader</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;some-loader&#39;</span>
+  },
+  {
+    <span style="color:#a6e22e">test</span><span style="color:#f92672">:</span> <span style="color:#e6db74">/\.differentextension$/</span>,
+    <span style="color:#a6e22e">loaders</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;some-loader&#39;</span>, <span style="color:#e6db74">&#39;another-loader&#39;</span>]
+  }
+]
+</code></pre></div><p>A particular point of interest comes in the second loader configuration. We're able to chain loaders together, which is sometimes useful and necessary. Let's add our first loader and put it to the test.</p>
+<h2 id="basic-templates-with-the-html-loader">Basic Templates with the HTML Loader</h2>
+<p>Let's imagine a scenario where we have a simple JavaScript application, and based on some user's interactions, we want to display some HTML template. For the sake of separating our concerns, we wanted our HTML to reside in its own file, and for us to some how be able to require it and bundle it in on demand. The <a href="https://github.com/webpack/html-loader">HTML loader </a> is the perfect tool for the job. Let's go ahead and install it:</p>
+<pre><code class="language-console" data-lang="console">npm install html-loader --save-dev
+</code></pre><p>Now over in our webpack configuration, let's add the loader:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">{
+  <span style="color:#a6e22e">test</span><span style="color:#f92672">:</span> <span style="color:#e6db74">/\.html$/</span>,
+  <span style="color:#a6e22e">loader</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;html&#39;</span>
+}
+</code></pre></div><p>Now, let's create the HTML template in <code>src/hello.html</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">h1</span>&gt;Hello!&lt;/<span style="color:#f92672">h1</span>&gt;
+&lt;<span style="color:#f92672">p</span>&gt;Welcome to this awesome application. I hope you enjoy it.&lt;/<span style="color:#f92672">p</span>&gt;
+&lt;<span style="color:#f92672">button</span>&gt;More awesome&lt;/<span style="color:#f92672">button</span>&gt;
+</code></pre></div><p>Over in our entry file <code>src/index.js</code>, let's remove what we had before for now. Now, let's simply observe what happens when we require the HTML template and log it to the console:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">hello</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;./hello.html&#39;</span>);
+
+<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">hello</span>);
+</code></pre></div><p>Now, let's create our bundle by running:</p>
+<pre><code class="language-console" data-lang="console">npm run build
+</code></pre><p>Let's observe the <code>dist/index.bundle.js</code> file to see what happened during bundling. If we scroll down to the first module, we'll see that we're assigning the result of <code>__webpack_require__(1)</code> to the variable <code>hello</code>. Then, in the second module (which is at index 1 in the array), we can see that the loader applied the correct transformations to the HTML template, and converted it to a string with the necessary new line characters. Let's witness that first hand by running our bundle in node:</p>
+<pre><code class="language-console" data-lang="console">node dist/index.bundle.js
+
+output:
+
+&lt;h1&gt;Hello!&lt;/h1&gt;
+&lt;p&gt;Welcome to this awesome application. I hope you enjoy it.&lt;/p&gt;
+&lt;button&gt;More awesome&lt;/button&gt;
+</code></pre><p>Naturally, if we're using HTML, we'd want to inject it into the DOM somehow, so let's do that. Let's create a basic web page:</p>
+<pre><code>touch index.html
+</code></pre><p>In it, let's outline a basic HTML5 app, and include a div to add our HTML to, and a reference to the bundled JavaScript:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
+&lt;<span style="color:#f92672">html</span> <span style="color:#a6e22e">lang</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;en&#34;</span>&gt;
+&lt;<span style="color:#f92672">head</span>&gt;
+  &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;UTF-8&#34;</span>&gt;
+  &lt;<span style="color:#f92672">title</span>&gt;Cooking With Webpack Part 2 - Using Loaders&lt;/<span style="color:#f92672">title</span>&gt;
+&lt;/<span style="color:#f92672">head</span>&gt;
+&lt;<span style="color:#f92672">body</span>&gt;
+  &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;app&#34;</span>&gt;&lt;/<span style="color:#f92672">div</span>&gt;
+  &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;dist/index.bundle.js&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+&lt;/<span style="color:#f92672">body</span>&gt;
+&lt;/<span style="color:#f92672">html</span>&gt;
+</code></pre></div><p>Back in our <code>src/index.js</code> file, let's write some simple JavaScript to inject the template in our app when the script runs:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">hello</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;./hello.html&#39;</span>);
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#39;#app&#39;</span>);
+
+<span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">innerHTML</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">hello</span>;
+</code></pre></div><p>Save, compile using <code>npm run build</code>, and now open up <code>index.html</code> in the browser. If you're like me, and you get extremely happy with simple successes, then what you see in the browser should make you jump off your seat in excitement. We've successfully included an HTML template in our JavaScript, transformed it with a loader, and used it in our bundled script to inject it into the DOM.</p>
+<h2 id="injecting-styles-with-the-style-and-css-loader">Injecting Styles with the Style and CSS Loader</h2>
+<p>Apps and websites are pretty boring with plain old rendered HTML. Let's load some styles into our app and make it look pretty!</p>
+<p><em>Sidenote: In the example that follows, we're going to be requiring CSS in our JavaScript, and injecting it into the DOM directly. There's a lot of hot debate about this methodology. On one hand, if the CSS is small enough, then it saves an HTTP request round trip. On the other, if it's huge, then it can be a lot to handle. For now, we're going to inject it into the DOM, but when we look at plugins in the future, we'll see how we can use webpack to spit out a traditional stylesheet based on our bundle requirements.</em></p>
+<p>When working with styles, there are two loaders that need to be considered:</p>
+<ol>
+<li>The <a href="https://github.com/webpack/style-loader">style loader</a> - injects CSS into the DOM by adding a <code>style</code> tag</li>
+<li>The <a href="https://github.com/webpack/css-loader">CSS loader</a> - interprets CSS properly and resolves paths etc</li>
+</ol>
+<p>Let's install both of them:</p>
+<pre><code class="language-console" data-lang="console">npm install style-loader css-loader --save-dev
+</code></pre><p>Now, let's configure webpack to use the loaders:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">{
+  <span style="color:#a6e22e">test</span><span style="color:#f92672">:</span> <span style="color:#e6db74">/\.css$/</span>,
+  <span style="color:#a6e22e">loaders</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;style&#39;</span>, <span style="color:#e6db74">&#39;css&#39;</span>]
+}
+</code></pre></div><p>This time, we used an array of loaders. Webpack allows us to chain loaders by adding multiple loaders to an array with key <code>loaders</code>, instead of just the one <code>loader</code>. Next up, let's create our first stylesheet:</p>
+<pre><code class="language-console" data-lang="console">touch src/style.css
+</code></pre><p>And let's populate it with some basic styles:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css"><span style="color:#f92672">*</span><span style="color:#f92672">,</span>
+<span style="color:#f92672">*</span>::<span style="color:#a6e22e">before</span><span style="color:#f92672">,</span>
+<span style="color:#f92672">*</span>::<span style="color:#a6e22e">after</span> {
+  <span style="color:#66d9ef">box-sizing</span>: <span style="color:#66d9ef">border-box</span>;
+}
+
+<span style="color:#f92672">html</span> {
+  <span style="color:#66d9ef">font-size</span>: <span style="color:#ae81ff">10</span><span style="color:#66d9ef">px</span>;
+}
+
+<span style="color:#f92672">body</span> {
+  <span style="color:#66d9ef">font-family</span>: <span style="color:#66d9ef">sans-serif</span>;
+  <span style="color:#66d9ef">font-size</span>: <span style="color:#ae81ff">1.6</span><span style="color:#66d9ef">rem</span>;
+}
+</code></pre></div><p>Over in our entry file, let's require the styles at the top:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// index.js
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;./style.css&#39;</span>);
+
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">hello</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;./hello.html&#39;</span>);
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#39;#app&#39;</span>);
+
+<span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">innerHTML</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">hello</span>;
+</code></pre></div><p>Now, let's build using <code>npm run build</code>, and open up <code>index.html</code> in the browser. You should see the styles applied. Exciting! Let's look under the hood in <code>dist/index.bundle.js</code>. Webpack creates another module for us that gets loaded with the <code>__webpack_require__</code> when it's needed. This time, it transforms our stylesheet into readable JavaScript, then it runs through it, parses it, and injects it as a <code>style</code> tag into the DOM's <code>head</code> tag. If you open up the elements tab in the browser console, you'll see that the styles are indeed there. Sweet!</p>
+<p>Let's go a step further and refactor our app a little. Over in our <code>index.html</code> file, let's add a button and a container that'll render some hellos for us:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">button</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;js-add-hello&#34;</span>&gt;Add Hello&lt;/<span style="color:#f92672">button</span>&gt;
+&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;hellos&#34;</span>&gt;&lt;/<span style="color:#f92672">div</span>&gt;
+</code></pre></div><p>Now, in our <code>hello.js</code> file, let's comment out what we had before for now, and just let our module require some css, and return the hello template:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;./hello.css&#39;</span>);
+
+<span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>() {
+  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;./hello.html&#39;</span>);
+};
+</code></pre></div><p>We're going to need to create that <code>hello.css</code> file, so go ahead and do that:</p>
+<pre><code class="language-console" data-lang="console">touch src/hello.css
+</code></pre><p>Now, populate it:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">.<span style="color:#a6e22e">Hello</span> {
+  <span style="color:#66d9ef">margin</span>: <span style="color:#ae81ff">2</span><span style="color:#66d9ef">rem</span> <span style="color:#ae81ff">0</span>;
+  <span style="color:#66d9ef">padding</span>: <span style="color:#ae81ff">2</span><span style="color:#66d9ef">rem</span>;
+  <span style="color:#66d9ef">border</span>: <span style="color:#66d9ef">solid</span> <span style="color:#ae81ff">1</span><span style="color:#66d9ef">px</span> <span style="color:#ae81ff">#ddd</span>;
+}
+
+.<span style="color:#a6e22e">Hello-title</span> {
+  <span style="color:#66d9ef">margin-bottom</span>: <span style="color:#ae81ff">1</span><span style="color:#66d9ef">rem</span>;
+  <span style="color:#66d9ef">font-size</span>: <span style="color:#ae81ff">1.6</span><span style="color:#66d9ef">rem</span>;
+}
+</code></pre></div><p>In our <code>hello.html</code> template, let's change it up to this for now:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Hello&#34;</span>&gt;
+  &lt;<span style="color:#f92672">h3</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Hello-title&#34;</span>&gt;Hello, World!&lt;/<span style="color:#f92672">h3</span>&gt;
+  &lt;<span style="color:#f92672">p</span>&gt;The best and most beautiful things in the world cannot be seen or even touched - they must be felt with the heart.&lt;/<span style="color:#f92672">p</span>&gt;
+&lt;/<span style="color:#f92672">div</span>&gt;
+</code></pre></div><p>And now, finally, in our entry <code>index.js</code> file, let's tie it all together:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;./style.css&#39;</span>);
+
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">hello</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;./hello.js&#39;</span>);
+
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">button</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#39;.js-add-hello&#39;</span>);
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">hellos</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#39;#hellos&#39;</span>);
+
+<span style="color:#a6e22e">button</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;click&#39;</span>, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">e</span>) {
+  <span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">preventDefault</span>();
+
+  <span style="color:#a6e22e">hellos</span>.<span style="color:#a6e22e">insertAdjacentHTML</span>(<span style="color:#e6db74">&#39;beforeend&#39;</span>, <span style="color:#a6e22e">hello</span>());
+});
+</code></pre></div><p>Let's bundle it all up using <code>npm run build</code>, and now let's open up the <code>index.html</code> file in the browser. Voila, we have a working app!</p>
+<p>You're probably thinking that a lot of what we just did has nothing to do with webpack. I'd like to point out otherwise though. Sure, we could've written all of this in on JavaScript file and one CSS file. However, what we did accomplish is that we've exposed some of webpack's true powers. We were able to truly separate our concerns here, and group together the markup, styling, and logic of the &ldquo;hello&rdquo; component. Webpack allowed us to work on our &ldquo;hello&rdquo; component in isolation, and bundle it up with the rest of our project code later on.</p>
+<p>To prove this point a bit, let's work solely on our &ldquo;hello&rdquo; component. For it to be more template-like, let's use handlebars instead of just plain old HTML:</p>
+<pre><code class="language-console" data-lang="console">npm install handlebars handlebars-loader --save-dev
+cp src/hello.html src/hello.hbs
+</code></pre><p>In our webpack config, let's enable handlebars transformations:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">{
+  <span style="color:#a6e22e">test</span><span style="color:#f92672">:</span> <span style="color:#e6db74">/\.hbs$/</span>,
+  <span style="color:#a6e22e">loader</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;handlebars&#39;</span>
+}
+</code></pre></div><p>Now, in our handlebars template, let's add a <code>name</code> variable:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-handlebars" data-lang="handlebars">&lt;div class=&#34;Hello&#34;&gt;
+  &lt;h3 class=&#34;Hello-title&#34;&gt;Hello, <span style="color:#75715e">{{</span>name<span style="color:#75715e">}}</span>!&lt;/h3&gt;
+  &lt;p&gt;The best and most beautiful things in the world cannot be seen or even touched - they must be felt with the heart.&lt;/p&gt;
+&lt;/div&gt;
+</code></pre></div><p>Let's change up our <code>hello.js</code> module now to accept a name, and render the handlebars template with that name:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;./hello.css&#39;</span>);
+
+<span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">name</span>) {
+  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">name</span> <span style="color:#f92672">===</span> <span style="color:#66d9ef">undefined</span>) {
+    <span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;World&#39;</span>;
+  }
+
+  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;./hello.hbs&#39;</span>)({
+    <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">name</span>
+  });
+};
+</code></pre></div><p>If we build and refresh the page, we should still see the same result, which is good! We've successfully worked on our component in isolation, accessing the relevant files we needed, when we needed. Let's quickly edit our entry file now to put the component to better use. First though, let's add an input field to our <code>index.html</code> file:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Input js-add-hello&#34;</span> <span style="color:#a6e22e">placeholder</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Type a name and hit enter&#34;</span>&gt;
+</code></pre></div><p>And now, the JavaScript:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">input</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#39;.js-add-hello&#39;</span>);
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">hellos</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#39;#hellos&#39;</span>);
+
+<span style="color:#a6e22e">input</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;keyup&#39;</span>, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">e</span>) {
+  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">keyCode</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">13</span>) {
+    <span style="color:#a6e22e">hellos</span>.<span style="color:#a6e22e">insertAdjacentHTML</span>(<span style="color:#e6db74">&#39;beforeend&#39;</span>, <span style="color:#a6e22e">hello</span>(<span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">target</span>.<span style="color:#a6e22e">value</span>));
+    <span style="color:#a6e22e">input</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+  }
+});
+</code></pre></div><p>Build, refresh, and voila. Beautiful.</p>
+<h2 id="moving-to-modern-javascript-with-the-babel-loader">Moving to Modern JavaScript with the Babel Loader</h2>
+<p>To wrap this all up, I'm going to introduce to you one more loader that'll allow you to write next generation JavaScript using <a href="http://babeljs.io/">babel</a>. Babel is a JavaScript compiler that gives us a large configuration set. We'll keep it simple for now though. As with all other loaders, we need the <a href="https://github.com/babel/babel-loader">babel loader</a>, as well as some other dependencies based on their docs:</p>
+<pre><code class="language-console" data-lang="console">npm install babel-loader babel-core babel-preset-es2015 --save-dev
+</code></pre><p>The <code>babel-loader</code> package is required for the actual loading in webpack, the <code>babel-core</code> package is required to actually compile the JavaScript, and the <code>babel-preset-es2015</code> package is required so that we have a preset to base off of. In our webpack configuration file, we can set up the loader like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">{
+  <span style="color:#a6e22e">test</span><span style="color:#f92672">:</span> <span style="color:#e6db74">/\.js$/</span>,
+  <span style="color:#a6e22e">exclude</span><span style="color:#f92672">:</span> <span style="color:#e6db74">/node_modules/</span>,
+  <span style="color:#a6e22e">loader</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;babel-loader&#39;</span>,
+  <span style="color:#a6e22e">query</span><span style="color:#f92672">:</span> {
+    <span style="color:#a6e22e">presets</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;es2015&#39;</span>]
+  }
+}
+</code></pre></div><p>This time, we're using two more loader properties:</p>
+<ol>
+<li><code>exclude</code> to specify via RegEx what to exclude from the transformation</li>
+<li><code>query</code> to send some information to the babel configuration</li>
+</ol>
+<p>Now, we can change up all our JavaScript:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// index.js
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#39;./style.css&#39;</span>;
+
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">hello</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./hello.js&#39;</span>;
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">input</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#39;.js-add-hello&#39;</span>);
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">hellos</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#39;#hellos&#39;</span>);
+
+<span style="color:#a6e22e">input</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;keyup&#39;</span>, <span style="color:#a6e22e">e</span> =&gt; {
+  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">keyCode</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">13</span>) {
+    <span style="color:#a6e22e">hellos</span>.<span style="color:#a6e22e">insertAdjacentHTML</span>(<span style="color:#e6db74">&#39;beforeend&#39;</span>, <span style="color:#a6e22e">hello</span>(<span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">target</span>.<span style="color:#a6e22e">value</span>));
+    <span style="color:#a6e22e">input</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+  }
+});
+
+<span style="color:#75715e">// hello.js
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#39;./hello.css&#39;</span>;
+
+<span style="color:#66d9ef">import</span> <span style="color:#a6e22e">helloTpl</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./hello.hbs&#39;</span>;
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;World&#39;</span>) {
+  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">helloTpl</span>({
+    <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">name</span>
+  });
+};
+</code></pre></div><p>Build, refresh the browser, and boom! More awesome magic. We're now able to write next generation JavaScript wherever we want thanks to webpack's loading and transformation functionality in tandem with babel. Exciting stuff!</p>
+<h2 id="wrap-up">Wrap Up</h2>
+<p>Phew! This time, we plunged into the world of loaders and saw how they apply transformations to our bundles. Loaders are extremely important in the world of webpack, and I hope I've imparted enough wisdom for you to go out in the wild and configure them yourself. Thanks again for reading, and if you have and questions, comments, or feedback, feel free to <!-- raw HTML omitted -->send me a tweet.<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+
+      </div>
+    </div>
+    <div class="Article-prevNext">
+      
+        <div class="Article-prevNext-link">
+          <strong>Next:</strong>
+          <a href="https://callmenick.com/dev/infinity-css-animating-loader/">Let&#39;s Build an Infinity CSS Animating Loader!</a>
+        </div>
+      
+      
+        <div class="Article-prevNext-link">
+          <strong>Previous:</strong>
+          <a href="https://callmenick.com/dev/cooking-with-webpack-1-introduction/">Cooking With Webpack Part 1 - Introduction and Basic Implementation</a>
+        </div>
+      
+    </div>
+  </section>
+
+      </div>
+    </main>
+  </div>
+  <script src="https://callmenick.com/js/prism.js"></script>
+  <script src="https://callmenick.com/js/carbonad.js"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-34160351-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+</body>
+</html>

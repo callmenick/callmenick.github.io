@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>CSS Transitions, Transforms &amp; Animations – Perspective - Call Me Nick</title>
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:creator" content="@nicksalloum_" />
+  <meta name="description" content="In this part of the CSS transitions, transforms and animations series, we look at the CSS perspective property with examples including a 3D cube.">
+  <meta property="og:url" content="https://callmenick.com/dev/css-perspective/">
+  <meta property="og:title" content="CSS Transitions, Transforms &amp; Animations – Perspective - Call Me Nick">
+  <meta property="og:description" content="In this part of the CSS transitions, transforms and animations series, we look at the CSS perspective property with examples including a 3D cube.">
+  <meta property="og:image" content="https://callmenick.com/dev/css-perspective/css-perspective-featured.png">
+  <meta name="msapplication-config" content="https://callmenick.com/img/icons/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="stylesheet" href="https://callmenick.com/css/style.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://callmenick.com/img/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://callmenick.com/img/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://callmenick.com/img/icons/favicon-16x16.png">
+  <link rel="manifest" href="https://callmenick.com/img/icons/manifest.json">
+  <link rel="mask-icon" href="https://callmenick.com/img/icons/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="shortcut icon" href="https://callmenick.com/img/icons/favicon.ico">
+  <link rel="canonical" href="https://callmenick.com/dev/css-perspective/">
+</head>
+<body>
+  <div class="Wrapper">
+    <div class="Sidebar">
+  <header class="Header">
+    <div class="Header-logo">
+      <a href="https://callmenick.com/">
+        <svg class="Logo" width="60" height="60" viewBox="0 0 60 60">
+  <circle fill="#2196F3" cx="30" cy="30" r="30"/>
+  <path fill="#FFF" d="M34.757 43.244A5.981 5.981 0 0 0 39.002 45 5.999 5.999 0 0 0 45 39.002c0-1.665-.67-3.154-1.757-4.243L25.244 16.757A6.002 6.002 0 0 0 15 20.999c0 1.663.67 3.155 1.757 4.241l18 18.004zM27.001 39.002A6 6 0 0 1 20.997 45C17.688 45 15 42.316 15 39.002a6.001 6.001 0 0 1 12.001 0zM45 20.999a6 6 0 0 1-12 0A6.002 6.002 0 0 1 39.002 15 6.002 6.002 0 0 1 45 20.999z"/>
+</svg>
+
+      </a>
+    </div>
+  </header>
+  <nav class="Nav">
+    <ul class="Nav-items">
+      
+      
+        <li class="Nav-item ">
+          <a href="https://callmenick.com/" class="Nav-link">Home</a>
+        </li>
+      
+        <li class="Nav-item ">
+          <a href="https://callmenick.com/dev" class="Nav-link">Dev</a>
+        </li>
+      
+        <li class="Nav-item ">
+          <a href="https://callmenick.com/contact" class="Nav-link">Contact</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <div id="carbonad" class="CarbonAd"></div>
+</div>
+
+    <main class="Main">
+      <div class="Main-inner">
+        
+  <section class="Article">
+    <div class="Article-header">
+      <h1 class="Article-title">CSS Transitions, Transforms &amp; Animations – Perspective</h1>
+      <div class="Article-meta">
+        <a href="https://callmenick.com/dev/css-perspective/" class="Article-meta-item">
+          On: <em>2014/12/30</em>
+        </a>
+        <a href="/dev" class="Article-meta-item">
+          In: <em>dev</em>
+        </a>
+      </div>
+      <p class="Article-excerpt">In this part of the CSS transitions, transforms and animations series, we look at the CSS perspective property with examples including a 3D cube.</p>
+      <div class="Article-featuredImg">
+        <img src="css-perspective-featured.png" alt="CSS Transitions, Transforms &amp; Animations – Perspective">
+      </div>
+    </div>
+    <div class="Article-content">
+      <div class="Content">
+        <!-- raw HTML omitted -->
+<p>In this tutorial, we’re going to take an in-depth look into CSS perspective, and some use-cases where it can give users more natural and cool experiences.</p>
+<h2 id="what-is-perspective">What Is Perspective?</h2>
+<p>In the context of the two-dimensional world, perspective gives users the illusion of an object’s depth, width, height, and position in relation to another object, when viewed from a particular point. Perspective allows artists to create scenes that look like they are going “into” the paper, or draw buildings of different sizes on a street moving away from our position. Objects will also have a vanishing point, which is the point in the 2-D plane where an object’s depth vanishes. Let’s illustrate this with a simple diagram:</p>
+<p><img src="vanishing-point.png" alt="Vanishing point"></p>
+<p>The above diagram depicts three objects, all rectangles, in a 2-D plane. When they are moved around the plane, lines of perspective can be drawn towards the vanishing point, and 3-dimensional objects can be extrapolated.</p>
+<p>Since the web is viewed on two-dimensional surfaces (i.e. device screens), perspective can play a part in helping to create some similar depth. In the world of web and CSS transforms, perspective is defined like this (taken from the MDN):</p>
+<blockquote>
+<p>The perspective CSS property determines the distance between the z = 0 plane and the user in order to give to the 3D-positioned element some perspective. Each 3D element with z &gt; 0 becomes larger; each 3D-element with z &lt; 0 becomes smaller. The strength of the effect is determined by the value of this property.</p>
+</blockquote>
+<p>The vanishing point is placed by default at the centre of the element, but we can reposition it with the <code>perspective-origin</code> property. Let’s look at a basic example.</p>
+<h2 id="demo-1--a-basic-perspective-example">Demo 1 – A Basic Perspective Example</h2>
+<p>Let’s take a very primitive shape – a square – and use the perspective properties to give it a bit of depth. For the first sequence of demos, I’ll use some helper classes to show-off the following perspective ranges:</p>
+<ul>
+<li>no <code>perspective</code></li>
+<li>100px <code>perspective</code></li>
+<li>200px <code>perspective</code></li>
+<li><code>perspective-origin</code> at [0, 0]</li>
+</ul>
+<p>Note that perspective properties must exist on the parent container of the element we want affected. With that in mind, the markup for the three demos will be really simple:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;perspective-container perspective--none&#34;</span>&gt;
+  &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;surface&#34;</span>&gt;&lt;/<span style="color:#f92672">span</span>&gt;
+&lt;/<span style="color:#f92672">div</span>&gt;
+
+&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;perspective-container perspective--200&#34;</span>&gt;
+  &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;surface&#34;</span>&gt;&lt;/<span style="color:#f92672">span</span>&gt;
+&lt;/<span style="color:#f92672">div</span>&gt;
+
+&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;perspective-container perspective--100 perspective-origin--00&#34;</span>&gt;
+  &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;surface&#34;</span>&gt;&lt;/<span style="color:#f92672">span</span>&gt;
+&lt;/<span style="color:#f92672">div</span>&gt;
+</code></pre></div><p>Let’s now apply the necessary CSS perspective properties:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">.<span style="color:#a6e22e">perspective-container</span> {
+  <span style="color:#66d9ef">width</span>: <span style="color:#ae81ff">200</span><span style="color:#66d9ef">px</span>;
+  <span style="color:#66d9ef">height</span>: <span style="color:#ae81ff">200</span><span style="color:#66d9ef">px</span>;
+  <span style="color:#66d9ef">background-color</span>: <span style="color:#ae81ff">#eee</span>;
+}
+
+.<span style="color:#a6e22e">perspective--none</span> {
+}
+
+.<span style="color:#a6e22e">perspective--100</span> {
+  <span style="color:#66d9ef">perspective</span>: <span style="color:#ae81ff">100</span><span style="color:#66d9ef">px</span>;
+}
+
+.<span style="color:#a6e22e">perspective--200</span> {
+  <span style="color:#66d9ef">perspective</span>: <span style="color:#ae81ff">200</span><span style="color:#66d9ef">px</span>;
+}
+
+.<span style="color:#a6e22e">perspective-origin--00</span> {
+  <span style="color:#66d9ef">perspective-origin</span>: <span style="color:#ae81ff">0</span><span style="color:#66d9ef">px</span> <span style="color:#ae81ff">0</span><span style="color:#66d9ef">px</span>;
+}
+
+.<span style="color:#a6e22e">surface</span> {
+  <span style="color:#66d9ef">display</span>: <span style="color:#66d9ef">block</span>;
+  <span style="color:#66d9ef">width</span>: <span style="color:#ae81ff">100</span><span style="color:#66d9ef">%</span>;
+  <span style="color:#66d9ef">height</span>: <span style="color:#ae81ff">100</span><span style="color:#66d9ef">%</span>;
+  <span style="color:#66d9ef">background-color</span>: <span style="color:#ae81ff">#377CFF</span>;
+}
+</code></pre></div><p>If we refresh our browser, we will see three identical squares. Why? Because none of our objects have actually moved in the perspective plane. To see how the perspective properties affect our objects, let’s translate them along the z-axis into the plane using <code>transform</code>. We’ll add the following CSS to our <code>.surface</code> class that governs our objects:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">.<span style="color:#a6e22e">surface</span> {
+  <span style="color:#66d9ef">transform</span>: translateZ(<span style="color:#ae81ff">-50</span><span style="color:#66d9ef">px</span>);
+}
+</code></pre></div><p>Now, we can see three different results:</p>
+<ol>
+<li>The first remains unchanged, because without any perspective rules in place, translating along the z-axis (i.e. in and out of the screen) causes no change in depth.</li>
+<li>The second appears to have moved into the screen a bit, because we set the <code>perspective</code> to <code>200px</code>. Remember from the definition above that the perspective property determines the distance between the <code>z = 0</code> plane and the user.</li>
+<li>The third appears even smaller still, and has moved to the top-left corner of our perspective container. This is because of the <code>perspective-origin</code> property set on the parent container.</li>
+</ol>
+<p>Here it is in action:</p>
+<!-- raw HTML omitted -->
+<h2 id="demo-2--rotating-shapes-with-perspective">Demo 2 – Rotating Shapes With Perspective</h2>
+<p>At this point, the above effects could’ve just been achieved by simply scaling the elements. That’s a fair point, but in that case, we’d lose all perspective properties. Visualizing the perspective in the first demo might also be a bit difficult because ultimately, it’s just a smaller square. Let’s look at a slightly more advanced implementation, and paint a clearer picture.</p>
+<p>This time, we’ll have the same three squares, but we will rotate them about the y-axis, making them rotate “into” the screen. We will use a CSS transition effect coupled with the <code>:hover</code> pseudo-class to animate how perspective properties affects the rotation. Here’s the markup:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;perspective-container perspective--none&#34;</span>&gt;
+  &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;surface&#34;</span>&gt;&lt;/<span style="color:#f92672">span</span>&gt;
+&lt;/<span style="color:#f92672">div</span>&gt;
+
+&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;perspective-container perspective--400&#34;</span>&gt;
+  &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;surface&#34;</span>&gt;&lt;/<span style="color:#f92672">span</span>&gt;
+&lt;/<span style="color:#f92672">div</span>&gt;
+
+&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;perspective-container perspective--400 perspective-origin--00&#34;</span>&gt;
+  &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;surface&#34;</span>&gt;&lt;/<span style="color:#f92672">span</span>&gt;
+&lt;/<span style="color:#f92672">div</span>&gt;
+</code></pre></div><p>This time, I added a perspective helper class at <code>400px</code> also like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">.<span style="color:#a6e22e">perspective--400</span> {
+  <span style="color:#66d9ef">perspective</span>: <span style="color:#ae81ff">400</span><span style="color:#66d9ef">px</span>;
+}
+</code></pre></div><p>Finally, let’s take a look at the CSS for our new shape:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">.<span style="color:#a6e22e">surface</span> {
+  <span style="color:#66d9ef">display</span>: <span style="color:#66d9ef">block</span>;
+  <span style="color:#66d9ef">width</span>: <span style="color:#ae81ff">100</span><span style="color:#66d9ef">%</span>;
+  <span style="color:#66d9ef">height</span>: <span style="color:#ae81ff">100</span><span style="color:#66d9ef">%</span>;
+  <span style="color:#66d9ef">background-color</span>: <span style="color:#ae81ff">#377CFF</span>;
+  <span style="color:#66d9ef">transition</span>: <span style="color:#66d9ef">transform</span> <span style="color:#ae81ff">1</span><span style="color:#66d9ef">s</span>;
+}
+
+.<span style="color:#a6e22e">perspective-container</span>:<span style="color:#a6e22e">hover</span> <span style="color:#f92672">&gt;</span> .<span style="color:#a6e22e">surface</span> {
+  <span style="color:#66d9ef">transform</span>: rotateY(<span style="color:#ae81ff">180</span><span style="color:#66d9ef">deg</span>);
+}
+</code></pre></div><p>Hovering over the three different implementations results in three different outcomes:</p>
+<ol>
+<li>With no <code>perspective</code> set, the object rotates about the z-axis in a very flat manner. Nothing seems to pop in our out of the screen.</li>
+<li>When we set <code>perspective</code> to <code>400px</code>, we can see that the object now looks like it is spinning out and back into the screen. This is because of <code>perspective</code>.</li>
+<li>With the <code>perspective</code> set to <code>400px</code> and the <code>perspective-origin</code> moved to <code>[0 0]</code>, a similar effect to number 2 is achieved, but this time viewed from the perspective origin.</li>
+</ol>
+<p>Here it is in action! Now, we’re starting to see the power of CSS perspectives.</p>
+<!-- raw HTML omitted -->
+<h2 id="demo-3--3d-cube-with-variable-perspective-origins">Demo 3 – 3D Cube With Variable Perspective Origins</h2>
+<p>Now, we’re going to get a little funky. We’re going to create a cube (with 6 faces) using CSS <code>transform</code>, and give that cube some depth using <code>perspective</code>. We will also set up a controller system so that we can edit the perspective and perspective origin on the fly, giving us a superior grasp on how perspective really affects everything.</p>
+<p>We’ll set up our cube using 6 different <code>span</code> elements inside a parent <code>div</code> with the class of <code>cube-face</code>. Each <code>cube-face</code> will represent a different face of the cube. The cube itself will now reside inside a perspective <code>div</code>, called <code>cube</code>. Here’s the markup:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;cube&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;cube&#34;</span>&gt;
+  &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;cube-faces&#34;</span>&gt;
+    &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;cube-face cube-face--front&#34;</span>&gt;&lt;/<span style="color:#f92672">span</span>&gt;
+    &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;cube-face cube-face--back&#34;</span>&gt;&lt;/<span style="color:#f92672">span</span>&gt;
+    &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;cube-face cube-face--top&#34;</span>&gt;&lt;/<span style="color:#f92672">span</span>&gt;
+    &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;cube-face cube-face--bottom&#34;</span>&gt;&lt;/<span style="color:#f92672">span</span>&gt;
+    &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;cube-face cube-face--left&#34;</span>&gt;&lt;/<span style="color:#f92672">span</span>&gt;
+    &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;cube-face cube-face--right&#34;</span>&gt;&lt;/<span style="color:#f92672">span</span>&gt;
+  &lt;/<span style="color:#f92672">div</span>&gt;
+&lt;/<span style="color:#f92672">div</span>&gt;
+</code></pre></div><p>We’ll set up some defaults for the perspective wrapping container, and the cube container will have relative positioning so that each of the cube faces can be absolutely positioned inside, and transformed accordingly. Assuming we want a cube where each side is <code>200px</code> in length, our CSS will look like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">.<span style="color:#a6e22e">cube</span> {
+  <span style="color:#66d9ef">perspective</span>: <span style="color:#ae81ff">1000</span><span style="color:#66d9ef">px</span>;
+  <span style="color:#66d9ef">perspective-origin</span>: <span style="color:#ae81ff">0</span><span style="color:#66d9ef">px</span> <span style="color:#ae81ff">0</span><span style="color:#66d9ef">px</span>;
+}
+
+.<span style="color:#a6e22e">cube-faces</span> {
+  <span style="color:#66d9ef">position</span>: <span style="color:#66d9ef">relative</span>;
+  <span style="color:#66d9ef">margin</span>: <span style="color:#ae81ff">100</span><span style="color:#66d9ef">px</span> <span style="color:#66d9ef">auto</span>;
+  <span style="color:#66d9ef">width</span>: <span style="color:#ae81ff">200</span><span style="color:#66d9ef">px</span>;
+  <span style="color:#66d9ef">height</span>: <span style="color:#ae81ff">200</span><span style="color:#66d9ef">px</span>;
+  <span style="color:#66d9ef">transform-style</span>: <span style="color:#66d9ef">preserve-3d</span>;
+}
+</code></pre></div><p>Notice that I initially set the <code>perspective</code> to be <code>1000px</code>, and the <code>perspective-origin</code> to be <code>0px 0px</code>. This will give us some depth to work with initially so we can see transformed objects moving into and out of the plane. Remember, without <code>perspective</code>, transformed objects would not achieve that third-dimensional depth that we’re after.</p>
+<p>Let’s examine the faces of the cube now. First of all, each face needs to be absolutely positioned and have a <code>width</code> and <code>height</code> of <code>200px</code>. I’ll apply some inner shadows to each face also, for visualisation purposes. Here’s the common CSS for the faces:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">.<span style="color:#a6e22e">cube-face</span> {
+  <span style="color:#66d9ef">position</span>: <span style="color:#66d9ef">absolute</span>;
+  <span style="color:#66d9ef">top</span>: <span style="color:#ae81ff">0</span>;
+  <span style="color:#66d9ef">left</span>: <span style="color:#ae81ff">0</span>;
+  <span style="color:#66d9ef">display</span>: <span style="color:#66d9ef">block</span>;
+  <span style="color:#66d9ef">width</span>: <span style="color:#ae81ff">200</span><span style="color:#66d9ef">px</span>;
+  <span style="color:#66d9ef">height</span>: <span style="color:#ae81ff">200</span><span style="color:#66d9ef">px</span>;
+  <span style="color:#66d9ef">background-color</span>: rgba(<span style="color:#ae81ff">#377CFF</span>, <span style="color:#ae81ff">0.3</span>);
+  <span style="color:#66d9ef">box-shadow</span>: <span style="color:#66d9ef">inset</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">2</span><span style="color:#66d9ef">px</span> <span style="color:#ae81ff">#fff</span>;
+}
+</code></pre></div><p>Now, let’s look at each individual face. We set up our cube to be <code>200 x 200 x 200</code>. But we want to give some depth in general. So let’s pull the front face towards us by <code>100px</code> and push the back face away from us by <code>100px</code>, leaving us with that perfect <code>200px</code> square as the center plane of our cube on the x-y axis. The back face should also be rotated <code>180deg</code>, so that it is facing outwards. So we’re translating each face first, then rotating where necessary. Here’s the CSS:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">.<span style="color:#a6e22e">cube-face--front</span> {
+  <span style="color:#66d9ef">transform</span>: translateZ(<span style="color:#ae81ff">100</span><span style="color:#66d9ef">px</span>);
+}
+
+.<span style="color:#a6e22e">cube-face--back</span> {
+  <span style="color:#66d9ef">transform</span>: translateZ(<span style="color:#ae81ff">-100</span><span style="color:#66d9ef">px</span>) rotateY(<span style="color:#ae81ff">-180</span><span style="color:#66d9ef">deg</span>);
+}
+</code></pre></div><p>Now, let’s look at the left and right faces. The left face needs to be translated to the left by <code>100px</code>, then rotated by <code>–90</code> degrees about the y-axis. The right face does the opposite. These rules will get them into position:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">.<span style="color:#a6e22e">cube-face--left</span> {
+  <span style="color:#66d9ef">transform</span>: translateX(<span style="color:#ae81ff">-100</span><span style="color:#66d9ef">px</span>) rotateY(<span style="color:#ae81ff">-90</span><span style="color:#66d9ef">deg</span>);
+}
+
+.<span style="color:#a6e22e">cube-face--right</span> {
+  <span style="color:#66d9ef">transform</span>: translateX(<span style="color:#ae81ff">100</span><span style="color:#66d9ef">px</span>) rotateY(<span style="color:#ae81ff">90</span><span style="color:#66d9ef">deg</span>);
+}
+</code></pre></div><p>Now, let’s take a look at the top and bottom faces. The top face needs to move upwards <code>100px</code>, and rotate about the x-axis by <code>90</code> degrees, while the bottom needs to to the opposite. These rules place them in position:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">.<span style="color:#a6e22e">cube-face--top</span> {
+  <span style="color:#66d9ef">transform</span>: translateY(<span style="color:#ae81ff">-100</span><span style="color:#66d9ef">px</span>) rotateX(<span style="color:#ae81ff">90</span><span style="color:#66d9ef">deg</span>);
+}
+
+.<span style="color:#a6e22e">cube-face--bottom</span> {
+  <span style="color:#66d9ef">transform</span>: translateY(<span style="color:#ae81ff">100</span><span style="color:#66d9ef">px</span>) rotateX(<span style="color:#ae81ff">-90</span><span style="color:#66d9ef">deg</span>);
+}
+</code></pre></div><p>And voila, now we have our CSS cube, using transforms and perspective! Let’s take it a step further though add some controls now that will allow us to change <code>perspective</code> and <code>perspective-origin</code> on the fly. I’ll use the range <code>input</code>, and wire up three of them to handle the respective properties. Here’s the markup:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;p&#34;</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;range&#34;</span> <span style="color:#a6e22e">min</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;500&#34;</span> <span style="color:#a6e22e">max</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;5000&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;1000&#34;</span> <span style="color:#a6e22e">step</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;1&#34;</span>&gt;
+&lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;pX&#34;</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;range&#34;</span> <span style="color:#a6e22e">min</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;-5000&#34;</span> <span style="color:#a6e22e">max</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;5000&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;0&#34;</span> <span style="color:#a6e22e">step</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;1&#34;</span>&gt;
+&lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;pY&#34;</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;range&#34;</span> <span style="color:#a6e22e">min</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;-5000&#34;</span> <span style="color:#a6e22e">max</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;5000&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;0&#34;</span> <span style="color:#a6e22e">step</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;1&#34;</span>&gt;
+</code></pre></div><p>And here’s some JavaScript to give us a playful little demo:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">cube</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;cube&#39;</span>);
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">p</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;p&#39;</span>);
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">pX</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;pX&#39;</span>);
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">pY</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;pY&#39;</span>);
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">pVal</span>;
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">xVal</span>;
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">yVal</span>;
+
+<span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">addEventListener</span>( <span style="color:#e6db74">&#39;input&#39;</span>, <span style="color:#66d9ef">function</span>() {
+  <span style="color:#a6e22e">cube</span>.<span style="color:#a6e22e">style</span>.<span style="color:#a6e22e">perspective</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">value</span><span style="color:#e6db74">}</span><span style="color:#e6db74">px</span><span style="color:#e6db74">`</span>;
+});
+
+<span style="color:#a6e22e">pX</span>.<span style="color:#a6e22e">addEventListener</span>( <span style="color:#e6db74">&#39;input&#39;</span>, <span style="color:#66d9ef">function</span>() {
+  <span style="color:#a6e22e">cube</span>.<span style="color:#a6e22e">style</span>.<span style="color:#a6e22e">perspectiveOrigin</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">pX</span>.<span style="color:#a6e22e">value</span><span style="color:#e6db74">}</span><span style="color:#e6db74">px </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">pY</span>.<span style="color:#a6e22e">value</span><span style="color:#e6db74">}</span><span style="color:#e6db74">px</span><span style="color:#e6db74">`</span>;
+});
+
+<span style="color:#a6e22e">pY</span>.<span style="color:#a6e22e">addEventListener</span>( <span style="color:#e6db74">&#39;input&#39;</span>, <span style="color:#66d9ef">function</span>() {
+  <span style="color:#a6e22e">cube</span>.<span style="color:#a6e22e">style</span>.<span style="color:#a6e22e">perspectiveOrigin</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">pX</span>.<span style="color:#a6e22e">value</span><span style="color:#e6db74">}</span><span style="color:#e6db74">px </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">pY</span>.<span style="color:#a6e22e">value</span><span style="color:#e6db74">}</span><span style="color:#e6db74">px</span><span style="color:#e6db74">`</span>;
+});
+</code></pre></div><p>And now, we have an interactive demo of a 3D cube, creating using CSS3 transforms and perspectives. The demo should truly give you a grasp on how perspective is handled in the browser. Check it out here below!</p>
+<!-- raw HTML omitted -->
+<h2 id="browser-support">Browser Support</h2>
+<p>Perspective, transitions, and animations are supported in IE10 and up, whereas transforms are supported in IE9 and up. Fallbacks should be easy to implement as a result of this. I tested all the code above in new versions of Chrome, Safari, and Firefox, so you’re safe there. Make sure to add all then necessary vendor prefixes though! The zipped up source code (available from the link below) has the fully prefixed CSS.</p>
+<h2 id="wrap-up">Wrap Up</h2>
+<p>And that’s a wrap! We’ve just taken an in depth look at CSS3 perspective, and some of the possibilities available when combining perspective with transforms, transitions, and animations. Thanks again for reading, and if you have and questions, comments, or feedback, feel free to <!-- raw HTML omitted -->send me a tweet.<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+
+      </div>
+    </div>
+    <div class="Article-prevNext">
+      
+        <div class="Article-prevNext-link">
+          <strong>Next:</strong>
+          <a href="https://callmenick.com/dev/the-css-not-selector/">The CSS Not Selector</a>
+        </div>
+      
+      
+        <div class="Article-prevNext-link">
+          <strong>Previous:</strong>
+          <a href="https://callmenick.com/dev/jquery-functions-javascript-equivalents/">Some jQuery Functions And Their JavaScript Equivalents</a>
+        </div>
+      
+    </div>
+  </section>
+
+      </div>
+    </main>
+  </div>
+  <script src="https://callmenick.com/js/prism.js"></script>
+  <script src="https://callmenick.com/js/carbonad.js"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-34160351-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+</body>
+</html>

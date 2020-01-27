@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Level Up Your CSS Animations with Cubic Bezier - Call Me Nick</title>
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:creator" content="@nicksalloum_" />
+  <meta name="description" content="In this tutorial, we&#39;re going to plunge into the wonderful world of cubic bezier functions, gaining more fine tuned control over our CSS animations.">
+  <meta property="og:url" content="https://callmenick.com/dev/level-up-animations-cubic-bezier/">
+  <meta property="og:title" content="Level Up Your CSS Animations with Cubic Bezier - Call Me Nick">
+  <meta property="og:description" content="In this tutorial, we&#39;re going to plunge into the wonderful world of cubic bezier functions, gaining more fine tuned control over our CSS animations.">
+  <meta property="og:image" content="https://callmenick.com/dev/level-up-animations-cubic-bezier/level-up-animations-cubic-bezier-featured.png">
+  <meta name="msapplication-config" content="https://callmenick.com/img/icons/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="stylesheet" href="https://callmenick.com/css/style.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://callmenick.com/img/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://callmenick.com/img/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://callmenick.com/img/icons/favicon-16x16.png">
+  <link rel="manifest" href="https://callmenick.com/img/icons/manifest.json">
+  <link rel="mask-icon" href="https://callmenick.com/img/icons/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="shortcut icon" href="https://callmenick.com/img/icons/favicon.ico">
+  <link rel="canonical" href="https://callmenick.com/dev/level-up-animations-cubic-bezier/">
+</head>
+<body>
+  <div class="Wrapper">
+    <div class="Sidebar">
+  <header class="Header">
+    <div class="Header-logo">
+      <a href="https://callmenick.com/">
+        <svg class="Logo" width="60" height="60" viewBox="0 0 60 60">
+  <circle fill="#2196F3" cx="30" cy="30" r="30"/>
+  <path fill="#FFF" d="M34.757 43.244A5.981 5.981 0 0 0 39.002 45 5.999 5.999 0 0 0 45 39.002c0-1.665-.67-3.154-1.757-4.243L25.244 16.757A6.002 6.002 0 0 0 15 20.999c0 1.663.67 3.155 1.757 4.241l18 18.004zM27.001 39.002A6 6 0 0 1 20.997 45C17.688 45 15 42.316 15 39.002a6.001 6.001 0 0 1 12.001 0zM45 20.999a6 6 0 0 1-12 0A6.002 6.002 0 0 1 39.002 15 6.002 6.002 0 0 1 45 20.999z"/>
+</svg>
+
+      </a>
+    </div>
+  </header>
+  <nav class="Nav">
+    <ul class="Nav-items">
+      
+      
+        <li class="Nav-item ">
+          <a href="https://callmenick.com/" class="Nav-link">Home</a>
+        </li>
+      
+        <li class="Nav-item ">
+          <a href="https://callmenick.com/dev" class="Nav-link">Dev</a>
+        </li>
+      
+        <li class="Nav-item ">
+          <a href="https://callmenick.com/contact" class="Nav-link">Contact</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <div id="carbonad" class="CarbonAd"></div>
+</div>
+
+    <main class="Main">
+      <div class="Main-inner">
+        
+  <section class="Article">
+    <div class="Article-header">
+      <h1 class="Article-title">Level Up Your CSS Animations with Cubic Bezier</h1>
+      <div class="Article-meta">
+        <a href="https://callmenick.com/dev/level-up-animations-cubic-bezier/" class="Article-meta-item">
+          On: <em>2016/04/21</em>
+        </a>
+        <a href="/dev" class="Article-meta-item">
+          In: <em>dev</em>
+        </a>
+      </div>
+      <p class="Article-excerpt">In this tutorial, we&#39;re going to plunge into the wonderful world of cubic bezier functions, gaining more fine tuned control over our CSS animations.</p>
+      <div class="Article-featuredImg">
+        <img src="level-up-animations-cubic-bezier-featured.png" alt="Level Up Your CSS Animations with Cubic Bezier">
+      </div>
+    </div>
+    <div class="Article-content">
+      <div class="Content">
+        <p>Transitions and animations are making waves across web development, and rightfully so. They are awesome, easily useable (and abusable), and have the ability to take your front end components and interfaces from good to great. The anatomy of declaring transitions and animations are similar, and only two things are required:</p>
+<ol>
+<li>In the case of transitions, you select the property you want to transition. For animations, you select the keyframe block.</li>
+<li>You then declare the duration length for the animation or transition.</li>
+</ol>
+<p>Some typical CSS might look like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">.<span style="color:#a6e22e">box</span> {
+  <span style="color:#66d9ef">opacity</span>: <span style="color:#ae81ff">0</span>;
+  <span style="color:#66d9ef">transition</span>: <span style="color:#66d9ef">opacity</span> <span style="color:#ae81ff">0.3</span><span style="color:#66d9ef">s</span>;
+}
+
+.<span style="color:#a6e22e">cat</span> {
+  <span style="color:#66d9ef">animation</span>: fadeIn <span style="color:#ae81ff">0.3</span><span style="color:#66d9ef">s</span>;
+}
+
+@<span style="color:#66d9ef">keyframes</span> <span style="color:#f92672">fadeIn</span> {
+  <span style="color:#f92672">0</span><span style="color:#f92672">%</span> { <span style="color:#66d9ef">opacity</span>: <span style="color:#ae81ff">0</span>; }
+  <span style="color:#f92672">100</span><span style="color:#f92672">%</span> { <span style="color:#66d9ef">opacity</span>: <span style="color:#ae81ff">1</span>; }
+}
+</code></pre></div><p>Transitions and animations also have another shared property that controls how the intermediate values between states are calculated, and that's called the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/transition-timing-function">transition timing function</a>. It's optional, and defaults to <code>ease</code>. The following timing functions are available to us by default:</p>
+<ul>
+<li><code>ease</code> - speeds up a little through the middle, and then slows down towards the end</li>
+<li><code>ease-in</code> - starts of slowly, and accelerates through to the end</li>
+<li><code>ease-out</code> - starts of quickly, and decelerates through to the end
+<code>ease-in-out</code> - starts slowly, accelerates through to the middle, then decelerates through to the end</li>
+<li><code>linear</code> - constant animation speed throughout</li>
+<li><code>step-start</code> - steps to the final state in the first frame of the animation</li>
+<li><code>step-end</code> - steps to the final state in the last frame of the animation</li>
+<li><code>steps(n, start|end)</code> - steps through n frames for the duration of the animation, &ldquo;eating&rdquo; a frame either at the start or the end</li>
+</ul>
+<p>When dealing with simple animations and transitions, it's unlikely that you've touched the <code>step</code> functions - those are more geared towards keyframe cartoon-style animations, which is a very specific use case. However, you've probably used a lot of the other built in timing functions to reasonable effect when building nicer buttons, menus, modals, and other stateful components. Have you ever thought that despite the induced animation effect, it doesn't look and feel quite right?</p>
+<h2 id="cubic-bezier-to-the-rescue">Cubic Bezier to the Rescue!</h2>
+<p>Let's digress a little bit. Anyone with any animation experience will know that software like Flash and After Effects come packed with a ton of easing functions - <code>easeInQuint</code>, <code>easeOutSine</code>, <code>easeInOutCubic</code>, just to name 3 of many. These timing functions aren't available to us through CSS keywords like <code>ease</code> and <code>linear</code>. However, it's important to note that <strong>all</strong> of these functions, including the ones that have valid keywords in CSS, are just cubic bezier functions. But what exactly is cubic bezier? Let's take a look at the image below:</p>
+<p><img src="bezier.png" alt="Cubic Bezier Chart"></p>
+<p>It's a graph that lives on a 1x1 axis, and it represents the cartesian cubic bezier coordinate system. Side note: plot points on this graph can go above and below 1 on the y-axis (property axis), but not on the x-axis (time axis). The grey line represents the axes, the orange line represents the timing function curve, and the blue lines and dots represent the control points and lines of the bezier curve. These control points are responsible for shaping the curve itself, and are one of the fundamental underlying concept in vector graphics softwares such as Adobe Illustrator.</p>
+<p>A specific type of bezier curve - the cubic bezier curve - is available to us in the field of animation, and it can be mathematically defined by four control points in the plane of the graph shown above. In world of CSS animations though, we're only concerned with control points <code>p1</code> and <code>p2</code>, and that's because <code>p0</code> is always going to be <code>0, 0</code>, and <code>p3</code> is always going to be <code>1, 1</code>. So how then do we define out cubic bezier function in CSS? It looks like the following:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css"><span style="color:#f92672">cubic-bezier</span><span style="color:#f92672">(</span><span style="color:#f92672">x1</span><span style="color:#f92672">,</span> <span style="color:#f92672">y1</span><span style="color:#f92672">,</span> <span style="color:#f92672">x2</span><span style="color:#f92672">,</span> <span style="color:#f92672">y2</span><span style="color:#f92672">)</span>
+</code></pre></div><p>where:</p>
+<ul>
+<li><code>x1</code> is the x coordinate of control point <code>p1</code></li>
+<li><code>y1</code> is the y coordinate of control point <code>p1</code></li>
+<li><code>x2</code> is the x coordinate of control point <code>p2</code></li>
+<li><code>y2</code> is the y coordinate of control point <code>p2</code></li>
+</ul>
+<p>I created the graph above just as a demonstration, but you can imagine that the cubic bezier declaration for it might look something like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css"><span style="color:#f92672">cubuc-bezier</span><span style="color:#f92672">(</span><span style="color:#f92672">0</span>.<span style="color:#a6e22e">5</span><span style="color:#f92672">,</span> <span style="color:#f92672">0</span>.<span style="color:#a6e22e">31</span><span style="color:#f92672">,</span> <span style="color:#f92672">0</span>.<span style="color:#a6e22e">84</span><span style="color:#f92672">,</span> <span style="color:#f92672">0</span>.<span style="color:#a6e22e">05</span><span style="color:#f92672">)</span>
+</code></pre></div><p>If you're good with numbers, or you have a grasp of bezier curves or animation functions in typical animation software, you may immediately see the immense power this gives us. Think about it this way, animations are supposed to tell a story and give context and mood to the state we're animating to. If every animation was linear or a normal ease, they would all look the same, and invoke the same mood. If a very important dialog were to appear after a user action, and you really wanted to draw some attention to that, you'd probably want a custom timing function. Cubic bezier curves give us this fine tuned control.</p>
+<h2 id="im-no-good-with-numbers---help">I'm No Good with Numbers - Help</h2>
+<p>If you're no good with numbers or are having a hard time visualizing what the end result will look like, then fear not. There are many resources out there to help you. First and foremost, a quick Google search will yield heaps of results on traditional easing functions ported to their CSS cubic bezier equivalents. However, two excellent resources that I use are:</p>
+<ol>
+<li><a href="http://easings.net/">easings.net</a> - A collection of traditional easings (timing functions) and their corresponding CSS cubic bezier implementations</li>
+<li><a href="http://cubic-bezier.com/">cubic-bezier.com</a> - A playground and visual interface for making your own cubic bezier functions, and seeing the results in real time.</li>
+</ol>
+<p>Both are excellent, and you'll likely use them together.</p>
+<h2 id="a-little-example">A Little Example</h2>
+<p>Let's demo up a little example to compare two timing functions. Below, there are two blue boxes of the exact same size. When you hit the animate button, they will translate 20rem from left to right for a duration of 600ms. Everything about them is the same, except the easing functions. The first one takes on the function <strong>ease in</strong>, which is accessible via the CSS keyword <code>ease-in</code>. The second takes on the function <strong>ease in out back</strong>, and you can grab the cubic bezier function from <a href="http://easings.net/">easings.net</a>. Below is the result:</p>
+<!-- raw HTML omitted -->
+<p>I don't know about you, but in my opinion, the second animation has a lot more character! Putting in just a little bit more effort yielded amazing results.</p>
+<h2 id="wrap-up">Wrap Up</h2>
+<p>Understanding cubic bezier curves is one part of the equation of mastery of CSS animations. Putting them to use is another part. Always remember though that animation is not just a slap-and-go tool, and you shouldn't abuse it. Animation is a long practiced art, and we should treat it with respect and research accordingly. Timing functions all invoke different meanings to the subject, and it's up to you to make sure you're sending the right message. Cubic beziers can dramatically help this, so get acquainted. Thanks again for reading, and if you have and questions, comments, or feedback, feel free to <!-- raw HTML omitted -->send me a tweet.<!-- raw HTML omitted --></p>
+
+      </div>
+    </div>
+    <div class="Article-prevNext">
+      
+        <div class="Article-prevNext-link">
+          <strong>Next:</strong>
+          <a href="https://callmenick.com/dev/svg-vector-effects/">SVG Vector Effects</a>
+        </div>
+      
+      
+        <div class="Article-prevNext-link">
+          <strong>Previous:</strong>
+          <a href="https://callmenick.com/dev/maintainable-responsive-web-design-with-sass/">Maintainable Responsive Web Design with Sass</a>
+        </div>
+      
+    </div>
+  </section>
+
+      </div>
+    </main>
+  </div>
+  <script src="https://callmenick.com/js/prism.js"></script>
+  <script src="https://callmenick.com/js/carbonad.js"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-34160351-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+</body>
+</html>

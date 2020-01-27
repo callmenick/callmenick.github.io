@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>SVG Vector Effects - Call Me Nick</title>
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:creator" content="@nicksalloum_" />
+  <meta name="description" content="In this tutorial, we take a look at a lesser known vector effect SVG attribute that helps us scale SVGs without scaling their strokes.">
+  <meta property="og:url" content="https://callmenick.com/dev/svg-vector-effects/">
+  <meta property="og:title" content="SVG Vector Effects - Call Me Nick">
+  <meta property="og:description" content="In this tutorial, we take a look at a lesser known vector effect SVG attribute that helps us scale SVGs without scaling their strokes.">
+  <meta property="og:image" content="https://callmenick.com/dev/svg-vector-effects/svg-vector-effects-featured.png">
+  <meta name="msapplication-config" content="https://callmenick.com/img/icons/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="stylesheet" href="https://callmenick.com/css/style.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://callmenick.com/img/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://callmenick.com/img/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://callmenick.com/img/icons/favicon-16x16.png">
+  <link rel="manifest" href="https://callmenick.com/img/icons/manifest.json">
+  <link rel="mask-icon" href="https://callmenick.com/img/icons/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="shortcut icon" href="https://callmenick.com/img/icons/favicon.ico">
+  <link rel="canonical" href="https://callmenick.com/dev/svg-vector-effects/">
+</head>
+<body>
+  <div class="Wrapper">
+    <div class="Sidebar">
+  <header class="Header">
+    <div class="Header-logo">
+      <a href="https://callmenick.com/">
+        <svg class="Logo" width="60" height="60" viewBox="0 0 60 60">
+  <circle fill="#2196F3" cx="30" cy="30" r="30"/>
+  <path fill="#FFF" d="M34.757 43.244A5.981 5.981 0 0 0 39.002 45 5.999 5.999 0 0 0 45 39.002c0-1.665-.67-3.154-1.757-4.243L25.244 16.757A6.002 6.002 0 0 0 15 20.999c0 1.663.67 3.155 1.757 4.241l18 18.004zM27.001 39.002A6 6 0 0 1 20.997 45C17.688 45 15 42.316 15 39.002a6.001 6.001 0 0 1 12.001 0zM45 20.999a6 6 0 0 1-12 0A6.002 6.002 0 0 1 39.002 15 6.002 6.002 0 0 1 45 20.999z"/>
+</svg>
+
+      </a>
+    </div>
+  </header>
+  <nav class="Nav">
+    <ul class="Nav-items">
+      
+      
+        <li class="Nav-item ">
+          <a href="https://callmenick.com/" class="Nav-link">Home</a>
+        </li>
+      
+        <li class="Nav-item ">
+          <a href="https://callmenick.com/dev" class="Nav-link">Dev</a>
+        </li>
+      
+        <li class="Nav-item ">
+          <a href="https://callmenick.com/contact" class="Nav-link">Contact</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <div id="carbonad" class="CarbonAd"></div>
+</div>
+
+    <main class="Main">
+      <div class="Main-inner">
+        
+  <section class="Article">
+    <div class="Article-header">
+      <h1 class="Article-title">SVG Vector Effects</h1>
+      <div class="Article-meta">
+        <a href="https://callmenick.com/dev/svg-vector-effects/" class="Article-meta-item">
+          On: <em>2016/06/30</em>
+        </a>
+        <a href="/dev" class="Article-meta-item">
+          In: <em>dev</em>
+        </a>
+      </div>
+      <p class="Article-excerpt">In this tutorial, we take a look at a lesser known vector effect SVG attribute that helps us scale SVGs without scaling their strokes.</p>
+      <div class="Article-featuredImg">
+        <img src="svg-vector-effects-featured.png" alt="SVG Vector Effects">
+      </div>
+    </div>
+    <div class="Article-content">
+      <div class="Content">
+        <!-- raw HTML omitted -->
+<p>A few days ago, I ran into a little problem when using SVGs. I'd created a reusable set of SVG symbols for a project I was working on, and started sprucing it up with all the pretty icons my designer gave to me. As we all know, one of the biggest benefits to using <strong>S</strong>VG is the &ldquo;scalable&rdquo; part of it, meaning that graphics render perfectly at and size, no matter the original size of the graphic. I'm a huge fan in general of SVG, and implementing them into this project was a no brainer for me.</p>
+<p>However, a few of the icons in the design consisted of strokes, and those strokes were always <code>1px</code> in width, no matter the size. When you scale an SVG, it scales everything about it, so an icon that's scaled up two times would have stroke widths that are double the size of the original. One such example was a &ldquo;+&rdquo; icon that indicated there was more content. I had to reuse that icon at small and large sizes, but:</p>
+<ol>
+<li>I wanted the stroke width at all sizes to be <code>2px</code></li>
+<li>I wanted to create one graphic that I could reuse at any size without scaling the stroke width</li>
+</ol>
+<h2 id="enter-the-vector-effect-attribute">Enter The Vector Effect Attribute</h2>
+<p>One of my favourite things about programming is being faced with a problem. It challenges you to research and find solutions. In this case, I stumbled upon the <a href="https://web.archive.org/web/20170727101027/https://www.w3.org/TR/SVGTiny12/painting.html#VectorEffectProperty"><code>vector-effect</code> attribute</a>, which conveniently has <code>non-scaling-stroke</code> as one of its values. It does exactly what it says, i.e. prevents strokes from scaling as an SVG scales.</p>
+<p>My original SVG symbol looks something like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!--</span><span style="color:#75715e"> reusable symbols </span><span style="color:#75715e">--&gt;</span>
+&lt;<span style="color:#f92672">svg</span>&gt;
+  &lt;<span style="color:#f92672">symbol</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Icon-plus&#34;</span> <span style="color:#a6e22e">viewBox</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;0 0 50 50&#34;</span>&gt;
+    &lt;<span style="color:#f92672">circle</span> <span style="color:#a6e22e">cx</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;25&#34;</span> <span style="color:#a6e22e">cy</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;25&#34;</span> <span style="color:#a6e22e">r</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;20&#34;</span> <span style="color:#a6e22e">fill</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;none&#34;</span> <span style="color:#a6e22e">stroke</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;#fff&#34;</span> <span style="color:#a6e22e">stroke-width</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;2&#34;</span>/&gt;
+    &lt;<span style="color:#f92672">path</span> <span style="color:#a6e22e">d</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;M25 15 L 25 35&#34;</span> <span style="color:#a6e22e">fill</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;none&#34;</span> <span style="color:#a6e22e">stroke</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;#fff&#34;</span> <span style="color:#a6e22e">stroke-width</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;2&#34;</span> <span style="color:#a6e22e">stroke-linecap</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;round&#34;</span>/&gt;
+    &lt;<span style="color:#f92672">path</span> <span style="color:#a6e22e">d</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;M15 25 L 35 25&#34;</span> <span style="color:#a6e22e">fill</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;none&#34;</span> <span style="color:#a6e22e">stroke</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;#fff&#34;</span> <span style="color:#a6e22e">stroke-width</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;2&#34;</span> <span style="color:#a6e22e">stroke-linecap</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;round&#34;</span>/&gt;
+  &lt;/<span style="color:#f92672">symbol</span>&gt;
+&lt;/<span style="color:#f92672">svg</span>&gt;
+
+<span style="color:#75715e">&lt;!--</span><span style="color:#75715e"> actually using the symbol </span><span style="color:#75715e">--&gt;</span>
+&lt;<span style="color:#f92672">svg</span> <span style="color:#a6e22e">width</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;50&#34;</span> <span style="color:#a6e22e">height</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;50&#34;</span>&gt;
+  &lt;<span style="color:#f92672">use</span> <span style="color:#a6e22e">xlink:href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Icon-plus&#34;</span>/&gt;
+&lt;/<span style="color:#f92672">svg</span>&gt;
+</code></pre></div><p>Notice how the <code>viewBox</code> dimensions are perfectly aligned with the <code>width</code> and <code>height</code> dimensions. With this version of the icon, the <code>2px</code> wide stroke displays at <code>2px</code>, as expected. However, if I reuse that icon elsewhere at a bigger size, like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">svg</span> <span style="color:#a6e22e">width</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;200&#34;</span> <span style="color:#a6e22e">height</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;200&#34;</span>&gt;
+  &lt;<span style="color:#f92672">use</span> <span style="color:#a6e22e">xlink:href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Icon-plus&#34;</span>/&gt;
+&lt;/<span style="color:#f92672">svg</span>&gt;
+</code></pre></div><p>I'd see a scaled up icon including scaled up effects. This one's dimensions are 4 times the size of the original view box. As such, the stroke would render at <code>8px</code>. In order to circumvent this, I added the <code>vector-effect</code> attribute to the paths on the original graphic, and set the value to <code>non-scaling-stroke</code>, like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">circle</span> <span style="color:#a6e22e">vector-effect</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;non-scaling-stroke&#34;</span>/&gt;
+&lt;<span style="color:#f92672">path</span> <span style="color:#a6e22e">vector-effect</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;non-scaling-stroke&#34;</span>/&gt;
+&lt;<span style="color:#f92672">path</span> <span style="color:#a6e22e">vector-effect</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;non-scaling-stroke&#34;</span>/&gt;
+</code></pre></div><p>Now, at any size, the stroke would render at <code>2px</code> as desired!</p>
+<!-- raw HTML omitted -->
+<h2 id="wrap-up">Wrap Up</h2>
+<p>And that’s a wrap! I really wanted to share this simple tip with you as it's served me beautifully in recent times. Thanks again for reading, and if you have and questions, comments, or feedback, feel free to <!-- raw HTML omitted -->send me a tweet.<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+
+      </div>
+    </div>
+    <div class="Article-prevNext">
+      
+        <div class="Article-prevNext-link">
+          <strong>Next:</strong>
+          <a href="https://callmenick.com/dev/thinking-outside-the-box-css-shape-outside/">Thinking Outside the Box with CSS shape-outside</a>
+        </div>
+      
+      
+        <div class="Article-prevNext-link">
+          <strong>Previous:</strong>
+          <a href="https://callmenick.com/dev/level-up-animations-cubic-bezier/">Level Up Your CSS Animations with Cubic Bezier</a>
+        </div>
+      
+    </div>
+  </section>
+
+      </div>
+    </main>
+  </div>
+  <script src="https://callmenick.com/js/prism.js"></script>
+  <script src="https://callmenick.com/js/carbonad.js"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-34160351-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+</body>
+</html>

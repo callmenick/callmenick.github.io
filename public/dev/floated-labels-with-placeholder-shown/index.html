@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>CSS Only Floated Labels with :placeholder-shown pseudo class - Call Me Nick</title>
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:creator" content="@nicksalloum_" />
+  <meta name="description" content="In this tutorial, we’re going to build a CSS only solution to the floated label technique using the :placeholder-shown pseudo class.">
+  <meta property="og:url" content="https://callmenick.com/dev/floated-labels-with-placeholder-shown/">
+  <meta property="og:title" content="CSS Only Floated Labels with :placeholder-shown pseudo class - Call Me Nick">
+  <meta property="og:description" content="In this tutorial, we’re going to build a CSS only solution to the floated label technique using the :placeholder-shown pseudo class.">
+  <meta property="og:image" content="https://callmenick.com/dev/floated-labels-with-placeholder-shown/floated-labels-with-placeholder-shown-featured.png">
+  <meta name="msapplication-config" content="https://callmenick.com/img/icons/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="stylesheet" href="https://callmenick.com/css/style.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://callmenick.com/img/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://callmenick.com/img/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://callmenick.com/img/icons/favicon-16x16.png">
+  <link rel="manifest" href="https://callmenick.com/img/icons/manifest.json">
+  <link rel="mask-icon" href="https://callmenick.com/img/icons/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="shortcut icon" href="https://callmenick.com/img/icons/favicon.ico">
+  <link rel="canonical" href="https://callmenick.com/dev/floated-labels-with-placeholder-shown/">
+</head>
+<body>
+  <div class="Wrapper">
+    <div class="Sidebar">
+  <header class="Header">
+    <div class="Header-logo">
+      <a href="https://callmenick.com/">
+        <svg class="Logo" width="60" height="60" viewBox="0 0 60 60">
+  <circle fill="#2196F3" cx="30" cy="30" r="30"/>
+  <path fill="#FFF" d="M34.757 43.244A5.981 5.981 0 0 0 39.002 45 5.999 5.999 0 0 0 45 39.002c0-1.665-.67-3.154-1.757-4.243L25.244 16.757A6.002 6.002 0 0 0 15 20.999c0 1.663.67 3.155 1.757 4.241l18 18.004zM27.001 39.002A6 6 0 0 1 20.997 45C17.688 45 15 42.316 15 39.002a6.001 6.001 0 0 1 12.001 0zM45 20.999a6 6 0 0 1-12 0A6.002 6.002 0 0 1 39.002 15 6.002 6.002 0 0 1 45 20.999z"/>
+</svg>
+
+      </a>
+    </div>
+  </header>
+  <nav class="Nav">
+    <ul class="Nav-items">
+      
+      
+        <li class="Nav-item ">
+          <a href="https://callmenick.com/" class="Nav-link">Home</a>
+        </li>
+      
+        <li class="Nav-item ">
+          <a href="https://callmenick.com/dev" class="Nav-link">Dev</a>
+        </li>
+      
+        <li class="Nav-item ">
+          <a href="https://callmenick.com/contact" class="Nav-link">Contact</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <div id="carbonad" class="CarbonAd"></div>
+</div>
+
+    <main class="Main">
+      <div class="Main-inner">
+        
+  <section class="Article">
+    <div class="Article-header">
+      <h1 class="Article-title">CSS Only Floated Labels with :placeholder-shown pseudo class</h1>
+      <div class="Article-meta">
+        <a href="https://callmenick.com/dev/floated-labels-with-placeholder-shown/" class="Article-meta-item">
+          On: <em>2018/09/15</em>
+        </a>
+        <a href="/dev" class="Article-meta-item">
+          In: <em>dev</em>
+        </a>
+      </div>
+      <p class="Article-excerpt">In this tutorial, we’re going to build a CSS only solution to the floated label technique using the :placeholder-shown pseudo class.</p>
+      <div class="Article-featuredImg">
+        <img src="floated-labels-with-placeholder-shown-featured.png" alt="CSS Only Floated Labels with :placeholder-shown pseudo class">
+      </div>
+    </div>
+    <div class="Article-content">
+      <div class="Content">
+        <!-- raw HTML omitted -->
+<h2 id="the-floated-labels-technique">The Floated Labels Technique</h2>
+<p>When we’re dealing with inputs, there’s a host of techniques to consider in order to give users the best experience. We need to make sure that we’re giving users necessary information at all points in time, and that means finding the balance between too much and too little. Two pretty important pieces to the UX puzzle are:</p>
+<ol>
+<li>
+<p>The <code>label</code> element which <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#The_%3Clabel%3E_element">according to the MDN</a>, is the only way to provide explanatory information about a form field that is <em>always</em> appropriate</p>
+</li>
+<li>
+<p>The <code>placeholder</code> attribute for the <code>input</code> element, which <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#The_placeholder_attribute">according to the MDN</a>, lets you specify a text that appears within the <code>&lt;input&gt;</code> element’s content area itself when empty. It’s intended to be used to show an example input, rather than an explanation or prompt.</p>
+</li>
+</ol>
+<p>These two elements can be used in tandem to create instructive form UI, and one pleasant way of doing so is what I call the “floated label technique”. In this UI implementation, the user encounters this flow:</p>
+<ol>
+<li>They see an <code>input</code> with a <code>placeholder</code> showing some descriptive example input, and the <code>label</code> is initially hidden.</li>
+<li>When they focus on the <code>input</code> and start typing, the meaningful <code>label</code> animates and <em>floats</em> above the input.</li>
+<li>As long at the input has a value, the label remains visible and floated above the input to remind users the original meaning of the input</li>
+</ol>
+<p>This UI technique does indeed slightly bend the definitions of <code>label</code> and <code>placeholder</code> listed above, in the sense that we’re giving the <code>placeholder</code> more initial importance in having to explain the input to the user, but it’s a tradeoff for a neat UI component, and one that I’m personally comfortable making. Here’s a quick preview of what we’re going to build.</p>
+<p><img src="floated-labels-with-placeholder-shown-demo.gif" alt="CSS Floated Labels Demo"></p>
+<h2 id="floating-labels-with-only-css">Floating Labels With Only CSS</h2>
+<p>Registering a focus event, determining if an input has value, animating a hidden element into view, deciding whether it needs to stay in view or not depending on input value&hellip; this seems like a job for JavaScript, right? <strong>Wrong!</strong> We’re gonna use a neat CSS pseudo class, <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:placeholder-shown"><code>:placeholder-shown</code></a>, to achieve the effect. From the MDN:</p>
+<blockquote>
+<p>The <strong>:placeholder-shown</strong> <a href="https://developer.mozilla.org/en-US/docs/Web/CSS">CSS</a> <a href="https://developer.mozilla.org/en-US/docs/CSS/Pseudo-classes">pseudo-class</a> represents any <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input"><code>&lt;input&gt;</code></a> or <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea"><code>&lt;textarea&gt;</code></a> element that is currently displaying <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-placeholder">placeholder text</a>.</p>
+</blockquote>
+<p>In other words, if an <code>input</code> has any value in it, we can safely assume that the <code>:placeholder-shown</code> pseudo class will never be reached in our CSS.</p>
+<p>Here’s the train of thought I came up with to achieve the floated labels technique using this info:</p>
+<ol>
+<li>Structure my markup such that I could target my <code>label</code> as a <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Adjacent_sibling_selectors">adjacent sibling combinator</a> from my <code>input</code>, and wrap the two elements in a containing <code>div</code>.</li>
+<li>Style my <code>input</code> and <code>label</code> accordingly, including the <code>::placeholder</code> pseudo element.</li>
+<li>Move the <code>label</code> to its starting position, which is vertically centred in the containing <code>div</code>, and hide it.</li>
+<li>Determine when to show the label by using a combination of the <code>:not</code>, <code>:focus</code> and <code>:placeholder-shown</code> pseudo classes:
+<ol>
+<li>If there’s no placeholder shown, then show the label — <code>input:not(:placeholder-shown) + label</code></li>
+<li>If the input is focused and the placeholder isn’t shown, then show the label — <code>input:focus:not(:placeholder-shown) + label</code></li>
+</ol>
+</li>
+</ol>
+<p>With that in mind, let’s get to the HTML &amp; CSS!</p>
+<h2 id="building-it-all">Building it all</h2>
+<p>After digesting all this info, the build is actually pretty simple. Here’s the markup I came up with:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Input&#34;</span>&gt;
+  &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;input&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Input-text&#34;</span> <span style="color:#a6e22e">placeholder</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Your first name, e.g. Nicholas&#34;</span>&gt;
+  &lt;<span style="color:#f92672">label</span> <span style="color:#a6e22e">for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;input&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Input-label&#34;</span>&gt;First name&lt;/<span style="color:#f92672">label</span>&gt;
+&lt;/<span style="color:#f92672">div</span>&gt;
+</code></pre></div><p>And here’s the CSS scaffolding with some comments about what’s happening at each step. The final demo down below has the full CSS, which is written up with <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_variables">CSS variables</a> for easy modification and maintenance.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">.<span style="color:#a6e22e">Input</span> {
+  <span style="color:#75715e">/**
+</span><span style="color:#75715e">   * Relative positioning on the wrapper is important, beecause we&#39;ll use the
+</span><span style="color:#75715e">   * wrapper to position the label in default and floated positions.
+</span><span style="color:#75715e">   */</span>
+  <span style="color:#66d9ef">position</span>: <span style="color:#66d9ef">relative</span>;
+}
+
+.<span style="color:#a6e22e">Input-text</span> {
+  <span style="color:#75715e">/**
+</span><span style="color:#75715e">   * Input text styles here. The font size and line height of the input are
+</span><span style="color:#75715e">   * important for determining precise positioning of the label. These will be
+</span><span style="color:#75715e">   * stored in CSS variables eventually.
+</span><span style="color:#75715e">   */</span>
+  <span style="color:#66d9ef">display</span>: <span style="color:#66d9ef">block</span>;
+  <span style="color:#66d9ef">margin</span>: <span style="color:#ae81ff">0</span>;
+  <span style="color:#66d9ef">width</span>: <span style="color:#ae81ff">100</span><span style="color:#66d9ef">%</span>;
+  <span style="color:#75715e">/**
+</span><span style="color:#75715e">   * These props will be added in the demo once variables are defined:
+</span><span style="color:#75715e">   *
+</span><span style="color:#75715e">   * padding
+</span><span style="color:#75715e">   * font-size
+</span><span style="color:#75715e">   * line-height
+</span><span style="color:#75715e">   */</span>
+}
+
+.<span style="color:#a6e22e">Input-text</span>:<span style="color:#a6e22e">focus</span> {
+  <span style="color:#75715e">/**
+</span><span style="color:#75715e">   * Focused input styles here.
+</span><span style="color:#75715e">   */</span>
+}
+
+.<span style="color:#a6e22e">Input-label</span> {
+  <span style="color:#75715e">/**
+</span><span style="color:#75715e">   * The label gets absolute positioning, and a calculated set of  sizes,
+</span><span style="color:#75715e">   * positioning, and transforms, based on relativity to the container element
+</span><span style="color:#75715e">   * and input text styles.
+</span><span style="color:#75715e">   */</span>
+  <span style="color:#66d9ef">display</span>: <span style="color:#66d9ef">block</span>;
+  <span style="color:#66d9ef">position</span>: <span style="color:#66d9ef">absolute</span>;
+  <span style="color:#66d9ef">opacity</span>: <span style="color:#ae81ff">0</span>;
+  <span style="color:#75715e">/**
+</span><span style="color:#75715e">   * These props will be added in the demo once variables are defined:
+</span><span style="color:#75715e">   *
+</span><span style="color:#75715e">   * bottom
+</span><span style="color:#75715e">   * left
+</span><span style="color:#75715e">   * font-size
+</span><span style="color:#75715e">   * line-height
+</span><span style="color:#75715e">   * transform
+</span><span style="color:#75715e">   * transform-origin
+</span><span style="color:#75715e">   * transition
+</span><span style="color:#75715e">   *
+</span><span style="color:#75715e">   * They will give the label default positioning and styling.
+</span><span style="color:#75715e">   */</span>
+}
+
+.<span style="color:#a6e22e">Input-text</span>:<span style="color:#a6e22e">placeholder-shown</span> <span style="color:#f92672">+</span> .<span style="color:#a6e22e">Input-label</span> {
+  <span style="color:#75715e">/**
+</span><span style="color:#75715e">   * While the placeholder is visible, we want to hide the label.
+</span><span style="color:#75715e">   */</span>
+  <span style="color:#66d9ef">visibility</span>: <span style="color:#66d9ef">hidden</span>;
+  <span style="color:#66d9ef">z-index</span>: <span style="color:#ae81ff">-1</span>;
+}
+
+.<span style="color:#a6e22e">Input-text</span>:<span style="color:#a6e22e">not</span><span style="color:#f92672">(</span>:<span style="color:#a6e22e">placeholder-shown</span><span style="color:#f92672">)</span> <span style="color:#f92672">+</span> .<span style="color:#a6e22e">Input-label</span><span style="color:#f92672">,</span>
+.<span style="color:#a6e22e">Input-text</span>:<span style="color:#a6e22e">focus</span>:<span style="color:#a6e22e">not</span><span style="color:#f92672">(</span>:<span style="color:#a6e22e">placeholder-shown</span><span style="color:#f92672">)</span> <span style="color:#f92672">+</span> .<span style="color:#a6e22e">Input-label</span> {
+  <span style="color:#75715e">/**
+</span><span style="color:#75715e">   * While the placeholder is not shown - i.e. the input has a value - we want
+</span><span style="color:#75715e">   * to animate the label into the floated position.
+</span><span style="color:#75715e">   */</span>
+  <span style="color:#66d9ef">visibility</span>: <span style="color:#66d9ef">visible</span>;
+  <span style="color:#66d9ef">z-index</span>: <span style="color:#ae81ff">1</span>;
+  <span style="color:#66d9ef">opacity</span>: <span style="color:#ae81ff">1</span>;
+  <span style="color:#75715e">/**
+</span><span style="color:#75715e">   * These props will be added in the demo once variables are defined:
+</span><span style="color:#75715e">   *
+</span><span style="color:#75715e">   * transform
+</span><span style="color:#75715e">   * transition
+</span><span style="color:#75715e">   *
+</span><span style="color:#75715e">   * They will give the label floated positioning and styling.
+</span><span style="color:#75715e">   */</span>
+}
+</code></pre></div><h2 id="full-demo-in-action">Full Demo In Action</h2>
+<p>If any of the above was unclear, here’s a full working demo in action for you to take a look over!</p>
+<!-- raw HTML omitted -->
+<h2 id="browser-support">Browser Support</h2>
+<p>Support is pretty good so far, with IE &amp; Edge falling behind:</p>
+<ul>
+<li><strong>Chrome:</strong> 47+</li>
+<li><strong>Firefox:</strong> 51+</li>
+<li><strong>IE:</strong> No support</li>
+<li><strong>Edge:</strong> No support</li>
+<li><strong>Opera:</strong> 34+</li>
+<li><strong>Safari:</strong> 9+</li>
+</ul>
+<p>You can get around lack of support by using some <a href="http://browserhacks.com/">fun CSS browser hacks</a> to target IE and Edge browsers for some conditional styles to the input and label.</p>
+<h2 id="wrap-up">Wrap Up</h2>
+<p>And that’s a wrap! I love when I discover new things in CSS, but I love even more when I can find neat ways to make them applicable. I hope you learned something and can come up with fun new ways to use the <code>:placeholder-shown</code> pseudo class. Thanks again for reading, and if you have and questions, comments, or feedback, feel free to <!-- raw HTML omitted -->send me a tweet.<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+
+      </div>
+    </div>
+    <div class="Article-prevNext">
+      
+        <div class="Article-prevNext-link">
+          <strong>Next:</strong>
+          <a href="https://callmenick.com/dev/css-sticky-footer-flexbox-grid/">CSS Sticky Footer with Flexbox and Grid</a>
+        </div>
+      
+      
+        <div class="Article-prevNext-link">
+          <strong>Previous:</strong>
+          <a href="https://callmenick.com/dev/isolation-animation-technique/">Dead Simple CSS Isolation Animation Technique</a>
+        </div>
+      
+    </div>
+  </section>
+
+      </div>
+    </main>
+  </div>
+  <script src="https://callmenick.com/js/prism.js"></script>
+  <script src="https://callmenick.com/js/carbonad.js"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-34160351-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+</body>
+</html>
