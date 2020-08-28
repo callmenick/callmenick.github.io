@@ -25,15 +25,11 @@
 </head>
 <body>
   <div class="Wrapper">
-    {{ partial "sidebar.html" . }}
+    {{ partial "header" . }}
     <main class="Main">
-      <div class="Main-inner">
-        {{ block "main" . }}
-        {{ end }}
-      </div>
+      {{ block "main" . }}
+      {{ end }}
     </main>
   </div>
-  <script src="{{ "js/prism.js" | absURL }}"></script>
-  <script src="{{ "js/carbonad.js" | absURL }}"></script>
 </body>
 </html>

@@ -1,15 +1,2 @@
 .Main {
-  padding: gutter(lg);
-
-  @include break(lg) {
-    padding: gutter(xx);
-    flex: 1;
-    overflow: auto;
-  }
-}
-
-.Main-inner {
-  @include break(lg) {
-    max-width: 68rem;
-  }
 }

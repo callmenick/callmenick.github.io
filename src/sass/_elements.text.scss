@@ -1,11 +1,11 @@
 a {
-  color: $color-brand-500;
-  text-decoration: none;
+  color: $color-grey-700;
+  text-decoration: underline;
   transition: color 250ms cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 a:hover {
-  color: $color-brand-700;
+  color: $color-brand-500;
 }
 
 pre,

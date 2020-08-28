@@ -1,9 +1,5 @@
 .Header {
-  margin: 0 0 gutter(lg) 0;
-
-  @include break(lg) {
-    margin: 0 0 gutter(xx) 0;
-  }
+  padding: gutter(xl) 0;
 }
 
 .Header-logo {

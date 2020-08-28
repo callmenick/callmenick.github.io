@@ -3,21 +3,6 @@ languageCode = "en-us"
 title = "Call Me Nick"
 theme = "callmenick"
 [params]
-  subtitle = "Front End Development and Other Adventures"
-  description = "I'm a Front End Engineer, and I focus on bringing joy and delight to users."
+  subtitle = "Bit Of This & That"
+  description = "I'm a software engineer, and I focus on bringing joy and delight to users."
   author = "Nick Salloum"
-[[menu.main]]
-  name = "Home"
-  weight = 1
-  identifier = "home"
-  url = "/"
-[[menu.main]]
-  name = "Dev"
-  weight = 2
-  identifier = "dev"
-  url = "/dev"
-[[menu.main]]
-  name = "Contact"
-  weight = 3
-  identifier = "contact"
-  url = "/contact"
